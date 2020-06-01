@@ -24,3 +24,6 @@ Al tener tus cambios listos, ve al link [Ramas del Proyecto](https://github.com/
 Asigna los integrantes del equipo que realizara la revision de los cambios.
 
 Una vez revisados los cambios hacer click en "Marge pull request" y tus cambios se mezclaran a la rama principal "Master"
+
+### Testing
+PR por GeraldBustos
