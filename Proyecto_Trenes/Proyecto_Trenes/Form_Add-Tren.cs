@@ -28,12 +28,19 @@ namespace Proyecto_Trenes
 
         private void button_add_Click(object sender, EventArgs e)
         {
+            saveTren();
+        }
+
+        private void saveTren()
+        {
             Tren tren = new Tren();
             tren.codigo = textBox_codigo.Text;
             tren.capacidad = textBox_capacidad.Text;
             tren.tipo = textBox_tipo.Text;
             tren.origen = textBox_origen.Text;
             tren.destino = textBox_destino.Text;
+
+            _businessLogicLayer.saveTren(tren);
         }
 
         private void textBox_capacidad_TextChanged(object sender, EventArgs e)

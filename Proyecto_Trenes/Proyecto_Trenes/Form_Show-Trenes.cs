@@ -10,11 +10,15 @@ using System.Windows.Forms;
 
 namespace Proyecto_Trenes
 {
-    public partial class Form1 : Form
+    public partial class Form_Show_Trenes : Form
     {
-        public Form1()
+
+        private BusinessLogicLayer _businessLogicLayer;
+
+        public Form_Show_Trenes()
         {
             InitializeComponent();
+            _businessLogicLayer = new BusinessLogicLayer();
         }
 
         #region EVENTS
@@ -34,5 +38,17 @@ namespace Proyecto_Trenes
         }
 
         #endregion
+
+        private void Form_Show_Trenes_Load(object sender, EventArgs e)
+        {
+            loadTrenes();
+        }
+
+        private void loadTrenes()
+        {
+            List<Tren> trenes = _businessLogicLayer.getTrenes();
+            dataGrid_Trenes.DataSource = trenes;
+            
+        }
     }
 }

@@ -46,11 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="BusinessLogicLayer.cs" />
+    <Compile Include="DataAccessLayer.cs" />
+    <Compile Include="Form_Show-Trenes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Form_Show-Trenes.Designer.cs">
+      <DependentUpon>Form_Show-Trenes.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_Add-Tren.cs">
       <SubType>Form</SubType>
@@ -60,8 +62,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Tren.cs" />
+    <EmbeddedResource Include="Form_Show-Trenes.resx">
+      <DependentUpon>Form_Show-Trenes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Add-Tren.resx">
       <DependentUpon>Form_Add-Tren.cs</DependentUpon>
@@ -75,6 +78,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\Tren.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
