@@ -10,11 +10,35 @@ using System.Windows.Forms;
 
 namespace Proyecto_Trenes
 {
-    public partial class Form_Trenes : Form
+    public partial class Form_Add_Tren : Form
     {
-        public Form_Trenes()
+
+        private BusinessLogicLayer _businessLogicLayer;
+
+        public Form_Add_Tren()
         {
             InitializeComponent();
+            _businessLogicLayer = new BusinessLogicLayer();
+        }
+
+        private void button_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button_add_Click(object sender, EventArgs e)
+        {
+            Tren tren = new Tren();
+            tren.codigo = textBox_codigo.Text;
+            tren.capacidad = textBox_capacidad.Text;
+            tren.tipo = textBox_tipo.Text;
+            tren.origen = textBox_origen.Text;
+            tren.destino = textBox_destino.Text;
+        }
+
+        private void textBox_capacidad_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
