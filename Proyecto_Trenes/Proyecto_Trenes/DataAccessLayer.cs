@@ -18,19 +18,19 @@ namespace Proyecto_Trenes
                                 INSERT INTO Trenes (capacidad, codigo, tipoMaterial, origen, destino)
                                 VALUES (@tipo, @origen, @destino, @capacidad, @codigo)
                                 ";
+                SqlParameter capacidad = new SqlParameter("@capacidad", tren.capacidad);
+                SqlParameter codigo = new SqlParameter("@codigo", tren.codigo);
                 SqlParameter tipoMaterial = new SqlParameter("@tipo", tren.tipo);
                 SqlParameter origen = new SqlParameter("@origen", tren.origen);
                 SqlParameter destino = new SqlParameter("@destino", tren.destino);
-                SqlParameter capacidad = new SqlParameter("@capacidad", tren.capacidad);
-                SqlParameter codigo = new SqlParameter("@codigo", tren.codigo);
 
                 SqlCommand command = new SqlCommand(query, conn);
 
+                command.Parameters.Add(capacidad);
+                command.Parameters.Add(codigo);
                 command.Parameters.Add(tipoMaterial);
                 command.Parameters.Add(origen);
                 command.Parameters.Add(destino);
-                command.Parameters.Add(capacidad);
-                command.Parameters.Add(codigo);
 
                 command.ExecuteNonQuery();
             }
