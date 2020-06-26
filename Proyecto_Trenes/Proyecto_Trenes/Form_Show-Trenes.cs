@@ -34,7 +34,7 @@ namespace Proyecto_Trenes
 
         private void openFormAddTren() {
             Form_Add_Tren form_Add_Tren = new Form_Add_Tren();
-            form_Add_Tren.ShowDialog();
+            form_Add_Tren.ShowDialog(this);
         }
 
         #endregion
@@ -44,7 +44,7 @@ namespace Proyecto_Trenes
             loadTrenes();
         }
 
-        private void loadTrenes()
+        public void loadTrenes()
         {
             List<Tren> trenes = _businessLogicLayer.getTrenes();
             dataGrid_Trenes.DataSource = trenes;

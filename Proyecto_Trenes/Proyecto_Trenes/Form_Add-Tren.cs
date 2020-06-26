@@ -29,6 +29,8 @@ namespace Proyecto_Trenes
         private void button_add_Click(object sender, EventArgs e)
         {
             saveTren();
+            this.Close();
+            ((Form_Show_Trenes)this.Owner).loadTrenes();
         }
 
         private void saveTren()
