@@ -28,4 +28,4 @@ Una vez revisados los cambios hacer click en "Marge pull request" y tus cambios 
 ### Testing
 PR por GeraldBustos
 Pr por Cml
-PR AndreaRamirez
+PR por AndreaRamirez
