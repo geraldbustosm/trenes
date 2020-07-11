@@ -30,21 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGrid_Trenes = new System.Windows.Forms.DataGridView();
+            this.trenBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.trenBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_search = new System.Windows.Forms.TextBox();
+            this.button_search = new System.Windows.Forms.Button();
+            this.button_add = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.capacidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.origenDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.destinoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trenBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox_search = new System.Windows.Forms.TextBox();
-            this.button_search = new System.Windows.Forms.Button();
-            this.button_add = new System.Windows.Forms.Button();
-            this.trenBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.Edit = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Trenes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trenBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trenBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGrid_Trenes
@@ -57,48 +59,19 @@
             this.codigoDataGridViewTextBoxColumn,
             this.tipoDataGridViewTextBoxColumn,
             this.origenDataGridViewTextBoxColumn,
-            this.destinoDataGridViewTextBoxColumn});
+            this.destinoDataGridViewTextBoxColumn,
+            this.Edit,
+            this.Delete});
             this.dataGrid_Trenes.DataSource = this.trenBindingSource1;
             this.dataGrid_Trenes.Location = new System.Drawing.Point(12, 105);
             this.dataGrid_Trenes.Name = "dataGrid_Trenes";
-            this.dataGrid_Trenes.Size = new System.Drawing.Size(537, 279);
+            this.dataGrid_Trenes.Size = new System.Drawing.Size(845, 333);
             this.dataGrid_Trenes.TabIndex = 0;
+            this.dataGrid_Trenes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_Trenes_CellContentClick);
             // 
-            // idDataGridViewTextBoxColumn
+            // trenBindingSource1
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // capacidadDataGridViewTextBoxColumn
-            // 
-            this.capacidadDataGridViewTextBoxColumn.DataPropertyName = "capacidad";
-            this.capacidadDataGridViewTextBoxColumn.HeaderText = "capacidad";
-            this.capacidadDataGridViewTextBoxColumn.Name = "capacidadDataGridViewTextBoxColumn";
-            // 
-            // codigoDataGridViewTextBoxColumn
-            // 
-            this.codigoDataGridViewTextBoxColumn.DataPropertyName = "codigo";
-            this.codigoDataGridViewTextBoxColumn.HeaderText = "codigo";
-            this.codigoDataGridViewTextBoxColumn.Name = "codigoDataGridViewTextBoxColumn";
-            // 
-            // tipoDataGridViewTextBoxColumn
-            // 
-            this.tipoDataGridViewTextBoxColumn.DataPropertyName = "tipo";
-            this.tipoDataGridViewTextBoxColumn.HeaderText = "tipo";
-            this.tipoDataGridViewTextBoxColumn.Name = "tipoDataGridViewTextBoxColumn";
-            // 
-            // origenDataGridViewTextBoxColumn
-            // 
-            this.origenDataGridViewTextBoxColumn.DataPropertyName = "origen";
-            this.origenDataGridViewTextBoxColumn.HeaderText = "origen";
-            this.origenDataGridViewTextBoxColumn.Name = "origenDataGridViewTextBoxColumn";
-            // 
-            // destinoDataGridViewTextBoxColumn
-            // 
-            this.destinoDataGridViewTextBoxColumn.DataPropertyName = "destino";
-            this.destinoDataGridViewTextBoxColumn.HeaderText = "destino";
-            this.destinoDataGridViewTextBoxColumn.Name = "destinoDataGridViewTextBoxColumn";
+            this.trenBindingSource1.DataSource = typeof(Proyecto_Trenes.Tren);
             // 
             // trenBindingSource
             // 
@@ -141,15 +114,62 @@
             this.button_add.UseVisualStyleBackColor = true;
             this.button_add.Click += new System.EventHandler(this.button_add_Click);
             // 
-            // trenBindingSource1
+            // idDataGridViewTextBoxColumn
             // 
-            this.trenBindingSource1.DataSource = typeof(Proyecto_Trenes.Tren);
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // capacidadDataGridViewTextBoxColumn
+            // 
+            this.capacidadDataGridViewTextBoxColumn.DataPropertyName = "capacidad";
+            this.capacidadDataGridViewTextBoxColumn.HeaderText = "capacidad";
+            this.capacidadDataGridViewTextBoxColumn.Name = "capacidadDataGridViewTextBoxColumn";
+            // 
+            // codigoDataGridViewTextBoxColumn
+            // 
+            this.codigoDataGridViewTextBoxColumn.DataPropertyName = "codigo";
+            this.codigoDataGridViewTextBoxColumn.HeaderText = "codigo";
+            this.codigoDataGridViewTextBoxColumn.Name = "codigoDataGridViewTextBoxColumn";
+            // 
+            // tipoDataGridViewTextBoxColumn
+            // 
+            this.tipoDataGridViewTextBoxColumn.DataPropertyName = "tipo";
+            this.tipoDataGridViewTextBoxColumn.HeaderText = "tipo";
+            this.tipoDataGridViewTextBoxColumn.Name = "tipoDataGridViewTextBoxColumn";
+            // 
+            // origenDataGridViewTextBoxColumn
+            // 
+            this.origenDataGridViewTextBoxColumn.DataPropertyName = "origen";
+            this.origenDataGridViewTextBoxColumn.HeaderText = "origen";
+            this.origenDataGridViewTextBoxColumn.Name = "origenDataGridViewTextBoxColumn";
+            // 
+            // destinoDataGridViewTextBoxColumn
+            // 
+            this.destinoDataGridViewTextBoxColumn.DataPropertyName = "destino";
+            this.destinoDataGridViewTextBoxColumn.HeaderText = "destino";
+            this.destinoDataGridViewTextBoxColumn.Name = "destinoDataGridViewTextBoxColumn";
+            // 
+            // Edit
+            // 
+            this.Edit.HeaderText = "Edit";
+            this.Edit.Name = "Edit";
+            this.Edit.ReadOnly = true;
+            this.Edit.Text = "Edit";
+            this.Edit.UseColumnTextForLinkValue = true;
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "Delete";
+            this.Delete.Name = "Delete";
+            this.Delete.Text = "Delete";
+            this.Delete.UseColumnTextForLinkValue = true;
             // 
             // Form_Show_Trenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 396);
+            this.ClientSize = new System.Drawing.Size(873, 450);
             this.Controls.Add(this.button_add);
             this.Controls.Add(this.button_search);
             this.Controls.Add(this.textBox_search);
@@ -159,8 +179,8 @@
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Form_Show_Trenes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Trenes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trenBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trenBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trenBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,14 +193,16 @@
         private System.Windows.Forms.TextBox textBox_search;
         private System.Windows.Forms.Button button_search;
         private System.Windows.Forms.Button button_add;
+        private System.Windows.Forms.BindingSource trenBindingSource;
+        private System.Windows.Forms.BindingSource trenBindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn capacidadDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn origenDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn destinoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource trenBindingSource;
-        private System.Windows.Forms.BindingSource trenBindingSource1;
+        private System.Windows.Forms.DataGridViewLinkColumn Edit;
+        private System.Windows.Forms.DataGridViewLinkColumn Delete;
     }
 }
 

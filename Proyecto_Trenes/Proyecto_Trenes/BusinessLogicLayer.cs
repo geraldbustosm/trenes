@@ -19,12 +19,19 @@ namespace Proyecto_Trenes
         {
             if (tren.Id == 0)
                 _dataAccessLayer.insertTren(tren);
+            else
+                _dataAccessLayer.updateTren(tren);
             return tren;
         }
 
         public List<Tren> getTrenes()
         {
             return _dataAccessLayer.getTrenes();
+        }
+
+        public void deleteTren(int id)
+        {
+            _dataAccessLayer.deleteTren(id);
         }
 
     }

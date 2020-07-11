@@ -50,5 +50,34 @@ namespace Proyecto_Trenes
             dataGrid_Trenes.DataSource = trenes;
             
         }
+
+        private void dataGrid_Trenes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewLinkCell cell = (DataGridViewLinkCell)dataGrid_Trenes.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+            if (cell.Value.ToString() == "Edit") {
+                Form_Add_Tren trenDetails = new Form_Add_Tren();
+                trenDetails.loadTren(new Tren
+                {
+                    Id = int.Parse(dataGrid_Trenes.Rows[e.RowIndex].Cells[0].Value.ToString()),
+                    capacidad = dataGrid_Trenes.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    codigo = dataGrid_Trenes.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                    tipo = dataGrid_Trenes.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    origen = dataGrid_Trenes.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                    destino = dataGrid_Trenes.Rows[e.RowIndex].Cells[5].Value.ToString()
+                });
+                trenDetails.ShowDialog(this);
+            }
+            else if(cell.Value.ToString() == "Delete")
+            {
+                deleteTren(int.Parse(dataGrid_Trenes.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                loadTrenes();
+            }
+        }
+
+        private void deleteTren(int id)
+        {
+            _businessLogicLayer.deleteTren(id);
+        }
     }
 }

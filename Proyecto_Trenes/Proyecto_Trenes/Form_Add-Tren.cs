@@ -14,6 +14,7 @@ namespace Proyecto_Trenes
     {
 
         private BusinessLogicLayer _businessLogicLayer;
+        private Tren _tren;
 
         public Form_Add_Tren()
         {
@@ -42,7 +43,31 @@ namespace Proyecto_Trenes
             tren.origen = textBox_origen.Text;
             tren.destino = textBox_destino.Text;
 
+            tren.Id = _tren != null ? _tren.Id : 0;
+
             _businessLogicLayer.saveTren(tren);
+        }
+
+        public void loadTren(Tren tren) {
+            _tren = tren;
+            if (tren != null) {
+
+                clearForm();
+
+                textBox_codigo.Text = tren.codigo;
+                textBox_capacidad.Text = tren.capacidad;
+                textBox_tipo.Text = tren.tipo;
+                textBox_origen.Text = tren.origen;
+                textBox_destino.Text = tren.destino;
+            }
+        }
+
+        private void clearForm() {
+            textBox_codigo.Text = string.Empty;
+            textBox_capacidad.Text = string.Empty;
+            textBox_tipo.Text = string.Empty;
+            textBox_origen.Text = string.Empty;
+            textBox_destino.Text = string.Empty;
         }
 
         private void textBox_capacidad_TextChanged(object sender, EventArgs e)

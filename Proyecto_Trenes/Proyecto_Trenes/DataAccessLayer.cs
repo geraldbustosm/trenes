@@ -44,6 +44,60 @@ namespace Proyecto_Trenes
             }
         }
 
+        public void updateTren(Tren tren) {
+            try
+            {
+                conn.Open();
+                string query = @" UPDATE Trenes
+                                SET capacidad = @capacidad, 
+                                    codigo = @codigo,
+                                    tipoMaterial = @tipo,
+                                    origen = @origen,
+                                    destino = @destino
+                                WHERE Id = @Id ";
+
+                SqlParameter id = new SqlParameter("@Id", tren.Id);
+                SqlParameter capacidad = new SqlParameter("@capacidad", tren.capacidad);
+                SqlParameter codigo = new SqlParameter("@codigo", tren.codigo);
+                SqlParameter tipoMaterial = new SqlParameter("@tipo", tren.tipo);
+                SqlParameter origen = new SqlParameter("@origen", tren.origen);
+                SqlParameter destino = new SqlParameter("@destino", tren.destino);
+
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.Add(id);
+                command.Parameters.Add(capacidad);
+                command.Parameters.Add(codigo);
+                command.Parameters.Add(tipoMaterial);
+                command.Parameters.Add(origen);
+                command.Parameters.Add(destino);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { conn.Close(); }
+        }
+
+        public void deleteTren(int id){
+            try
+            {
+                conn.Open();
+                string query = "DELETE FROM Trenes WHERE Id = @Id";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.Add(new SqlParameter("@Id",id));
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { conn.Close(); }
+        }
+
         public List<Tren> getTrenes()
         {
             List<Tren> trenes = new List<Tren>();
