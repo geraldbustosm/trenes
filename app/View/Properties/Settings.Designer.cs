@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Proyecto_Trenes.Properties
+namespace View.Properties
 {
 
 

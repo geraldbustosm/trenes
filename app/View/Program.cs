@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Proyecto_Trenes
+namespace View
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Proyecto_Trenes
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_Show_Trenes());
+            Application.Run(new Form1());
         }
     }
 }
