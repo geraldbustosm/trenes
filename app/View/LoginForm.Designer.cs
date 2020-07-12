@@ -41,60 +41,67 @@
             // labelUser
             // 
             this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(181, 326);
+            this.labelUser.Location = new System.Drawing.Point(241, 408);
+            this.labelUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(143, 20);
+            this.labelUser.Size = new System.Drawing.Size(194, 25);
             this.labelUser.TabIndex = 0;
             this.labelUser.Text = "Nombre de usuario";
             // 
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(181, 387);
+            this.labelPassword.Location = new System.Drawing.Point(241, 484);
+            this.labelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(92, 20);
+            this.labelPassword.Size = new System.Drawing.Size(123, 25);
             this.labelPassword.TabIndex = 1;
             this.labelPassword.Text = "Contraseña";
             // 
             // imgLogo
             // 
             this.imgLogo.Image = ((System.Drawing.Image)(resources.GetObject("imgLogo.Image")));
-            this.imgLogo.Location = new System.Drawing.Point(261, 65);
+            this.imgLogo.Location = new System.Drawing.Point(348, 81);
+            this.imgLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.imgLogo.Name = "imgLogo";
-            this.imgLogo.Size = new System.Drawing.Size(155, 186);
+            this.imgLogo.Size = new System.Drawing.Size(207, 232);
             this.imgLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgLogo.TabIndex = 2;
             this.imgLogo.TabStop = false;
             // 
             // inputUser
             // 
-            this.inputUser.Location = new System.Drawing.Point(365, 323);
+            this.inputUser.Location = new System.Drawing.Point(487, 404);
+            this.inputUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.inputUser.Name = "inputUser";
-            this.inputUser.Size = new System.Drawing.Size(156, 26);
+            this.inputUser.Size = new System.Drawing.Size(207, 31);
             this.inputUser.TabIndex = 3;
             // 
             // inputPassword
             // 
-            this.inputPassword.Location = new System.Drawing.Point(365, 384);
+            this.inputPassword.Location = new System.Drawing.Point(487, 480);
+            this.inputPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.inputPassword.Name = "inputPassword";
             this.inputPassword.PasswordChar = '*';
-            this.inputPassword.Size = new System.Drawing.Size(156, 26);
+            this.inputPassword.Size = new System.Drawing.Size(207, 31);
             this.inputPassword.TabIndex = 4;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(266, 491);
+            this.btnLogin.Location = new System.Drawing.Point(355, 614);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(155, 43);
+            this.btnLogin.Size = new System.Drawing.Size(207, 54);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Iniciar sesión";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 664);
+            this.ClientSize = new System.Drawing.Size(924, 830);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.inputPassword);
             this.Controls.Add(this.inputUser);
@@ -102,6 +109,7 @@
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelUser);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Text = "Login";

@@ -17,5 +17,11 @@ namespace View
             InitializeComponent();
         }
 
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LayoutForm layoutForm = new LayoutForm();
+            layoutForm.Show();
+        }
     }
 }
