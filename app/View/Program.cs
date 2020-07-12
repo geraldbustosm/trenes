@@ -12,10 +12,10 @@ namespace View
         [STAThread]
         static void Main()
         {
-            DatabaseUtility.ResetDatabase();
+            // DatabaseUtility.ResetDatabase();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new LayoutForm());
         }
     }
 }
