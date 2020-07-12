@@ -1,89 +1,75 @@
 ﻿using System;
+using System.Net.Http.Headers;
 using System.Windows.Forms;
 
 namespace View
 {
     public partial class LayoutForm : Form
     {
-        private Form activeForm = null;
-        private Panel activeSubMenu = null;
+        private Form activeLayoutForm = null;
+        private Form activeSideForm = null;
         
         public LayoutForm()
         {
             InitializeComponent();
-            hideAllSubMenu();
-            changeForm(new HomeForm());
+            showLoginScreen();
         }
 
-        private void hideAllSubMenu()
+        // Metodo que invoca la pantalla de login
+        private void showLoginScreen()
         {
-            panelSubMenu1.Visible = false;
-            panelSubMenu2.Visible = false;
-            panelSubMenu3.Visible = false;
+            changeLayout(new LoginForm(this));
         }
 
-        private void toggleSubMenu(Panel subMenu)
+        // Metodo que invoca la pantalla de bienvenida
+        public void showWelcomeScreen()
         {
-            if (activeSubMenu == subMenu)
-            {
-                activeSubMenu.Visible = false;
-                activeSubMenu = null;
-            }
-            else if(activeSubMenu == null)
-            {
-                activeSubMenu = subMenu;
-                activeSubMenu.Visible = true;
-            } else
-            {
-                activeSubMenu.Visible = false;
-                activeSubMenu = subMenu;
-                activeSubMenu.Visible = true;
-            }
+            changeSidePanel(new MenuForm(this));
+            changeLayout(new HomeForm());
         }
 
-        private void btnMenu1_Click(object sender, EventArgs e)
+        // Metodo que cambia el panel de la izquierda (Menu)
+        public void changeSidePanel(Form newForm)
         {
-            toggleSubMenu(panelSubMenu1);
+            if (activeSideForm != null)
+                activeSideForm.Close();
+
+            activeSideForm = newForm;
+            custumizeSideForm();
         }
 
-        private void btnMenu2_Click(object sender, EventArgs e)
+        // Metodo que prepara/configura correctamente el panel de la izquierda (Menu)
+        private void custumizeSideForm()
         {
-            toggleSubMenu(panelSubMenu2);
+            activeSideForm.TopLevel = false;
+            activeSideForm.FormBorderStyle = FormBorderStyle.None;
+            activeSideForm.Dock = DockStyle.Fill;
+            panelSide.Controls.Add(activeSideForm);
+            panelSide.Tag = activeSideForm;
+            activeSideForm.BringToFront();
+            activeSideForm.Show();
         }
 
-        private void btnMenu3_Click(object sender, EventArgs e)
+        // Metodo que cambia el panel principal de la derecha
+        public void changeLayout(Form newForm)
         {
-            toggleSubMenu(panelSubMenu3);
+            if (activeLayoutForm != null)
+                activeLayoutForm.Close();
+
+            activeLayoutForm = newForm;
+            custumizeLayoutForm();
         }
 
-        private void changeForm(Form newForm)
+        // Metodo que prepara/configura correctamente el panel principal de la derecha
+        private void custumizeLayoutForm()
         {
-            if (activeForm != null)
-                activeForm.Close();
-
-            activeForm = newForm;
-            custumizeForm();
-        }
-
-        private void custumizeForm()
-        {
-            activeForm.TopLevel = false;
-            activeForm.FormBorderStyle = FormBorderStyle.None;
-            activeForm.Dock = DockStyle.Fill;
-            panelLayout.Controls.Add(activeForm);
-            panelLayout.Tag = activeForm;
-            activeForm.BringToFront();
-            activeForm.Show();
-        }
-
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-            changeForm(new HomeForm());
-        }
-
-        private void btnShowWagons_Click(object sender, EventArgs e)
-        {
-            changeForm(new ShowWagonsForm());
+            activeLayoutForm.TopLevel = false;
+            activeLayoutForm.FormBorderStyle = FormBorderStyle.None;
+            activeLayoutForm.Dock = DockStyle.Fill;
+            panelLayout.Controls.Add(activeLayoutForm);
+            panelLayout.Tag = activeLayoutForm;
+            activeLayoutForm.BringToFront();
+            activeLayoutForm.Show();
         }
     }
 }
