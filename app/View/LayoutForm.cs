@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace View
 {
     public partial class LayoutForm : Form
     {
+        private Form activeForm = null;
+        private Panel activeSubMenu = null;
         
         public LayoutForm()
         {
             InitializeComponent();
             hideAllSubMenu();
+            changeForm(new HomeForm());
         }
 
         private void hideAllSubMenu()
@@ -29,7 +24,21 @@ namespace View
 
         private void toggleSubMenu(Panel subMenu)
         {
-            subMenu.Visible = (!subMenu.Visible) ? true : false;
+            if (activeSubMenu == subMenu)
+            {
+                activeSubMenu.Visible = false;
+                activeSubMenu = null;
+            }
+            else if(activeSubMenu == null)
+            {
+                activeSubMenu = subMenu;
+                activeSubMenu.Visible = true;
+            } else
+            {
+                activeSubMenu.Visible = false;
+                activeSubMenu = subMenu;
+                activeSubMenu.Visible = true;
+            }
         }
 
         private void btnMenu1_Click(object sender, EventArgs e)
@@ -45,6 +54,36 @@ namespace View
         private void btnMenu3_Click(object sender, EventArgs e)
         {
             toggleSubMenu(panelSubMenu3);
+        }
+
+        private void changeForm(Form newForm)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+
+            activeForm = newForm;
+            custumizeForm();
+        }
+
+        private void custumizeForm()
+        {
+            activeForm.TopLevel = false;
+            activeForm.FormBorderStyle = FormBorderStyle.None;
+            activeForm.Dock = DockStyle.Fill;
+            panelLayout.Controls.Add(activeForm);
+            panelLayout.Tag = activeForm;
+            activeForm.BringToFront();
+            activeForm.Show();
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            changeForm(new HomeForm());
+        }
+
+        private void btnShowWagons_Click(object sender, EventArgs e)
+        {
+            changeForm(new ShowWagonsForm());
         }
     }
 }

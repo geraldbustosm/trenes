@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.sidePanel = new System.Windows.Forms.Panel();
+            this.panelSide = new System.Windows.Forms.Panel();
             this.panelSubMenu3 = new System.Windows.Forms.Panel();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -45,31 +45,36 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnShowWagons = new System.Windows.Forms.Button();
             this.btnMenu1 = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
-            this.sidePanel.SuspendLayout();
+            this.btnHome = new System.Windows.Forms.Button();
+            this.panelLayout = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panelSide.SuspendLayout();
             this.panelSubMenu3.SuspendLayout();
             this.panelSubMenu2.SuspendLayout();
             this.panelSubMenu1.SuspendLayout();
+            this.panelLogo.SuspendLayout();
+            this.panelLayout.SuspendLayout();
             this.SuspendLayout();
             // 
-            // sidePanel
+            // panelSide
             // 
-            this.sidePanel.AutoScroll = true;
-            this.sidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(36)))), ((int)(((byte)(71)))));
-            this.sidePanel.Controls.Add(this.panelSubMenu3);
-            this.sidePanel.Controls.Add(this.btnMenu3);
-            this.sidePanel.Controls.Add(this.panelSubMenu2);
-            this.sidePanel.Controls.Add(this.btnMenu2);
-            this.sidePanel.Controls.Add(this.panelSubMenu1);
-            this.sidePanel.Controls.Add(this.btnMenu1);
-            this.sidePanel.Controls.Add(this.panelLogo);
-            this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sidePanel.Location = new System.Drawing.Point(0, 0);
-            this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(300, 681);
-            this.sidePanel.TabIndex = 0;
+            this.panelSide.AutoScroll = true;
+            this.panelSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(36)))), ((int)(((byte)(71)))));
+            this.panelSide.Controls.Add(this.panelSubMenu3);
+            this.panelSide.Controls.Add(this.btnMenu3);
+            this.panelSide.Controls.Add(this.panelSubMenu2);
+            this.panelSide.Controls.Add(this.btnMenu2);
+            this.panelSide.Controls.Add(this.panelSubMenu1);
+            this.panelSide.Controls.Add(this.btnMenu1);
+            this.panelSide.Controls.Add(this.panelLogo);
+            this.panelSide.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelSide.Location = new System.Drawing.Point(0, 0);
+            this.panelSide.Name = "panelSide";
+            this.panelSide.Size = new System.Drawing.Size(300, 556);
+            this.panelSide.TabIndex = 0;
             // 
             // panelSubMenu3
             // 
@@ -81,7 +86,7 @@
             this.panelSubMenu3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSubMenu3.Location = new System.Drawing.Point(0, 530);
             this.panelSubMenu3.Name = "panelSubMenu3";
-            this.panelSubMenu3.Size = new System.Drawing.Size(283, 165);
+            this.panelSubMenu3.Size = new System.Drawing.Size(283, 160);
             this.panelSubMenu3.TabIndex = 5;
             // 
             // button10
@@ -273,7 +278,7 @@
             this.panelSubMenu1.Controls.Add(this.button5);
             this.panelSubMenu1.Controls.Add(this.button4);
             this.panelSubMenu1.Controls.Add(this.button3);
-            this.panelSubMenu1.Controls.Add(this.button2);
+            this.panelSubMenu1.Controls.Add(this.btnShowWagons);
             this.panelSubMenu1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSubMenu1.Location = new System.Drawing.Point(0, 120);
             this.panelSubMenu1.Name = "panelSubMenu1";
@@ -331,22 +336,23 @@
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnShowWagons
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(64)))), ((int)(((byte)(104)))));
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(283, 40);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "button2";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnShowWagons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(64)))), ((int)(((byte)(104)))));
+            this.btnShowWagons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnShowWagons.FlatAppearance.BorderSize = 0;
+            this.btnShowWagons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowWagons.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnShowWagons.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnShowWagons.Location = new System.Drawing.Point(0, 0);
+            this.btnShowWagons.Name = "btnShowWagons";
+            this.btnShowWagons.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnShowWagons.Size = new System.Drawing.Size(283, 40);
+            this.btnShowWagons.TabIndex = 0;
+            this.btnShowWagons.Text = "Ver vagones";
+            this.btnShowWagons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnShowWagons.UseVisualStyleBackColor = false;
+            this.btnShowWagons.Click += new System.EventHandler(this.btnShowWagons_Click);
             // 
             // btnMenu1
             // 
@@ -368,40 +374,70 @@
             // panelLogo
             // 
             this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(36)))), ((int)(((byte)(71)))));
+            this.panelLogo.Controls.Add(this.btnHome);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Name = "panelLogo";
             this.panelLogo.Size = new System.Drawing.Size(283, 75);
             this.panelLogo.TabIndex = 0;
             // 
+            // btnHome
+            // 
+            this.btnHome.Location = new System.Drawing.Point(97, 26);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(75, 23);
+            this.btnHome.TabIndex = 7;
+            this.btnHome.Text = "Ir a Home";
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
+            // panelLayout
+            // 
+            this.panelLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(63)))), ((int)(((byte)(90)))));
+            this.panelLayout.Controls.Add(this.label2);
+            this.panelLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelLayout.Location = new System.Drawing.Point(300, 0);
+            this.panelLayout.Name = "panelLayout";
+            this.panelLayout.Size = new System.Drawing.Size(964, 556);
+            this.panelLayout.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 23);
+            this.label2.TabIndex = 0;
+            // 
             // LayoutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.sidePanel);
+            this.ClientSize = new System.Drawing.Size(1264, 556);
+            this.Controls.Add(this.panelLayout);
+            this.Controls.Add(this.panelSide);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "LayoutForm";
             this.Text = "LayoutForm";
-            this.sidePanel.ResumeLayout(false);
+            this.panelSide.ResumeLayout(false);
             this.panelSubMenu3.ResumeLayout(false);
             this.panelSubMenu2.ResumeLayout(false);
             this.panelSubMenu1.ResumeLayout(false);
+            this.panelLogo.ResumeLayout(false);
+            this.panelLayout.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel sidePanel;
+        private System.Windows.Forms.Panel panelSide;
         private System.Windows.Forms.Panel panelSubMenu1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnShowWagons;
         private System.Windows.Forms.Button btnMenu1;
-        private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Panel panelSubMenu3;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
@@ -414,5 +450,9 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button btnMenu2;
+        private System.Windows.Forms.Panel panelLayout;
+        private System.Windows.Forms.Panel panelLogo;
+        private System.Windows.Forms.Button btnHome;
+        private System.Windows.Forms.Label label2;
     }
 }
