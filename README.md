@@ -1,6 +1,7 @@
 # Trenes
 
 ## Acerca de
+Trenes es un sistema que satisface
 
 ## Requerimientos
 
