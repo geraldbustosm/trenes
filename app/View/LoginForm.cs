@@ -25,6 +25,8 @@ namespace View
             // todo: verificar si el usuario es correcto!
 
             // if autorizacion exitosa
+            //_layoutForm.setAuthenticateUser(user);
+            _layoutForm.resizeWindowsToNormal();
             _layoutForm.showWelcomeScreen();
             // else 
             // *metodo que muestre los errores*

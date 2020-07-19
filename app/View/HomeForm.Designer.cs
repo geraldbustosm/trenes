@@ -35,19 +35,22 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 40.25F);
-            this.label1.Location = new System.Drawing.Point(309, 280);
+            this.label1.Location = new System.Drawing.Point(256, 326);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(297, 63);
+            this.label1.Size = new System.Drawing.Size(442, 92);
             this.label1.TabIndex = 0;
             this.label1.Text = "HomeForm";
             // 
             // HomeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(63)))), ((int)(((byte)(90)))));
-            this.ClientSize = new System.Drawing.Size(948, 642);
+            this.ClientSize = new System.Drawing.Size(928, 744);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "HomeForm";
             this.Text = "HomeForm";
             this.ResumeLayout(false);
