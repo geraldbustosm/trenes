@@ -9,25 +9,25 @@ Trenes es un sistema que satisface la necesidad de organizar, sincronizar y admi
 
 ## Modelo relacional
 
-Tren (**id_tren**)
+Train (**id_train**)
 
-Viaje (**id_viaje**, tiempo_total)
+Journey (**id_journey**, total_time)
 
-Locomotora (**id_locomotora**, potencia, capacidad_arrastre, mantencion_km, hora, fecha, *id_tren*, *id_estacion*)
+Locomotive (**id_locomotive**, potencia, capacidad_arrastre, mantencion_km, hora, fecha, *id_tren*, *id_estacion*)
 
-Carro (**id_carro**, tipo_carga, peso_carro, peso_carga, hora, fecha, *id_locomotora*, *id_estacion*)
+Wagon (**id_wagon**, wagon_type, wagon_weight, load_weignt, moment_date, *id_locomotive*, *id_station*)
 
-Estacion (**id_estacion**, espacio_disponible, capacidad_max)
+Station (**id_station**, max_capacity)
 
-TrenViaje (**id_tren, id_viaje**)
+Train_Journey (**id_train_journey**, *id_train*, *id_journey*)
 
-ViajeEstacion (**id_viaje, id_estacion**, orden)
+Journey_Station (**id_journey_station**, *id_journey*, *id_station*, order_journey)
 
-EstacionesLimitantes (**id_estacion_1, id_estacion_2**, distancia, tiempo)
+Station_Border (**id_unique_station**, *id_station_Border*, *id_station*, distance, curr_time)
 
 ---
 
-Entidad (<u>**primary_key**</u>, atributo, *foreign_key*)
+Entity (<u>**primary_key**</u>, atributo, *foreign_key*)
 
 ---
 
