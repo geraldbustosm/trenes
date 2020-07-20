@@ -9,14 +9,14 @@ CREATE TABLE Station (
 	id_station INTEGER PRIMARY KEY,
     max_capacity INTEGER
 );
-CREATE TABLE Locomotora (
-	id_locomotora INTEGER,
+CREATE TABLE Locomotive (
+	id_locomotive INTEGER,
     id_train INTEGER,
     id_station INTEGER,
     moment_date DATE,
     drag_capacity INTEGER,
     mileage INTEGER,
-    PRIMARY KEY (id_locomotora),
+    PRIMARY KEY (id_locomotive),
     FOREIGN KEY (id_tren) 
         REFERENCES Train (id_tren) 
             ON DELETE CASCADE,
@@ -26,15 +26,15 @@ CREATE TABLE Locomotora (
 );
 CREATE TABLE Wagon (
 	id_wagon INTEGER,
-    id_locomotora INTEGER,
+    id_locomotive INTEGER,
     id_station INTEGER,
     moment_date DATE,
     wagon_type INTEGER,
     wagon_weight INTEGER,
     load_weignt INTEGER,
     PRIMARY KEY (id_wagon),
-    FOREIGN KEY (id_locomotora) 
-        REFERENCES Locomotora (id_locomotora) 
+    FOREIGN KEY (id_locomotive) 
+        REFERENCES Locomotive (id_locomotive) 
             ON DELETE CASCADE, 
     FOREIGN KEY (id_station) 
         REFERENCES Station (id_station) 
