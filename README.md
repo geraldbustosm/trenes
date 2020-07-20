@@ -1,37 +1,47 @@
-# Trenes
+# Trains Project
 
-## Acerca de
-Trenes es un sistema que satisface la necesidad de organizar, sincronizar y administrar los transportes ferroviarios.
+Tains is a desktop application for windows, wich it'll generate a better process control management of the rails that are entered into the system.
 
-## Diagrama entidad-relación
+  - Insertion of station, locomotives and wagons
+  - See the time and in which stations are the bags and locomotives
 
-## ![](https://i.imgur.com/lVd5jEi.png)
+And of course Train Project itself is open source with a [public repository] on GitHub.
 
-## Modelo relacional
+### Technologies used / required
 
-Train (**id_train**)
+You must have the following technologies as requirements for the correct start of the application:
 
-Journey (**id_journey**, total_time)
+* [.NET Framework 4.7.3] -.
+* [SQLite] -.
 
-Locomotive (**id_locomotive**, potencia, capacidad_arrastre, mantencion_km, hora, fecha, *id_tren*, *id_estacion*)
+### Installation
 
-Wagon (**id_wagon**, wagon_type, wagon_weight, load_weignt, moment_date, *id_locomotive*, *id_station*)
+... open the terminal and insert
 
-Station (**id_station**, max_capacity)
+    $man help
 
-Train_Journey (**id_train_journey**, *id_train*, *id_journey*)
+### Entity Relationship Diagram
 
-Journey_Station (**id_journey_station**, *id_journey*, *id_station*, order_journey)
+![Alt text](https://i.imgur.com/lVd5jEi.png "Entity Relationship Diagram")
 
-Station_Border (**id_unique_station**, *id_station_Border*, *id_station*, distance, curr_time)
+### Modelo relacional
+
+-   Train (**id_train**)
+-   Journey (**id_journey**, total_time)
+-   Locomotive (**id_locomotive**, potencia, capacidad_arrastre, mantencion_km, hora, fecha, *id_tren*, *id_estacion*)
+-   Wagon (**id_wagon**, wagon_type, wagon_weight, load_weignt, moment_date, *id_locomotive*, *id_station*)
+-   Station (**id_station**, max_capacity)
+-   Train_Journey (**id_train_journey**, *id_train*, *id_journey*)
+-   Journey_Station (**id_journey_station**, *id_journey*, *id_station*, order_journey)
+-   Station_Border (**id_unique_station**, *id_station_Border*, *id_station*, distance, curr_time)
 
 ---
 
-Entity (<u>**primary_key**</u>, atributo, *foreign_key*)
+            Entidad (<u>**primary_key**</u>, atributo, *foreign_key*)
 
 ---
 
-## Requerimientos
 
-- .NET Framework 4.7.3
-- SQLite
+License
+----
+**Free Software, Hell Yeah!**
