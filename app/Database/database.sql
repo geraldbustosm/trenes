@@ -1,91 +1,81 @@
-CREATE TABLE Tren (
-	id_tren INTEGER PRIMARY KEY
+CREATE TABLE Train (
+	id_train INTEGER PRIMARY KEY
 );
-CREATE TABLE Viaje (
-	id_viaje INTEGER PRIMARY KEY,
-    tiempo_total INTEGER
+CREATE TABLE Journey (
+	id_journey INTEGER PRIMARY KEY,
+    total_time INTEGER
 );
-CREATE TABLE Estacion (
-	id_estacion INTEGER PRIMARY KEY,
-    espacio_disponible INTEGER,
-    capacidad_max INTEGER
+CREATE TABLE Station (
+	id_station INTEGER PRIMARY KEY,
+    max_capacity INTEGER
 );
 CREATE TABLE Locomotora (
 	id_locomotora INTEGER,
-    id_tren INTEGER,
-    id_estacion INTEGER,
-    hora INTEGER,
-    fecha INTEGER,
-    capacidad_arrastre INTEGER,
-    mantencion_km INTEGER,
+    id_train INTEGER,
+    id_station INTEGER,
+    moment_date DATE,
+    drag_capacity INTEGER,
+    mileage INTEGER,
     PRIMARY KEY (id_locomotora),
     FOREIGN KEY (id_tren) 
-        REFERENCES Tren (id_tren) 
-            ON DELETE CASCADE 
-            ON UPDATE NO ACTION,
-    FOREIGN KEY (id_estacion) 
-        REFERENCES Estacion (id_estacion) 
-            ON DELETE CASCADE 
-            ON UPDATE NO ACTION
+        REFERENCES Train (id_tren) 
+            ON DELETE CASCADE,
+    FOREIGN KEY (id_station) 
+        REFERENCES Station (id_station) 
+            ON DELETE CASCADE
 );
-CREATE TABLE Carro (
-	id_carro INTEGER,
+CREATE TABLE Wagon (
+	id_wagon INTEGER,
     id_locomotora INTEGER,
-    id_estacion INTEGER,
-    hora INTEGER,
-    fecha INTEGER,
-    tipo_carga INTEGER,
-    peso_carro INTEGER,
-    peso_carga INTEGER,
-    PRIMARY KEY (id_carro),
+    id_station INTEGER,
+    moment_date DATE,
+    wagon_type INTEGER,
+    wagon_weight INTEGER,
+    load_weignt INTEGER,
+    PRIMARY KEY (id_wagon),
     FOREIGN KEY (id_locomotora) 
         REFERENCES Locomotora (id_locomotora) 
-            ON DELETE CASCADE 
-            ON UPDATE NO ACTION,
-    FOREIGN KEY (id_estacion) 
-        REFERENCES Estacion (id_estacion) 
-            ON DELETE CASCADE 
-            ON UPDATE NO ACTION
+            ON DELETE CASCADE, 
+    FOREIGN KEY (id_station) 
+        REFERENCES Station (id_station) 
+            ON DELETE CASCADE
 );
-CREATE TABLE Tren_Viaje(
-   id_tren INTEGER,
-   id_viaje INTEGER,
-   PRIMARY KEY (id_tren, id_viaje),
-   FOREIGN KEY (id_tren) 
-        REFERENCES Tren (id_tren) 
+CREATE TABLE Train_Journey(
+    id_train_journey INTEGER,
+    id_train INTEGER,
+    id_journey INTEGER,
+    PRIMARY KEY (id_train_journey),
+    FOREIGN KEY (id_train) 
+        REFERENCES Train (id_train) 
+            ON DELETE CASCADE, 
+    FOREIGN KEY (id_journey) 
+        REFERENCES Journey (id_journey) 
             ON DELETE CASCADE 
-            ON UPDATE NO ACTION,
-    FOREIGN KEY (id_viaje) 
-        REFERENCES Viaje (id_viaje) 
-            ON DELETE CASCADE 
-            ON UPDATE NO ACTION
 );
-CREATE TABLE Viaje_Estacion(
-   id_viaje INTEGER,
-   id_estacion INTEGER,
-   orden INTEGER,
-   PRIMARY KEY (id_viaje, id_estacion),
-    FOREIGN KEY (id_viaje) 
-        REFERENCES Viaje (id_viaje) 
-            ON DELETE CASCADE 
-            ON UPDATE NO ACTION,
-    FOREIGN KEY (id_estacion) 
-        REFERENCES Estacion (id_estacion) 
-            ON DELETE CASCADE 
-            ON UPDATE NO ACTION,
+CREATE TABLE Journey_Station(
+    id_journey_station INTEGER,
+    id_journey INTEGER,
+    id_station INTEGER,
+    order_journey INTEGER,
+    PRIMARY KEY (id_journey_station),
+        FOREIGN KEY (id_journey) 
+            REFERENCES Journey (id_journey) 
+                ON DELETE CASCADE,
+        FOREIGN KEY (id_station) 
+            REFERENCES Station (id_station) 
+                ON DELETE CASCADE
 );
-CREATE TABLE Estacion_Limita(
-   id_estacion INTEGER,
-   id_estacion_limita INTEGER,
-   distancia INTEGER,
-   tiempo INTEGER,
-   PRIMARY KEY (id_estacion, id_estacion_limita),
-    FOREIGN KEY (id_estacion) 
-        REFERENCES Estacion (id_estacion) 
-            ON DELETE CASCADE 
-            ON UPDATE NO ACTION,
-    FOREIGN KEY (id_estacion_limita) 
-        REFERENCES Estacion (id_estacion_limita) 
-            ON DELETE CASCADE 
-            ON UPDATE NO ACTION,
+CREATE TABLE Station_Border(
+    id_unique_station INTEGER,
+    id_station_Border INTEGER,
+    id_station INTEGER,
+    distance INTEGER,
+    curr_time INTEGER,
+    PRIMARY KEY (id_unique_station),
+        FOREIGN KEY (id_station) 
+            REFERENCES Station (id_station) 
+                ON DELETE CASCADE,
+        FOREIGN KEY (id_station_Border) 
+            REFERENCES Station (id_station_Border) 
+                ON DELETE CASCADE 
 );
