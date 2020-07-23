@@ -12,9 +12,6 @@ namespace View
         private Boolean authenticate = false;
         private int loginFormWidth = 550;
         private Size normalLayoutSize;
-        // private User user = null;
-        // (es mejor tener el modelo Usuario que authenticate,
-        // asi se puede saber su nombre, e.g: user.getUsername())
         
         public LayoutForm()
         {
@@ -65,12 +62,12 @@ namespace View
             
             activeLayoutForm = newForm;
 
-            if (!authenticate) resizeWindowToLogin();
+            if (!authenticate) resizeWindowToLoginSize();
 
             customizeLayoutForm();
         }
         // Método que redimensiona layoutForm unicamente en la ventana de login
-        public void resizeWindowToLogin()
+        public void resizeWindowToLoginSize()
         {
             panelSide.Visible = false;
             this.Width = loginFormWidth;
@@ -79,7 +76,7 @@ namespace View
         }
 
         // Método que redimensiona layoutForm a su tamaño normal despúes del login
-        public void resizeWindowsToNormal()
+        public void resizeWindowsToNormalSize()
         {
             authenticate = true;
             panelSide.Visible = true;
