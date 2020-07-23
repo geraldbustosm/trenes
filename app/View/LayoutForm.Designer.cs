@@ -35,7 +35,7 @@
             // panelSide
             // 
             this.panelSide.AutoScroll = true;
-            this.panelSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(36)))), ((int)(((byte)(71)))));
+            this.panelSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
             this.panelSide.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSide.Location = new System.Drawing.Point(0, 0);
             this.panelSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -45,7 +45,7 @@
             // 
             // panelLayout
             // 
-            this.panelLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(63)))), ((int)(((byte)(90)))));
+            this.panelLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.panelLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelLayout.Location = new System.Drawing.Point(330, 0);
             this.panelLayout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -55,15 +55,15 @@
             // 
             // LayoutForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1258, 744);
             this.Controls.Add(this.panelLayout);
             this.Controls.Add(this.panelSide);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "LayoutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LayoutForm";
+            this.Text = "Trenes";
             this.ResumeLayout(false);
 
         }

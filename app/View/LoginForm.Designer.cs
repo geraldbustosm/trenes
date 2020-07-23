@@ -41,25 +41,29 @@
             // labelUser
             // 
             this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(224, 372);
+            this.labelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUser.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.labelUser.Location = new System.Drawing.Point(196, 369);
             this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(143, 20);
+            this.labelUser.Size = new System.Drawing.Size(197, 26);
             this.labelUser.TabIndex = 0;
             this.labelUser.Text = "Nombre de usuario";
             // 
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(224, 433);
+            this.labelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPassword.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.labelPassword.Location = new System.Drawing.Point(196, 430);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(92, 20);
+            this.labelPassword.Size = new System.Drawing.Size(124, 26);
             this.labelPassword.TabIndex = 1;
             this.labelPassword.Text = "Contraseña";
             // 
             // imgLogo
             // 
             this.imgLogo.Image = ((System.Drawing.Image)(resources.GetObject("imgLogo.Image")));
-            this.imgLogo.Location = new System.Drawing.Point(312, 110);
+            this.imgLogo.Location = new System.Drawing.Point(318, 110);
             this.imgLogo.Name = "imgLogo";
             this.imgLogo.Size = new System.Drawing.Size(156, 186);
             this.imgLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -68,14 +72,14 @@
             // 
             // inputUser
             // 
-            this.inputUser.Location = new System.Drawing.Point(410, 369);
+            this.inputUser.Location = new System.Drawing.Point(416, 369);
             this.inputUser.Name = "inputUser";
             this.inputUser.Size = new System.Drawing.Size(157, 26);
             this.inputUser.TabIndex = 3;
             // 
             // inputPassword
             // 
-            this.inputPassword.Location = new System.Drawing.Point(410, 430);
+            this.inputPassword.Location = new System.Drawing.Point(416, 430);
             this.inputPassword.Name = "inputPassword";
             this.inputPassword.PasswordChar = '*';
             this.inputPassword.Size = new System.Drawing.Size(157, 26);
@@ -83,18 +87,23 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(312, 536);
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(305, 529);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(156, 43);
+            this.btnLogin.Size = new System.Drawing.Size(184, 62);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Iniciar sesión";
-            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 744);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.inputPassword);

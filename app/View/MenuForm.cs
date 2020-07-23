@@ -17,9 +17,9 @@ namespace View
         // Metodo que esconde todos los paneles de sub menu
         private void hideAllSubMenu()
         {
+            activeSubMenu = null;
             panelSubMenu1.Visible = false;
             panelSubMenu2.Visible = false;
-            panelSubMenu3.Visible = false;
         }
 
         // Metodo que abre un nuevo panel y cierra los demas
@@ -55,11 +55,7 @@ namespace View
 
         private void btnMenu3_Click(object sender, EventArgs e)
         {
-            toggleSubMenu(panelSubMenu3);
-        }
-
-        private void btnHome_Click(object sender, EventArgs e)
-        {
+            hideAllSubMenu();
             _layoutForm.changeLayout(new HomeForm());
         }
 
