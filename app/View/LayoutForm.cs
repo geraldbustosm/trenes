@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Net.Http.Headers;
 using System.Windows.Forms;
 
@@ -8,10 +9,14 @@ namespace View
     {
         private Form activeLayoutForm = null;
         private Form activeSideForm = null;
+        private Boolean authenticate = false;
+        private int loginFormWidth = 550;
+        private Size normalLayoutSize;
         
         public LayoutForm()
         {
             InitializeComponent();
+            this.normalLayoutSize = this.Size;
             showLoginScreen();
         }
 
@@ -35,11 +40,11 @@ namespace View
                 activeSideForm.Close();
 
             activeSideForm = newForm;
-            custumizeSideForm();
+            customizeSideForm();
         }
 
         // Metodo que prepara/configura correctamente el panel de la izquierda (Menu)
-        private void custumizeSideForm()
+        private void customizeSideForm()
         {
             activeSideForm.TopLevel = false;
             activeSideForm.FormBorderStyle = FormBorderStyle.None;
@@ -53,15 +58,36 @@ namespace View
         // Metodo que cambia el panel principal de la derecha
         public void changeLayout(Form newForm)
         {
-            if (activeLayoutForm != null)
-                activeLayoutForm.Close();
-
+            if (activeLayoutForm != null) activeLayoutForm.Close();
+            
             activeLayoutForm = newForm;
-            custumizeLayoutForm();
+
+            if (!authenticate) resizeWindowToLoginSize();
+
+            customizeLayoutForm();
+        }
+        // Método que redimensiona layoutForm unicamente en la ventana de login
+        public void resizeWindowToLoginSize()
+        {
+            panelSide.Visible = false;
+            this.Width = loginFormWidth;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        }
+
+        // Método que redimensiona layoutForm a su tamaño normal despúes del login
+        public void resizeWindowsToNormalSize()
+        {
+            authenticate = true;
+            panelSide.Visible = true;
+            this.MaximizeBox = true;
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.Size = normalLayoutSize;
+            this.CenterToScreen();
         }
 
         // Metodo que prepara/configura correctamente el panel principal de la derecha
-        private void custumizeLayoutForm()
+        private void customizeLayoutForm()
         {
             activeLayoutForm.TopLevel = false;
             activeLayoutForm.FormBorderStyle = FormBorderStyle.None;
