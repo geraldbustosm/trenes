@@ -6,4 +6,8 @@
     <Platforms>AnyCPU;x86;x64</Platforms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj" />
+  </ItemGroup>
+
 </Project>
