@@ -77,7 +77,7 @@
             this.panelSubMenu2.Controls.Add(this.button8);
             this.panelSubMenu2.Controls.Add(this.button9);
             this.panelSubMenu2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubMenu2.Location = new System.Drawing.Point(0, 669);
+            this.panelSubMenu2.Location = new System.Drawing.Point(0, 645);
             this.panelSubMenu2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelSubMenu2.Name = "panelSubMenu2";
             this.panelSubMenu2.Size = new System.Drawing.Size(424, 246);
@@ -163,7 +163,7 @@
             this.btnMenu2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenu2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnMenu2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btnMenu2.Location = new System.Drawing.Point(0, 600);
+            this.btnMenu2.Location = new System.Drawing.Point(0, 576);
             this.btnMenu2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMenu2.Name = "btnMenu2";
             this.btnMenu2.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -182,7 +182,7 @@
             this.panelSubMenu1.Controls.Add(this.button3);
             this.panelSubMenu1.Controls.Add(this.btnShowWagons);
             this.panelSubMenu1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubMenu1.Location = new System.Drawing.Point(0, 354);
+            this.panelSubMenu1.Location = new System.Drawing.Point(0, 330);
             this.panelSubMenu1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelSubMenu1.Name = "panelSubMenu1";
             this.panelSubMenu1.Size = new System.Drawing.Size(424, 246);
@@ -269,7 +269,7 @@
             this.btnMenu1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenu1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnMenu1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btnMenu1.Location = new System.Drawing.Point(0, 285);
+            this.btnMenu1.Location = new System.Drawing.Point(0, 261);
             this.btnMenu1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMenu1.Name = "btnMenu1";
             this.btnMenu1.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -288,7 +288,7 @@
             this.btnMenu0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenu0.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnMenu0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btnMenu0.Location = new System.Drawing.Point(0, 216);
+            this.btnMenu0.Location = new System.Drawing.Point(0, 192);
             this.btnMenu0.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMenu0.Name = "btnMenu0";
             this.btnMenu0.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -307,15 +307,15 @@
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(424, 216);
+            this.panelLogo.Size = new System.Drawing.Size(424, 192);
             this.panelLogo.TabIndex = 0;
             // 
             // imgLogo
             // 
             this.imgLogo.Image = ((System.Drawing.Image)(resources.GetObject("imgLogo.Image")));
-            this.imgLogo.Location = new System.Drawing.Point(82, 26);
+            this.imgLogo.Location = new System.Drawing.Point(97, 26);
             this.imgLogo.Name = "imgLogo";
-            this.imgLogo.Size = new System.Drawing.Size(156, 186);
+            this.imgLogo.Size = new System.Drawing.Size(125, 150);
             this.imgLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgLogo.TabIndex = 0;
             this.imgLogo.TabStop = false;

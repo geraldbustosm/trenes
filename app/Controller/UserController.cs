@@ -1,9 +1,21 @@
 ﻿using System;
+using System.Data.SQLite;
+using Model;
 
 namespace Controller
 {
     public class UserController
     {
-        // TODO: logica entre la vista y el modelo para el usuario
+        public void putAvatar()
+        {
+
+        }
+        public void listUsersInComboBox()
+        {
+
+            //users = User.all();
+            //Combobox c = new Combobox()
+            //c.setElements(users);
+        }
     }
 }

@@ -1,37 +1,49 @@
-# Trenes
+# Trains Project
 
-## Acerca de
-Trenes es un sistema que satisface la necesidad de organizar, sincronizar y administrar los transportes ferroviarios.
+Tains is a desktop application for windows, wich it'll generate a better process control management of the rails that are entered into the system.
 
-## Diagrama entidad-relación
+  - Insertion of station, locomotives and wagons
+  - See the time and in which stations are the bags and locomotives
 
-## ![](https://i.imgur.com/lVd5jEi.png)
+And of course Train Project itself is open source with a [public repository] on GitHub.
 
-## Modelo relacional
+### Technologies used / required 📦
 
-Tren (**id_tren**)
+You must have the following technologies as requirements for the correct start of the application:
 
-Viaje (**id_viaje**, tiempo_total)
+* [.NET Framework 4.7.3].
+* [SQLite].
 
-Locomotora (**id_locomotora**, potencia, capacidad_arrastre, mantencion_km, hora, fecha, *id_tren*, *id_estacion*)
+### Installation 🔧
 
-Carro (**id_carro**, tipo_carga, peso_carro, peso_carga, hora, fecha, *id_locomotora*, *id_estacion*)
+... open the terminal and insert
 
-Estacion (**id_estacion**, espacio_disponible, capacidad_max)
+    $man help
 
-TrenViaje (**id_tren, id_viaje**)
+### Entity Relationship Diagram
 
-ViajeEstacion (**id_viaje, id_estacion**, orden)
+![Alt text](https://i.imgur.com/U1QASUs.png "Entity Relationship Diagram")
 
-EstacionesLimitantes (**id_estacion_1, id_estacion_2**, distancia, tiempo)
+### Relational model 🖇️
 
+-   train (**train_id**)
+-   station (**station_id**, name, capacity)
+-   border_station (**border_station_id**, *station_one_id*, *station_two_id*)
+-   locomotive (**locomotive_id**, model, tons_drag, in_transit, *train_id*, *station_id*)
+-   wagon (**wagon_id**, shipload_type, shipload_weight, wagon_weight, in_transit, *train_id*, *station_id*)
+-   travel (**travel_id**, total_time)
+-   action (**action_id**, description, minutes)
+-   section_action (**section_action_id**, *action_id*,*travel_section_id*,*locomotive_id*, *wagon_id*, order_journey)
+-   travel_section (**travel_section_id**, arrival_time, order, action, *travel_id*, *origin_station_id*, *destination_station_id*)
+-   user (**user_id**, name, email, password)
+-   permission (**permission_id**, permission_name, *user_id*)
 ---
 
 Entidad (<u>**primary_key**</u>, atributo, *foreign_key*)
 
 ---
 
-## Requerimientos
 
-- .NET Framework 4.7.3
-- SQLite
+License
+----
+**Free Software, Hell Yeah!**
