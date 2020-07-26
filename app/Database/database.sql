@@ -139,17 +139,3 @@ VALUES
     ('download wagon', 20);
 
 INSERT INTO user (name, email, password) VALUES ('admin', 'admin@admin.cl', '1234');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
