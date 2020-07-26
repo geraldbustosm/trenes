@@ -4,61 +4,56 @@ using System.Data.SQLite;
 
 namespace Model
 {
-    public class User
+    public class Station
     {
-        private int id;
+        private int station_id;
         private string name;
-        private string lastName;
-        private string email;
+        private int capacity;
         private Boolean deleted;
 
-        public User(int id, string name, string lastName, string email)
+        public Station(int station_id, string name, int capacity)
         {
-            this.id = id;
+            this.station_id = station_id;
             this.name = name;
-            this.lastName = lastName;
-            this.email = email;
+            this.capacity = capacity;
             this.deleted = false;
         }
 
         // Public methods
+        public int GetId() { return station_id; }
+        public string GetName() { return name; }
+        public int GetCapacity() { return capacity; }
+        public void SetName(string name) { this.name = name; }
+        public void SetCapacity(int capacity) { this.capacity = capacity; }
 
-        public int getId() { return id; }
-        public string getName() { return name; }
-        public string getLastName() { return lastName; }
-        public string getEmail() { return email; }
-
-        public void setName(string name) { this.name = name; }
-        public void setLastName(string lastName) { this.lastName = lastName; }
-        public void setEmail(string email) { this.email = email; }
-        public void save()
+        public void Save()
         {
             if (!this.deleted)
             {
                 SQLiteConnection connection = DatabaseUtility.connection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.checkIfUserExist(this.id);
+                Boolean exist = this.CheckIfStationExists(this.station_id);
 
                 if (!exist)
                 {
-                    string query = "INSERT INTO USER(id, name, lastname, email, password) values (" + this.id + "," + this.name + "," + this.lastName + "," + this.email + ")";
+                    string query = "INSERT INTO station(station_id, name, capacity) values (" + this.station_id + "," + this.name + "," + this.capacity + ")";
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 else
                 {
-                    string query = "UPDATE USER SET id = " + this.id + ", name" + this.name + ", lastname" + this.lastName + ",email" + this.email + ") WHERE ID=" + this.id;
+                    string query = "UPDATE station SET station_id = " + this.station_id + ",name = " + this.name + ",capacity = " + this.capacity + ") WHERE station_id=" + this.station_id;
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 connection.Close();
             }
         }
-        public Boolean delete()
+        public Boolean Delete()
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM USER WHERE ID = " + this.id;
+            string query = "DELETE FROM station WHERE station_id = " + this.station_id;
             db.CommandText = query;
             db.ExecuteNonQuery();
             this.deleted = true;
@@ -66,33 +61,31 @@ namespace Model
         }
 
         // Static methods
-        public static User find(int id)
+        public static Station Find(int id)
         {
-
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM USER WHERE ID = " + id;
+            string query = "SELECT * FROM station WHERE station_id = " + id;
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
 
             while (reader.Read())
             {
                 string name = reader.GetString(1);
-                string lastName = reader.GetString(2);
-                string email = reader.GetString(3);
+                int capacity = reader.GetInt32(2);
 
-                return new User(id, name, lastName, email);
+                return new Station(id, name, capacity);
             }
             connection.Close();
             return null;
         }
 
         // Private methods
-        private Boolean checkIfUserExist(int id)
+        private Boolean CheckIfStationExists(int id)
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM USER WHERE ID=" + id;
+            string query = "SELECT COUNT(*) FROM station WHERE station_id=" + id;
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
 
@@ -102,7 +95,7 @@ namespace Model
                 count = reader.GetInt32(0);
             }
 
-            if(count > 0) {return true; } else { return false; }
+            if (count > 0) { return true; } else { return false; }
         }
     }
 }
