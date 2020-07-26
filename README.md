@@ -1,6 +1,6 @@
 # Trains Project
 
-Tains is a desktop application for windows, wich it'll generate a better process control management of the rails that are entered into the system.
+Trains is a desktop application for windows, wich it'll generate a better process control management of the rails that are entered into the system.
 
   - Insertion of station, locomotives and wagons
   - See the time and in which stations are the bags and locomotives
@@ -11,8 +11,8 @@ And of course Train Project itself is open source with a [public repository] on 
 
 You must have the following technologies as requirements for the correct start of the application:
 
-* [.NET Framework 4.7.3].
-* [SQLite].
+* .NET Framework 4.7.3
+* SQLite
 
 ### Installation 🔧
 
