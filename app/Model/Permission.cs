@@ -4,60 +4,55 @@ using System.Data.SQLite;
 
 namespace Model
 {
-    public class User
+    public class Permission
     {
+        private int permission_id;
+        private string permission_name;
         private int user_id;
-        private string name;
-        private string email;
-        private string password;
         private Boolean deleted;
 
-        public User(int user_id, string name, string email, string password)
+        public Permission(int permission_id, string permission_name, int user_id)
         {
+            this.permission_id = permission_id;
+            this.permission_name = permission_name;
             this.user_id = user_id;
-            this.name = name;
-            this.email = email;
-            this.password = password;
-            this.deleted = false;
         }
 
         // Public methods
 
-        public int GetId() { return user_id; }
-        public string GetName() { return name; }
-        public string GetEmail() { return email; }
-        public string GetPassword() { return password; }
-        public void SetName(string name) { this.name = name; }
-        public void SetEmail(string email) { this.email = email; }
-        public void SetPassword(string password) { this.password = password; }
+        public int GetId() { return permission_id; }
+        public string GetPermissionName() { return permission_name; }
+        public int GetUserId() { return user_id; }
+        public void SetPermissionName(string permission_name) { this.permission_name = permission_name; }
         public void Save()
         {
             if (!this.deleted)
             {
                 SQLiteConnection connection = DatabaseUtility.connection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfUserExists(this.user_id);
+                Boolean exist = this.CheckIfPermissionExists(this.permission_id);
 
                 if (!exist)
                 {
-                    string query = "INSERT INTO user(user_id, name, email, password) values (" + this.user_id + "," + this.name + "," + this.email + "," + this.password + ")";
+                    string query = "INSERT INTO permission(permission_id, permission_name, user_id) values (" + this.permission_id + "," + this.permission_name + "," + this.user_id + ")";
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 else
                 {
-                    string query = "UPDATE user SET user_id = " + this.user_id + ", name = " + this.name + ",email = " + this.email + ",password = " + this.password + ") WHERE user_id=" + this.user_id;
+                    string query = "UPDATE permission SET permission_id = " + this.permission_id + ", permission_name=" + this.permission_name + ", user_id=" + this.user_id + ") WHERE permission_id=" + this.permission_id;
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 connection.Close();
             }
         }
+
         public Boolean Delete()
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM user WHERE user_id = " + this.user_id;
+            string query = "DELETE FROM USER WHERE ID = " + this.user_id;
             db.CommandText = query;
             db.ExecuteNonQuery();
             this.deleted = true;
@@ -67,10 +62,9 @@ namespace Model
         // Static methods
         public static User Find(int id)
         {
-
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM user WHERE user_id = " + id;
+            string query = "SELECT * FROM USER WHERE ID = " + id;
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
 
@@ -85,13 +79,12 @@ namespace Model
             connection.Close();
             return null;
         }
-
         // Private methods
-        private Boolean CheckIfUserExists(int id)
+        private Boolean CheckIfPermissionExists(int permission_id)
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM user WHERE user_id=" + id;
+            string query = "SELECT COUNT(*) FROM permission WHERE permission_id=" + permission_id;
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
 
@@ -101,7 +94,7 @@ namespace Model
                 count = reader.GetInt32(0);
             }
 
-            if(count > 0) {return true; } else { return false; }
+            if (count > 0) { return true; } else { return false; }
         }
     }
 }
