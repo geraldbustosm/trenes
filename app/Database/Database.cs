@@ -24,6 +24,12 @@ namespace Database
             return connection;
         }
 
+        // Método para realizar una consulta a la base de datos
+        static public SQLiteConnection connection()
+        {
+            return InitConnection();
+        }
+
         // Metodo para restablecer la base de datos
         static public void ResetDatabase()
         {
