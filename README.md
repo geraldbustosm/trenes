@@ -7,14 +7,14 @@ Tains is a desktop application for windows, wich it'll generate a better process
 
 And of course Train Project itself is open source with a [public repository] on GitHub.
 
-### Technologies used / required
+### Technologies used / required 📦
 
 You must have the following technologies as requirements for the correct start of the application:
 
 * [.NET Framework 4.7.3].
 * [SQLite].
 
-### Installation
+### Installation 🔧
 
 ... open the terminal and insert
 
@@ -22,9 +22,9 @@ You must have the following technologies as requirements for the correct start o
 
 ### Entity Relationship Diagram
 
-![Alt text](https://i.imgur.com/lVd5jEi.png "Entity Relationship Diagram")
+![Alt text](https://i.imgur.com/U1QASUs.png "Entity Relationship Diagram")
 
-### Modelo relacional
+### Relational model 🖇️
 
 -   train (**train_id**)
 -   station (**station_id**, name, capacity)
