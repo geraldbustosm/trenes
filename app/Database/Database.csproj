@@ -7,13 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="database.db" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="database.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Remove="database.db-journal" />
   </ItemGroup>
 
   <ItemGroup>

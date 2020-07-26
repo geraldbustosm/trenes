@@ -6,11 +6,15 @@ namespace Database
 {
     public class DatabaseUtility
     {
+        static private string db_file = Path.GetFullPath(@"..\\..\\..\\..\\Database\\database.db");
+        static private string db_script = Path.GetFullPath(@"..\\..\\..\\..\\Database\\database.sql");
+
         // Metodo para iniciar la conexión con la base de datos
         static public SQLiteConnection InitConnection()
         {
-            SQLiteConnection connection = new SQLiteConnection("Data Source=database.db");
-   
+            SQLiteConnection.CreateFile(db_file);
+            SQLiteConnection connection = new SQLiteConnection("Data Source=" + db_file);
+
             try
             {
                 connection.Open();
@@ -32,25 +36,14 @@ namespace Database
 
             try
             {
-                // Drop todas las tablas de la base de datos
-                string sql_drop_tables = "DROP TABLE IF EXISTS user;" +
-                    "DROP TABLE IF EXISTS wagon;";
-                sqlite.CommandText = sql_drop_tables;
+                sqlite.CommandText = File.ReadAllText(db_script);
                 sqlite.ExecuteNonQuery();
-
-                // Crear todas las tablas de la base de datos
-                string sql_create_tables = "CREATE TABLE user(id INTEGER PRIMARY KEY, email TEXT, password TEXT);" +
-                    "CREATE TABLE wagon(id INTEGER PRIMARY KEY, capacity TEXT, code TEXT, material TEXT, origin TEXT, destiny TEXT);";
-                sqlite.CommandText = sql_create_tables;
-                sqlite.ExecuteNonQuery();
-
-            } 
+                Console.WriteLine("database created!");
+            }
             catch (Exception ex)
             {
                 throw ex;
             }
-
-            Console.WriteLine("database restored!");
         }
     };
 }
