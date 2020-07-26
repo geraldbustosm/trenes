@@ -4,61 +4,56 @@ using System.Data.SQLite;
 
 namespace Model
 {
-    public class User
+    public class Travel
     {
-        private int id;
-        private string name;
-        private string lastName;
-        private string email;
+        private int travel_id;
+        private int total_time;
+        private string state;
         private Boolean deleted;
 
-        public User(int id, string name, string lastName, string email)
+        public Travel(int travel_id, int total_time, string state)
         {
-            this.id = id;
-            this.name = name;
-            this.lastName = lastName;
-            this.email = email;
+            this.travel_id = travel_id;
+            this.total_time = total_time;
+            this.state = state;
             this.deleted = false;
         }
 
         // Public methods
+        public int GetId() { return travel_id; }
+        public int GetTotalTime() { return total_time; }
+        public string GetState() { return state; }
+        public void SetTotalTime(int total_time) { this.total_time = total_time; }
+        public void SetState(string state) { this.state = state; }
 
-        public int getId() { return id; }
-        public string getName() { return name; }
-        public string getLastName() { return lastName; }
-        public string getEmail() { return email; }
-
-        public void setName(string name) { this.name = name; }
-        public void setLastName(string lastName) { this.lastName = lastName; }
-        public void setEmail(string email) { this.email = email; }
-        public void save()
+        public void Save()
         {
             if (!this.deleted)
             {
                 SQLiteConnection connection = DatabaseUtility.connection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.checkIfUserExist(this.id);
+                Boolean exist = this.CheckIfTravelExists(this.travel_id);
 
                 if (!exist)
                 {
-                    string query = "INSERT INTO USER(id, name, lastname, email, password) values (" + this.id + "," + this.name + "," + this.lastName + "," + this.email + ")";
+                    string query = "INSERT INTO travel(travel_id, total_time, state) values (" + this.travel_id + "," + this.total_time + "," + this.state + ")";
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 else
                 {
-                    string query = "UPDATE USER SET id = " + this.id + ", name" + this.name + ", lastname" + this.lastName + ",email" + this.email + ") WHERE ID=" + this.id;
+                    string query = "UPDATE travel SET travel_id = " + this.travel_id + ", total_time = " + this.total_time + ", state = " + this.state + ") WHERE travel_id=" + this.travel_id;
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 connection.Close();
             }
         }
-        public Boolean delete()
+        public Boolean Delete()
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM USER WHERE ID = " + this.id;
+            string query = "DELETE FROM travel WHERE travel_id = " + this.travel_id;
             db.CommandText = query;
             db.ExecuteNonQuery();
             this.deleted = true;
@@ -66,33 +61,31 @@ namespace Model
         }
 
         // Static methods
-        public static User find(int id)
+        public static Travel Find(int id)
         {
-
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM USER WHERE ID = " + id;
+            string query = "SELECT * FROM travel WHERE travel_id = " + id;
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
 
             while (reader.Read())
             {
-                string name = reader.GetString(1);
-                string lastName = reader.GetString(2);
-                string email = reader.GetString(3);
+                int total_time = reader.GetInt32(1);
+                string state = reader.GetString(2);
 
-                return new User(id, name, lastName, email);
+                return new Travel(id, total_time, state);
             }
             connection.Close();
             return null;
         }
 
         // Private methods
-        private Boolean checkIfUserExist(int id)
+        private Boolean CheckIfTravelExists(int id)
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM USER WHERE ID=" + id;
+            string query = "SELECT COUNT(*) FROM travel WHERE travel_id=" + id;
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
 
@@ -102,7 +95,7 @@ namespace Model
                 count = reader.GetInt32(0);
             }
 
-            if(count > 0) {return true; } else { return false; }
+            if (count > 0) { return true; } else { return false; }
         }
     }
 }
