@@ -11,8 +11,8 @@ And of course Train Project itself is open source with a [public repository] on 
 
 You must have the following technologies as requirements for the correct start of the application:
 
-* [.NET Framework 4.7.3] -.
-* [SQLite] -.
+* [.NET Framework 4.7.3].
+* [SQLite].
 
 ### Installation
 
@@ -35,12 +35,11 @@ You must have the following technologies as requirements for the correct start o
 -   action (**action_id**, description, minutes)
 -   section_action (**section_action_id**, *action_id*,*travel_section_id*,*locomotive_id*, *wagon_id*, order_journey)
 -   travel_section (**travel_section_id**, arrival_time, order, action, *travel_id*, *origin_station_id*, *destination_station_id*)
-
 -   user (**user_id**, name, email, password)
 -   permission (**permission_id**, permission_name, *user_id*)
 ---
 
-            Entidad (<u>**primary_key**</u>, atributo, *foreign_key*)
+Entidad (<u>**primary_key**</u>, atributo, *foreign_key*)
 
 ---
 
