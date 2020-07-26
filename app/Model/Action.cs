@@ -4,61 +4,56 @@ using System.Data.SQLite;
 
 namespace Model
 {
-    public class User
+    public class Action
     {
-        private int id;
-        private string name;
-        private string lastName;
-        private string email;
+        private int action_id;
+        private string description;
+        private int minutes;
         private Boolean deleted;
 
-        public User(int id, string name, string lastName, string email)
+        public Action(int action_id, string description, int minutes)
         {
-            this.id = id;
-            this.name = name;
-            this.lastName = lastName;
-            this.email = email;
+            this.action_id = action_id;
+            this.description = description;
+            this.minutes = minutes;
             this.deleted = false;
         }
 
         // Public methods
+        public int GetId() { return action_id; }
+        public string GetDescription() { return description; }
+        public int GetMinutes() { return minutes; }
+        public void SetDescription(string description) { this.description = description; }
+        public void SetMinutes(int minutes) { this.minutes = minutes; }
 
-        public int getId() { return id; }
-        public string getName() { return name; }
-        public string getLastName() { return lastName; }
-        public string getEmail() { return email; }
-
-        public void setName(string name) { this.name = name; }
-        public void setLastName(string lastName) { this.lastName = lastName; }
-        public void setEmail(string email) { this.email = email; }
-        public void save()
+        public void Save()
         {
             if (!this.deleted)
             {
                 SQLiteConnection connection = DatabaseUtility.connection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.checkIfUserExist(this.id);
+                Boolean exist = this.CheckIfActionExists(this.action_id);
 
                 if (!exist)
                 {
-                    string query = "INSERT INTO USER(id, name, lastname, email, password) values (" + this.id + "," + this.name + "," + this.lastName + "," + this.email + ")";
+                    string query = "INSERT INTO action(action_id, description, minutes) values (" + this.action_id + "," + this.description + "," + this.minutes + ")";
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 else
                 {
-                    string query = "UPDATE USER SET id = " + this.id + ", name" + this.name + ", lastname" + this.lastName + ",email" + this.email + ") WHERE ID=" + this.id;
+                    string query = "UPDATE action SET action_id = " + this.action_id + ", description = " + this.description + ",minutes = " + this.minutes + ") WHERE action_id=" + this.action_id;
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 connection.Close();
             }
         }
-        public Boolean delete()
+        public Boolean Delete()
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM USER WHERE ID = " + this.id;
+            string query = "DELETE FROM action WHERE action_id = " + this.action_id;
             db.CommandText = query;
             db.ExecuteNonQuery();
             this.deleted = true;
@@ -66,33 +61,31 @@ namespace Model
         }
 
         // Static methods
-        public static User find(int id)
+        public static Action Find(int id)
         {
-
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM USER WHERE ID = " + id;
+            string query = "SELECT * FROM action WHERE action_id = " + id;
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
 
             while (reader.Read())
             {
-                string name = reader.GetString(1);
-                string lastName = reader.GetString(2);
-                string email = reader.GetString(3);
+                string description = reader.GetString(1);
+                int minutes = reader.GetInt32(2);
 
-                return new User(id, name, lastName, email);
+                return new Action(id, description, minutes);
             }
             connection.Close();
             return null;
         }
 
         // Private methods
-        private Boolean checkIfUserExist(int id)
+        private Boolean CheckIfActionExists(int id)
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM USER WHERE ID=" + id;
+            string query = "SELECT COUNT(*) FROM action WHERE action_id=" + id;
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
 
@@ -102,7 +95,7 @@ namespace Model
                 count = reader.GetInt32(0);
             }
 
-            if(count > 0) {return true; } else { return false; }
+            if (count > 0) { return true; } else { return false; }
         }
     }
 }
