@@ -20,7 +20,7 @@ You must have the following technologies as requirements for the correct start o
 
     $man help
 
-### Entity Relationship Diagram
+### Entity Relationship Diagram 🖋
 
 ![Alt text](https://i.imgur.com/U1QASUs.png "Entity Relationship Diagram")
 
@@ -39,11 +39,11 @@ You must have the following technologies as requirements for the correct start o
 -   permission (**permission_id**, permission_name, *user_id*)
 ---
 
-Entidad (<u>**primary_key**</u>, atributo, *foreign_key*)
+- Entidad (<u>**primary_key**</u>, atributo, *foreign_key*)
 
 ---
 
 
-License
+License 📝
 ----
 **Free Software, Hell Yeah!**
