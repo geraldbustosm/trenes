@@ -5,7 +5,7 @@ Trains is a desktop application for windows, wich it'll generate a better proces
   - Insertion of station, locomotives and wagons
   - See the time and in which stations are the bags and locomotives
 
-And of course Train Project itself is open source with a [public repository] on GitHub.
+And of course Trains Project itself is open source with a [public repository] on GitHub.
 
 ### Technologies used / required 📦
 
