@@ -39,7 +39,7 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.connection();
+                SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfLocomotiveExists(this.locomotive_id);
 
@@ -61,7 +61,7 @@ namespace Model
 
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "DELETE FROM locomotive WHERE locomotive_id = " + this.locomotive_id;
             db.CommandText = query;
@@ -74,7 +74,7 @@ namespace Model
         // Static methods
         public static Locomotive Find(int locomotive_id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM locomotive WHERE locomotive_id = " + locomotive_id;
             db.CommandText = query;
@@ -96,7 +96,7 @@ namespace Model
         // Private methods
         private Boolean CheckIfLocomotiveExists(int locomotive_id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT COUNT(*) FROM locomotive WHERE locomotive_id=" + locomotive_id;
             db.CommandText = query;

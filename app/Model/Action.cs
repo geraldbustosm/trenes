@@ -30,7 +30,7 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.connection();
+                SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfActionExists(this.action_id);
 
@@ -51,7 +51,7 @@ namespace Model
         }
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "DELETE FROM action WHERE action_id = " + this.action_id;
             db.CommandText = query;
@@ -64,7 +64,7 @@ namespace Model
         // Static methods
         public static Action Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM action WHERE action_id = " + id;
             db.CommandText = query;
@@ -84,7 +84,7 @@ namespace Model
         // Private methods
         private Boolean CheckIfActionExists(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT COUNT(*) FROM action WHERE action_id=" + id;
             db.CommandText = query;

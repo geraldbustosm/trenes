@@ -37,7 +37,6 @@ namespace Model
         public int GetTrainId() { return train_id; }
         public int GetStationId() { return station_id; }
 
-
         public void SetShiploadType(string shipload_type) { this.shipload_type = shipload_type; }
         public void SetShiploadWeight(int shipload_weight) { this.shipload_weight = shipload_weight; }
         public void SetWagonWeight(int wagon_weight) { this.wagon_weight = wagon_weight; }
@@ -46,7 +45,7 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.connection();
+                SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfUserExists(this.wagon_id);
 
@@ -67,7 +66,7 @@ namespace Model
         }
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "DELETE FROM wagon WHERE wagon_id = " + this.wagon_id;
             db.CommandText = query;
@@ -81,7 +80,7 @@ namespace Model
         public static Wagon Find(int id)
         {
 
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM wagon WHERE wagon_id = " + id;
             db.CommandText = query;
@@ -105,7 +104,7 @@ namespace Model
         // Private methods
         private Boolean CheckIfUserExists(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT COUNT(*) FROM wagon WHERE wagon_id = " + id;
             db.CommandText = query;

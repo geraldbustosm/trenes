@@ -22,7 +22,7 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.connection();
+                SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfTrainExists(this.train_id);
 
@@ -37,7 +37,7 @@ namespace Model
         }
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "DELETE FROM train WHERE train_id = " + this.train_id;
             db.CommandText = query;
@@ -50,7 +50,7 @@ namespace Model
         // Static methods
         public static Train Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM train WHERE train_id = " + id;
             db.CommandText = query;
@@ -69,7 +69,7 @@ namespace Model
         // Private methods
         private Boolean CheckIfTrainExists(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT COUNT(*) FROM train WHERE train_id=" + id;
             db.CommandText = query;

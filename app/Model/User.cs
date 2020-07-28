@@ -33,7 +33,7 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.connection();
+                SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfUserExists(this.user_id);
 
@@ -54,7 +54,7 @@ namespace Model
         }
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "DELETE FROM user WHERE user_id = " + this.user_id;
             db.CommandText = query;
@@ -68,7 +68,7 @@ namespace Model
         public static User Find(int id)
         {
 
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM user WHERE user_id = " + id;
             db.CommandText = query;
@@ -88,7 +88,7 @@ namespace Model
         // Private methods
         private Boolean CheckIfUserExists(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT COUNT(*) FROM user WHERE user_id=" + id;
             db.CommandText = query;

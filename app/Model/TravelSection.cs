@@ -45,7 +45,7 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.connection();
+                SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfExist(this.id);
 
@@ -67,7 +67,7 @@ namespace Model
 
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "DELETE FROM travel_section WHERE ID = " + this.id;
             db.CommandText = query;
@@ -79,7 +79,7 @@ namespace Model
         // Static Methods
         public static TravelSection Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM travel_section WHERE ID = " + id;
             db.CommandText = query;
@@ -102,7 +102,7 @@ namespace Model
 
         private Boolean CheckIfExist(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT COUNT(*) FROM travel_section WHERE ID=" + id;
             db.CommandText = query;
