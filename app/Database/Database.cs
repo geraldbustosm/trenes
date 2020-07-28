@@ -9,10 +9,9 @@ namespace Database
         static private string db_file = Path.GetFullPath(@"..\\..\\..\\Database\\database.db");
         static private string db_script = Path.GetFullPath(@"..\\..\\..\\Database\\database.sql");
 
-        // Metodo para iniciar la conexión con la base de datos
-        static public SQLiteConnection InitConnection()
+        // Metodo para obtener la conexión a la base de datos
+        public static SQLiteConnection GetConnection()
         {
-            SQLiteConnection.CreateFile(db_file);
             SQLiteConnection connection = new SQLiteConnection("Data Source=" + db_file);
 
             try
@@ -24,26 +23,21 @@ namespace Database
             {
                 throw ex;
             }
-           
             return connection;
-        }
-
-        // Método para realizar una consulta a la base de datos
-        static public SQLiteConnection connection()
-        {
-            return InitConnection();
         }
 
         // Metodo para restablecer la base de datos
         static public void ResetDatabase()
         {
-            SQLiteConnection connection = InitConnection();
+            SQLiteConnection.CreateFile(db_file);
+            SQLiteConnection connection = GetConnection();
             SQLiteCommand sqlite = new SQLiteCommand(connection);
 
             try
             {
                 sqlite.CommandText = File.ReadAllText(db_script);
                 sqlite.ExecuteNonQuery();
+                connection.Close();
                 Console.WriteLine("database created!");
             }
             catch (Exception ex)
