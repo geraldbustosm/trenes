@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayoutForm));
             this.panelSide = new System.Windows.Forms.Panel();
             this.panelLayout = new System.Windows.Forms.Panel();
             this.SuspendLayout();
@@ -60,6 +61,7 @@
             this.ClientSize = new System.Drawing.Size(1258, 744);
             this.Controls.Add(this.panelLayout);
             this.Controls.Add(this.panelSide);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "LayoutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
