@@ -49,6 +49,7 @@ namespace Model
             db.CommandText = query;
             db.ExecuteNonQuery();
             this.deleted = true;
+            connection.Close();
             return true;
         }
 
@@ -86,7 +87,7 @@ namespace Model
             {
                 count = reader.GetInt32(0);
             }
-
+            connection.Close();
             if (count > 0) { return true; } else { return false; }
         }
     }

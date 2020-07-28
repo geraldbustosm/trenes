@@ -42,6 +42,7 @@ namespace Model
             string query = "DELETE FROM train WHERE train_id = " + this.train_id;
             db.CommandText = query;
             db.ExecuteNonQuery();
+            connection.Close();
             this.deleted = true;
             return true;
         }
@@ -79,7 +80,7 @@ namespace Model
             {
                 count = reader.GetInt32(0);
             }
-
+            connection.Close();
             if (count > 0) { return true; } else { return false; }
         }
     }
