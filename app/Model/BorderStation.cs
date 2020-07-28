@@ -28,7 +28,7 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.connection();
+                SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfBorderStationExists(this.border_station_id);
 
@@ -43,19 +43,20 @@ namespace Model
         }
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "DELETE FROM border_station WHERE border_station_id = " + this.border_station_id;
             db.CommandText = query;
             db.ExecuteNonQuery();
             this.deleted = true;
+            connection.Close();
             return true;
         }
 
         // Static methods
         public static BorderStation Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM border_station WHERE border_station = " + id;
             db.CommandText = query;
@@ -75,7 +76,7 @@ namespace Model
         // Private methods
         private Boolean CheckIfBorderStationExists(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT COUNT(*) FROM border_station WHERE border_station_id=" + id;
             db.CommandText = query;
@@ -86,7 +87,7 @@ namespace Model
             {
                 count = reader.GetInt32(0);
             }
-
+            connection.Close();
             if (count > 0) { return true; } else { return false; }
         }
     }

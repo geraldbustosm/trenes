@@ -30,7 +30,7 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.connection();
+                SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfStationExists(this.station_id);
 
@@ -51,11 +51,12 @@ namespace Model
         }
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "DELETE FROM station WHERE station_id = " + this.station_id;
             db.CommandText = query;
             db.ExecuteNonQuery();
+            connection.Close();
             this.deleted = true;
             return true;
         }
@@ -63,7 +64,7 @@ namespace Model
         // Static methods
         public static Station Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM station WHERE station_id = " + id;
             db.CommandText = query;
@@ -83,7 +84,7 @@ namespace Model
         // Private methods
         private Boolean CheckIfStationExists(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT COUNT(*) FROM station WHERE station_id=" + id;
             db.CommandText = query;
@@ -94,7 +95,7 @@ namespace Model
             {
                 count = reader.GetInt32(0);
             }
-
+            connection.Close();
             if (count > 0) { return true; } else { return false; }
         }
     }

@@ -28,7 +28,7 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.connection();
+                SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfPermissionExists(this.permission_id);
 
@@ -50,11 +50,12 @@ namespace Model
 
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "DELETE FROM permission WHERE permission_id = " + this.permission_id;
             db.CommandText = query;
             db.ExecuteNonQuery();
+            connection.Close();
             this.deleted = true;
             return true;
         }
@@ -62,7 +63,7 @@ namespace Model
         // Static methods
         public static Permission Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM permission WHERE permission_id = " + id;
             db.CommandText = query;
@@ -81,7 +82,7 @@ namespace Model
         // Private methods
         private Boolean CheckIfPermissionExists(int permission_id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT COUNT(*) FROM permission WHERE permission_id=" + permission_id;
             db.CommandText = query;
@@ -92,7 +93,7 @@ namespace Model
             {
                 count = reader.GetInt32(0);
             }
-
+            connection.Close();
             if (count > 0) { return true; } else { return false; }
         }
     }

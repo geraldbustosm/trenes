@@ -34,7 +34,7 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.connection();
+                SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfUserExist(this.id);
 
@@ -56,11 +56,12 @@ namespace Model
 
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "DELETE FROM section_action WHERE ID = " + this.id;
             db.CommandText = query;
             db.ExecuteNonQuery();
+            connection.Close();
             this.deleted = true;
             return true;
         }
@@ -68,7 +69,7 @@ namespace Model
         // Static Methods
         public static SectionAction Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM section_action WHERE ID = " + id;
             db.CommandText = query;
@@ -92,7 +93,7 @@ namespace Model
 
         private Boolean CheckIfUserExist(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.connection();
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT COUNT(*) FROM section_action WHERE ID=" + id;
             db.CommandText = query;
@@ -103,7 +104,7 @@ namespace Model
             {
                 count = reader.GetInt32(0);
             }
-
+            connection.Close();
             if (count > 0) { return true; } else { return false; }
         }
 
