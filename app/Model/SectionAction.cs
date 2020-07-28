@@ -24,24 +24,19 @@ namespace Model
 
         // Public Methods
 
-        public int getId() { return id; }
-        public int getAction_id() { return action_id; }
-        public int getTravel_section_id() { return travel_section_id; }
-        public int getLocomotive_id() { return locomotive_id; }
-        public int getWagon_id() { return wagon_id; }
+        public int GetId() { return id; }
+        public int GetActionId() { return action_id; }
+        public int GetTravelSectionId() { return travel_section_id; }
+        public int GetLocomotiveId() { return locomotive_id; }
+        public int GetWagonId() { return wagon_id; }
 
-        public void setAction_id(int action_id) { this.action_id = action_id; }
-        public void setTravel_section_id(int travel_section_id) { this.travel_section_id = travel_section_id; }
-        public void setLocomotive_id(int locomotive_id) { this.locomotive_id = locomotive_id; }
-        public void setWagon_id(int wagon_id) { this.wagon_id = wagon_id; }
-
-        public void save()
+        public void Save()
         {
             if (!this.deleted)
             {
                 SQLiteConnection connection = DatabaseUtility.connection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.checkIfUserExist(this.id);
+                Boolean exist = this.CheckIfUserExist(this.id);
 
                 if (!exist)
                 {
@@ -59,7 +54,7 @@ namespace Model
             }
         }
 
-        public Boolean delete()
+        public Boolean Delete()
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
@@ -71,10 +66,8 @@ namespace Model
         }
 
         // Static Methods
-
-        public static SectionAction find(int id)
+        public static SectionAction Find(int id)
         {
-
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM section_action WHERE ID = " + id;
@@ -97,7 +90,7 @@ namespace Model
 
         // Private Methods
 
-        private Boolean checkIfUserExist(int id)
+        private Boolean CheckIfUserExist(int id)
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);

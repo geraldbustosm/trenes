@@ -29,29 +29,25 @@ namespace Model
         }
 
         // Public Methods
+        public int GetId() { return this.id; }
+        public string GetArrivalTime() { return this.arrival_time; }
+        public int GetTravelId() { return this.travel_id; }
+        public int GetPriority() { return this.priority; }
+        public int GetAction() { return this.action; }
+        public int GetOriginStationId() { return this.origin_station_id; }
+        public int GetDestinationStation() { return this.destination_station_id; }
 
-        public int getId() { return this.id; }
-        public string getArrival_time() { return this.arrival_time; }
-        public int getTravel_id() { return this.travel_id; }
-        public int getPriority() { return this.priority; }
-        public int getAction() { return this.action; }
-        public int getOrigin_station_id() { return this.origin_station_id; }
-        public int getDestination_station() { return this.destination_station_id; }
+        public void SetArrivalTime(string arrival_time) { this.arrival_time = arrival_time; }
+        public void SetPriority(int priority) { this.priority = priority; }
+        public void SetAction(int action) { this.action = action; }
 
-        public void setArrival_time(string arrival_time) { this.arrival_time = arrival_time; }
-        public void setTravel_id(int travel_id) { this.travel_id = travel_id; }
-        public void setPriority(int priority) { this.priority = priority; }
-        public void setAction(int action) { this.action = action; }
-        public void setOrigin_station_id(int origin_station_id) { this.origin_station_id = origin_station_id; }
-        public void setDestination_station_id(int destination_station_id) { this.destination_station_id = destination_station_id; }
-
-        public void save()
+        public void Save()
         {
             if (!this.deleted)
             {
                 SQLiteConnection connection = DatabaseUtility.connection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.checkIfExist(this.id);
+                Boolean exist = this.CheckIfExist(this.id);
 
                 if (!exist)
                 {
@@ -69,7 +65,7 @@ namespace Model
             }
         }
 
-        public Boolean delete()
+        public Boolean Delete()
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
@@ -81,10 +77,8 @@ namespace Model
         }
 
         // Static Methods
-
-        public static TravelSection find(int id)
+        public static TravelSection Find(int id)
         {
-
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM travel_section WHERE ID = " + id;
@@ -106,7 +100,7 @@ namespace Model
             return null;
         }
 
-        private Boolean checkIfExist(int id)
+        private Boolean CheckIfExist(int id)
         {
             SQLiteConnection connection = DatabaseUtility.connection();
             SQLiteCommand db = new SQLiteCommand(connection);
