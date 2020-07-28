@@ -6,8 +6,8 @@ namespace Database
 {
     public class DatabaseUtility
     {
-        static private string db_file = Path.GetFullPath(@"..\\..\\..\\Database\\database.db");
-        static private string db_script = Path.GetFullPath(@"..\\..\\..\\Database\\database.sql");
+        private static string db_file = Path.GetFullPath(@"..\\..\\..\\Database\\database.db");
+        private static string db_script = Path.GetFullPath(@"..\\..\\..\\Database\\database.sql");
 
         // Metodo para obtener la conexión a la base de datos
         public static SQLiteConnection GetConnection()
@@ -27,7 +27,7 @@ namespace Database
         }
 
         // Metodo para restablecer la base de datos
-        static public void ResetDatabase()
+        public static void ResetDatabase()
         {
             SQLiteConnection.CreateFile(db_file);
             SQLiteConnection connection = GetConnection();
