@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Net.Http.Headers;
 using System.Windows.Forms;
 
 namespace View
@@ -17,13 +16,13 @@ namespace View
         {
             InitializeComponent();
             this.normalLayoutSize = this.Size;
-            showLoginScreen();
+            Show(new LoginForm(this));
         }
 
-        // Metodo que invoca la pantalla de login
-        private void showLoginScreen()
+        // Metodo para mostrar un formulario
+        public void Show(Form form)
         {
-            changeLayout(new LoginForm(this));
+            changeLayout(form);
         }
 
         // Metodo que invoca la pantalla de bienvenida
@@ -38,7 +37,6 @@ namespace View
         {
             if (activeSideForm != null)
                 activeSideForm.Close();
-
             activeSideForm = newForm;
             customizeSideForm();
         }
@@ -59,15 +57,13 @@ namespace View
         public void changeLayout(Form newForm)
         {
             if (activeLayoutForm != null) activeLayoutForm.Close();
-            
             activeLayoutForm = newForm;
-
-            if (!authenticate) resizeWindowToLoginSize();
-
+            if (!authenticate) resizeWindowToInitialSize();
             customizeLayoutForm();
         }
-        // Método que redimensiona layoutForm unicamente en la ventana de login
-        public void resizeWindowToLoginSize()
+
+        // Método que redimensiona layoutForm a el tamaño inicial de las pestañas
+        public void resizeWindowToInitialSize()
         {
             panelSide.Visible = false;
             this.Width = loginFormWidth;

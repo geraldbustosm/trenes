@@ -11,9 +11,8 @@ namespace Model
         private string password;
         private Boolean deleted;
 
-        public User(int user_id, string name, string email, string password)
+        public User(string name, string email, string password)
         {
-            this.user_id = user_id;
             this.name = name;
             this.email = email;
             this.password = password;
@@ -25,6 +24,7 @@ namespace Model
         public string GetName() { return name; }
         public string GetEmail() { return email; }
         public string GetPassword() { return password; }
+        public void SetId(int id) { this.user_id = id; }
         public void SetName(string name) { this.name = name; }
         public void SetEmail(string email) { this.email = email; }
         public void SetPassword(string password) { this.password = password; }
@@ -64,24 +64,37 @@ namespace Model
             return true;
         }
 
-        // Static methods
-        public static User Find(int id)
+        public Boolean ValidatePassword(string password)
         {
+            return this.password == password ? true : false;
+        }
 
+        // Static methods
+        public static User Find(string _name)
+        {
+            Console.WriteLine(_name);
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM user WHERE user_id = " + id;
+            string query = "SELECT * FROM user WHERE name = '" + _name + "'";
+            Console.WriteLine(query);
             db.CommandText = query;
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            while (reader.Read())
+            try
             {
-                string name = reader.GetString(1);
-                string email = reader.GetString(2);
-                string password = reader.GetString(3);
-                return new User(id, name, email, password);
+                SQLiteDataReader reader = db.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string name = reader.GetString(1);
+                    string email = reader.GetString(2);
+                    string password = reader.GetString(3);
+                    return new User(name, email, password);
+                }
+                connection.Close();
             }
-            connection.Close();
+            catch
+            {
+                Console.WriteLine("no existe el usuario");
+            }
             return null;
         }
 

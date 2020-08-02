@@ -1,21 +1,16 @@
-﻿using System;
-using System.Data.SQLite;
-using Model;
+﻿using Model;
 
 namespace Controller
 {
     public class UserController
     {
-        public void putAvatar()
-        {
+        public UserController() {}
 
-        }
-        public void listUsersInComboBox()
+        public static bool Authenticate(string email, string password)
         {
-
-            //users = User.all();
-            //Combobox c = new Combobox()
-            //c.setElements(users);
+            User user_model = User.Find(email);
+            if (user_model != null) return user_model.ValidatePassword(password);
+            return false;
         }
     }
 }
