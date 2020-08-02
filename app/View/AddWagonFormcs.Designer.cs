@@ -49,7 +49,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(157, 22);
             this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -60,7 +59,6 @@
             this.label1.Size = new System.Drawing.Size(132, 24);
             this.label1.TabIndex = 2;
             this.label1.Text = "Peso del carro";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -118,7 +116,6 @@
             this.label4.Size = new System.Drawing.Size(82, 24);
             this.label4.TabIndex = 8;
             this.label4.Text = "Estación";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // comboBox1
             // 
