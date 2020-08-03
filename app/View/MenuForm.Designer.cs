@@ -31,8 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
             this.panelSide = new System.Windows.Forms.Panel();
             this.panelSubMenu3 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnMenu3 = new System.Windows.Forms.Button();
             this.panelSubMenu2 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -45,9 +48,6 @@
             this.btnMenu0 = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.imgLogo = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.panelSide.SuspendLayout();
             this.panelSubMenu3.SuspendLayout();
             this.panelSubMenu2.SuspendLayout();
@@ -77,15 +77,50 @@
             // 
             // panelSubMenu3
             // 
-            this.panelSubMenu3.Controls.Add(this.button5);
             this.panelSubMenu3.Controls.Add(this.button2);
             this.panelSubMenu3.Controls.Add(this.button1);
             this.panelSubMenu3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubMenu3.Location = new System.Drawing.Point(0, 841);
+            this.panelSubMenu3.Location = new System.Drawing.Point(0, 901);
             this.panelSubMenu3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelSubMenu3.Name = "panelSubMenu3";
-            this.panelSubMenu3.Size = new System.Drawing.Size(450, 187);
+            this.panelSubMenu3.Size = new System.Drawing.Size(450, 125);
             this.panelSubMenu3.TabIndex = 6;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
+            this.button2.Location = new System.Drawing.Point(0, 62);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(450, 62);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Nuevo usuario";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(450, 62);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Ver usuarios";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // btnMenu3
             // 
@@ -95,13 +130,13 @@
             this.btnMenu3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenu3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnMenu3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btnMenu3.Location = new System.Drawing.Point(0, 772);
+            this.btnMenu3.Location = new System.Drawing.Point(0, 832);
             this.btnMenu3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMenu3.Name = "btnMenu3";
             this.btnMenu3.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnMenu3.Size = new System.Drawing.Size(450, 69);
             this.btnMenu3.TabIndex = 5;
-            this.btnMenu3.Text = "Ejecutar";
+            this.btnMenu3.Text = "Administración de usuarios";
             this.btnMenu3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenu3.UseVisualStyleBackColor = false;
             this.btnMenu3.Click += new System.EventHandler(this.btnMenu3_Click);
@@ -109,6 +144,7 @@
             // panelSubMenu2
             // 
             this.panelSubMenu2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panelSubMenu2.Controls.Add(this.button6);
             this.panelSubMenu2.Controls.Add(this.button7);
             this.panelSubMenu2.Controls.Add(this.button8);
             this.panelSubMenu2.Controls.Add(this.button9);
@@ -116,8 +152,26 @@
             this.panelSubMenu2.Location = new System.Drawing.Point(0, 586);
             this.panelSubMenu2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelSubMenu2.Name = "panelSubMenu2";
-            this.panelSubMenu2.Size = new System.Drawing.Size(450, 186);
+            this.panelSubMenu2.Size = new System.Drawing.Size(450, 246);
             this.panelSubMenu2.TabIndex = 3;
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
+            this.button6.Location = new System.Drawing.Point(0, 186);
+            this.button6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button6.Name = "button6";
+            this.button6.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
+            this.button6.Size = new System.Drawing.Size(450, 62);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "Nueva carro";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.UseVisualStyleBackColor = false;
             // 
             // button7
             // 
@@ -133,7 +187,7 @@
             this.button7.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
             this.button7.Size = new System.Drawing.Size(450, 62);
             this.button7.TabIndex = 2;
-            this.button7.Text = "Agregar carro";
+            this.button7.Text = "Nueva locomotora";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.UseVisualStyleBackColor = false;
             // 
@@ -151,7 +205,7 @@
             this.button8.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
             this.button8.Size = new System.Drawing.Size(450, 62);
             this.button8.TabIndex = 1;
-            this.button8.Text = "Agregar locomotora";
+            this.button8.Text = "Nueva estación";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button8.UseVisualStyleBackColor = false;
             // 
@@ -169,7 +223,7 @@
             this.button9.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
             this.button9.Size = new System.Drawing.Size(450, 62);
             this.button9.TabIndex = 0;
-            this.button9.Text = "Agregar estación";
+            this.button9.Text = "Ver estaciones";
             this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button9.UseVisualStyleBackColor = false;
             // 
@@ -187,7 +241,7 @@
             this.btnMenu2.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnMenu2.Size = new System.Drawing.Size(450, 69);
             this.btnMenu2.TabIndex = 2;
-            this.btnMenu2.Text = "Configuración";
+            this.btnMenu2.Text = "Configuración de estaciones";
             this.btnMenu2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenu2.UseVisualStyleBackColor = false;
             this.btnMenu2.Click += new System.EventHandler(this.btnMenu2_Click);
@@ -219,7 +273,7 @@
             this.button4.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
             this.button4.Size = new System.Drawing.Size(450, 62);
             this.button4.TabIndex = 2;
-            this.button4.Text = "Eliminar usuario";
+            this.button4.Text = "Nuevo viaje";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.UseVisualStyleBackColor = false;
             // 
@@ -237,7 +291,7 @@
             this.button3.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
             this.button3.Size = new System.Drawing.Size(450, 62);
             this.button3.TabIndex = 1;
-            this.button3.Text = "Actualizar usuario";
+            this.button3.Text = "Viajes pendientes";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = false;
             // 
@@ -255,7 +309,7 @@
             this.btnShowWagons.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
             this.btnShowWagons.Size = new System.Drawing.Size(450, 62);
             this.btnShowWagons.TabIndex = 0;
-            this.btnShowWagons.Text = "Registrar usuario";
+            this.btnShowWagons.Text = "Viajes en transito";
             this.btnShowWagons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnShowWagons.UseVisualStyleBackColor = false;
             this.btnShowWagons.Click += new System.EventHandler(this.btnShowWagons_Click);
@@ -274,7 +328,7 @@
             this.btnMenu1.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnMenu1.Size = new System.Drawing.Size(450, 69);
             this.btnMenu1.TabIndex = 0;
-            this.btnMenu1.Text = "Administrar";
+            this.btnMenu1.Text = "Administración de viajes";
             this.btnMenu1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenu1.UseVisualStyleBackColor = false;
             this.btnMenu1.Click += new System.EventHandler(this.btnMenu1_Click);
@@ -319,60 +373,6 @@
             this.imgLogo.TabIndex = 0;
             this.imgLogo.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(450, 62);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Agregar estación";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.button2.Location = new System.Drawing.Point(0, 62);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(450, 62);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Agregar estación";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.button5.Location = new System.Drawing.Point(0, 124);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.button5.Size = new System.Drawing.Size(450, 62);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "Agregar estación";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = false;
-            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -414,6 +414,6 @@
         private System.Windows.Forms.Panel panelSubMenu3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
