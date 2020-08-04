@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class AddWagonFormcs
+    partial class AddWagonForm
     {
         /// <summary>
         /// Required designer variable.
@@ -223,7 +223,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AddWagonFormcs";
-            this.Text = "HomeForm";
+            this.Text = "AddWagonForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
