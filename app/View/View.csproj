@@ -156,6 +156,9 @@
     <Compile Include="ShowWagonsForm.Designer.cs">
       <DependentUpon>ShowWagonsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddLocomotiveForm.resx">
+      <DependentUpon>AddLocomotiveForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddStationForm.resx">
       <DependentUpon>AddStationForm.cs</DependentUpon>
     </EmbeddedResource>
