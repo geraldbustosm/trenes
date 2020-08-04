@@ -112,6 +112,12 @@
     <Compile Include="AddLocomotiveForm.Designer.cs">
       <DependentUpon>AddLocomotiveForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddStationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddStationForm.Designer.cs">
+      <DependentUpon>AddStationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddWagonForm.cs">
       <SubType>Form</SubType>
     </Compile>
