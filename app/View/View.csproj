@@ -106,6 +106,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddLocomotiveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddLocomotiveForm.Designer.cs">
+      <DependentUpon>AddLocomotiveForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddWagonFormcs.cs">
       <SubType>Form</SubType>
     </Compile>
