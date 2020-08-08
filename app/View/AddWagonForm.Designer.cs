@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class AddWagonFormcs
+    partial class AddWagonForm
     {
         /// <summary>
         /// Required designer variable.

@@ -72,29 +72,21 @@ namespace Model
         // Static methods
         public static User Find(string _name)
         {
-            Console.WriteLine(_name);
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
             string query = "SELECT * FROM user WHERE name = '" + _name + "'";
-            Console.WriteLine(query);
             db.CommandText = query;
-            try
-            {
-                SQLiteDataReader reader = db.ExecuteReader();
+            SQLiteDataReader reader = db.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    string name = reader.GetString(1);
-                    string email = reader.GetString(2);
-                    string password = reader.GetString(3);
-                    return new User(name, email, password);
-                }
-                connection.Close();
-            }
-            catch
+            while (reader.Read())
             {
-                Console.WriteLine("no existe el usuario");
+                string name = reader.GetString(1);
+                string email = reader.GetString(2);
+                string password = reader.GetString(3);
+                return new User(name, email, password);
             }
+            connection.Close();
+
             return null;
         }
 

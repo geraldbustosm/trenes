@@ -2,7 +2,7 @@
 
 namespace View
 {
-    public partial class AddWagonFormcs : Form
+    public partial class AddWagonForm : Form
     {
         
     }
