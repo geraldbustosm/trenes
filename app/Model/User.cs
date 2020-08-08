@@ -19,7 +19,6 @@ namespace Model
             this.deleted = false;
         }
 
-        // Public methods
         public int GetId() { return user_id; }
         public string GetName() { return name; }
         public string GetEmail() { return email; }
@@ -35,17 +34,17 @@ namespace Model
             {
                 SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfUserExists(this.user_id);
-
+                Boolean exist = this.CheckIfUserExists();
+                
                 if (!exist)
                 {
-                    string query = "INSERT INTO user(user_id, name, email, password) values (" + this.user_id + "," + this.name + "," + this.email + "," + this.password + ")";
+                    string query = "INSERT INTO user(name, email, password) values ('" + this.name + "','" + this.email + "','" + this.password + "')";
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 else
                 {
-                    string query = "UPDATE user SET user_id = " + this.user_id + ", name = " + this.name + ",email = " + this.email + ",password = " + this.password + ") WHERE user_id=" + this.user_id;
+                    string query = "UPDATE user SET name = '" + this.name + "', email = '" + this.email + "', password = '" + this.password + "') WHERE user_id = '" + this.user_id + "'";
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
@@ -69,7 +68,6 @@ namespace Model
             return this.password == password ? true : false;
         }
 
-        // Static methods
         public static User Find(string _name)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
@@ -83,21 +81,23 @@ namespace Model
                 string name = reader.GetString(1);
                 string email = reader.GetString(2);
                 string password = reader.GetString(3);
+
+                connection.Close();
                 return new User(name, email, password);
             }
-            connection.Close();
 
+            connection.Close();
             return null;
         }
 
-        // Private methods
-        private Boolean CheckIfUserExists(int id)
+        public Boolean CheckIfUserExists()
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM user WHERE user_id=" + id;
+            string query = "SELECT COUNT(*) FROM user WHERE name = '" + this.name + "'";
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
+            
 
             int count = 0;
             while (reader.Read())
@@ -105,7 +105,8 @@ namespace Model
                 count = reader.GetInt32(0);
             }
             connection.Close();
-           if (count > 0) { return true; } else { return false; }
+
+            return count > 0 ? true : false;
         }
     }
 }
