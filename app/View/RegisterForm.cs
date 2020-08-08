@@ -8,14 +8,10 @@ namespace View
     {
         private LayoutForm _layoutForm;
         private bool is_password_validated;
-        private bool is_email_validated;
-        private bool is_username_validated;
         public RegisterForm(LayoutForm layoutForm)
         {
             InitializeComponent();
             is_password_validated = false;
-            is_email_validated = false;
-            is_username_validated = false;
             this.information_label.Text = "";
 
             _layoutForm = layoutForm;
@@ -26,7 +22,6 @@ namespace View
             string email = this.input_email.Text;
             string username = this.input_username.Text;
             string password = this.input_password.Text;
-            string validate_password = this.input_validate_password.Text;
 
             if (this.is_password_validated)
             {
