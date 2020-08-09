@@ -83,5 +83,10 @@ namespace View
         {
             _layoutForm.changeLayout(new AddWagonForm());
         }
+
+        private void btn_viajes_pendientes_Click(object sender, EventArgs e)
+        {
+            _layoutForm.changeLayout(new AddScheduledTravelForm());
+        }
     }
 }

@@ -70,9 +70,9 @@
             this.panelSide.Controls.Add(this.panelLogo);
             this.panelSide.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSide.Location = new System.Drawing.Point(0, 0);
-            this.panelSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelSide.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelSide.Name = "panelSide";
-            this.panelSide.Size = new System.Drawing.Size(450, 1107);
+            this.panelSide.Size = new System.Drawing.Size(400, 886);
             this.panelSide.TabIndex = 1;
             // 
             // panelSubMenu3
@@ -80,10 +80,10 @@
             this.panelSubMenu3.Controls.Add(this.btn_nuevo_usuario);
             this.panelSubMenu3.Controls.Add(this.btn_ver_usuarios);
             this.panelSubMenu3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubMenu3.Location = new System.Drawing.Point(0, 901);
-            this.panelSubMenu3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelSubMenu3.Location = new System.Drawing.Point(0, 721);
+            this.panelSubMenu3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelSubMenu3.Name = "panelSubMenu3";
-            this.panelSubMenu3.Size = new System.Drawing.Size(450, 125);
+            this.panelSubMenu3.Size = new System.Drawing.Size(400, 100);
             this.panelSubMenu3.TabIndex = 6;
             // 
             // btn_nuevo_usuario
@@ -94,11 +94,11 @@
             this.btn_nuevo_usuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_nuevo_usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btn_nuevo_usuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.btn_nuevo_usuario.Location = new System.Drawing.Point(0, 62);
-            this.btn_nuevo_usuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_nuevo_usuario.Location = new System.Drawing.Point(0, 50);
+            this.btn_nuevo_usuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_nuevo_usuario.Name = "btn_nuevo_usuario";
-            this.btn_nuevo_usuario.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.btn_nuevo_usuario.Size = new System.Drawing.Size(450, 62);
+            this.btn_nuevo_usuario.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_nuevo_usuario.Size = new System.Drawing.Size(400, 50);
             this.btn_nuevo_usuario.TabIndex = 2;
             this.btn_nuevo_usuario.Text = "Nuevo usuario";
             this.btn_nuevo_usuario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,10 +113,10 @@
             this.btn_ver_usuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btn_ver_usuarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
             this.btn_ver_usuarios.Location = new System.Drawing.Point(0, 0);
-            this.btn_ver_usuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_ver_usuarios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_ver_usuarios.Name = "btn_ver_usuarios";
-            this.btn_ver_usuarios.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.btn_ver_usuarios.Size = new System.Drawing.Size(450, 62);
+            this.btn_ver_usuarios.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_ver_usuarios.Size = new System.Drawing.Size(400, 50);
             this.btn_ver_usuarios.TabIndex = 1;
             this.btn_ver_usuarios.Text = "Ver usuarios";
             this.btn_ver_usuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -130,11 +130,11 @@
             this.btn_admin_usuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_admin_usuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btn_admin_usuarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btn_admin_usuarios.Location = new System.Drawing.Point(0, 832);
-            this.btn_admin_usuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_admin_usuarios.Location = new System.Drawing.Point(0, 666);
+            this.btn_admin_usuarios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_admin_usuarios.Name = "btn_admin_usuarios";
-            this.btn_admin_usuarios.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btn_admin_usuarios.Size = new System.Drawing.Size(450, 69);
+            this.btn_admin_usuarios.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btn_admin_usuarios.Size = new System.Drawing.Size(400, 55);
             this.btn_admin_usuarios.TabIndex = 5;
             this.btn_admin_usuarios.Text = "Administración de usuarios";
             this.btn_admin_usuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,10 +149,10 @@
             this.panelSubMenu2.Controls.Add(this.btn_nueva_estacion);
             this.panelSubMenu2.Controls.Add(this.btn_ver_estaciones);
             this.panelSubMenu2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubMenu2.Location = new System.Drawing.Point(0, 586);
-            this.panelSubMenu2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelSubMenu2.Location = new System.Drawing.Point(0, 469);
+            this.panelSubMenu2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelSubMenu2.Name = "panelSubMenu2";
-            this.panelSubMenu2.Size = new System.Drawing.Size(450, 246);
+            this.panelSubMenu2.Size = new System.Drawing.Size(400, 197);
             this.panelSubMenu2.TabIndex = 3;
             // 
             // btn_nuevo_carro
@@ -163,11 +163,11 @@
             this.btn_nuevo_carro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_nuevo_carro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btn_nuevo_carro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.btn_nuevo_carro.Location = new System.Drawing.Point(0, 186);
-            this.btn_nuevo_carro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_nuevo_carro.Location = new System.Drawing.Point(0, 150);
+            this.btn_nuevo_carro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_nuevo_carro.Name = "btn_nuevo_carro";
-            this.btn_nuevo_carro.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.btn_nuevo_carro.Size = new System.Drawing.Size(450, 62);
+            this.btn_nuevo_carro.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_nuevo_carro.Size = new System.Drawing.Size(400, 50);
             this.btn_nuevo_carro.TabIndex = 3;
             this.btn_nuevo_carro.Text = "Nueva carro";
             this.btn_nuevo_carro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -182,11 +182,11 @@
             this.btn_nueva_locomotora.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_nueva_locomotora.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btn_nueva_locomotora.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.btn_nueva_locomotora.Location = new System.Drawing.Point(0, 124);
-            this.btn_nueva_locomotora.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_nueva_locomotora.Location = new System.Drawing.Point(0, 100);
+            this.btn_nueva_locomotora.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_nueva_locomotora.Name = "btn_nueva_locomotora";
-            this.btn_nueva_locomotora.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.btn_nueva_locomotora.Size = new System.Drawing.Size(450, 62);
+            this.btn_nueva_locomotora.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_nueva_locomotora.Size = new System.Drawing.Size(400, 50);
             this.btn_nueva_locomotora.TabIndex = 2;
             this.btn_nueva_locomotora.Text = "Nueva locomotora";
             this.btn_nueva_locomotora.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -201,11 +201,11 @@
             this.btn_nueva_estacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_nueva_estacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btn_nueva_estacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.btn_nueva_estacion.Location = new System.Drawing.Point(0, 62);
-            this.btn_nueva_estacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_nueva_estacion.Location = new System.Drawing.Point(0, 50);
+            this.btn_nueva_estacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_nueva_estacion.Name = "btn_nueva_estacion";
-            this.btn_nueva_estacion.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.btn_nueva_estacion.Size = new System.Drawing.Size(450, 62);
+            this.btn_nueva_estacion.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_nueva_estacion.Size = new System.Drawing.Size(400, 50);
             this.btn_nueva_estacion.TabIndex = 1;
             this.btn_nueva_estacion.Text = "Nueva estación";
             this.btn_nueva_estacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -221,10 +221,10 @@
             this.btn_ver_estaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btn_ver_estaciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
             this.btn_ver_estaciones.Location = new System.Drawing.Point(0, 0);
-            this.btn_ver_estaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_ver_estaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_ver_estaciones.Name = "btn_ver_estaciones";
-            this.btn_ver_estaciones.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.btn_ver_estaciones.Size = new System.Drawing.Size(450, 62);
+            this.btn_ver_estaciones.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_ver_estaciones.Size = new System.Drawing.Size(400, 50);
             this.btn_ver_estaciones.TabIndex = 0;
             this.btn_ver_estaciones.Text = "Ver estaciones";
             this.btn_ver_estaciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -238,11 +238,11 @@
             this.btn_conf_estaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_conf_estaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btn_conf_estaciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btn_conf_estaciones.Location = new System.Drawing.Point(0, 517);
-            this.btn_conf_estaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_conf_estaciones.Location = new System.Drawing.Point(0, 414);
+            this.btn_conf_estaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_conf_estaciones.Name = "btn_conf_estaciones";
-            this.btn_conf_estaciones.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btn_conf_estaciones.Size = new System.Drawing.Size(450, 69);
+            this.btn_conf_estaciones.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btn_conf_estaciones.Size = new System.Drawing.Size(400, 55);
             this.btn_conf_estaciones.TabIndex = 2;
             this.btn_conf_estaciones.Text = "Configuración de estaciones";
             this.btn_conf_estaciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -256,10 +256,10 @@
             this.panelSubMenu1.Controls.Add(this.btn_viajes_pendientes);
             this.panelSubMenu1.Controls.Add(this.btn_viajes_en_transito);
             this.panelSubMenu1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubMenu1.Location = new System.Drawing.Point(0, 330);
-            this.panelSubMenu1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelSubMenu1.Location = new System.Drawing.Point(0, 264);
+            this.panelSubMenu1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelSubMenu1.Name = "panelSubMenu1";
-            this.panelSubMenu1.Size = new System.Drawing.Size(450, 187);
+            this.panelSubMenu1.Size = new System.Drawing.Size(400, 150);
             this.panelSubMenu1.TabIndex = 1;
             // 
             // btn_nuevo_viaje
@@ -270,11 +270,11 @@
             this.btn_nuevo_viaje.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_nuevo_viaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btn_nuevo_viaje.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.btn_nuevo_viaje.Location = new System.Drawing.Point(0, 124);
-            this.btn_nuevo_viaje.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_nuevo_viaje.Location = new System.Drawing.Point(0, 100);
+            this.btn_nuevo_viaje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_nuevo_viaje.Name = "btn_nuevo_viaje";
-            this.btn_nuevo_viaje.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.btn_nuevo_viaje.Size = new System.Drawing.Size(450, 62);
+            this.btn_nuevo_viaje.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_nuevo_viaje.Size = new System.Drawing.Size(400, 50);
             this.btn_nuevo_viaje.TabIndex = 2;
             this.btn_nuevo_viaje.Text = "Nuevo viaje";
             this.btn_nuevo_viaje.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -288,15 +288,16 @@
             this.btn_viajes_pendientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_viajes_pendientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btn_viajes_pendientes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.btn_viajes_pendientes.Location = new System.Drawing.Point(0, 62);
-            this.btn_viajes_pendientes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_viajes_pendientes.Location = new System.Drawing.Point(0, 50);
+            this.btn_viajes_pendientes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_viajes_pendientes.Name = "btn_viajes_pendientes";
-            this.btn_viajes_pendientes.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.btn_viajes_pendientes.Size = new System.Drawing.Size(450, 62);
+            this.btn_viajes_pendientes.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_viajes_pendientes.Size = new System.Drawing.Size(400, 50);
             this.btn_viajes_pendientes.TabIndex = 1;
             this.btn_viajes_pendientes.Text = "Viajes pendientes";
             this.btn_viajes_pendientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_viajes_pendientes.UseVisualStyleBackColor = false;
+            this.btn_viajes_pendientes.Click += new System.EventHandler(this.btn_viajes_pendientes_Click);
             // 
             // btn_viajes_en_transito
             // 
@@ -307,10 +308,10 @@
             this.btn_viajes_en_transito.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btn_viajes_en_transito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
             this.btn_viajes_en_transito.Location = new System.Drawing.Point(0, 0);
-            this.btn_viajes_en_transito.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_viajes_en_transito.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_viajes_en_transito.Name = "btn_viajes_en_transito";
-            this.btn_viajes_en_transito.Padding = new System.Windows.Forms.Padding(52, 0, 0, 0);
-            this.btn_viajes_en_transito.Size = new System.Drawing.Size(450, 62);
+            this.btn_viajes_en_transito.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_viajes_en_transito.Size = new System.Drawing.Size(400, 50);
             this.btn_viajes_en_transito.TabIndex = 0;
             this.btn_viajes_en_transito.Text = "Viajes en transito";
             this.btn_viajes_en_transito.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -325,11 +326,11 @@
             this.btn_admin_viajes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_admin_viajes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btn_admin_viajes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btn_admin_viajes.Location = new System.Drawing.Point(0, 261);
-            this.btn_admin_viajes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_admin_viajes.Location = new System.Drawing.Point(0, 209);
+            this.btn_admin_viajes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_admin_viajes.Name = "btn_admin_viajes";
-            this.btn_admin_viajes.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btn_admin_viajes.Size = new System.Drawing.Size(450, 69);
+            this.btn_admin_viajes.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btn_admin_viajes.Size = new System.Drawing.Size(400, 55);
             this.btn_admin_viajes.TabIndex = 0;
             this.btn_admin_viajes.Text = "Administración de viajes";
             this.btn_admin_viajes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -344,11 +345,11 @@
             this.btn_inicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_inicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btn_inicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btn_inicio.Location = new System.Drawing.Point(0, 192);
-            this.btn_inicio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_inicio.Location = new System.Drawing.Point(0, 154);
+            this.btn_inicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_inicio.Name = "btn_inicio";
-            this.btn_inicio.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btn_inicio.Size = new System.Drawing.Size(450, 69);
+            this.btn_inicio.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btn_inicio.Size = new System.Drawing.Size(400, 55);
             this.btn_inicio.TabIndex = 4;
             this.btn_inicio.Text = "Inicio";
             this.btn_inicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -361,30 +362,31 @@
             this.panelLogo.Controls.Add(this.imgLogo);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(450, 192);
+            this.panelLogo.Size = new System.Drawing.Size(400, 154);
             this.panelLogo.TabIndex = 0;
             // 
             // imgLogo
             // 
             this.imgLogo.Image = ((System.Drawing.Image)(resources.GetObject("imgLogo.Image")));
-            this.imgLogo.Location = new System.Drawing.Point(97, 26);
+            this.imgLogo.Location = new System.Drawing.Point(86, 21);
+            this.imgLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.imgLogo.Name = "imgLogo";
-            this.imgLogo.Size = new System.Drawing.Size(125, 150);
+            this.imgLogo.Size = new System.Drawing.Size(111, 120);
             this.imgLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgLogo.TabIndex = 0;
             this.imgLogo.TabStop = false;
             // 
             // MenuForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(330, 1107);
+            this.ClientSize = new System.Drawing.Size(293, 886);
             this.Controls.Add(this.panelSide);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MenuForm";
             this.Text = "MenuForm";
             this.panelSide.ResumeLayout(false);
