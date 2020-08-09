@@ -106,6 +106,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddLocomotiveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddLocomotiveForm.Designer.cs">
+      <DependentUpon>AddLocomotiveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddStationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddStationForm.Designer.cs">
+      <DependentUpon>AddStationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddWagonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +162,12 @@
     <Compile Include="ShowWagonsForm.Designer.cs">
       <DependentUpon>ShowWagonsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddLocomotiveForm.resx">
+      <DependentUpon>AddLocomotiveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddStationForm.resx">
+      <DependentUpon>AddStationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddWagonForm.resx">
       <DependentUpon>AddWagonForm.cs</DependentUpon>
     </EmbeddedResource>

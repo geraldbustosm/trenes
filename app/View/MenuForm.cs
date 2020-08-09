@@ -20,6 +20,7 @@ namespace View
             activeSubMenu = null;
             panelSubMenu1.Visible = false;
             panelSubMenu2.Visible = false;
+            panelSubMenu3.Visible = false;
         }
 
         // Metodo que abre un nuevo panel y cierra los demas
@@ -43,25 +44,44 @@ namespace View
             }
         }
 
-        private void btnMenu1_Click(object sender, EventArgs e)
+        private void btn_admin_viajes_Click(object sender, EventArgs e)
         {
             toggleSubMenu(panelSubMenu1);
         }
 
-        private void btnMenu2_Click(object sender, EventArgs e)
+        private void btn_conf_estaciones_Click(object sender, EventArgs e)
         {
             toggleSubMenu(panelSubMenu2);
         }
+        private void btn_admin_usuarios_Click(object sender, EventArgs e)
+        {
+            toggleSubMenu(panelSubMenu3);
+        }
 
-        private void btnMenu3_Click(object sender, EventArgs e)
+        private void btn_inicio_Click(object sender, EventArgs e)
         {
             hideAllSubMenu();
             _layoutForm.changeLayout(new HomeForm());
         }
 
-        private void btnShowWagons_Click(object sender, EventArgs e)
+        private void btn_viajes_en_transito_Click(object sender, EventArgs e)
         {
             _layoutForm.changeLayout(new ShowWagonsForm());
+        }
+
+        private void btn_nueva_estacion_Click(object sender, EventArgs e)
+        {
+            _layoutForm.changeLayout(new AddStationForm());
+        }
+
+        private void btn_nueva_locomotora_Click(object sender, EventArgs e)
+        {
+            _layoutForm.changeLayout(new AddLocomotiveForm());
+        }
+
+        private void btn_nuevo_carro_Click(object sender, EventArgs e)
+        {
+            _layoutForm.changeLayout(new AddWagonForm());
         }
     }
 }
