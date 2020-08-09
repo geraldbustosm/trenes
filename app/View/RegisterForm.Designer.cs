@@ -46,10 +46,9 @@
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnRegister.ForeColor = System.Drawing.Color.White;
-            this.btnRegister.Location = new System.Drawing.Point(394, 642);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRegister.Location = new System.Drawing.Point(426, 504);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(245, 78);
+            this.btnRegister.Size = new System.Drawing.Size(164, 50);
             this.btnRegister.TabIndex = 6;
             this.btnRegister.Text = "Registrarse";
             this.btnRegister.UseVisualStyleBackColor = false;
@@ -58,88 +57,102 @@
             // username_label
             // 
             this.username_label.AutoSize = true;
-            this.username_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username_label.Location = new System.Drawing.Point(278, 190);
+            this.username_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.username_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.username_label.Location = new System.Drawing.Point(119, 133);
+            this.username_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.username_label.Name = "username_label";
-            this.username_label.Size = new System.Drawing.Size(150, 33);
+            this.username_label.Size = new System.Drawing.Size(173, 24);
             this.username_label.TabIndex = 7;
-            this.username_label.Text = "Username";
+            this.username_label.Text = "Nombre de usuario";
             // 
             // email_label
             // 
             this.email_label.AutoSize = true;
-            this.email_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.email_label.Location = new System.Drawing.Point(327, 269);
+            this.email_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.email_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.email_label.Location = new System.Drawing.Point(119, 184);
+            this.email_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.email_label.Name = "email_label";
-            this.email_label.Size = new System.Drawing.Size(89, 33);
+            this.email_label.Size = new System.Drawing.Size(166, 24);
             this.email_label.TabIndex = 8;
-            this.email_label.Text = "Email";
+            this.email_label.Text = "Correo electrónico";
             // 
             // password_label
             // 
             this.password_label.AutoSize = true;
-            this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password_label.Location = new System.Drawing.Point(285, 356);
+            this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.password_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.password_label.Location = new System.Drawing.Point(119, 237);
+            this.password_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.password_label.Name = "password_label";
-            this.password_label.Size = new System.Drawing.Size(143, 33);
+            this.password_label.Size = new System.Drawing.Size(106, 24);
             this.password_label.TabIndex = 9;
-            this.password_label.Text = "Password";
+            this.password_label.Text = "Contraseña";
             // 
             // repeat_password_label
             // 
             this.repeat_password_label.AutoSize = true;
-            this.repeat_password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.repeat_password_label.Location = new System.Drawing.Point(186, 441);
+            this.repeat_password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.repeat_password_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.repeat_password_label.Location = new System.Drawing.Point(119, 293);
+            this.repeat_password_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.repeat_password_label.Name = "repeat_password_label";
-            this.repeat_password_label.Size = new System.Drawing.Size(242, 33);
+            this.repeat_password_label.Size = new System.Drawing.Size(189, 24);
             this.repeat_password_label.TabIndex = 10;
-            this.repeat_password_label.Text = "Repetir password";
+            this.repeat_password_label.Text = "Confirmar contraseña";
             // 
             // input_username
             // 
-            this.input_username.Location = new System.Drawing.Point(500, 194);
+            this.input_username.Location = new System.Drawing.Point(679, 137);
+            this.input_username.Margin = new System.Windows.Forms.Padding(2);
             this.input_username.Name = "input_username";
-            this.input_username.Size = new System.Drawing.Size(100, 31);
+            this.input_username.Size = new System.Drawing.Size(246, 22);
             this.input_username.TabIndex = 11;
             // 
             // input_email
             // 
-            this.input_email.Location = new System.Drawing.Point(500, 273);
+            this.input_email.Location = new System.Drawing.Point(679, 188);
+            this.input_email.Margin = new System.Windows.Forms.Padding(2);
             this.input_email.Name = "input_email";
-            this.input_email.Size = new System.Drawing.Size(100, 31);
+            this.input_email.Size = new System.Drawing.Size(246, 22);
             this.input_email.TabIndex = 12;
             // 
             // input_password
             // 
-            this.input_password.Location = new System.Drawing.Point(500, 356);
+            this.input_password.Location = new System.Drawing.Point(679, 241);
+            this.input_password.Margin = new System.Windows.Forms.Padding(2);
             this.input_password.Name = "input_password";
-            this.input_password.Size = new System.Drawing.Size(100, 31);
+            this.input_password.Size = new System.Drawing.Size(246, 22);
             this.input_password.TabIndex = 13;
             // 
             // input_validate_password
             // 
-            this.input_validate_password.Location = new System.Drawing.Point(500, 441);
+            this.input_validate_password.Location = new System.Drawing.Point(679, 295);
+            this.input_validate_password.Margin = new System.Windows.Forms.Padding(2);
             this.input_validate_password.Name = "input_validate_password";
-            this.input_validate_password.Size = new System.Drawing.Size(100, 31);
+            this.input_validate_password.Size = new System.Drawing.Size(246, 22);
             this.input_validate_password.TabIndex = 14;
             this.input_validate_password.TextChanged += new System.EventHandler(this.input_validate_password_TextChanged);
             // 
             // information_label
             // 
             this.information_label.AutoSize = true;
-            this.information_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.information_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.information_label.ForeColor = System.Drawing.Color.Red;
-            this.information_label.Location = new System.Drawing.Point(411, 547);
+            this.information_label.Location = new System.Drawing.Point(443, 433);
+            this.information_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.information_label.Name = "information_label";
-            this.information_label.Size = new System.Drawing.Size(198, 29);
+            this.information_label.Size = new System.Drawing.Size(121, 18);
             this.information_label.TabIndex = 15;
             this.information_label.Text = "Information Label";
             // 
             // RegisterForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1054, 894);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(1073, 721);
             this.Controls.Add(this.information_label);
             this.Controls.Add(this.input_validate_password);
             this.Controls.Add(this.input_password);
@@ -150,6 +163,8 @@
             this.Controls.Add(this.email_label);
             this.Controls.Add(this.username_label);
             this.Controls.Add(this.btnRegister);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RegisterForm";
             this.Text = "RegisterForm";
             this.ResumeLayout(false);

@@ -88,5 +88,15 @@ namespace View
         {
             _layoutForm.changeLayout(new AddScheduledTravelForm());
         }
+
+        private void btn_nuevo_viaje_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_nuevo_usuario_Click(object sender, EventArgs e)
+        {
+            _layoutForm.changeLayout(new RegisterForm(_layoutForm));
+        }
     }
 }
