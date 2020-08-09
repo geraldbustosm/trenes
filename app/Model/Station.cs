@@ -6,9 +6,9 @@ namespace Model
 {
     public class Station
     {
-        private int station_id;
-        private string name;
-        private int capacity;
+        private int station_id { get; }
+        private string name { get; set; }
+        private int capacity { get; set; }
         private Boolean deleted;
 
         public Station(int station_id, string name, int capacity)
@@ -18,13 +18,6 @@ namespace Model
             this.capacity = capacity;
             this.deleted = false;
         }
-
-        // Public methods
-        public int GetId() { return station_id; }
-        public string GetName() { return name; }
-        public int GetCapacity() { return capacity; }
-        public void SetName(string name) { this.name = name; }
-        public void SetCapacity(int capacity) { this.capacity = capacity; }
 
         public void Save()
         {

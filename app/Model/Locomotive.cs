@@ -6,12 +6,12 @@ namespace Model
 {
     public class Locomotive
     {
-        private int locomotive_id;
-        private string model;
-        private int drag_capacity;
-        private int in_transit;
-        private int train_id;
-        private int station_id;
+        private int locomotive_id { get; }
+        private string model { get; set; }
+        private int drag_capacity { get; set; }
+        private int in_transit { get; set; }
+        private int train_id { get; }
+        private int station_id { get; }
         private Boolean deleted;
 
         public Locomotive(int locomotive_id, string model, int drag_capacity, int in_transit, int train_id, int station_id)
@@ -23,17 +23,6 @@ namespace Model
             this.train_id = train_id;
             this.station_id = station_id;
         }
-
-        // Public methods
-        public int GetId() { return locomotive_id; }
-        public string GetModel() { return model; }
-        public int GetDragCapacity() { return drag_capacity; }
-        public int GetInTransit() { return in_transit; }
-        public int GetTrainId() { return train_id; }
-        public int GetStationId() { return station_id; }
-        public void SetModel(string model) { this.model = model; }
-        public void SetDragCapacity(int drag_capacity) { this.drag_capacity = drag_capacity; }
-        public void SetInTransit(int drag_capacity) { this.drag_capacity = drag_capacity; }
 
         public void Save()
         {

@@ -6,9 +6,9 @@ namespace Model
 {
     public class Travel
     {
-        private int travel_id;
-        private int total_time;
-        private string state;
+        private int travel_id { get; }
+        private int total_time { get; set; }
+        private string state { get; set; }
         private Boolean deleted;
 
         public Travel(int travel_id, int total_time, string state)
@@ -18,13 +18,6 @@ namespace Model
             this.state = state;
             this.deleted = false;
         }
-
-        // Public methods
-        public int GetId() { return travel_id; }
-        public int GetTotalTime() { return total_time; }
-        public string GetState() { return state; }
-        public void SetTotalTime(int total_time) { this.total_time = total_time; }
-        public void SetState(string state) { this.state = state; }
 
         public void Save()
         {

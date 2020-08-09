@@ -6,9 +6,9 @@ namespace Model
 {
     public class Permission
     {
-        private int permission_id;
-        private string permission_name;
-        private int user_id;
+        private int permission_id { get; }
+        private string permission_name { get; set; }
+        private int user_id { get; }
         private Boolean deleted;
 
         public Permission(int permission_id, string permission_name, int user_id)
@@ -18,12 +18,6 @@ namespace Model
             this.user_id = user_id;
         }
 
-        // Public methods
-        public int GetId() { return permission_id; }
-        public string GetPermissionName() { return permission_name; }
-        public int GetUserId() { return user_id; }
-        public void SetPermissionName(string permission_name) { this.permission_name = permission_name; }
-        
         public void Save()
         {
             if (!this.deleted)

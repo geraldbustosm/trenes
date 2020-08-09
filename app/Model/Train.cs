@@ -6,7 +6,7 @@ namespace Model
 {
     public class Train
     {
-        private int train_id;
+        private int train_id { get; }
         private Boolean deleted;
 
         public Train(int train_id)
@@ -14,9 +14,6 @@ namespace Model
             this.train_id = train_id;
             this.deleted = false;
         }
-
-        // Public methods
-        public int GetId() { return train_id; }
 
         public void Save()
         {

@@ -6,11 +6,11 @@ namespace Model
 {
     class SectionAction
     {
-        private int id;
-        private int action_id;
-        private int travel_section_id;
-        private int locomotive_id;
-        private int wagon_id;
+        private int id { get; }
+        private int action_id { get; }
+        private int travel_section_id { get; }
+        private int locomotive_id { get; }
+        private int wagon_id { get; }
         private Boolean deleted;
 
         public SectionAction (int id, int action_id, int travel_section_id, int locomotive_id, int wagon_id)
@@ -21,14 +21,6 @@ namespace Model
             this.locomotive_id = locomotive_id;
             this.wagon_id = wagon_id;
         }
-
-        // Public Methods
-
-        public int GetId() { return id; }
-        public int GetActionId() { return action_id; }
-        public int GetTravelSectionId() { return travel_section_id; }
-        public int GetLocomotiveId() { return locomotive_id; }
-        public int GetWagonId() { return wagon_id; }
 
         public void Save()
         {
