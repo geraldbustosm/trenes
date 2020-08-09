@@ -1,35 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Controller;
 
 namespace View
 {
     public partial class LoginForm : Form
     {
-        private LayoutForm _layoutForm;
-        public LoginForm(LayoutForm layoutForm)
+        private LayoutForm _layout_form;
+        private String username;
+        private String password;
+        public LoginForm(LayoutForm layout_form)
         {
-            _layoutForm = layoutForm;
+            _layout_form = layout_form;
             InitializeComponent();
+            this.errorLabel.Text = "";
         }
 
         // Metodo que se encarga del proceso de login y enviar al formulario de bienvenida
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // todo: verificar si el usuario es correcto!
 
-            // if autorizacion exitosa
-            //_layoutForm.setAuthenticateUser(user);
-            _layoutForm.resizeWindowsToNormalSize();
-            _layoutForm.showWelcomeScreen();
-            // else 
-            // *metodo que muestre los errores*
+            this.username = this.inputUser.Text;
+            // todo hash password
+            this.password = this.inputPassword.Text;
+
+            // todo: validate data
+
+            if(UserController.Authenticate(this.username, this.password))
+            {
+                _layout_form.resizeWindowsToNormalSize();
+                _layout_form.showWelcomeScreen();
+            } else
+            {
+                this.errorLabel.Text = "No se encontraron coincidencias.";
+                this.errorLabel.ForeColor = Color.Red; 
+            }
+        }
+
+        private void registerLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _layout_form.Show(new RegisterForm(_layout_form));
         }
     }
 }

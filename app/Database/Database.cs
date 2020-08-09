@@ -29,20 +29,23 @@ namespace Database
         // Metodo para restablecer la base de datos
         public static void ResetDatabase()
         {
-            SQLiteConnection.CreateFile(db_file);
-            SQLiteConnection connection = GetConnection();
-            SQLiteCommand sqlite = new SQLiteCommand(connection);
+            if(!File.Exists(db_file)) 
+            {
+                SQLiteConnection.CreateFile(db_file);
+                SQLiteConnection connection = GetConnection();
+                SQLiteCommand sqlite = new SQLiteCommand(connection);
 
-            try
-            {
-                sqlite.CommandText = File.ReadAllText(db_script);
-                sqlite.ExecuteNonQuery();
-                connection.Close();
-                Console.WriteLine("database created!");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    sqlite.CommandText = File.ReadAllText(db_script);
+                    sqlite.ExecuteNonQuery();
+                    connection.Close();
+                    Console.WriteLine("database created!");
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
     };

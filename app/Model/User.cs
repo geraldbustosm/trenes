@@ -11,20 +11,19 @@ namespace Model
         private string password;
         private Boolean deleted;
 
-        public User(int user_id, string name, string email, string password)
+        public User(string name, string email, string password)
         {
-            this.user_id = user_id;
             this.name = name;
             this.email = email;
             this.password = password;
             this.deleted = false;
         }
 
-        // Public methods
         public int GetId() { return user_id; }
         public string GetName() { return name; }
         public string GetEmail() { return email; }
         public string GetPassword() { return password; }
+        public void SetId(int id) { this.user_id = id; }
         public void SetName(string name) { this.name = name; }
         public void SetEmail(string email) { this.email = email; }
         public void SetPassword(string password) { this.password = password; }
@@ -35,17 +34,17 @@ namespace Model
             {
                 SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfUserExists(this.user_id);
-
+                Boolean exist = this.CheckIfUserExists();
+                
                 if (!exist)
                 {
-                    string query = "INSERT INTO user(user_id, name, email, password) values (" + this.user_id + "," + this.name + "," + this.email + "," + this.password + ")";
+                    string query = "INSERT INTO user(name, email, password) values ('" + this.name + "','" + this.email + "','" + this.password + "')";
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 else
                 {
-                    string query = "UPDATE user SET user_id = " + this.user_id + ", name = " + this.name + ",email = " + this.email + ",password = " + this.password + ") WHERE user_id=" + this.user_id;
+                    string query = "UPDATE user SET name = '" + this.name + "', email = '" + this.email + "', password = '" + this.password + "') WHERE user_id = '" + this.user_id + "'";
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
@@ -64,13 +63,16 @@ namespace Model
             return true;
         }
 
-        // Static methods
-        public static User Find(int id)
+        public Boolean ValidatePassword(string password)
         {
+            return this.password == password ? true : false;
+        }
 
+        public static User Find(string _name)
+        {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM user WHERE user_id = " + id;
+            string query = "SELECT * FROM user WHERE name = '" + _name + "'";
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
 
@@ -79,20 +81,23 @@ namespace Model
                 string name = reader.GetString(1);
                 string email = reader.GetString(2);
                 string password = reader.GetString(3);
-                return new User(id, name, email, password);
+
+                connection.Close();
+                return new User(name, email, password);
             }
+
             connection.Close();
             return null;
         }
 
-        // Private methods
-        private Boolean CheckIfUserExists(int id)
+        public Boolean CheckIfUserExists()
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM user WHERE user_id=" + id;
+            string query = "SELECT COUNT(*) FROM user WHERE name = '" + this.name + "'";
             db.CommandText = query;
             SQLiteDataReader reader = db.ExecuteReader();
+            
 
             int count = 0;
             while (reader.Read())
@@ -100,7 +105,8 @@ namespace Model
                 count = reader.GetInt32(0);
             }
             connection.Close();
-           if (count > 0) { return true; } else { return false; }
+
+            return count > 0 ? true : false;
         }
     }
 }
