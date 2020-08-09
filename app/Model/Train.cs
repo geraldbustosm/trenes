@@ -6,12 +6,11 @@ namespace Model
 {
     public class Train
     {
-        private int train_id { get; }
+        public int train_id { get; private set; }
         private Boolean deleted;
 
-        public Train(int train_id)
+        public Train()
         {
-            this.train_id = train_id;
             this.deleted = false;
         }
 
@@ -21,13 +20,12 @@ namespace Model
             {
                 SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfTrainExists(this.train_id);
+                Boolean exist = this.CheckIfExists(this.train_id);
 
                 if (!exist)
                 {
-                    string query = "INSERT INTO train(train_id) values (" + this.train_id + ")";
-                    db.CommandText = query;
-                    db.ExecuteNonQuery();
+                    db.CommandText = "INSERT INTO train(train_id)";
+                    this.train_id = Convert.ToInt32(db.ExecuteScalar());
                 }
                 connection.Close();
             }
@@ -57,14 +55,16 @@ namespace Model
             {
                 int train_id = reader.GetInt32(0);
 
-                return new Train(train_id);
+                Train train = new Train();
+                train.train_id = train_id;
             }
+            reader.Close();
             connection.Close();
             return null;
         }
 
         // Private methods
-        private Boolean CheckIfTrainExists(int id)
+        private Boolean CheckIfExists(int id)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
