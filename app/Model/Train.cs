@@ -34,8 +34,8 @@ namespace Model
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM train WHERE train_id = " + this.train_id;
-            db.CommandText = query;
+            db.CommandText = "DELETE FROM train WHERE train_id = @train_id";
+            db.Parameters.AddWithValue("@train_id", this.train_id);
             db.ExecuteNonQuery();
             connection.Close();
             this.deleted = true;
@@ -47,8 +47,8 @@ namespace Model
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM train WHERE train_id = " + id;
-            db.CommandText = query;
+            db.CommandText = "SELECT * FROM train WHERE train_id = @train_id";
+            db.Parameters.AddWithValue("@train_id", id);
             SQLiteDataReader reader = db.ExecuteReader();
 
             while (reader.Read())
@@ -57,6 +57,7 @@ namespace Model
 
                 Train train = new Train();
                 train.train_id = train_id;
+                return train;
             }
             reader.Close();
             connection.Close();
@@ -68,8 +69,8 @@ namespace Model
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM train WHERE train_id=" + id;
-            db.CommandText = query;
+            db.CommandText = "SELECT COUNT(*) FROM train WHERE train_id = @train_id";
+            db.Parameters.AddWithValue("@train_id", id);
             SQLiteDataReader reader = db.ExecuteReader();
 
             int count = 0;
@@ -77,8 +78,9 @@ namespace Model
             {
                 count = reader.GetInt32(0);
             }
+            reader.Close();
             connection.Close();
-            if (count > 0) { return true; } else { return false; }
+            return count > 0;
         }
     }
 }
