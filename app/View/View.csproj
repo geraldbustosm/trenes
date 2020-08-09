@@ -109,6 +109,9 @@
     <Compile Include="AddLocomotiveForm.cs">
       <SubType>Form</SubType>
     </Compile>
+	<Compile Include="AddWagonForm.cs">
+		<SubType>Form</SubType>
+	</Compile>
     <Compile Include="AddLocomotiveForm.Designer.cs">
       <DependentUpon>AddLocomotiveForm.cs</DependentUpon>
     </Compile>
@@ -124,6 +127,9 @@
     <Compile Include="AddWagonForm.Designer.cs">
       <DependentUpon>AddWagonForm.cs</DependentUpon>
     </Compile>
+	<Compile Include="AddWagonForm.Designer.cs">
+		<DependentUpon>AddWagonForm.cs</DependentUpon>
+	</Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
