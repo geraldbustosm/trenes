@@ -9,9 +9,9 @@ namespace Controller
 
         public static bool Authenticate(string email, string password)
         {
-            /*try
+            try
             {
-                User user_model = User.Find(user_id);
+                User user_model = User.Find(email);
                 if (user_model != null) return user_model.ValidatePassword(password);
             }
             catch(Exception e)
@@ -19,9 +19,7 @@ namespace Controller
                 Console.WriteLine(e.Message);
             }
 
-            return false;*/
-
-            return true;
+            return false;
         }
 
         public static bool CreateUser(string username, string email, string password)
