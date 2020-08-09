@@ -41,7 +41,6 @@ CREATE TABLE wagon (
 
 CREATE TABLE travel (
 	travel_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    total_time INTEGER,
     state TEXT DEFAULT "Preparado"  -- "Preparado" - "En Transito" - "Completado" - "Cancelado" --
 );
 
