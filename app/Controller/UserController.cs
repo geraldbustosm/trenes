@@ -9,7 +9,6 @@ namespace Controller
 
         public static bool Authenticate(string email, string password)
         {
-
             try
             {
                 User user_model = User.Find(email);
@@ -17,7 +16,7 @@ namespace Controller
             }
             catch(Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
 
             return false;
@@ -35,8 +34,9 @@ namespace Controller
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
-                return false;
             }
+
+            return false;
         }
     }
 }
