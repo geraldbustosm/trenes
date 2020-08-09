@@ -6,6 +6,7 @@ namespace Model
 {
     public class Action
     {
+        private int action_id;
         private string description;
         private int minutes;
         private Boolean deleted;
