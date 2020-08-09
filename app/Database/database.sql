@@ -67,7 +67,6 @@ CREATE TABLE travel_section (
     travel_section_id INTEGER PRIMARY KEY AUTOINCREMENT,
     arrival_time TEXT NOT NULL,
     priority INTEGER NOT NULL,
-    action INTEGER NOT NULL DEFAULT 0,
     travel_id INTEGER NOT NULL,
     origin_station_id INTEGER NOT NULL,
     destination_station_id INTEGER NOT NULL,
