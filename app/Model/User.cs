@@ -5,10 +5,10 @@ namespace Model
 {
     public class User
     {
-        private int user_id;
-        private string name;
-        private string email;
-        private string password;
+        public int user_id { get; private set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
         private Boolean deleted;
 
         public User(string name, string email, string password)
@@ -18,34 +18,26 @@ namespace Model
             this.password = password;
             this.deleted = false;
         }
-
-        public int GetId() { return user_id; }
-        public string GetName() { return name; }
-        public string GetEmail() { return email; }
-        public string GetPassword() { return password; }
-        public void SetId(int id) { this.user_id = id; }
-        public void SetName(string name) { this.name = name; }
-        public void SetEmail(string email) { this.email = email; }
-        public void SetPassword(string password) { this.password = password; }
-
         public void Save()
         {
             if (!this.deleted)
             {
                 SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfUserExists();
-                
+                Boolean exist = this.CheckIfExists();
+                db.Parameters.AddWithValue("@name", this.name);
+                db.Parameters.AddWithValue("@email", this.email);
+                db.Parameters.AddWithValue("@password", this.password);
+
                 if (!exist)
                 {
-                    string query = "INSERT INTO user(name, email, password) values ('" + this.name + "','" + this.email + "','" + this.password + "')";
-                    db.CommandText = query;
-                    db.ExecuteNonQuery();
+                    db.CommandText = "INSERT INTO user(name, email, password) values (@name, @email, @password)";
+                    this.user_id = Convert.ToInt32(db.ExecuteScalar());
                 }
                 else
                 {
-                    string query = "UPDATE user SET name = '" + this.name + "', email = '" + this.email + "', password = '" + this.password + "') WHERE user_id = '" + this.user_id + "'";
-                    db.CommandText = query;
+                    db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password) WHERE user_id = @user_id";
+                    db.Parameters.AddWithValue("@user_id", this.user_id);
                     db.ExecuteNonQuery();
                 }
                 connection.Close();
@@ -55,8 +47,8 @@ namespace Model
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM user WHERE user_id = " + this.user_id;
-            db.CommandText = query;
+            db.CommandText = "DELETE FROM user WHERE user_id = @user_id";
+            db.Parameters.AddWithValue("@user_id", this.user_id);
             db.ExecuteNonQuery();
             connection.Close();
             this.deleted = true;
@@ -65,15 +57,15 @@ namespace Model
 
         public Boolean ValidatePassword(string password)
         {
-            return this.password == password ? true : false;
+            return this.password == password;
         }
 
-        public static User Find(string _name)
+        public static User Find(int id)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM user WHERE name = '" + _name + "'";
-            db.CommandText = query;
+            db.CommandText = "SELECT * FROM user WHERE name = @user_id";
+            db.Parameters.AddWithValue("@user_id", id);
             SQLiteDataReader reader = db.ExecuteReader();
 
             while (reader.Read())
@@ -82,31 +74,32 @@ namespace Model
                 string email = reader.GetString(2);
                 string password = reader.GetString(3);
 
-                connection.Close();
-                return new User(name, email, password);
+                User user = new User(name, email, password);
+                user.user_id = id;
+                return user;
             }
 
             connection.Close();
             return null;
         }
 
-        public Boolean CheckIfUserExists()
+        public Boolean CheckIfExists()
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM user WHERE name = '" + this.name + "'";
-            db.CommandText = query;
+            db.CommandText = "SELECT COUNT(*) FROM user WHERE user_id = @user_id";
+            db.Parameters.AddWithValue("@user_id", this.user_id);
             SQLiteDataReader reader = db.ExecuteReader();
             
-
             int count = 0;
             while (reader.Read())
             {
                 count = reader.GetInt32(0);
             }
+            reader.Close();
             connection.Close();
 
-            return count > 0 ? true : false;
+            return count > 0;
         }
     }
 }

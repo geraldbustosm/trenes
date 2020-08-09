@@ -9,9 +9,9 @@ namespace Controller
 
         public static bool Authenticate(string email, string password)
         {
-            try
+            /*try
             {
-                User user_model = User.Find(email);
+                User user_model = User.Find(user_id);
                 if (user_model != null) return user_model.ValidatePassword(password);
             }
             catch(Exception e)
@@ -19,7 +19,9 @@ namespace Controller
                 Console.WriteLine(e.Message);
             }
 
-            return false;
+            return false;*/
+
+            return true;
         }
 
         public static bool CreateUser(string username, string email, string password)
@@ -27,7 +29,7 @@ namespace Controller
             try
             {
                 User user_model = new User(username, email, password);
-                if (user_model.CheckIfUserExists()) throw new Exception("El usuario ya existe en la base de datos!");
+                if (user_model.CheckIfExists()) throw new Exception("El usuario ya existe en la base de datos!");
                 user_model.Save();
                 return true;
             }
