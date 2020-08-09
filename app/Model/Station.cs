@@ -6,14 +6,13 @@ namespace Model
 {
     public class Station
     {
-        private int station_id { get; }
-        private string name { get; set; }
-        private int capacity { get; set; }
+        public int station_id { get; private set; }
+        public string name { get; set; }
+        public int capacity { get; set; }
         private Boolean deleted;
 
-        public Station(int station_id, string name, int capacity)
+        public Station(string name, int capacity)
         {
-            this.station_id = station_id;
             this.name = name;
             this.capacity = capacity;
             this.deleted = false;
@@ -25,18 +24,20 @@ namespace Model
             {
                 SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfStationExists(this.station_id);
+                Boolean exist = this.CheckIfExists(this.station_id);
+
+                db.Parameters.AddWithValue("@name", this.name);
+                db.Parameters.AddWithValue("@capacity", this.capacity);
 
                 if (!exist)
                 {
-                    string query = "INSERT INTO station(station_id, name, capacity) values (" + this.station_id + "," + this.name + "," + this.capacity + ")";
-                    db.CommandText = query;
-                    db.ExecuteNonQuery();
+                    db.CommandText = "INSERT INTO station(name, capacity) values (@name, @capacity)";
+                    this.station_id = Convert.ToInt32(db.ExecuteScalar());
                 }
                 else
                 {
-                    string query = "UPDATE station SET station_id = " + this.station_id + ",name = " + this.name + ",capacity = " + this.capacity + ") WHERE station_id=" + this.station_id;
-                    db.CommandText = query;
+                    db.CommandText = "UPDATE station SET(name = @name, capacity = @capacity) WHERE station_id= @station_id";
+                    db.Parameters.AddWithValue("@station_id", this.station_id);
                     db.ExecuteNonQuery();
                 }
                 connection.Close();
@@ -46,8 +47,8 @@ namespace Model
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM station WHERE station_id = " + this.station_id;
-            db.CommandText = query;
+            db.CommandText = "DELETE FROM station WHERE station_id = @station_id";
+            db.Parameters.AddWithValue("@station_id", station_id);
             db.ExecuteNonQuery();
             connection.Close();
             this.deleted = true;
@@ -59,8 +60,8 @@ namespace Model
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM station WHERE station_id = " + id;
-            db.CommandText = query;
+            db.CommandText = "SELECT * FROM station WHERE station_id = @station_id";
+            db.Parameters.AddWithValue("@station_id", id);
             SQLiteDataReader reader = db.ExecuteReader();
 
             while (reader.Read())
@@ -68,19 +69,22 @@ namespace Model
                 string name = reader.GetString(1);
                 int capacity = reader.GetInt32(2);
 
-                return new Station(id, name, capacity);
+                Station station = new Station(name, capacity);
+                station.station_id = id;
+                return station;
             }
+            reader.Close();
             connection.Close();
             return null;
         }
 
         // Private methods
-        private Boolean CheckIfStationExists(int id)
+        private Boolean CheckIfExists(int id)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM station WHERE station_id=" + id;
-            db.CommandText = query;
+            db.CommandText = "SELECT COUNT(*) FROM station WHERE station_id = @station_id";
+            db.Parameters.AddWithValue("@station_id", id);
             SQLiteDataReader reader = db.ExecuteReader();
 
             int count = 0;
@@ -88,8 +92,9 @@ namespace Model
             {
                 count = reader.GetInt32(0);
             }
+            reader.Close();
             connection.Close();
-            if (count > 0) { return true; } else { return false; }
+            return count > 0;
         }
     }
 }
