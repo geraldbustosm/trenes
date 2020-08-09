@@ -81,7 +81,6 @@ namespace View
 
         private void btn_nuevo_carro_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("sadsadasdsadasdasdassad");
             _layoutForm.changeLayout(new AddWagonForm());
         }
     }
