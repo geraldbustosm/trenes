@@ -24,7 +24,7 @@ namespace Model
             {
                 SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfBorderStationExists(this.border_station_id);
+                Boolean exist = this.CheckIfExists(this.border_station_id);
 
                 if (!exist)
                 {
@@ -78,7 +78,7 @@ namespace Model
         }
 
         // Private methods
-        private Boolean CheckIfBorderStationExists(int border_station_id)
+        private Boolean CheckIfExists(int border_station_id)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
@@ -98,7 +98,7 @@ namespace Model
             reader.Close();
             connection.Close();
 
-            if (count > 0) { return true; } else { return false; }
+            return count > 0;
         }
     }
 }
