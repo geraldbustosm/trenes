@@ -6,21 +6,18 @@ namespace Model
 {
     public class Action
     {
-        private int action_id;
         private string description;
         private int minutes;
         private Boolean deleted;
 
-        public Action(int action_id, string description, int minutes)
+        public Action(string description, int minutes)
         {
-            this.action_id = action_id;
             this.description = description;
             this.minutes = minutes;
             this.deleted = false;
         }
 
         // Public methods
-        public int GetId() { return action_id; }
         public string GetDescription() { return description; }
         public int GetMinutes() { return minutes; }
         public void SetDescription(string description) { this.description = description; }
@@ -32,18 +29,28 @@ namespace Model
             {
                 SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfActionExists(this.action_id);
+                Boolean exist = this.CheckIfActionExists(this.description);
 
                 if (!exist)
                 {
-                    string query = "INSERT INTO action(action_id, description, minutes) values (" + this.action_id + "," + this.description + "," + this.minutes + ")";
-                    db.CommandText = query;
-                    db.ExecuteNonQuery();
+                    db.CommandText = "INSERT INTO action(description, minutes) VALUES (@description, @minutes)";
+                    db.Parameters.AddWithValue("@description", this.description);
+                    db.Parameters.AddWithValue("@minutes", this.minutes);
+
+                    try
+                    {
+                        Int32 row = db.ExecuteNonQuery();
+                        Console.WriteLine("Row affected: {0}", row);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
                 else
                 {
-                    string query = "UPDATE action SET action_id = " + this.action_id + ", description = " + this.description + ",minutes = " + this.minutes + ") WHERE action_id=" + this.action_id;
-                    db.CommandText = query;
+                    db.CommandText = "UPDATE action SET ( minutes = @minutes ) WHERE description= @description";
+                    db.Parameters.AddWithValue("@minutes", this.minutes);
                     db.ExecuteNonQuery();
                 }
                 connection.Close();
@@ -53,8 +60,8 @@ namespace Model
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM action WHERE action_id = " + this.action_id;
-            db.CommandText = query;
+            db.CommandText = "DELETE FROM action WHERE description = @.description";
+            db.Parameters.AddWithValue("@description", this.description);
             db.ExecuteNonQuery();
             connection.Close();
             this.deleted = true;
@@ -62,40 +69,62 @@ namespace Model
         }
 
         // Static methods
-        public static Action Find(int id)
+        public static Action Find(string description)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM action WHERE action_id = " + id;
-            db.CommandText = query;
+            db.CommandText = "SELECT * FROM action WHERE description = @description";
+            db.Parameters.AddWithValue("@description", description);
+
             SQLiteDataReader reader = db.ExecuteReader();
 
-            while (reader.Read())
+            if (reader.HasRows)
             {
-                string description = reader.GetString(1);
-                int minutes = reader.GetInt32(2);
+                while (reader.Read())
+                {
+                    int minutes = reader.GetInt32(2);
 
-                return new Action(id, description, minutes);
+                    return new Action(description, minutes);
+                }
             }
+            else
+            {
+                Console.WriteLine("No row found.");
+            }
+
+            reader.Close();
             connection.Close();
+
             return null;
         }
 
         // Private methods
-        private Boolean CheckIfActionExists(int id)
+        private Boolean CheckIfActionExists(string description)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM action WHERE action_id=" + id;
-            db.CommandText = query;
+            db.CommandText = "SELECT COUNT(*) FROM action WHERE description= @description";
+            db.Parameters.AddWithValue("@description", this.description);
+
             SQLiteDataReader reader = db.ExecuteReader();
 
             int count = 0;
-            while (reader.Read())
+
+            if (reader.HasRows)
             {
-                count = reader.GetInt32(0);
+                while (reader.Read())
+                {
+                    count = reader.GetInt32(0);
+                }
             }
+            else
+            {
+                Console.WriteLine("No row found.");
+            }
+
+            reader.Close();
             connection.Close();
+
             if (count > 0) { return true; } else { return false; }
         }
     }
