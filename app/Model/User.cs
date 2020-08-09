@@ -60,18 +60,19 @@ namespace Model
             return this.password == password;
         }
 
-        public static User Find(string email)
+        public static User Find(string username)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "SELECT * FROM user WHERE email = @email";
-            db.Parameters.AddWithValue("@email", email);
+            db.CommandText = "SELECT * FROM user WHERE name = @username";
+            db.Parameters.AddWithValue("@username", username);
             SQLiteDataReader reader = db.ExecuteReader();
 
             while (reader.Read())
             {
                 int id = reader.GetInt32(0);
                 string name = reader.GetString(1);
+                string email = reader.GetString(2);
                 string password = reader.GetString(3);
 
                 User user = new User(name, email, password);

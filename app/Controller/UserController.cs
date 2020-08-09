@@ -7,11 +7,11 @@ namespace Controller
     {
         public UserController() {}
 
-        public static bool Authenticate(string email, string password)
+        public static bool Authenticate(string username, string password)
         {
             try
             {
-                User user_model = User.Find(email);
+                User user_model = User.Find(username);
                 if (user_model != null) return user_model.ValidatePassword(password);
             }
             catch(Exception e)
