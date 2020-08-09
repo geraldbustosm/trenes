@@ -67,8 +67,11 @@ namespace Model
                 int station_one_id = reader.GetInt32(1);
                 int station_two_id = reader.GetInt32(2);
 
-                return new BorderStation(station_one_id, station_two_id);
+                BorderStation borderStation = new BorderStation(station_one_id, station_two_id);
+                borderStation.border_station_id = border_station_id;
+                return borderStation;
             }
+
             reader.Close();
             connection.Close();
             return null;
