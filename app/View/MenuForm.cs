@@ -120,6 +120,7 @@ namespace View
         private void btn_ver_usuarios_Click(object sender, EventArgs e)
         {
             highLightButton(btn_ver_usuarios);
+            _layoutForm.changeLayout(new ListUsersForm());
         }
         private void highLightButton(Button button)
         {
