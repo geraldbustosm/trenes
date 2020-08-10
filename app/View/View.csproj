@@ -109,6 +109,12 @@
     <Compile Include="AddLocomotiveForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ListUsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListUsersForm.Designer.cs">
+      <DependentUpon>ListUsersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ScheduledTravelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </Compile>
     <EmbeddedResource Include="AddLocomotiveForm.resx">
       <DependentUpon>AddLocomotiveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListUsersForm.resx">
+      <DependentUpon>ListUsersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScheduledTravelForm.resx">
       <DependentUpon>ScheduledTravelForm.cs</DependentUpon>
