@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class AddScheduledTravelForm
+    partial class ScheduledTravelForm
     {
         /// <summary>
         /// Required designer variable.

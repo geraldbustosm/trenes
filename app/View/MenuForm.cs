@@ -98,7 +98,7 @@ namespace View
         private void btn_viajes_pendientes_Click(object sender, EventArgs e)
         {
             highLightButton(btn_viajes_pendientes);
-            _layoutForm.changeLayout(new AddScheduledTravelForm());
+            _layoutForm.changeLayout(new ScheduledTravelForm());
         }
 
         private void btn_nuevo_viaje_Click(object sender, EventArgs e)
