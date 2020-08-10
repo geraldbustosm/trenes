@@ -1,6 +1,7 @@
 ﻿using Database;
 using System;
 using System.Data.SQLite;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -56,6 +57,33 @@ namespace Model
         }
 
         // Static methods
+        public static List<Station> FindAll()
+        {
+            List<Station> list = new List<Station>();
+
+            SQLiteConnection connection = DatabaseUtility.GetConnection();
+            SQLiteCommand db = new SQLiteCommand(connection);
+
+            db.CommandText = "SELECT * FROM station";
+
+            SQLiteDataReader reader = db.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                int capacity = reader.GetInt32(2);
+
+                Station station = new Station(name, capacity);
+                station.station_id = id;
+                list.Add(station);
+            }
+
+            reader.Close();
+            connection.Close();
+
+            return list;
+        }
         public static Station Find(int id)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();

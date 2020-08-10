@@ -1,20 +1,69 @@
-﻿using System;
+﻿using System.Windows.Forms;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using Controller;
+using System.Windows.Media;
 
 namespace View
 {
     public partial class AddStationForm : Form
     {
+        private string name;
+        private string capacity;
+        private StationController stationController; 
         public AddStationForm()
         {
+            this.stationController = new StationController();
             InitializeComponent();
+        }
+
+        private void AddStationForm_Load(object sender, System.EventArgs e)
+        {
+            StationController.GetAllStation(comboBox);
+            this.stationController.GetAllBorderStation(dataGridView);
+            AddLinkColumn();
+        }
+
+        private void btnAdd_Click(object sender, System.EventArgs e)
+        {
+            this.stationController.AddListBorderStation(comboBox);
+            this.stationController.GetAllBorderStation(dataGridView);
+        }
+
+        private void AddLinkColumn()
+        {
+            DataGridViewLinkColumn link = new DataGridViewLinkColumn();
+
+            link.UseColumnTextForLinkValue = true;
+            link.Name = "Delete";
+            link.Text = "Eliminar";
+
+            dataGridView.Columns.Add(link);
+        }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == this.dataGridView.Columns["Delete"].Index)
+            {
+                string res = ((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString();
+                this.stationController.DeleteBorderStation(dataGridView,res);
+            }
+        }
+
+        private void btnSave_Click(object sender, System.EventArgs e)
+        {
+            this.name = this.inputName.Text;
+            this.capacity = this.inputCapacity.Text;
+            if ( this.name != null && this.capacity != null)
+            {
+                if (StationController.IsNumber(this.capacity))
+                {
+                    stationController.AllInsert(this.name,this.capacity);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error, Campo Vacío");
+            }
         }
     }
 }
