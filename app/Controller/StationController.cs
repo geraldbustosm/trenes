@@ -8,13 +8,13 @@ namespace Controller
 {
     public class StationController
     {
-        List<Station> listBorderStation;
+        private List<Station> listBorderStation;
         public StationController()
         {
             this.listBorderStation = new List<Station>();
         }
         // Publics Metods
-        public void AllInsert(string name,string capacity)
+        public void Insert(string name,string capacity)
         {
             int cap = Convert.ToInt32(capacity);
             Station one = new Station(name, cap);
@@ -24,6 +24,7 @@ namespace Controller
                 //BorderStation borderStation = new BorderStation(one.station_id, two.station_id);
                 //borderStation.Save();
             }
+            this.listBorderStation.Clear();
             MessageBox.Show("Correcto");
         }
         public void DeleteBorderStation(DataGridView dataGridView,string res)

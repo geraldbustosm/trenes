@@ -68,6 +68,8 @@ namespace Model
             db.Parameters.AddWithValue("@username", username);
             SQLiteDataReader reader = db.ExecuteReader();
 
+            User user;
+
             while (reader.Read())
             {
                 int id = reader.GetInt32(0);
@@ -75,8 +77,10 @@ namespace Model
                 string email = reader.GetString(2);
                 string password = reader.GetString(3);
 
-                User user = new User(name, email, password);
+                user = new User(name, email, password);
                 user.user_id = id;
+                reader.Close();
+                connection.Close();
                 return user;
             }
 

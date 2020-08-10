@@ -1,7 +1,5 @@
 ﻿using System.Windows.Forms;
-using System.Collections.Generic;
 using Controller;
-using System.Windows.Media;
 
 namespace View
 {
@@ -57,13 +55,21 @@ namespace View
             {
                 if (StationController.IsNumber(this.capacity))
                 {
-                    stationController.AllInsert(this.name,this.capacity);
+                    stationController.Insert(this.name,this.capacity);
+                    Clear();
                 }
             }
             else
             {
                 MessageBox.Show("Error, Campo Vacío");
             }
+        }
+
+        private void Clear()
+        {
+            this.inputName.Text = "";
+            this.inputCapacity.Text = "";
+            this.stationController.GetAllBorderStation(dataGridView);
         }
     }
 }
