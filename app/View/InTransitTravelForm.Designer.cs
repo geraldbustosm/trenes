@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label_fecha = new System.Windows.Forms.Label();
             this.codigo_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.origen_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.destino_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hora_salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hora_llegada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label_fecha = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,14 +50,14 @@
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo_viaje,
@@ -73,19 +73,6 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(887, 452);
             this.dataGridView1.TabIndex = 18;
-            // 
-            // label_fecha
-            // 
-            this.label_fecha.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_fecha.AutoSize = true;
-            this.label_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label_fecha.Location = new System.Drawing.Point(884, 106);
-            this.label_fecha.Name = "label_fecha";
-            this.label_fecha.Size = new System.Drawing.Size(102, 24);
-            this.label_fecha.TabIndex = 21;
-            this.label_fecha.Text = "00-00-0000";
             // 
             // codigo_viaje
             // 
@@ -116,6 +103,17 @@
             this.hora_llegada.HeaderText = "Hora de llegada";
             this.hora_llegada.MinimumWidth = 6;
             this.hora_llegada.Name = "hora_llegada";
+            // 
+            // label_fecha
+            // 
+            this.label_fecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_fecha.AutoSize = true;
+            this.label_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label_fecha.Location = new System.Drawing.Point(884, 106);
+            this.label_fecha.Name = "label_fecha";
+            this.label_fecha.Size = new System.Drawing.Size(102, 24);
+            this.label_fecha.TabIndex = 21;
+            this.label_fecha.Text = "00-00-0000";
             // 
             // InTransitTravelForm
             // 
