@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace View
 {
-    public partial class ShowWagonsForm : Form
+    public partial class InTransitTravelForm : Form
     {
-        public ShowWagonsForm()
+        public InTransitTravelForm()
         {
             InitializeComponent();
         }
