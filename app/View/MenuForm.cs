@@ -74,7 +74,7 @@ namespace View
         private void btn_viajes_en_transito_Click(object sender, EventArgs e)
         {
             highLightButton(btn_viajes_en_transito);
-            _layoutForm.changeLayout(new ShowWagonsForm());
+            _layoutForm.changeLayout(new InTransitTravelForm());
         }
 
         private void btn_nueva_estacion_Click(object sender, EventArgs e)
