@@ -29,7 +29,7 @@ namespace View
         public void showWelcomeScreen()
         {
             changeSidePanel(new MenuForm(this));
-            changeLayout(new HomeForm());
+            changeLayout(new InTransitTravelForm());
         }
 
         // Metodo que cambia el panel de la izquierda (Menu)

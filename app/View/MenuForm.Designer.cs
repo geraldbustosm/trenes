@@ -45,7 +45,6 @@
             this.btn_viajes_pendientes = new System.Windows.Forms.Button();
             this.btn_viajes_en_transito = new System.Windows.Forms.Button();
             this.btn_admin_viajes = new System.Windows.Forms.Button();
-            this.btn_inicio = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.panelSide.SuspendLayout();
@@ -66,7 +65,6 @@
             this.panelSide.Controls.Add(this.btn_conf_estaciones);
             this.panelSide.Controls.Add(this.panelSubMenu1);
             this.panelSide.Controls.Add(this.btn_admin_viajes);
-            this.panelSide.Controls.Add(this.btn_inicio);
             this.panelSide.Controls.Add(this.panelLogo);
             this.panelSide.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSide.Location = new System.Drawing.Point(0, 0);
@@ -80,7 +78,7 @@
             this.panelSubMenu3.Controls.Add(this.btn_nuevo_usuario);
             this.panelSubMenu3.Controls.Add(this.btn_ver_usuarios);
             this.panelSubMenu3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubMenu3.Location = new System.Drawing.Point(0, 910);
+            this.panelSubMenu3.Location = new System.Drawing.Point(0, 841);
             this.panelSubMenu3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelSubMenu3.Name = "panelSubMenu3";
             this.panelSubMenu3.Size = new System.Drawing.Size(450, 125);
@@ -132,7 +130,7 @@
             this.btn_admin_usuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_admin_usuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btn_admin_usuarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btn_admin_usuarios.Location = new System.Drawing.Point(0, 841);
+            this.btn_admin_usuarios.Location = new System.Drawing.Point(0, 772);
             this.btn_admin_usuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_admin_usuarios.Name = "btn_admin_usuarios";
             this.btn_admin_usuarios.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -151,7 +149,7 @@
             this.panelSubMenu2.Controls.Add(this.btn_nueva_estacion);
             this.panelSubMenu2.Controls.Add(this.btn_ver_estaciones);
             this.panelSubMenu2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubMenu2.Location = new System.Drawing.Point(0, 587);
+            this.panelSubMenu2.Location = new System.Drawing.Point(0, 518);
             this.panelSubMenu2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelSubMenu2.Name = "panelSubMenu2";
             this.panelSubMenu2.Size = new System.Drawing.Size(450, 254);
@@ -241,7 +239,7 @@
             this.btn_conf_estaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_conf_estaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btn_conf_estaciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btn_conf_estaciones.Location = new System.Drawing.Point(0, 518);
+            this.btn_conf_estaciones.Location = new System.Drawing.Point(0, 449);
             this.btn_conf_estaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_conf_estaciones.Name = "btn_conf_estaciones";
             this.btn_conf_estaciones.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -259,7 +257,7 @@
             this.panelSubMenu1.Controls.Add(this.btn_viajes_pendientes);
             this.panelSubMenu1.Controls.Add(this.btn_viajes_en_transito);
             this.panelSubMenu1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubMenu1.Location = new System.Drawing.Point(0, 330);
+            this.panelSubMenu1.Location = new System.Drawing.Point(0, 261);
             this.panelSubMenu1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelSubMenu1.Name = "panelSubMenu1";
             this.panelSubMenu1.Size = new System.Drawing.Size(450, 188);
@@ -330,7 +328,7 @@
             this.btn_admin_viajes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_admin_viajes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btn_admin_viajes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btn_admin_viajes.Location = new System.Drawing.Point(0, 261);
+            this.btn_admin_viajes.Location = new System.Drawing.Point(0, 192);
             this.btn_admin_viajes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_admin_viajes.Name = "btn_admin_viajes";
             this.btn_admin_viajes.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -340,25 +338,6 @@
             this.btn_admin_viajes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_admin_viajes.UseVisualStyleBackColor = false;
             this.btn_admin_viajes.Click += new System.EventHandler(this.btn_admin_viajes_Click);
-            // 
-            // btn_inicio
-            // 
-            this.btn_inicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            this.btn_inicio.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_inicio.FlatAppearance.BorderSize = 0;
-            this.btn_inicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_inicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.btn_inicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            this.btn_inicio.Location = new System.Drawing.Point(0, 192);
-            this.btn_inicio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_inicio.Name = "btn_inicio";
-            this.btn_inicio.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btn_inicio.Size = new System.Drawing.Size(450, 69);
-            this.btn_inicio.TabIndex = 4;
-            this.btn_inicio.Text = "Inicio";
-            this.btn_inicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_inicio.UseVisualStyleBackColor = false;
-            this.btn_inicio.Click += new System.EventHandler(this.btn_inicio_Click);
             // 
             // panelLogo
             // 
@@ -406,7 +385,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelSide;
-        private System.Windows.Forms.Button btn_inicio;
         private System.Windows.Forms.Panel panelSubMenu2;
         private System.Windows.Forms.Button btn_nueva_locomotora;
         private System.Windows.Forms.Button btn_nueva_estacion;
