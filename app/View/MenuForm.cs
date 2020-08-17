@@ -104,7 +104,7 @@ namespace View
         private void btn_nuevo_viaje_Click(object sender, EventArgs e)
         {
             highLightButton(btn_nuevo_viaje);
-            _layoutForm.changeLayout(new AddTravelForm());
+            _layoutForm.changeLayout(new AddTravelSectionForm());
         }
 
         private void btn_nuevo_usuario_Click(object sender, EventArgs e)

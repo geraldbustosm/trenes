@@ -30,14 +30,14 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.codigo_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.origen_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.destino_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hora_salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hora_llegada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.hora_llegada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hora_salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.destino_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.origen_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codigo_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,19 +69,55 @@
             this.hora_salida,
             this.hora_llegada});
             this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(99, 181);
+            this.dataGridView1.Location = new System.Drawing.Point(95, 146);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(887, 452);
+            this.dataGridView1.Size = new System.Drawing.Size(887, 503);
             this.dataGridView1.TabIndex = 18;
+            // 
+            // codigo_viaje
+            // 
+            this.codigo_viaje.HeaderText = "Código";
+            this.codigo_viaje.MinimumWidth = 6;
+            this.codigo_viaje.Name = "codigo_viaje";
+            // 
+            // fecha_viaje
+            // 
+            this.fecha_viaje.HeaderText = "Fecha";
+            this.fecha_viaje.MinimumWidth = 6;
+            this.fecha_viaje.Name = "fecha_viaje";
+            // 
+            // origen_viaje
+            // 
+            this.origen_viaje.HeaderText = "Origen";
+            this.origen_viaje.MinimumWidth = 6;
+            this.origen_viaje.Name = "origen_viaje";
+            // 
+            // destino_viaje
+            // 
+            this.destino_viaje.HeaderText = "Destino";
+            this.destino_viaje.MinimumWidth = 6;
+            this.destino_viaje.Name = "destino_viaje";
+            // 
+            // hora_salida
+            // 
+            this.hora_salida.HeaderText = "Hora de salida";
+            this.hora_salida.MinimumWidth = 6;
+            this.hora_salida.Name = "hora_salida";
+            // 
+            // hora_llegada
+            // 
+            this.hora_llegada.HeaderText = "Hora de llegada";
+            this.hora_llegada.MinimumWidth = 6;
+            this.hora_llegada.Name = "hora_llegada";
             // 
             // comboBox1
             // 
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(740, 106);
+            this.comboBox1.Location = new System.Drawing.Point(740, 71);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(246, 24);
             this.comboBox1.TabIndex = 19;
@@ -93,49 +129,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label1.Location = new System.Drawing.Point(95, 106);
+            this.label1.Location = new System.Drawing.Point(95, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 24);
             this.label1.TabIndex = 20;
             this.label1.Text = "Seleccione fecha";
             // 
-            // hora_llegada
-            // 
-            this.hora_llegada.HeaderText = "Hora de llegada";
-            this.hora_llegada.MinimumWidth = 6;
-            this.hora_llegada.Name = "hora_llegada";
-            // 
-            // hora_salida
-            // 
-            this.hora_salida.HeaderText = "Hora de salida";
-            this.hora_salida.MinimumWidth = 6;
-            this.hora_salida.Name = "hora_salida";
-            // 
-            // destino_viaje
-            // 
-            this.destino_viaje.HeaderText = "Destino";
-            this.destino_viaje.MinimumWidth = 6;
-            this.destino_viaje.Name = "destino_viaje";
-            // 
-            // origen_viaje
-            // 
-            this.origen_viaje.HeaderText = "Origen";
-            this.origen_viaje.MinimumWidth = 6;
-            this.origen_viaje.Name = "origen_viaje";
-            // 
-            // fecha_viaje
-            // 
-            this.fecha_viaje.HeaderText = "Fecha";
-            this.fecha_viaje.MinimumWidth = 6;
-            this.fecha_viaje.Name = "fecha_viaje";
-            // 
-            // codigo_viaje
-            // 
-            this.codigo_viaje.HeaderText = "Código";
-            this.codigo_viaje.MinimumWidth = 6;
-            this.codigo_viaje.Name = "codigo_viaje";
-            // 
-            // AddScheduledTravelForm
+            // ScheduledTravelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -147,7 +147,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "AddScheduledTravelForm";
+            this.Name = "ScheduledTravelForm";
             this.Text = "HomeForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

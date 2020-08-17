@@ -63,12 +63,12 @@
             this.capacidad,
             this.accion_estacion});
             this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(99, 181);
+            this.dataGridView1.Location = new System.Drawing.Point(95, 71);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(887, 452);
+            this.dataGridView1.Size = new System.Drawing.Size(887, 585);
             this.dataGridView1.TabIndex = 18;
             // 
             // codigo_usuario

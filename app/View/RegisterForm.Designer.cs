@@ -63,7 +63,7 @@
             this.username_label.AutoSize = true;
             this.username_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.username_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.username_label.Location = new System.Drawing.Point(95, 121);
+            this.username_label.Location = new System.Drawing.Point(95, 71);
             this.username_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.username_label.Name = "username_label";
             this.username_label.Size = new System.Drawing.Size(173, 24);
@@ -78,7 +78,7 @@
             this.email_label.AutoSize = true;
             this.email_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.email_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.email_label.Location = new System.Drawing.Point(95, 158);
+            this.email_label.Location = new System.Drawing.Point(95, 108);
             this.email_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.email_label.Name = "email_label";
             this.email_label.Size = new System.Drawing.Size(166, 24);
@@ -93,7 +93,7 @@
             this.password_label.AutoSize = true;
             this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.password_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.password_label.Location = new System.Drawing.Point(95, 197);
+            this.password_label.Location = new System.Drawing.Point(95, 147);
             this.password_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.password_label.Name = "password_label";
             this.password_label.Size = new System.Drawing.Size(106, 24);
@@ -108,7 +108,7 @@
             this.repeat_password_label.AutoSize = true;
             this.repeat_password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.repeat_password_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.repeat_password_label.Location = new System.Drawing.Point(95, 234);
+            this.repeat_password_label.Location = new System.Drawing.Point(95, 184);
             this.repeat_password_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.repeat_password_label.Name = "repeat_password_label";
             this.repeat_password_label.Size = new System.Drawing.Size(189, 24);
@@ -120,7 +120,7 @@
             this.input_username.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_username.Location = new System.Drawing.Point(740, 121);
+            this.input_username.Location = new System.Drawing.Point(740, 71);
             this.input_username.Margin = new System.Windows.Forms.Padding(2);
             this.input_username.Name = "input_username";
             this.input_username.Size = new System.Drawing.Size(246, 22);
@@ -131,7 +131,7 @@
             this.input_email.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_email.Location = new System.Drawing.Point(740, 158);
+            this.input_email.Location = new System.Drawing.Point(740, 108);
             this.input_email.Margin = new System.Windows.Forms.Padding(2);
             this.input_email.Name = "input_email";
             this.input_email.Size = new System.Drawing.Size(246, 22);
@@ -142,7 +142,7 @@
             this.input_password.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_password.Location = new System.Drawing.Point(740, 199);
+            this.input_password.Location = new System.Drawing.Point(740, 149);
             this.input_password.Margin = new System.Windows.Forms.Padding(2);
             this.input_password.Name = "input_password";
             this.input_password.Size = new System.Drawing.Size(246, 22);
@@ -153,7 +153,7 @@
             this.input_validate_password.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_validate_password.Location = new System.Drawing.Point(740, 236);
+            this.input_validate_password.Location = new System.Drawing.Point(740, 186);
             this.input_validate_password.Margin = new System.Windows.Forms.Padding(2);
             this.input_validate_password.Name = "input_validate_password";
             this.input_validate_password.Size = new System.Drawing.Size(246, 22);
@@ -165,7 +165,7 @@
             this.information_label.AutoSize = true;
             this.information_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.information_label.ForeColor = System.Drawing.Color.Red;
-            this.information_label.Location = new System.Drawing.Point(427, 462);
+            this.information_label.Location = new System.Drawing.Point(737, 226);
             this.information_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.information_label.Name = "information_label";
             this.information_label.Size = new System.Drawing.Size(121, 18);
