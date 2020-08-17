@@ -20,6 +20,7 @@ namespace View
             toggleSubMenu(panelSubMenu1);
             navButtonColor = Color.FromArgb(50, 70, 211);
             highLightButtonColor = Color.FromArgb(29, 45, 163);
+            highLightButton(btn_viajes_en_transito);
 
         }
 
