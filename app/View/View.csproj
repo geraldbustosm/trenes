@@ -186,6 +186,12 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TravelDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TravelDetailsForm.Designer.cs">
+      <DependentUpon>TravelDetailsForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddLocomotiveForm.resx">
       <DependentUpon>AddLocomotiveForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +239,9 @@
     </Compile>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TravelDetailsForm.resx">
+      <DependentUpon>TravelDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

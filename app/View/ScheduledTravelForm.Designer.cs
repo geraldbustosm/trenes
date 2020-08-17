@@ -74,7 +74,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(887, 503);
+            this.dataGridView1.Size = new System.Drawing.Size(887, 500);
             this.dataGridView1.TabIndex = 18;
             // 
             // codigo_viaje

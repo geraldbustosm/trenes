@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class InTransitTravelForm
+    partial class TravelDetailsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,12 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.codigo_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.origen_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.destino_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hora_salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hora_llegada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label_fecha = new System.Windows.Forms.Label();
+            this.tramo_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.composicion_tren = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hora_partida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hora_llega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,11 +60,11 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codigo_viaje,
-            this.origen_viaje,
-            this.destino_viaje,
-            this.hora_salida,
-            this.hora_llegada});
+            this.tramo_viaje,
+            this.composicion_tren,
+            this.hora_partida,
+            this.hora_llega,
+            this.accion});
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(95, 128);
             this.dataGridView1.Name = "dataGridView1";
@@ -74,36 +74,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(887, 500);
             this.dataGridView1.TabIndex = 18;
             // 
-            // codigo_viaje
-            // 
-            this.codigo_viaje.HeaderText = "Código";
-            this.codigo_viaje.MinimumWidth = 6;
-            this.codigo_viaje.Name = "codigo_viaje";
-            // 
-            // origen_viaje
-            // 
-            this.origen_viaje.HeaderText = "Origen";
-            this.origen_viaje.MinimumWidth = 6;
-            this.origen_viaje.Name = "origen_viaje";
-            // 
-            // destino_viaje
-            // 
-            this.destino_viaje.HeaderText = "Destino";
-            this.destino_viaje.MinimumWidth = 6;
-            this.destino_viaje.Name = "destino_viaje";
-            // 
-            // hora_salida
-            // 
-            this.hora_salida.HeaderText = "Hora de salida";
-            this.hora_salida.MinimumWidth = 6;
-            this.hora_salida.Name = "hora_salida";
-            // 
-            // hora_llegada
-            // 
-            this.hora_llegada.HeaderText = "Hora de llegada";
-            this.hora_llegada.MinimumWidth = 6;
-            this.hora_llegada.Name = "hora_llegada";
-            // 
             // label_fecha
             // 
             this.label_fecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -112,10 +82,40 @@
             this.label_fecha.Location = new System.Drawing.Point(880, 71);
             this.label_fecha.Name = "label_fecha";
             this.label_fecha.Size = new System.Drawing.Size(102, 24);
-            this.label_fecha.TabIndex = 21;
+            this.label_fecha.TabIndex = 22;
             this.label_fecha.Text = "00-00-0000";
             // 
-            // InTransitTravelForm
+            // tramo_viaje
+            // 
+            this.tramo_viaje.HeaderText = "Tramo";
+            this.tramo_viaje.MinimumWidth = 6;
+            this.tramo_viaje.Name = "tramo_viaje";
+            // 
+            // composicion_tren
+            // 
+            this.composicion_tren.HeaderText = "Composición del tren";
+            this.composicion_tren.MinimumWidth = 6;
+            this.composicion_tren.Name = "composicion_tren";
+            // 
+            // hora_partida
+            // 
+            this.hora_partida.HeaderText = "Hora de partida";
+            this.hora_partida.MinimumWidth = 6;
+            this.hora_partida.Name = "hora_partida";
+            // 
+            // hora_llega
+            // 
+            this.hora_llega.HeaderText = "Hora de llegada";
+            this.hora_llega.MinimumWidth = 6;
+            this.hora_llega.Name = "hora_llega";
+            // 
+            // accion
+            // 
+            this.accion.HeaderText = "Acción";
+            this.accion.MinimumWidth = 6;
+            this.accion.Name = "accion";
+            // 
+            // TravelDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -126,7 +126,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "InTransitTravelForm";
+            this.Name = "TravelDetailsForm";
             this.Text = "HomeForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -137,10 +137,10 @@
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label_fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigo_viaje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn origen_viaje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn destino_viaje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hora_salida;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hora_llegada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tramo_viaje;
+        private System.Windows.Forms.DataGridViewTextBoxColumn composicion_tren;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hora_partida;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hora_llega;
+        private System.Windows.Forms.DataGridViewTextBoxColumn accion;
     }
 }
