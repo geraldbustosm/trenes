@@ -12,11 +12,12 @@ namespace Model
         public int permission_id { get; set; }
         private Boolean deleted;
 
-        public User(string name, string email, string password)
+        public User(string name, string email, string password, int permission_id)
         {
             this.name = name;
             this.email = email;
             this.password = password;
+            this.permission_id = permission_id;
             this.deleted = false;
         }
         public void Save()
@@ -84,8 +85,9 @@ namespace Model
                         string name = reader.GetString(1);
                         string email = reader.GetString(2);
                         string password = reader.GetString(3);
+                        int permission_id = reader.GetInt32(4);
 
-                        User user = new User(name, email, password);
+                        User user = new User(name, email, password, permission_id);
                         user.user_id = id;
                         return user;
                     }

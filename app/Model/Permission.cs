@@ -1,5 +1,6 @@
 ﻿using Database;
 using System;
+using System.Data;
 using System.Data.SQLite;
 
 namespace Model
@@ -72,6 +73,20 @@ namespace Model
             }
             connection.Close();
             return null;
+        }
+
+        public static DataSet All()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+            {
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT permission_id, permission_name FROM permission";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(db);
+                DataSet dataset = new DataSet();
+                adapter.Fill(dataset);
+                return dataset;
+            }
         }
         // Private methods
         private Boolean CheckIfPermissionExists(int permission_id)

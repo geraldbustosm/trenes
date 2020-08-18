@@ -26,10 +26,11 @@ namespace View
             string email = this.input_email.Text;
             string username = this.input_username.Text;
             string password = this.input_password.Text;
+            int permission_id = Int32.Parse(this.combobox_rol.SelectedValue.ToString());
 
             if (this.is_password_validated)
             {
-                if(UserController.CreateUser(username, email, password))
+                if(UserController.CreateUser(username, email, password, permission_id))
                 {
                     this.input_email.Text = "";
                     this.input_username.Text = "";
