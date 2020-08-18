@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.codigo_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +45,9 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -56,8 +60,8 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -68,12 +72,22 @@
             this.destino_viaje,
             this.hora_salida,
             this.hora_llegada});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(95, 146);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(887, 500);
             this.dataGridView1.TabIndex = 18;
             // 
@@ -82,36 +96,42 @@
             this.codigo_viaje.HeaderText = "Código";
             this.codigo_viaje.MinimumWidth = 6;
             this.codigo_viaje.Name = "codigo_viaje";
+            this.codigo_viaje.ReadOnly = true;
             // 
             // fecha_viaje
             // 
             this.fecha_viaje.HeaderText = "Fecha";
             this.fecha_viaje.MinimumWidth = 6;
             this.fecha_viaje.Name = "fecha_viaje";
+            this.fecha_viaje.ReadOnly = true;
             // 
             // origen_viaje
             // 
             this.origen_viaje.HeaderText = "Origen";
             this.origen_viaje.MinimumWidth = 6;
             this.origen_viaje.Name = "origen_viaje";
+            this.origen_viaje.ReadOnly = true;
             // 
             // destino_viaje
             // 
             this.destino_viaje.HeaderText = "Destino";
             this.destino_viaje.MinimumWidth = 6;
             this.destino_viaje.Name = "destino_viaje";
+            this.destino_viaje.ReadOnly = true;
             // 
             // hora_salida
             // 
             this.hora_salida.HeaderText = "Hora de salida";
             this.hora_salida.MinimumWidth = 6;
             this.hora_salida.Name = "hora_salida";
+            this.hora_salida.ReadOnly = true;
             // 
             // hora_llegada
             // 
             this.hora_llegada.HeaderText = "Hora de llegada";
             this.hora_llegada.MinimumWidth = 6;
             this.hora_llegada.Name = "hora_llegada";
+            this.hora_llegada.ReadOnly = true;
             // 
             // comboBox1
             // 
