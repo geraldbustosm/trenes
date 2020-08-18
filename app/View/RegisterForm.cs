@@ -18,6 +18,7 @@ namespace View
             this.successfullColor = Color.FromArgb(21, 87, 36);
             this.wrongColor = information_label.ForeColor;
             _layoutForm = layoutForm;
+            PermissionController.FillComboBox(combobox_rol);
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

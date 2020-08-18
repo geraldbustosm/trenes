@@ -39,7 +39,7 @@
             this.input_validate_password = new System.Windows.Forms.TextBox();
             this.information_label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.combobox_rol = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnRegister
@@ -191,15 +191,18 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Seleccione rol ";
             // 
-            // comboBox3
+            // combobox_rol
             // 
-            this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(740, 147);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(246, 24);
-            this.comboBox3.TabIndex = 21;
+            this.combobox_rol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.combobox_rol.BackColor = System.Drawing.Color.White;
+            this.combobox_rol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combobox_rol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.combobox_rol.FormattingEnabled = true;
+            this.combobox_rol.Location = new System.Drawing.Point(668, 147);
+            this.combobox_rol.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.combobox_rol.Name = "combobox_rol";
+            this.combobox_rol.Size = new System.Drawing.Size(318, 24);
+            this.combobox_rol.TabIndex = 21;
             // 
             // RegisterForm
             // 
@@ -208,7 +211,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1073, 721);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.combobox_rol);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.information_label);
             this.Controls.Add(this.input_validate_password);
@@ -242,6 +245,6 @@
         private System.Windows.Forms.TextBox input_validate_password;
         private System.Windows.Forms.Label information_label;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox combobox_rol;
     }
 }
