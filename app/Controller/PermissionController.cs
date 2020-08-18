@@ -17,7 +17,6 @@ namespace Controller
             c.DataSource = dataset.Tables[0];
             c.ValueMember = "permission_id";
             c.DisplayMember = "permission_name";
-            }
         }
     }
 }
