@@ -105,6 +105,7 @@
             this.errorLabel.AutoSize = true;
             this.errorLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.errorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(28)))), ((int)(((byte)(36)))));
             this.errorLabel.Location = new System.Drawing.Point(245, 468);
             this.errorLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.errorLabel.Name = "errorLabel";

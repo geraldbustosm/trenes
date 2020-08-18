@@ -32,6 +32,10 @@ namespace View
                 {
                     this.information_label.ForeColor = successfullColor;
                     this.information_label.Text = "Usuario creado con éxito";
+                    this.input_email.Text = "";
+                    this.input_username.Text = "";
+                    this.input_password.Text = "";
+                    this.input_validate_password.Text = "";
                 }
                 else
                 {
