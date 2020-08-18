@@ -38,6 +38,8 @@
             this.input_password = new System.Windows.Forms.TextBox();
             this.input_validate_password = new System.Windows.Forms.TextBox();
             this.information_label = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnRegister
@@ -93,7 +95,7 @@
             this.password_label.AutoSize = true;
             this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.password_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.password_label.Location = new System.Drawing.Point(95, 147);
+            this.password_label.Location = new System.Drawing.Point(95, 184);
             this.password_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.password_label.Name = "password_label";
             this.password_label.Size = new System.Drawing.Size(106, 24);
@@ -108,7 +110,7 @@
             this.repeat_password_label.AutoSize = true;
             this.repeat_password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.repeat_password_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.repeat_password_label.Location = new System.Drawing.Point(95, 184);
+            this.repeat_password_label.Location = new System.Drawing.Point(95, 221);
             this.repeat_password_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.repeat_password_label.Name = "repeat_password_label";
             this.repeat_password_label.Size = new System.Drawing.Size(189, 24);
@@ -142,7 +144,7 @@
             this.input_password.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_password.Location = new System.Drawing.Point(740, 149);
+            this.input_password.Location = new System.Drawing.Point(740, 184);
             this.input_password.Margin = new System.Windows.Forms.Padding(2);
             this.input_password.Name = "input_password";
             this.input_password.PasswordChar = '*';
@@ -154,7 +156,7 @@
             this.input_validate_password.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_validate_password.Location = new System.Drawing.Point(740, 186);
+            this.input_validate_password.Location = new System.Drawing.Point(740, 221);
             this.input_validate_password.Margin = new System.Windows.Forms.Padding(2);
             this.input_validate_password.Name = "input_validate_password";
             this.input_validate_password.PasswordChar = '*';
@@ -167,12 +169,37 @@
             this.information_label.AutoSize = true;
             this.information_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.information_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(28)))), ((int)(((byte)(36)))));
-            this.information_label.Location = new System.Drawing.Point(737, 226);
+            this.information_label.Location = new System.Drawing.Point(737, 266);
             this.information_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.information_label.Name = "information_label";
             this.information_label.Size = new System.Drawing.Size(121, 18);
             this.information_label.TabIndex = 15;
             this.information_label.Text = "Information Label";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(95, 147);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 24);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Seleccione rol ";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(740, 147);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(246, 24);
+            this.comboBox3.TabIndex = 21;
             // 
             // RegisterForm
             // 
@@ -181,6 +208,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1073, 721);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.information_label);
             this.Controls.Add(this.input_validate_password);
             this.Controls.Add(this.input_password);
@@ -212,5 +241,7 @@
         private System.Windows.Forms.TextBox input_password;
         private System.Windows.Forms.TextBox input_validate_password;
         private System.Windows.Forms.Label information_label;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }
