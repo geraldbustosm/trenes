@@ -9,18 +9,9 @@ namespace Controller
 
         public static bool Authenticate(string username, string password)
         {
-            /*try
-            {
-                User user_model = User.Find(username);
-                if (user_model != null) return user_model.ValidatePassword(password);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            return false;*/
-            return true;
+            User user_model = User.Find(username);
+            if (user_model != null) return user_model.ValidatePassword(password);
+            return false;
         }
 
         public static bool CreateUser(string username, string email, string password)
