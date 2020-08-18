@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Controller;
 
@@ -8,12 +9,14 @@ namespace View
     {
         private LayoutForm _layoutForm;
         private bool is_password_validated;
+        private Color successfullColor, wrongColor;
         public RegisterForm(LayoutForm layoutForm)
         {
             InitializeComponent();
             is_password_validated = false;
             this.information_label.Text = "";
-
+            this.successfullColor = Color.FromArgb(21, 87, 36);
+            this.wrongColor = information_label.ForeColor;
             _layoutForm = layoutForm;
         }
 
@@ -27,15 +30,24 @@ namespace View
             {
                 if(UserController.CreateUser(username, email, password))
                 {
-                    _layoutForm.Show(new LoginForm(_layoutForm));
+                    this.information_label.ForeColor = successfullColor;
+                    this.information_label.Text = "Usuario creado con éxito";
                 }
                 else
                 {
-                    this.information_label.Text = "Ha ocurrido un problema, contacte a el soporte!";
+                    if(information_label.ForeColor == successfullColor)
+                    {
+                        information_label.ForeColor = wrongColor;
+                    }
+                    this.information_label.Text = "Ha ocurrido un problema, contacte a el soporte";
                 }
             } else
             {
-                this.information_label.Text = "Ingrese los datos correctamente!";
+                if(information_label.ForeColor == successfullColor)
+                    {
+                        information_label.ForeColor = wrongColor;
+                    }
+                this.information_label.Text = "Ingrese los datos correctamente";
             }
         }
 
@@ -51,7 +63,11 @@ namespace View
             }
             else
             {
-                this.information_label.Text = "Las contraseñas no coinciden!";
+                if (this.information_label.ForeColor == successfullColor)
+                {
+                    this.information_label.ForeColor = wrongColor;
+                }
+                this.information_label.Text = "Las contraseñas no coinciden";
                 this.is_password_validated = false;
             }
         }

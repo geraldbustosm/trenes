@@ -74,20 +74,21 @@ namespace Model
                 SQLiteCommand db = new SQLiteCommand(connection);
                 db.CommandText = "SELECT * FROM user WHERE name = @username";
                 db.Parameters.AddWithValue("@username", username);
-                SQLiteDataReader reader = db.ExecuteReader();
-
-                while (reader.Read())
+                using (SQLiteDataReader reader = db.ExecuteReader())
                 {
-                    int id = reader.GetInt32(0);
-                    string name = reader.GetString(1);
-                    string email = reader.GetString(2);
-                    string password = reader.GetString(3);
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        string name = reader.GetString(1);
+                        string email = reader.GetString(2);
+                        string password = reader.GetString(3);
 
-                    User user = new User(name, email, password);
-                    user.user_id = id;
-                    return user;
+                        User user = new User(name, email, password);
+                        user.user_id = id;
+                        return user;
+                    }
+                    reader.Close();
                 }
-
                 connection.Close();
                 return null;
             }
@@ -101,14 +102,15 @@ namespace Model
                 SQLiteCommand db = new SQLiteCommand(connection);
                 db.CommandText = "SELECT COUNT(*) FROM user WHERE user_id = @user_id";
                 db.Parameters.AddWithValue("@user_id", this.user_id);
-                SQLiteDataReader reader = db.ExecuteReader();
-
                 int count = 0;
-                while (reader.Read())
+                using (SQLiteDataReader reader = db.ExecuteReader())
                 {
-                    count = reader.GetInt32(0);
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0);
+                    }
+                    reader.Close();
                 }
-                reader.Close();
                 connection.Close();
 
                 return count > 0;
