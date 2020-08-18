@@ -30,27 +30,25 @@ namespace View
             {
                 if(UserController.CreateUser(username, email, password))
                 {
-                    this.information_label.ForeColor = successfullColor;
-                    this.information_label.Text = "Usuario creado con éxito";
                     this.input_email.Text = "";
                     this.input_username.Text = "";
                     this.input_password.Text = "";
                     this.input_validate_password.Text = "";
+                    this.information_label.Text = "Usuario creado con éxito";
+                    this.information_label.ForeColor = successfullColor;
                 }
                 else
                 {
-                    if(information_label.ForeColor == successfullColor)
-                    {
+                    if (information_label.ForeColor == successfullColor)
                         information_label.ForeColor = wrongColor;
-                    }
+
                     this.information_label.Text = "Ha ocurrido un problema, contacte a el soporte";
                 }
             } else
             {
                 if(information_label.ForeColor == successfullColor)
-                    {
                         information_label.ForeColor = wrongColor;
-                    }
+
                 this.information_label.Text = "Ingrese los datos correctamente";
             }
         }

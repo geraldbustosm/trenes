@@ -12,9 +12,9 @@ namespace View
         private String password;
         public LoginForm(LayoutForm layout_form)
         {
-            _layout_form = layout_form;
             InitializeComponent();
             this.errorLabel.Text = "";
+            _layout_form = layout_form;
         }
 
         // Metodo que se encarga del proceso de login y enviar al formulario de bienvenida
@@ -34,7 +34,6 @@ namespace View
             } else
             {
                 this.errorLabel.Text = "No se encontraron coincidencias.";
-                this.errorLabel.ForeColor = Color.Red; 
             }
         }
 

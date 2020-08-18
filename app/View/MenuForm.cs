@@ -68,12 +68,6 @@ namespace View
             toggleSubMenu(panelSubMenu3);
         }
 
-        private void btn_inicio_Click(object sender, EventArgs e)
-        {
-            hideAllSubMenu();
-            _layoutForm.changeLayout(new HomeForm());
-        }
-
         private void btn_viajes_en_transito_Click(object sender, EventArgs e)
         {
             highLightButton(btn_viajes_en_transito);
