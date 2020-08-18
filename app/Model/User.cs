@@ -9,6 +9,7 @@ namespace Model
         public string name { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+        public int permission_id { get; set; }
         private Boolean deleted;
 
         public User(string name, string email, string password)
@@ -30,15 +31,16 @@ namespace Model
                     db.Parameters.AddWithValue("@name", this.name);
                     db.Parameters.AddWithValue("@email", this.email);
                     db.Parameters.AddWithValue("@password", this.password);
+                    db.Parameters.AddWithValue("@permission_id", this.permission_id);
 
                     if (!exist)
                     {
-                        db.CommandText = "INSERT INTO user(name, email, password) values (@name, @email, @password)";
+                        db.CommandText = "INSERT INTO user(name, email, password, permission_id) values (@name, @email, @password, @permission_id)";
                         this.user_id = Convert.ToInt32(db.ExecuteScalar());
                     }
                     else
                     {
-                        db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password) WHERE user_id = @user_id";
+                        db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password, permission_id = @permission_id) WHERE user_id = @user_id";
                         db.Parameters.AddWithValue("@user_id", this.user_id);
                         db.ExecuteNonQuery();
                     }
