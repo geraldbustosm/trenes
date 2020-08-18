@@ -103,7 +103,7 @@ namespace Model
                 count = reader.GetInt32(0);
             }
             connection.Close();
-            return count > 0;
+            if (count > 0) { return true; } else { return false; }
         }
     }
 }
