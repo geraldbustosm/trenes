@@ -13,6 +13,10 @@ namespace Controller
         {
             this.listBorderStation = new List<Station>();
         }
+        public void Clear()
+        {
+            this.listBorderStation.Clear();
+        }
         // Publics Metods
         public void Insert(string name,string capacity)
         {
@@ -24,19 +28,17 @@ namespace Controller
                 //BorderStation borderStation = new BorderStation(one.station_id, two.station_id);
                 //borderStation.Save();
             }
-            this.listBorderStation.Clear();
             MessageBox.Show("Correcto");
         }
-        public void DeleteBorderStation(DataGridView dataGridView,string res)
+        public void DeleteBorderStation(string res)
         {
             int id = Convert.ToInt32(res);
             Station result = this.listBorderStation.Find(delegate (Station s) {
                 return s.station_id == id;
             });
             this.listBorderStation.Remove(result);
-            this.GetAllBorderStation(dataGridView);
         }
-        public void GetAllBorderStation(DataGridView dataGridView)
+        public void FeedDataGridView(DataGridView dataGridView)
         {
             var source = new BindingSource(this.listBorderStation, null);
             dataGridView.DataSource = source;
@@ -79,9 +81,9 @@ namespace Controller
             }
             return false;
         }
-        public static void GetAllStation(ComboBox comboBox)
+        public static void FeedComboBox(ComboBox comboBox)
         {
-            List<Station> list = Station.FindAll();
+            List<Station> list = Station.All();
 
             comboBox.DataSource = list;
             comboBox.DisplayMember = "name";

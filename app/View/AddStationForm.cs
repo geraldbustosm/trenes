@@ -16,15 +16,15 @@ namespace View
 
         private void AddStationForm_Load(object sender, System.EventArgs e)
         {
-            StationController.GetAllStation(comboBox);
-            this.stationController.GetAllBorderStation(dataGridView);
+            StationController.FeedComboBox(comboBox);
+            this.stationController.FeedDataGridView(dataGridView);
             AddLinkColumn();
         }
 
         private void btnAdd_Click(object sender, System.EventArgs e)
         {
             this.stationController.AddListBorderStation(comboBox);
-            this.stationController.GetAllBorderStation(dataGridView);
+            this.stationController.FeedDataGridView(dataGridView);
         }
 
         private void AddLinkColumn()
@@ -43,7 +43,8 @@ namespace View
             if (e.ColumnIndex == this.dataGridView.Columns["Delete"].Index)
             {
                 string res = ((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString();
-                this.stationController.DeleteBorderStation(dataGridView,res);
+                this.stationController.DeleteBorderStation(res);
+                this.stationController.FeedDataGridView(dataGridView);
             }
         }
 
@@ -56,6 +57,7 @@ namespace View
                 if (StationController.IsNumber(this.capacity))
                 {
                     stationController.Insert(this.name,this.capacity);
+                    this.stationController.Clear();
                     Clear();
                 }
             }
@@ -69,7 +71,13 @@ namespace View
         {
             this.inputName.Text = "";
             this.inputCapacity.Text = "";
-            this.stationController.GetAllBorderStation(dataGridView);
+            this.stationController.FeedDataGridView(dataGridView);
+        }
+
+        private void button2_Click(object sender, System.EventArgs e)
+        {
+            Clear();
+            this.stationController.Clear();
         }
     }
 }

@@ -82,7 +82,7 @@ namespace Model
         }
 
         // Static methods
-        public static List<Station> FindAll()
+        public static List<Station> All()
         {
             List<Station> list = new List<Station>();
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
