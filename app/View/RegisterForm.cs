@@ -44,7 +44,7 @@ namespace View
                     if (information_label.ForeColor == successfullColor)
                         information_label.ForeColor = wrongColor;
 
-                    this.information_label.Text = "Ingrese los datos correctamente";
+                    this.information_label.Text = "Usuario ya registrado";
                 }
             } else
             {
@@ -55,12 +55,12 @@ namespace View
             }
         }
 
-        private void input_validate_password_TextChanged(object sender, EventArgs e)
+        private void validate_password_TextChanged(object sender, EventArgs e)
         {
             string password = this.input_password.Text;
             string validate_password = this.input_validate_password.Text;
-            
-            if(password == validate_password)
+
+            if (password == validate_password)
             {
                 this.information_label.Text = "";
                 this.is_password_validated = true;

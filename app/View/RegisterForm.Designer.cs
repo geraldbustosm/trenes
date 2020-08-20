@@ -150,6 +150,7 @@
             this.input_password.PasswordChar = '*';
             this.input_password.Size = new System.Drawing.Size(246, 22);
             this.input_password.TabIndex = 13;
+            this.input_password.TextChanged += new System.EventHandler(this.validate_password_TextChanged);
             // 
             // input_validate_password
             // 
@@ -162,7 +163,7 @@
             this.input_validate_password.PasswordChar = '*';
             this.input_validate_password.Size = new System.Drawing.Size(246, 22);
             this.input_validate_password.TabIndex = 14;
-            this.input_validate_password.TextChanged += new System.EventHandler(this.input_validate_password_TextChanged);
+            this.input_validate_password.TextChanged += new System.EventHandler(this.validate_password_TextChanged);
             // 
             // information_label
             // 
