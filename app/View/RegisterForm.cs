@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Controller;
+using Helper;
 
 namespace View
 {
@@ -30,28 +31,35 @@ namespace View
 
             if (this.is_password_validated)
             {
-                if(UserController.CreateUser(username, email, password, permission_id))
+                if (Validation.IsEmail(email))
                 {
-                    this.input_email.Text = "";
-                    this.input_username.Text = "";
-                    this.input_password.Text = "";
-                    this.input_validate_password.Text = "";
-                    this.information_label.Text = "Usuario creado con éxito";
-                    this.information_label.ForeColor = successfullColor;
+                    if (UserController.CreateUser(username, email, password, permission_id))
+                    {
+                        this.input_email.Text = "";
+                        this.input_username.Text = "";
+                        this.input_password.Text = "";
+                        this.input_validate_password.Text = "";
+                        this.information_label.Text = "Usuario creado con éxito";
+                        this.information_label.ForeColor = successfullColor;
+                    }
+                    else
+                    {
+                        if (information_label.ForeColor == successfullColor)
+                        {
+                            information_label.ForeColor = wrongColor;
+                        }
+
+                        this.information_label.Text = "Usuario ya registrado";
+                    }
                 }
                 else
                 {
                     if (information_label.ForeColor == successfullColor)
-                        information_label.ForeColor = wrongColor;
-
-                    this.information_label.Text = "Usuario ya registrado";
+                    {
+                    information_label.ForeColor = wrongColor;
+                    }
+                    this.information_label.Text = "Ingrese un correo electrónico valido";
                 }
-            } else
-            {
-                if(information_label.ForeColor == successfullColor)
-                        information_label.ForeColor = wrongColor;
-
-                this.information_label.Text = "Ingrese los datos correctamente";
             }
         }
 

@@ -262,6 +262,10 @@
       <Project>{0e73de84-46e1-4ca7-bf30-e23cf7408332}</Project>
       <Name>Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{99aa831d-3a0b-43c2-a87d-388b7edf5dbc}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
