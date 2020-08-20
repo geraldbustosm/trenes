@@ -198,7 +198,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.combobox_rol.BackColor = System.Drawing.Color.White;
             this.combobox_rol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.combobox_rol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.combobox_rol.FormattingEnabled = true;
             this.combobox_rol.Location = new System.Drawing.Point(740, 147);
             this.combobox_rol.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
