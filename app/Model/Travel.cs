@@ -24,6 +24,7 @@ namespace Model
             {
                 using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
                 {
+                    connection.Open();
                     SQLiteCommand db = new SQLiteCommand(connection);
                     Boolean exist = this.CheckIfExists(this.travel_id);
 
@@ -47,56 +48,67 @@ namespace Model
         }
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "DELETE FROM travel WHERE travel_id = @travel_id";
-            db.Parameters.AddWithValue("@travel_id", this.travel_id);
-            db.ExecuteNonQuery();
-            connection.Close();
-            this.deleted = true;
-            return true;
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+            {
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "DELETE FROM travel WHERE travel_id = @travel_id";
+                db.Parameters.AddWithValue("@travel_id", this.travel_id);
+                db.ExecuteNonQuery();
+                connection.Close();
+                this.deleted = true;
+                return true;
+            }
         }
 
         // Static methods
         public static Travel Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "SELECT * FROM travel WHERE travel_id = @travel_id";
-            db.Parameters.AddWithValue("@travel_id", id);
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            while (reader.Read())
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
-                int total_time = reader.GetInt32(1);
-                string state = reader.GetString(2);
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT * FROM travel WHERE travel_id = @travel_id";
+                db.Parameters.AddWithValue("@travel_id", id);
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int total_time = reader.GetInt32(1);
+                        string state = reader.GetString(2);
 
-                Travel t = new Travel(total_time, state);
-                t.travel_id = id;
-                return t;
+                        Travel t = new Travel(total_time, state);
+                        t.travel_id = id;
+                        return t;
+                    }
+                    reader.Close();
+                }
+                connection.Close();
+                return null;
             }
-            reader.Close();
-            connection.Close();
-            return null;
         }
 
         // Private methods
         private Boolean CheckIfExists(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "SELECT COUNT(*) FROM travel WHERE travel_id =  @travel_id";
-            db.Parameters.AddWithValue("@travel_id", id);
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            int count = 0;
-            while (reader.Read())
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
-                count = reader.GetInt32(0);
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT COUNT(*) FROM travel WHERE travel_id =  @travel_id";
+                db.Parameters.AddWithValue("@travel_id", id);
+                int count = 0;
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                }
+                connection.Close()
+                return count > 0;
             }
-            reader.Close();
-            connection.Close();
-            return count > 0;
         }
     }
 }
