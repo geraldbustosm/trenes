@@ -1,5 +1,6 @@
 using Database;
 using System;
+using System.Data;
 using System.Data.SQLite;
 
 namespace Model
@@ -30,39 +31,44 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.GetConnection();
-                SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfExists(this.wagon_id);
-
-                db.Parameters.AddWithValue("@shipload_type", this.shipload_type);
-                db.Parameters.AddWithValue("@shipload_weight", this.shipload_weight);
-                db.Parameters.AddWithValue("@wagon_weight", this.wagon_weight);
-                db.Parameters.AddWithValue("@in_transit", this.in_transit);
-                db.Parameters.AddWithValue("@train_id", this.train_id);
-                db.Parameters.AddWithValue("@station_id", this.station_id);
-
-                if (!exist)
+                using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
                 {
-                    db.CommandText = "INSERT INTO wagon(shipload_type, shipload_weight, wagon_weight, in_transit, train_id, station_id) values (@shipload_type, @shipload_weight, @wagon_weight, @in_transit, @train_id, @station_id)";
-                    this.wagon_id = Convert.ToInt32(db.ExecuteScalar());
+                    connection.Open(); SQLiteCommand db = new SQLiteCommand(connection);
+                    Boolean exist = this.CheckIfExists(this.wagon_id);
+
+                    db.Parameters.AddWithValue("@shipload_type", this.shipload_type);
+                    db.Parameters.AddWithValue("@shipload_weight", this.shipload_weight);
+                    db.Parameters.AddWithValue("@wagon_weight", this.wagon_weight);
+                    db.Parameters.AddWithValue("@in_transit", this.in_transit);
+                    db.Parameters.AddWithValue("@train_id", this.train_id);
+                    db.Parameters.AddWithValue("@station_id", this.station_id);
+
+                    if (!exist)
+                    {
+                        db.CommandText = "INSERT INTO wagon(shipload_type, shipload_weight, wagon_weight, in_transit, train_id, station_id) values (@shipload_type, @shipload_weight, @wagon_weight, @in_transit, @train_id, @station_id)";
+                        this.wagon_id = Convert.ToInt32(db.ExecuteScalar());
+                    }
+                    else
+                    {
+                        db.CommandText = "UPDATE wagon SET(shipload_type = @shipload_type, shipload_weight =  @shipload_weight, wagon_weight = @wagon_weight, in_transit = @in_transit, train_id = @train_id, station_id = @station_id ) WHERE wagon_id = @wagon_id";
+                        db.Parameters.AddWithValue("@wagon_id", this.wagon_id);
+                        db.ExecuteNonQuery();
+                    }
+                    connection.Close();
                 }
-                else
-                {
-                    db.CommandText = "UPDATE wagon SET(shipload_type = @shipload_type, shipload_weight =  @shipload_weight, wagon_weight = @wagon_weight, in_transit = @in_transit, train_id = @train_id, station_id = @station_id ) WHERE wagon_id = @wagon_id";
-                    db.Parameters.AddWithValue("@wagon_id", this.wagon_id);
-                    db.ExecuteNonQuery();
-                }
-                connection.Close();
             }
         }
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "DELETE FROM wagon WHERE wagon_id = @wagon_id";
-            db.Parameters.AddWithValue("@wagon_id", this.wagon_id);
-            db.ExecuteNonQuery();
-            connection.Close();
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+            {
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "DELETE FROM wagon WHERE wagon_id = @wagon_id";
+                db.Parameters.AddWithValue("@wagon_id", this.wagon_id);
+                db.ExecuteNonQuery();
+                connection.Close();
+            }
             this.deleted = true;
             return true;
         }
@@ -70,47 +76,66 @@ namespace Model
         // Static methods
         public static Wagon Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "SELECT * FROM wagon WHERE wagon_id = @wagon_id";
-            db.Parameters.AddWithValue("@wagon_id", id);
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            while (reader.Read())
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
-                string shipload_type = reader.GetString(1);
-                int shipload_weight = reader.GetInt32(2);
-                int wagon_weight = reader.GetInt32(3);
-                int in_transit = reader.GetInt32(4);
-                int train_id = reader.GetInt32(5);
-                int station_id = reader.GetInt32(6);
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT * FROM wagon WHERE wagon_id = @wagon_id";
+                db.Parameters.AddWithValue("@wagon_id", id);
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string shipload_type = reader.GetString(1);
+                        int shipload_weight = reader.GetInt32(2);
+                        int wagon_weight = reader.GetInt32(3);
+                        int in_transit = reader.GetInt32(4);
+                        int train_id = reader.GetInt32(5);
+                        int station_id = reader.GetInt32(6);
 
-                Wagon wagon = new Wagon(shipload_type, shipload_weight, wagon_weight, in_transit, train_id, station_id);
-                wagon.wagon_id = id;
-                return wagon;
+                        Wagon wagon = new Wagon(shipload_type, shipload_weight, wagon_weight, in_transit, train_id, station_id);
+                        wagon.wagon_id = id;
+                        return wagon;
+                    }
+                    reader.Close();
+                }
+                connection.Close();
+                return null;
             }
-            reader.Close();
-            connection.Close();
-            return null;
         }
-
+        public static DataSet All()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+            {
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT wagon_id, shipload_type, shipload_weight, wagon_weight, in_transit, train_id, station_id FROM wagon";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(db);
+                DataSet dataset = new DataSet();
+                adapter.Fill(dataset);
+                return dataset;
+            }
+        }
         // Private methods
         private Boolean CheckIfExists(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "SELECT COUNT(*) FROM wagon WHERE wagon_id = @wagon_id";
-            db.Parameters.AddWithValue("@wagon_id", id);
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            int count = 0;
-            while (reader.Read())
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
-                count = reader.GetInt32(0);
+                connection.Open(); SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT COUNT(*) FROM wagon WHERE wagon_id = @wagon_id";
+                db.Parameters.AddWithValue("@wagon_id", id);
+                int count = 0;
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                }
+                connection.Close();
+                return count > 0;
             }
-            reader.Close();
-            connection.Close();
-            return count > 0;
         }
     }
 }
