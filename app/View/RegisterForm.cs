@@ -44,7 +44,7 @@ namespace View
                     if (information_label.ForeColor == successfullColor)
                         information_label.ForeColor = wrongColor;
 
-                    this.information_label.Text = "Ha ocurrido un problema, contacte a el soporte";
+                    this.information_label.Text = "Ingrese los datos correctamente";
                 }
             } else
             {

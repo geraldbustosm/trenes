@@ -68,9 +68,9 @@
             this.username_label.Location = new System.Drawing.Point(95, 71);
             this.username_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.username_label.Name = "username_label";
-            this.username_label.Size = new System.Drawing.Size(173, 24);
+            this.username_label.Size = new System.Drawing.Size(84, 24);
             this.username_label.TabIndex = 7;
-            this.username_label.Text = "Nombre de usuario";
+            this.username_label.Text = "Nombre ";
             // 
             // email_label
             // 
