@@ -4,9 +4,8 @@ using Helper;
 
 namespace Controller
 {
-    public class UserController
+    public static class UserController
     {
-        public UserController() {}
 
         public static bool Authenticate(string email, string password)
         {
@@ -20,13 +19,13 @@ namespace Controller
 
         public static bool CreateUser(string username, string email, string password, int permission_id)
         {
-            bool isSave = false;
+            bool saved = false;
             if (Validation.IsEmail(email))
             {
                 User user_model = new User(username, email, password, permission_id);
-                isSave = user_model.Save();
+                saved = user_model.Save();
             }
-            return isSave;
+            return saved;
         }
     }
 }
