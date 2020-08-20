@@ -75,8 +75,5 @@ namespace View
                 this.is_password_validated = false;
             }
         }
-
-        //todo: validate email (no debe existir y debe tener el formato correcto)
-        //todo: validate username (no debe existir)
     }
 }

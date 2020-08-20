@@ -14,21 +14,23 @@ namespace Model
 
         public User(string name, string email, string password, int permission_id)
         {
+            this.user_id = 0;
             this.name = name;
             this.email = email;
             this.password = password;
             this.permission_id = permission_id;
             this.deleted = false;
         }
-        public void Save()
+        public bool Save()
         {
+            bool isSave = false;
             if (!this.deleted)
             {
+                Boolean exist = this.CheckIfExists();
                 using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
                 {
                     connection.Open();
                     SQLiteCommand db = new SQLiteCommand(connection);
-                    Boolean exist = this.CheckIfExists();
                     db.Parameters.AddWithValue("@name", this.name);
                     db.Parameters.AddWithValue("@email", this.email);
                     db.Parameters.AddWithValue("@password", this.password);
@@ -38,16 +40,19 @@ namespace Model
                     {
                         db.CommandText = "INSERT INTO user(name, email, password, permission_id) values (@name, @email, @password, @permission_id)";
                         this.user_id = Convert.ToInt32(db.ExecuteScalar());
+                        isSave = true;
                     }
-                    else
+                    else if(this.user_id > 0)
                     {
                         db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password, permission_id = @permission_id) WHERE user_id = @user_id";
                         db.Parameters.AddWithValue("@user_id", this.user_id);
                         db.ExecuteNonQuery();
+                        isSave = true;
                     }
                     connection.Close();
                 }
             }
+            return isSave;
         }
         public Boolean Delete()
         {
@@ -69,44 +74,44 @@ namespace Model
             return this.password == password;
         }
 
-        public static User Find(string username)
+        public static User Find(string email)
         {
+            User user = null;
             using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
                 connection.Open();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                db.CommandText = "SELECT * FROM user WHERE name = @username";
-                db.Parameters.AddWithValue("@username", username);
+                db.CommandText = "SELECT * FROM user WHERE email = @email";
+                db.Parameters.AddWithValue("@email", email);
                 using (SQLiteDataReader reader = db.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         int id = reader.GetInt32(0);
                         string name = reader.GetString(1);
-                        string email = reader.GetString(2);
                         string password = reader.GetString(3);
                         int permission_id = reader.GetInt32(4);
 
-                        User user = new User(name, email, password, permission_id);
+                        user = new User(name, email, password, permission_id);
                         user.user_id = id;
-                        return user;
+                        
                     }
                     reader.Close();
                 }
                 connection.Close();
-                return null;
             }
+            return user;
         }
 
         public Boolean CheckIfExists()
         {
+            int count = 0;
             using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
                 connection.Open();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                db.CommandText = "SELECT COUNT(*) FROM user WHERE user_id = @user_id";
-                db.Parameters.AddWithValue("@user_id", this.user_id);
-                int count = 0;
+                db.CommandText = "SELECT COUNT(*) FROM user WHERE email = @email";
+                db.Parameters.AddWithValue("@email", this.email);
                 using (SQLiteDataReader reader = db.ExecuteReader())
                 {
                     while (reader.Read())
@@ -116,9 +121,8 @@ namespace Model
                     reader.Close();
                 }
                 connection.Close();
-
-                return count > 0;
             }
+            return count > 0;
         }
     }
 }
