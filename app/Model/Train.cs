@@ -18,68 +18,83 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.GetConnection();
-                SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfExists(this.train_id);
-
-                if (!exist)
+                using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
                 {
-                    db.CommandText = "INSERT INTO train(train_id)";
-                    this.train_id = Convert.ToInt32(db.ExecuteScalar());
+                    connection.Open();
+                    SQLiteCommand db = new SQLiteCommand(connection);
+                    Boolean exist = this.CheckIfExists(this.train_id);
+
+                    if (!exist)
+                    {
+                        db.CommandText = "INSERT INTO train(train_id)";
+                        this.train_id = Convert.ToInt32(db.ExecuteScalar());
+                    }
+                    connection.Close();
                 }
-                connection.Close();
             }
         }
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "DELETE FROM train WHERE train_id = @train_id";
-            db.Parameters.AddWithValue("@train_id", this.train_id);
-            db.ExecuteNonQuery();
-            connection.Close();
-            this.deleted = true;
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+            {
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "DELETE FROM train WHERE train_id = @train_id";
+                db.Parameters.AddWithValue("@train_id", this.train_id);
+                db.ExecuteNonQuery();
+                connection.Close();
+                this.deleted = true;
+            }
             return true;
         }
 
         // Static methods
         public static Train Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "SELECT * FROM train WHERE train_id = @train_id";
-            db.Parameters.AddWithValue("@train_id", id);
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            while (reader.Read())
+            Train train = null;
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
-                int train_id = reader.GetInt32(0);
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT * FROM train WHERE train_id = @train_id";
+                db.Parameters.AddWithValue("@train_id", id);
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int train_id = reader.GetInt32(0);
 
-                Train train = new Train();
-                train.train_id = train_id;
-                return train;
+                        train = new Train();
+                        train.train_id = train_id;
+                    }
+                    reader.Close();
+                }
+                connection.Close();
             }
-            reader.Close();
-            connection.Close();
-            return null;
+            return train; ;
         }
 
         // Private methods
-        private Boolean CheckIfExists(int id)
+        private Boolean CheckIfExists()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "SELECT COUNT(*) FROM train WHERE train_id = @train_id";
-            db.Parameters.AddWithValue("@train_id", id);
-            SQLiteDataReader reader = db.ExecuteReader();
-
             int count = 0;
-            while (reader.Read())
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
-                count = reader.GetInt32(0);
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT COUNT(*) FROM train WHERE train_id = @train_id";
+                db.Parameters.AddWithValue("@train_id", this.train_id)
+
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                }
+                connection.Close();
             }
-            reader.Close();
-            connection.Close();
             return count > 0;
         }
     }
