@@ -22,25 +22,27 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.GetConnection();
-                SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfExists(this.travel_id);
-
-                db.Parameters.AddWithValue("@total_time", this.total_time);
-                db.Parameters.AddWithValue("@state", this.state);
-
-                if (!exist)
+                using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
                 {
-                    db.CommandText = "INSERT INTO travel(total_time, state) values (@total_time,@state)";
-                    this.travel_id = Convert.ToInt32(db.ExecuteScalar());
+                    SQLiteCommand db = new SQLiteCommand(connection);
+                    Boolean exist = this.CheckIfExists(this.travel_id);
+
+                    db.Parameters.AddWithValue("@total_time", this.total_time);
+                    db.Parameters.AddWithValue("@state", this.state);
+
+                    if (!exist)
+                    {
+                        db.CommandText = "INSERT INTO travel(total_time, state) values (@total_time,@state)";
+                        this.travel_id = Convert.ToInt32(db.ExecuteScalar());
+                    }
+                    else
+                    {
+                        db.CommandText = "UPDATE travel SET(total_time = @total_time, state = @this.state) WHERE travel_id = @travel_id";
+                        db.Parameters.AddWithValue("@travel_id", this.travel_id);
+                        db.ExecuteNonQuery();
+                    }
+                    connection.Close();
                 }
-                else
-                {
-                    db.CommandText = "UPDATE travel SET(total_time = @total_time, state = @this.state) WHERE travel_id = @travel_id";
-                    db.Parameters.AddWithValue("@travel_id", this.travel_id);
-                    db.ExecuteNonQuery();
-                }
-                connection.Close();
             }
         }
         public Boolean Delete()
