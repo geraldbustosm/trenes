@@ -14,14 +14,16 @@ namespace Model
 
         public User(string name, string email, string password, int permission_id)
         {
+            this.user_id = 0;
             this.name = name;
             this.email = email;
             this.password = password;
             this.permission_id = permission_id;
             this.deleted = false;
         }
-        public void Save()
+        public bool Save()
         {
+            bool isSave = false;
             if (!this.deleted)
             {
                 Boolean exist = this.CheckIfExists();
@@ -38,16 +40,19 @@ namespace Model
                     {
                         db.CommandText = "INSERT INTO user(name, email, password, permission_id) values (@name, @email, @password, @permission_id)";
                         this.user_id = Convert.ToInt32(db.ExecuteScalar());
+                        isSave = true;
                     }
-                    else
+                    else if(this.user_id > 0)
                     {
                         db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password, permission_id = @permission_id) WHERE user_id = @user_id";
                         db.Parameters.AddWithValue("@user_id", this.user_id);
                         db.ExecuteNonQuery();
+                        isSave = true;
                     }
                     connection.Close();
                 }
             }
+            return isSave;
         }
         public Boolean Delete()
         {

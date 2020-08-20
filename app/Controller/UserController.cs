@@ -20,12 +20,13 @@ namespace Controller
 
         public static bool CreateUser(string username, string email, string password, int permission_id)
         {
+            bool isSave = false;
             if (Validation.IsEmail(email))
             {
                 User user_model = new User(username, email, password, permission_id);
-                if (!user_model.CheckIfExists()) { user_model.Save(); return true; }
+                isSave = user_model.Save();
             }
-            return false;
+            return isSave;
         }
     }
 }
