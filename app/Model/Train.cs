@@ -22,7 +22,7 @@ namespace Model
                 {
                     connection.Open();
                     SQLiteCommand db = new SQLiteCommand(connection);
-                    Boolean exist = this.CheckIfExists(this.train_id);
+                    Boolean exist = this.CheckIfExists();
 
                     if (!exist)
                     {
@@ -83,7 +83,7 @@ namespace Model
                 connection.Open();
                 SQLiteCommand db = new SQLiteCommand(connection);
                 db.CommandText = "SELECT COUNT(*) FROM train WHERE train_id = @train_id";
-                db.Parameters.AddWithValue("@train_id", this.train_id)
+                db.Parameters.AddWithValue("@train_id", this.train_id);
 
                 using (SQLiteDataReader reader = db.ExecuteReader())
                 {
