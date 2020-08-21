@@ -69,11 +69,6 @@ namespace Model
             }
         }
 
-        public Boolean ValidatePassword(string password)
-        {
-            return this.password == password;
-        }
-
         public static User Find(string email)
         {
             User user = null;
