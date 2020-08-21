@@ -40,10 +40,6 @@
             this.comboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.codigo_estacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_estacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.capacidad_estacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.editar_estacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,9 +50,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label2.Location = new System.Drawing.Point(71, 58);
+            this.label2.Location = new System.Drawing.Point(106, 89);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 18);
+            this.label2.Size = new System.Drawing.Size(90, 26);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nombre";
             // 
@@ -67,9 +64,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label3.Location = new System.Drawing.Point(71, 88);
+            this.label3.Location = new System.Drawing.Point(106, 135);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 18);
+            this.label3.Size = new System.Drawing.Size(116, 26);
             this.label3.TabIndex = 2;
             this.label3.Text = "Capacidad";
             // 
@@ -80,9 +78,10 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(450, 516);
+            this.btnSave.Location = new System.Drawing.Point(655, 648);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(123, 41);
+            this.btnSave.Size = new System.Drawing.Size(184, 63);
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Guardar";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -95,9 +94,10 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(616, 516);
+            this.btnCancel.Location = new System.Drawing.Point(901, 606);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(123, 41);
+            this.btnCancel.Size = new System.Drawing.Size(184, 63);
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -109,9 +109,10 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(74, 202);
+            this.btnAdd.Location = new System.Drawing.Point(111, 311);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(123, 41);
+            this.btnAdd.Size = new System.Drawing.Size(184, 63);
             this.btnAdd.TabIndex = 11;
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -122,10 +123,9 @@
             this.inputCapacity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputCapacity.Location = new System.Drawing.Point(555, 88);
-            this.inputCapacity.Margin = new System.Windows.Forms.Padding(2);
+            this.inputCapacity.Location = new System.Drawing.Point(832, 135);
             this.inputCapacity.Name = "inputCapacity";
-            this.inputCapacity.Size = new System.Drawing.Size(186, 20);
+            this.inputCapacity.Size = new System.Drawing.Size(277, 26);
             this.inputCapacity.TabIndex = 13;
             // 
             // inputName
@@ -133,10 +133,9 @@
             this.inputName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputName.Location = new System.Drawing.Point(555, 58);
-            this.inputName.Margin = new System.Windows.Forms.Padding(2);
+            this.inputName.Location = new System.Drawing.Point(832, 89);
             this.inputName.Name = "inputName";
-            this.inputName.Size = new System.Drawing.Size(186, 20);
+            this.inputName.Size = new System.Drawing.Size(277, 26);
             this.inputName.TabIndex = 14;
             // 
             // comboBox
@@ -145,10 +144,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(555, 152);
-            this.comboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox.Location = new System.Drawing.Point(832, 234);
             this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(186, 21);
+            this.comboBox.Size = new System.Drawing.Size(277, 28);
             this.comboBox.TabIndex = 15;
             // 
             // label1
@@ -158,9 +156,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label1.Location = new System.Drawing.Point(71, 152);
+            this.label1.Location = new System.Drawing.Point(106, 234);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(222, 18);
+            this.label1.Size = new System.Drawing.Size(323, 26);
             this.label1.TabIndex = 16;
             this.label1.Text = "Seleccione estaciones cercanas";
             // 
@@ -187,11 +186,6 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codigo_estacion,
-            this.nombre_estacion,
-            this.capacidad_estacion,
-            this.editar_estacion});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -201,52 +195,23 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView.EnableHeadersVisualStyles = false;
-            this.dataGridView.Location = new System.Drawing.Point(71, 271);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView.Location = new System.Drawing.Point(106, 417);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersVisible = false;
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(665, 224);
+            this.dataGridView.Size = new System.Drawing.Size(998, 164);
             this.dataGridView.TabIndex = 17;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
-            // codigo_estacion
-            // 
-            this.codigo_estacion.HeaderText = "Código";
-            this.codigo_estacion.MinimumWidth = 6;
-            this.codigo_estacion.Name = "codigo_estacion";
-            this.codigo_estacion.ReadOnly = true;
-            // 
-            // nombre_estacion
-            // 
-            this.nombre_estacion.HeaderText = "Nombre";
-            this.nombre_estacion.MinimumWidth = 6;
-            this.nombre_estacion.Name = "nombre_estacion";
-            this.nombre_estacion.ReadOnly = true;
-            // 
-            // capacidad_estacion
-            // 
-            this.capacidad_estacion.HeaderText = "Capacidad";
-            this.capacidad_estacion.MinimumWidth = 6;
-            this.capacidad_estacion.Name = "capacidad_estacion";
-            this.capacidad_estacion.ReadOnly = true;
-            // 
-            // editar_estacion
-            // 
-            this.editar_estacion.HeaderText = "Acción";
-            this.editar_estacion.MinimumWidth = 6;
-            this.editar_estacion.Name = "editar_estacion";
-            this.editar_estacion.ReadOnly = true;
-            // 
             // AddStationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(805, 586);
+            this.ClientSize = new System.Drawing.Size(1208, 902);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox);
@@ -259,6 +224,7 @@
             this.Controls.Add(this.label2);
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AddStationForm";
             this.Text = "AddStationForm";
             this.Load += new System.EventHandler(this.AddStationForm_Load);
@@ -279,9 +245,5 @@
         private System.Windows.Forms.ComboBox comboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigo_estacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_estacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn capacidad_estacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn editar_estacion;
     }
 }

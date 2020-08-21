@@ -24,6 +24,7 @@ namespace View
         {
             Clear();
             this.stationController.Clear();
+            this.stationController.FeedDataGridView(dataGridView);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -43,6 +44,8 @@ namespace View
                     stationController.Insert(this.name, this.capacity);
                     this.stationController.Clear();
                     Clear();
+                    StationController.FeedComboBox(comboBox);
+
                 }
             }
             else
