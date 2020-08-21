@@ -160,34 +160,34 @@
             this.dataGridView.Size = new System.Drawing.Size(428, 139);
             this.dataGridView.TabIndex = 17;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
-            // 
-            // codigo_estacion
-            // 
-            this.codigo_estacion.HeaderText = "Código";
-            this.codigo_estacion.MinimumWidth = 6;
-            this.codigo_estacion.Name = "codigo_estacion";
-            this.codigo_estacion.ReadOnly = true;
-            // 
-            // nombre_estacion
-            // 
-            this.nombre_estacion.HeaderText = "Nombre";
-            this.nombre_estacion.MinimumWidth = 6;
-            this.nombre_estacion.Name = "nombre_estacion";
-            this.nombre_estacion.ReadOnly = true;
-            // 
-            // capacidad_estacion
-            // 
-            this.capacidad_estacion.HeaderText = "Capacidad";
-            this.capacidad_estacion.MinimumWidth = 6;
-            this.capacidad_estacion.Name = "capacidad_estacion";
-            this.capacidad_estacion.ReadOnly = true;
-            // 
-            // editar_estacion
-            // 
-            this.editar_estacion.HeaderText = "Acción";
-            this.editar_estacion.MinimumWidth = 6;
-            this.editar_estacion.Name = "editar_estacion";
-            this.editar_estacion.ReadOnly = true;
+            // // 
+            // // codigo_estacion
+            // // 
+            // this.codigo_estacion.HeaderText = "Código";
+            // this.codigo_estacion.MinimumWidth = 6;
+            // this.codigo_estacion.Name = "codigo_estacion";
+            // this.codigo_estacion.ReadOnly = true;
+            // // 
+            // // nombre_estacion
+            // // 
+            // this.nombre_estacion.HeaderText = "Nombre";
+            // this.nombre_estacion.MinimumWidth = 6;
+            // this.nombre_estacion.Name = "nombre_estacion";
+            // this.nombre_estacion.ReadOnly = true;
+            // // 
+            // // capacidad_estacion
+            // // 
+            // this.capacidad_estacion.HeaderText = "Capacidad";
+            // this.capacidad_estacion.MinimumWidth = 6;
+            // this.capacidad_estacion.Name = "capacidad_estacion";
+            // this.capacidad_estacion.ReadOnly = true;
+            // // 
+            // // editar_estacion
+            // // 
+            // this.editar_estacion.HeaderText = "Acción";
+            // this.editar_estacion.MinimumWidth = 6;
+            // this.editar_estacion.Name = "editar_estacion";
+            // this.editar_estacion.ReadOnly = true;
             // 
             // AddStationForm
             // 
