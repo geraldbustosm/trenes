@@ -32,7 +32,7 @@
             this.labelUser = new System.Windows.Forms.Label();
             this.labelPassword = new System.Windows.Forms.Label();
             this.imgLogo = new System.Windows.Forms.PictureBox();
-            this.inputUser = new System.Windows.Forms.TextBox();
+            this.inputEmail = new System.Windows.Forms.TextBox();
             this.inputPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.errorLabel = new System.Windows.Forms.Label();
@@ -46,9 +46,9 @@
             this.labelUser.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelUser.Location = new System.Drawing.Point(189, 326);
             this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(173, 24);
+            this.labelUser.Size = new System.Drawing.Size(166, 24);
             this.labelUser.TabIndex = 0;
-            this.labelUser.Text = "Nombre de usuario";
+            this.labelUser.Text = "Correo electrónico";
             // 
             // labelPassword
             // 
@@ -71,12 +71,12 @@
             this.imgLogo.TabIndex = 2;
             this.imgLogo.TabStop = false;
             // 
-            // inputUser
+            // inputEmail
             // 
-            this.inputUser.Location = new System.Drawing.Point(385, 326);
-            this.inputUser.Name = "inputUser";
-            this.inputUser.Size = new System.Drawing.Size(140, 22);
-            this.inputUser.TabIndex = 3;
+            this.inputEmail.Location = new System.Drawing.Point(385, 326);
+            this.inputEmail.Name = "inputEmail";
+            this.inputEmail.Size = new System.Drawing.Size(140, 22);
+            this.inputEmail.TabIndex = 3;
             // 
             // inputPassword
             // 
@@ -105,15 +105,17 @@
             this.errorLabel.AutoSize = true;
             this.errorLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.errorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(28)))), ((int)(((byte)(36)))));
             this.errorLabel.Location = new System.Drawing.Point(245, 468);
             this.errorLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(230, 18);
+            this.errorLabel.Size = new System.Drawing.Size(228, 18);
             this.errorLabel.TabIndex = 8;
-            this.errorLabel.Text = "No se encontraron coincidencias.";
+            this.errorLabel.Text = "Correo y/o contraseña incorrecto";
             // 
             // LoginForm
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
@@ -121,7 +123,7 @@
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.inputPassword);
-            this.Controls.Add(this.inputUser);
+            this.Controls.Add(this.inputEmail);
             this.Controls.Add(this.imgLogo);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelUser);
@@ -140,7 +142,7 @@
         private System.Windows.Forms.Label labelUser;
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.PictureBox imgLogo;
-        private System.Windows.Forms.TextBox inputUser;
+        private System.Windows.Forms.TextBox inputEmail;
         private System.Windows.Forms.TextBox inputPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label errorLabel;

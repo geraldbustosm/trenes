@@ -9,50 +9,64 @@ namespace Model
         public string name { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+        public int permission_id { get; set; }
         private Boolean deleted;
 
-        public User(string name, string email, string password)
+        public User(string name, string email, string password, int permission_id)
         {
+            this.user_id = 0;
             this.name = name;
             this.email = email;
             this.password = password;
+            this.permission_id = permission_id;
             this.deleted = false;
         }
-        public void Save()
+        public bool Save()
         {
+            bool saved = false;
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.GetConnection();
-                SQLiteCommand db = new SQLiteCommand(connection);
                 Boolean exist = this.CheckIfExists();
-                db.Parameters.AddWithValue("@name", this.name);
-                db.Parameters.AddWithValue("@email", this.email);
-                db.Parameters.AddWithValue("@password", this.password);
+                using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+                {
+                    connection.Open();
+                    SQLiteCommand db = new SQLiteCommand(connection);
+                    db.Parameters.AddWithValue("@name", this.name);
+                    db.Parameters.AddWithValue("@email", this.email);
+                    db.Parameters.AddWithValue("@password", this.password);
+                    db.Parameters.AddWithValue("@permission_id", this.permission_id);
 
-                if (!exist)
-                {
-                    db.CommandText = "INSERT INTO user(name, email, password) values (@name, @email, @password)";
-                    this.user_id = Convert.ToInt32(db.ExecuteScalar());
+                    if (!exist)
+                    {
+                        db.CommandText = "INSERT INTO user(name, email, password, permission_id) values (@name, @email, @password, @permission_id)";
+                        this.user_id = Convert.ToInt32(db.ExecuteScalar());
+                        saved = true;
+                    }
+                    else if(this.user_id > 0)
+                    {
+                        db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password, permission_id = @permission_id) WHERE user_id = @user_id";
+                        db.Parameters.AddWithValue("@user_id", this.user_id);
+                        db.ExecuteNonQuery();
+                        saved = true;
+                    }
+                    connection.Close();
                 }
-                else
-                {
-                    db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password) WHERE user_id = @user_id";
-                    db.Parameters.AddWithValue("@user_id", this.user_id);
-                    db.ExecuteNonQuery();
-                }
-                connection.Close();
             }
+            return saved;
         }
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "DELETE FROM user WHERE user_id = @user_id";
-            db.Parameters.AddWithValue("@user_id", this.user_id);
-            db.ExecuteNonQuery();
-            connection.Close();
-            this.deleted = true;
-            return true;
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+            {
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "DELETE FROM user WHERE user_id = @user_id";
+                db.Parameters.AddWithValue("@user_id", this.user_id);
+                db.ExecuteNonQuery();
+                connection.Close();
+                this.deleted = true;
+                return true;
+            }
         }
 
         public Boolean ValidatePassword(string password)
@@ -60,50 +74,54 @@ namespace Model
             return this.password == password;
         }
 
-        public static User Find(string username)
+        public static User Find(string email)
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "SELECT * FROM user WHERE name = @username";
-            db.Parameters.AddWithValue("@username", username);
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            User user;
-
-            while (reader.Read())
+            User user = null;
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
-                int id = reader.GetInt32(0);
-                string name = reader.GetString(1);
-                string email = reader.GetString(2);
-                string password = reader.GetString(3);
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT * FROM user WHERE email = @email";
+                db.Parameters.AddWithValue("@email", email);
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        string name = reader.GetString(1);
+                        string password = reader.GetString(3);
+                        int permission_id = reader.GetInt32(4);
 
-                user = new User(name, email, password);
-                user.user_id = id;
-                reader.Close();
+                        user = new User(name, email, password, permission_id);
+                        user.user_id = id;
+                        
+                    }
+                    reader.Close();
+                }
                 connection.Close();
-                return user;
             }
-
-            connection.Close();
-            return null;
+            return user;
         }
 
-        public Boolean CheckIfExists()
+        private Boolean CheckIfExists()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "SELECT COUNT(*) FROM user WHERE user_id = @user_id";
-            db.Parameters.AddWithValue("@user_id", this.user_id);
-            SQLiteDataReader reader = db.ExecuteReader();
-            
             int count = 0;
-            while (reader.Read())
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
-                count = reader.GetInt32(0);
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT COUNT(*) FROM user WHERE email = @email";
+                db.Parameters.AddWithValue("@email", this.email);
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                }
+                connection.Close();
             }
-            reader.Close();
-            connection.Close();
-
             return count > 0;
         }
     }

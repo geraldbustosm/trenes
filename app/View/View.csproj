@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.0\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.0\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.3.3.0\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.3.3.0\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.3.3.0\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.3.3.0\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.3.3.0\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.3.3.0\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.0\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.0\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -110,11 +115,29 @@
     <Compile Include="AddLocomotiveForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddScheduledTravelForm.cs">
+    <Compile Include="AddTravelSectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddScheduledTravelForm.Designer.cs">
-      <DependentUpon>AddScheduledTravelForm.cs</DependentUpon>
+    <Compile Include="AddTravelSectionForm.Designer.cs">
+      <DependentUpon>AddTravelSectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListStationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListStationsForm.Designer.cs">
+      <DependentUpon>ListStationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListUsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListUsersForm.Designer.cs">
+      <DependentUpon>ListUsersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScheduledTravelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScheduledTravelForm.Designer.cs">
+      <DependentUpon>ScheduledTravelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddWagonForm.cs">
       <SubType>Form</SubType>
@@ -131,17 +154,17 @@
     <Compile Include="AddWagonForm.Designer.cs">
       <DependentUpon>AddWagonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InTransitTravelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InTransitTravelForm.Designer.cs">
+      <DependentUpon>InTransitTravelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HomeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HomeForm.Designer.cs">
-      <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LayoutForm.cs">
       <SubType>Form</SubType>
@@ -163,17 +186,26 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShowWagonsForm.cs">
+    <Compile Include="TravelDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShowWagonsForm.Designer.cs">
-      <DependentUpon>ShowWagonsForm.cs</DependentUpon>
+    <Compile Include="TravelDetailsForm.Designer.cs">
+      <DependentUpon>TravelDetailsForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddLocomotiveForm.resx">
       <DependentUpon>AddLocomotiveForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddScheduledTravelForm.resx">
-      <DependentUpon>AddScheduledTravelForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddTravelSectionForm.resx">
+      <DependentUpon>AddTravelSectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListStationsForm.resx">
+      <DependentUpon>ListStationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListUsersForm.resx">
+      <DependentUpon>ListUsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScheduledTravelForm.resx">
+      <DependentUpon>ScheduledTravelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddStationForm.resx">
       <DependentUpon>AddStationForm.cs</DependentUpon>
@@ -181,8 +213,8 @@
     <EmbeddedResource Include="AddWagonForm.resx">
       <DependentUpon>AddWagonForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HomeForm.resx">
-      <DependentUpon>HomeForm.cs</DependentUpon>
+    <EmbeddedResource Include="InTransitTravelForm.resx">
+      <DependentUpon>InTransitTravelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LayoutForm.resx">
       <DependentUpon>LayoutForm.cs</DependentUpon>
@@ -205,8 +237,8 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShowWagonsForm.resx">
-      <DependentUpon>ShowWagonsForm.cs</DependentUpon>
+    <EmbeddedResource Include="TravelDetailsForm.resx">
+      <DependentUpon>TravelDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -231,6 +263,21 @@
       <Project>{0e73de84-46e1-4ca7-bf30-e23cf7408332}</Project>
       <Name>Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{99aa831d-3a0b-43c2-a87d-388b7edf5dbc}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.0\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.3.3.0\analyzers\dotnet\cs\Humanizer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets')" />
@@ -239,5 +286,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.0\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.0\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.3.3.0\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.3.3.0\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.3.3.0\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.3.3.0\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.3.3.0\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.3.3.0\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.0\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.0\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
   </Target>
 </Project>

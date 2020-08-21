@@ -1,42 +1,31 @@
 ﻿using System;
 using Model;
+using Helper;
 
 namespace Controller
 {
-    public class UserController
+    public static class UserController
     {
-        public UserController() {}
 
-        public static bool Authenticate(string username, string password)
+        public static bool Authenticate(string email, string password)
         {
-            try
+            if (Validation.IsEmail(email))
             {
-                User user_model = User.Find(username);
+                User user_model = User.Find(email);
                 if (user_model != null) return user_model.ValidatePassword(password);
             }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
             return false;
         }
 
-        public static bool CreateUser(string username, string email, string password)
+        public static bool CreateUser(string username, string email, string password, int permission_id)
         {
-            try
+            bool saved = false;
+            if (Validation.IsEmail(email))
             {
-                User user_model = new User(username, email, password);
-                if (user_model.CheckIfExists()) throw new Exception("El usuario ya existe en la base de datos!");
-                user_model.Save();
-                return true;
+                User user_model = new User(username, email, password, permission_id);
+                saved = user_model.Save();
             }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            return false;
+            return saved;
         }
     }
 }

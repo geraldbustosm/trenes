@@ -24,7 +24,7 @@ CREATE TABLE locomotive (
     train_id INTEGER DEFAULT NULL,
     station_id INTEGER DEFAULT 0,
     FOREIGN KEY (train_id) REFERENCES train (train_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (station_id) REFERENCES statin (station_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (station_id) REFERENCES station (station_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE wagon (
@@ -78,15 +78,20 @@ CREATE TABLE user (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     email TEXT NOT NULL,
-    password TEXT NOT NULL
+    password TEXT NOT NULL,
+    permission_id INTEGER NOT NULL,
+    FOREIGN KEY (permission_id) REFERENCES permission (permission_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE permission (
     permission_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    permission_name TEXT NOT NULL,
-    user_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE ON UPDATE CASCADE
+    permission_name TEXT NOT NULL
 );
+
+INSERT INTO train (train_id) 
+VALUES 
+    (1),
+    (2);
 
 INSERT INTO station (name, capacity) 
 VALUES
@@ -109,14 +114,9 @@ VALUES
 
 INSERT INTO locomotive (model, tons_drag, in_transit, station_id) 
 VALUES 
-    ('Volvo', 5, 0, 1),
-    ('NewJersi"', 6, 0, 1),
-    ('Kokimbo', 5, 0, 1),
-    ('ElSereni', 5, 0, 1),
-    ('Ross', 6, 0, 2),
-    ('UcnParo', 5, 0, 3),
-    ('Cristobal', 5, 0, 3),
-    ('Felipe', 6, 0, 3);
+    ('Volvo',5, 1, 1),
+    ('New Jersey',1, 1, 1),
+    ('Coquimbo',1, 1, 1);
 
 INSERT INTO wagon (wagon_weight, in_transit, station_id) 
 VALUES 
@@ -136,4 +136,10 @@ VALUES
     ('pop locomotive', 30),
     ('download wagon', 20);
 
-INSERT INTO user (name, email, password) VALUES ('admin', 'admin@admin.cl', '1234');
+INSERT INTO permission (permission_name) 
+VALUES
+    ('Administrador'),
+    ('Operador'),
+    ('Invitado');
+
+INSERT INTO user (name, email, password, permission_id) VALUES ('admin', 'admin@admin.cl', '1234', 1);

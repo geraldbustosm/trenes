@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
@@ -43,6 +45,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label2.Location = new System.Drawing.Point(168, 115);
@@ -53,6 +58,9 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label3.Location = new System.Drawing.Point(168, 145);
@@ -77,7 +85,8 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(227)))), ((int)(((byte)(209)))));
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(24)))), ((int)(((byte)(79)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.button2.Location = new System.Drawing.Point(476, 471);
@@ -129,6 +138,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label1.Location = new System.Drawing.Point(168, 202);
@@ -148,6 +160,34 @@
             this.dataGridView.Size = new System.Drawing.Size(428, 139);
             this.dataGridView.TabIndex = 17;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
+            // 
+            // codigo_estacion
+            // 
+            this.codigo_estacion.HeaderText = "Código";
+            this.codigo_estacion.MinimumWidth = 6;
+            this.codigo_estacion.Name = "codigo_estacion";
+            this.codigo_estacion.ReadOnly = true;
+            // 
+            // nombre_estacion
+            // 
+            this.nombre_estacion.HeaderText = "Nombre";
+            this.nombre_estacion.MinimumWidth = 6;
+            this.nombre_estacion.Name = "nombre_estacion";
+            this.nombre_estacion.ReadOnly = true;
+            // 
+            // capacidad_estacion
+            // 
+            this.capacidad_estacion.HeaderText = "Capacidad";
+            this.capacidad_estacion.MinimumWidth = 6;
+            this.capacidad_estacion.Name = "capacidad_estacion";
+            this.capacidad_estacion.ReadOnly = true;
+            // 
+            // editar_estacion
+            // 
+            this.editar_estacion.HeaderText = "Acción";
+            this.editar_estacion.MinimumWidth = 6;
+            this.editar_estacion.Name = "editar_estacion";
+            this.editar_estacion.ReadOnly = true;
             // 
             // AddStationForm
             // 
