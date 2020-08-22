@@ -21,7 +21,7 @@ namespace View
             this.drag_capacity = this.inputDrag_capacity.Text;
             if (this.model != null && this.drag_capacity != null)
             {
-                if (LocomotiveController.IsNumber(this.drag_capacity))
+                if (LocomotiveController.IsNumberCapacity(this.drag_capacity))
                 {
                     locomotiveController.AddLocomotive(comboBox, this.model, this.drag_capacity);
                     locomotiveController.FeedDataGrid(dataGridView);

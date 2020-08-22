@@ -7,14 +7,14 @@ namespace Controller
 {
     public class LocomotiveController
     {
-        private List<Locomotive> listLocomotive;
+        private List<Locomotive> list_locomotive;
         public LocomotiveController()
         {
-            this.listLocomotive = new List<Locomotive>();
+            this.list_locomotive = new List<Locomotive>();
         }
         public void FeedDataGrid(DataGridView dataGridView)
         {
-            var source = new BindingSource(this.listLocomotive, null);
+            var source = new BindingSource(this.list_locomotive, null);
             dataGridView.DataSource = source;
         }
         public void AddLocomotive(ComboBox comboBox, string model, string drag_capacity)
@@ -22,17 +22,17 @@ namespace Controller
             int station_id = Convert.ToInt32(comboBox.SelectedValue);
             int tons_drag = Convert.ToInt32(drag_capacity);
             Locomotive locomotive = new Locomotive(model, tons_drag, station_id);
-            this.listLocomotive.Add(locomotive);
+            this.list_locomotive.Add(locomotive);
         }
         public void Clear()
         {
-            this.listLocomotive.Clear();
+            this.list_locomotive.Clear();
         }
         public bool Insert()
         {
             try
             {
-                foreach (Locomotive one in this.listLocomotive)
+                foreach (Locomotive one in this.list_locomotive)
                 {
                     one.Save();
                 }
@@ -49,12 +49,12 @@ namespace Controller
         public void DeleteLocomotive(string res)
         {
             int id = Convert.ToInt32(res);
-            Locomotive result = this.listLocomotive.Find(delegate (Locomotive l) {
+            Locomotive result = this.list_locomotive.Find(delegate (Locomotive l) {
                 return l.locomotive_id == id;
             });
-            this.listLocomotive.Remove(result);
+            this.list_locomotive.Remove(result);
         }
-        public static bool IsNumber(string drag_capacity)
+        public static bool IsNumberCapacity(string drag_capacity)
         {
             try
             {
