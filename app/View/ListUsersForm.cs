@@ -17,13 +17,12 @@ namespace View
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int column_index = e.ColumnIndex;
             int id = Int32.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
 
-            if(column_index == 0) // edit
+            if(e.ColumnIndex == 0) // edit
             {
                 this.layout_form.changeLayout(new EditUserForm(this.layout_form, id));
-            }else if(column_index == 1) // delete
+            }else if(e.ColumnIndex == 1) // delete
             {
                 if (this.layout_form.auth.user_id == id)
                 {

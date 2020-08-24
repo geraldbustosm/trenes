@@ -38,7 +38,7 @@ namespace Controller
             User user = User.Find(id);
             user.name = username;
             user.email = email;
-            user.password = password;
+            user.password = hashing_password;
             user.permission_id = permission_id;
             return user.Save();
         }
