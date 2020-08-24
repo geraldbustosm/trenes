@@ -104,18 +104,13 @@ namespace Controller
 
         public bool AddNewSectionToTravel(string arrival_time, int travel_id, int origin_station_id, int destination_station_id)
         {
-
-
             // priority means the order of sections in travel
 
             // store
-
 
             // cont for store actions
             this.section_cont++;
             return true;
         }
-
-        
     }
 }
