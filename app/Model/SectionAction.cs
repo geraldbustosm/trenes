@@ -25,97 +25,96 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.GetConnection();
-                SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfExist(this.section_action_id);
-
-                db.Parameters.AddWithValue("@action_id", this.action_id);
-                db.Parameters.AddWithValue("@travel_section_id", this.travel_section_id);
-                db.Parameters.AddWithValue("@locomotive_id", this.locomotive_id);
-                db.Parameters.AddWithValue("@wagon_id", this.wagon_id);
-
-                if (!exist)
+                using (SQLiteConnection conn = DatabaseUtility.GetConnection())
                 {
-                    db.CommandText = "INSERT INTO section_action (action_id, travel_section_id, locomotive_id, wagon_id) values ( @action_id, @travel_section_id, @locomotive_id, @wagon_id )";
+                    using (SQLiteCommand command = new SQLiteCommand(conn))
+                    {
+                        command.Parameters.AddWithValue("@action_id", this.action_id);
+                        command.Parameters.AddWithValue("@travel_section_id", this.travel_section_id);
+                        command.Parameters.AddWithValue("@locomotive_id", this.locomotive_id);
+                        command.Parameters.AddWithValue("@wagon_id", this.wagon_id);
 
-                    this.section_action_id = Convert.ToInt32(db.ExecuteScalar());
+                        if (!this.CheckIfExists())
+                        {
+                            command.CommandText = "INSERT INTO section_action (action_id,travel_section_id,locomotive_id,wagon_id) VALUES ( @action_id, @travel_section_id, @locomotive_id, @wagon_id )";
+                            this.section_action_id = Convert.ToInt32(command.ExecuteScalar());
+                        }
+                        else
+                        {
+                            command.CommandText = "UPDATE section_action SET (action_id= @action_id,travel_section_id= @travel_section_id,locomotive_id= @locomotive_id,wagon_id= @wagon_id) WHERE section_action_id = @section_action_id";
+                            command.Parameters.AddWithValue("@section_action_id", this.section_action_id);
+                            command.ExecuteNonQuery();
+                        }
+                    }
                 }
-                else
-                {
-                    db.CommandText = "UPDATE section_action SET ( action_id = @action_id, travel_section_id = @travel_section_id, locomotive_id = @locomotive_id, wagon_id = @wagon_id ) WHERE section_action_id = @section_action_id";
-                    db.Parameters.AddWithValue("@section_action_id", this.section_action_id);
-                    db.ExecuteNonQuery();
-                }
-                connection.Close();
             }
         }
 
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-
-            db.CommandText = "DELETE FROM section_action WHERE sectionAction_id = @sectionAction_id";
-            db.Parameters.AddWithValue("@section_action_id", this.section_action_id);
-
-            db.ExecuteNonQuery();
-
-            connection.Close();
-
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "DELETE FROM section_action WHERE section_action_id = @section_action_id";
+                    command.Parameters.AddWithValue("@section_action_id", this.section_action_id);
+                    command.ExecuteNonQuery();
+                }
+            }
             this.deleted = true;
             return true;
         }
 
         // Static Methods
-        public static SectionAction Find(int sectionAction_id)
+
+        public static SectionAction Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-
-            db.CommandText = "SELECT * FROM section_action WHERE sectionAction_id = @sectionAction_id";
-            db.Parameters.AddWithValue("@section_action_id", sectionAction_id);
-
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            while (reader.Read())
+            SectionAction sectionAction = null;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM section_action WHERE section_action_id = @section_action_id";
+                    command.Parameters.AddWithValue("@section_action_id", id);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int action_id = reader.GetInt32(1);
+                            int travel_section_id = reader.GetInt32(2);
+                            int locomotive_id = reader.GetInt32(3);
+                            int wagon_id = reader.GetInt32(4);
 
-                int action_id = reader.GetInt32(1);
-                int travel_section_id = reader.GetInt32(2);
-                int locomotive_id = reader.GetInt32(3);
-                int wagon_id = reader.GetInt32(4);
-
-                SectionAction sectionAction = new SectionAction(action_id, travel_section_id, locomotive_id, wagon_id);
-                sectionAction.section_action_id = sectionAction_id;
-                return sectionAction;
+                            sectionAction = new SectionAction(action_id, travel_section_id, locomotive_id, wagon_id);
+                            sectionAction.section_action_id = id;
+                        }
+                    }
+                }
             }
-
-            reader.Close();
-            connection.Close();
-            return null;
+            return sectionAction ?? null;
         }
 
         // Private Methods
 
-        private Boolean CheckIfExist(int sectionAction_id)
+        private Boolean CheckIfExists()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-
-            db.CommandText = "SELECT COUNT(*) FROM section_action WHERE sectionAction_id = @sectionAction_id";
-            db.Parameters.AddWithValue("@section_action_id", sectionAction_id);
-
-            SQLiteDataReader reader = db.ExecuteReader();
-
             int count = 0;
-            while (reader.Read())
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
-                count = reader.GetInt32(0);
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT COUNT(*) FROM section_action WHERE section_action_id = @section_action_id";
+                    command.Parameters.AddWithValue("@section_action_id", this.section_action_id);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            count = reader.GetInt32(0);
+                        }
+                    }
+                }
             }
-
-            reader.Close();
-            connection.Close();
-            if (count > 0) { return true; } else { return false; }
+            return count > 0;
         }
 
     }

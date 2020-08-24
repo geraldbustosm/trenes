@@ -28,92 +28,97 @@ namespace Model
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.GetConnection();
-                SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfExist(this.travel_section_id);
-
-                db.Parameters.AddWithValue("@arrival_time", this.arrival_time);
-                db.Parameters.AddWithValue("@travel_id", this.travel_id);
-                db.Parameters.AddWithValue("@priority", this.priority);
-                db.Parameters.AddWithValue("@origin_station_id", this.origin_station_id);
-                db.Parameters.AddWithValue("@destination_station_id", this.destination_station_id);
-
-                if (!exist)
+                using (SQLiteConnection conn = DatabaseUtility.GetConnection())
                 {
-                    db.CommandText = "INSERT INTO travel_section( arrival_time, travel_id, priority, action, origin_station_id, destination_station_id) values (@arrival_time, @travel_id, @priority, @origin_station_id, @destination_station_id )";
+                    using (SQLiteCommand command = new SQLiteCommand(conn))
+                    {
+                        command.Parameters.AddWithValue("@arrival_time", this.arrival_time);
+                        command.Parameters.AddWithValue("@priority", this.priority);
+                        command.Parameters.AddWithValue("@travel_id", this.travel_id);
+                        command.Parameters.AddWithValue("@origin_station_id", this.origin_station_id);
+                        command.Parameters.AddWithValue("@destination_station_id", this.destination_station_id);
 
-                    this.travel_section_id = Convert.ToInt32(db.ExecuteScalar());
+                        if (!this.CheckIfExists())
+                        {
+                            command.CommandText = "INSERT INTO travel_section(arrival_time,priority,travel_id,origin_station_id,destination_station_id) VALUES (@arrival_time, @priority, @travel_id, @origin_station_id, @destination_station_id )";
+                            this.travel_section_id = Convert.ToInt32(command.ExecuteScalar());
+                        }
+                        else
+                        {
+                            command.CommandText = "UPDATE travel_section SET (arrival_time= @arrival_time,priority= @priority,travel_id= @travel_id,origin_station_id= @origin_station_id,destination_station_id= @destination_station_id) WHERE travel_section_id = @travel_section_id";
+                            command.Parameters.AddWithValue("@travel_section_id", this.travel_section_id);
+                            command.ExecuteNonQuery();
+                        }
+                    }
                 }
-                else
-                {
-                    db.CommandText = "UPDATE travel_section SET ( arrival_time = @arrival_time, travel_id = @travel_id, priority = @priority, origin_station_id = @origin_station_id, destination_station_id = @destination_station_id ) WHERE travel_section_id = @travel_section_id";
-                    db.Parameters.AddWithValue("@travel_section_id", this.travel_section_id);
-                    db.ExecuteNonQuery();
-                }
-                connection.Close();
             }
         }
 
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            db.CommandText = "DELETE FROM travel_section WHERE travel_section_id = @travel_section_id";
-            db.Parameters.AddWithValue("@travel_section_id", this.travel_section_id);
-            db.ExecuteNonQuery();
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "DELETE FROM travel_section WHERE travel_section_id = @travel_section_id";
+                    command.Parameters.AddWithValue("@travel_section_id", this.travel_section_id);
+                    command.ExecuteNonQuery();
+                }
+            }
             this.deleted = true;
             return true;
         }
 
         // Static Methods
-        public static TravelSection Find(int travel_section_id)
+        
+        public static TravelSection GetLastTravelSection()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-
-            db.CommandText = "SELECT * FROM travel_section WHERE travel_section_id = @travel_section_id";
-            db.Parameters.AddWithValue("@travel_section_id", travel_section_id);
-
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            while (reader.Read())
+            TravelSection travelSection = null;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
-                string arrival_time = reader.GetString(1);
-                int travel_id = reader.GetInt32(2);
-                int priority = reader.GetInt32(3);
-                int action = reader.GetInt32(4);
-                int origin_station_id = reader.GetInt32(5);
-                int destination_station_id = reader.GetInt32(6);
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM travel_section ORDER by travel_section_id DESC limit 1";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string arrival_time = reader.GetString(1);
+                            int travel_id = reader.GetInt32(2);
+                            int priority = reader.GetInt32(3);
+                            int action = reader.GetInt32(4);
+                            int origin_station_id = reader.GetInt32(5);
+                            int destination_station_id = reader.GetInt32(6);
 
-                TravelSection travelSection = new TravelSection(arrival_time, travel_id, priority, action, origin_station_id, destination_station_id);
-                travelSection.travel_section_id = travel_section_id;
-                return travelSection;
+                            travelSection = new TravelSection(arrival_time, travel_id, priority, action, origin_station_id, destination_station_id);
+                            travelSection.travel_section_id = reader.GetInt32(0);
+                        }
+                    }
+
+                }
             }
-
-            reader.Close();
-            connection.Close();
-            return null;
+            return travelSection ?? null;
         }
-
-        private Boolean CheckIfExist(int travel_section_id)
+        private Boolean CheckIfExists()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-
-            db.CommandText = "SELECT COUNT(*) FROM travel_section WHERE travel_section_id = @travel_section_id";
-            db.Parameters.AddWithValue("@travel_section_id", travel_section_id);
-
-            SQLiteDataReader reader = db.ExecuteReader();
-
             int count = 0;
-            while (reader.Read())
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
-                count = reader.GetInt32(0);
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT COUNT(*) FROM travel_section WHERE travel_section_id = @travel_section_id";
+                    command.Parameters.AddWithValue("@travel_section_id", travel_section_id);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            count = reader.GetInt32(0);
+                        }
+                    }
+                }
             }
-
-            reader.Close();
-            connection.Close();
             return count > 0;
         }
+
     }
 }
