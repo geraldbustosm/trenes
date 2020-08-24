@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Controller;
+using Model;
 
 namespace View
 {
@@ -22,13 +23,13 @@ namespace View
         {
 
             this.email = this.inputEmail.Text;
-            // todo hash password
             this.password = this.inputPassword.Text;
 
-            // todo: validate data
+            User auth = UserController.Authenticate(this.email, this.password);
 
-            if(UserController.Authenticate(this.email, this.password))
+            if (auth != null)
             {
+                _layout_form.auth = auth;
                 _layout_form.resizeWindowsToNormalSize();
                 _layout_form.showWelcomeScreen();
             } else
