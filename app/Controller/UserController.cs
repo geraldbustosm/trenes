@@ -28,13 +28,13 @@ namespace Controller
 
         public static bool CreateUser(string username, string email, string password, int permission_id)
         {
-            string hashing_password = Validation.hash(password);
+            string hashing_password = Validation.GenerateHash(password);
             User user = new User(username, email, hashing_password, permission_id);
             return user.Save();
         }
         public static bool EditUser(int id, string username, string email, string password, int permission_id)
         {
-            string hashing_password = Validation.hash(password);
+            string hashing_password = Validation.GenerateHash(password);
             User user = User.Find(id);
             user.name = username;
             user.email = email;
