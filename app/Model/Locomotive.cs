@@ -1,5 +1,6 @@
 ﻿using Database;
 using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 namespace Model
@@ -7,6 +8,7 @@ namespace Model
     public class Locomotive
     {
         public int locomotive_id { get; private set; }
+        public string patent { get; set; }
         public string model { get; set; }
         public int tons_drag { get; set; }
         public int in_transit { get; set; }
@@ -82,16 +84,45 @@ namespace Model
                         while (reader.Read())
                         {
                             locomotive.model = reader.GetString(1);
-                            locomotive.tons_drag = reader.GetInt32(2);
-                            locomotive.in_transit = reader.GetInt32(3);
-                            locomotive.train_id = reader.GetInt32(4);
-                            locomotive.station_id = reader.GetInt32(5);
+                            locomotive.patent = reader.GetString(2);
+                            locomotive.tons_drag = reader.GetInt32(3);
+                            locomotive.in_transit = reader.GetInt32(4);
+                            locomotive.train_id = reader.GetInt32(5);
+                            locomotive.station_id = reader.GetInt32(6);
                             locomotive.locomotive_id = id;
                         }
                     }
                 }
             }
             if (locomotive.model != null) { return locomotive; } else { return null; }
+        }
+
+        public static List<Locomotive> GetLocomotivesByStation(int station_id)
+        {
+            List<Locomotive> locomotives = new List<Locomotive>();
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM locomotive WHERE station_id = @station_id";
+                    command.Parameters.AddWithValue("@station_id", station_id);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Locomotive locomotive = new Locomotive("", 0, 0);
+                            locomotive.locomotive_id = reader.GetInt32(0);
+                            locomotive.patent = reader.GetString(1);
+                            locomotive.tons_drag = reader.GetInt32(2);
+                            locomotive.in_transit = reader.GetInt32(3);
+                            locomotive.train_id = reader.GetInt32(4);
+                            locomotive.station_id = reader.GetInt32(5);
+                            locomotives.Add(locomotive);
+                        }
+                    }
+                }
+            }
+            return locomotives ?? null;
         }
         // Private methods
         private Boolean CheckIfExists()

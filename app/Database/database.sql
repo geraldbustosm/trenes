@@ -18,10 +18,10 @@ CREATE TABLE border_station (
 
 CREATE TABLE locomotive (
 	locomotive_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    model TEXT NOT NULL,
-    tons_drag INTEGER NOT NULL,
+    patent TEXT NOT NULL,
+    tons_drag INTEGER NOT NULL DEFAULT 0,
     in_transit INTEGER DEFAULT 0 NOT NULL, -- en un viaje o no --
-    train_id INTEGER DEFAULT NULL,
+    train_id INTEGER DEFAULT 0,
     station_id INTEGER DEFAULT 0,
     FOREIGN KEY (train_id) REFERENCES train (train_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (station_id) REFERENCES station (station_id) ON DELETE RESTRICT ON UPDATE CASCADE
@@ -29,11 +29,12 @@ CREATE TABLE locomotive (
 
 CREATE TABLE wagon (
 	wagon_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    shipload_type TEXT, -- cargemento --
-    shipload_weight INTEGER, -- peso del cargemento --
-    wagon_weight INTEGER NOT NULL, -- peso del vagon --
+    patent TEXT NOT NULL,
+    shipload_type TEXT DEFAULT '', -- cargemento --
+    shipload_weight INTEGER DEFAULT 0, -- peso del cargemento --
+    wagon_weight INTEGER NOT NULL DEFAULT 0, -- peso del vagon --
     in_transit INTEGER DEFAULT 0 NOT NULL, -- en un viaje o no --
-    train_id INTEGER DEFAULT NULL,
+    train_id INTEGER DEFAULT 0,
     station_id INTEGER DEFAULT 0,
     FOREIGN KEY(train_id) REFERENCES train (train_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY(station_id) REFERENCES station (station_id) ON DELETE RESTRICT ON UPDATE CASCADE
@@ -95,46 +96,63 @@ VALUES
 
 INSERT INTO station (name, capacity) 
 VALUES
-    ('a', 9),
-    ('b', 3),
-    ('c', 4),
-    ('d', 2),
-    ('e', 5);
+    ('La Serena', 9),
+    ('Coquimbo', 3),
+    ('Ovalle', 4),
+    ('Valle Elqui', 2),
+    ('Vicuña', 5);
 
 INSERT INTO border_station (station_one_id, station_two_id) 
 VALUES 
     (1, 2),
-    (2, 1),
-    (2, 3),
-    (3, 2),
+    (1, 3),
+    (5, 1),
+    (2, 4),
+    (2, 5),
     (3, 4),
-    (3, 5),
-    (4, 3),
-    (5, 3);
+    (3, 5);
 
-INSERT INTO locomotive (model, tons_drag, in_transit, station_id) 
+INSERT INTO locomotive (patent, tons_drag, in_transit, station_id) 
 VALUES 
-    ('Volvo',5, 1, 1),
-    ('New Jersey',1, 1, 1),
-    ('Coquimbo',1, 1, 1);
+    ('Manzano', 50, 0, 1),
+    ('Chait', 100, 0, 1),
+    ('Ross', 150, 0, 2),
+    ('Chiang', 120, 0, 2),
+    ('Soza', 100, 0, 3),
+    ('Boris', 100, 0, 3),
+    ('Felipe', 100, 0, 3),
+    ('Telgie', 300, 0, 4),
+    ('Carrasco', 100, 0, 5),
+    ('Alfaro', 100, 0, 5),
+    ('Leger', 100, 0, 5),
+    ('Castillo', 100, 0, 5),
+    ('Luco', 1, 1, 5);
 
-INSERT INTO wagon (wagon_weight, in_transit, station_id) 
+
+INSERT INTO wagon (patent, wagon_weight, in_transit, station_id) 
 VALUES 
-    (1, 0, 1),
-    (1, 0, 1),
-    (1, 0, 1),
-    (1, 0, 1),
-    (1, 0, 2),
-    (1, 0, 2),
-    (1, 0, 3);
+    ('Platano', 100, 0, 1),
+    ('Manzana', 200, 0, 1),
+    ('Frutilla', 300, 0, 2),
+    ('Frambuesa', 400, 0, 5),
+    ('Naranja', 500, 0, 2),
+    ('Durazno', 600, 0, 4),
+    ('Pera', 800, 0, 3),
+    ('Kiwi', 900, 0, 1),
+    ('Tomate', 300, 0, 1),
+    ('Cereza', 400, 0, 2),
+    ('Tuna', 200, 0, 5), 
+    ('Melon', 100, 0, 4),
+    ('Sandia', 300, 0, 3);
+
 
 INSERT INTO action (description, minutes) 
 VALUES
-    ('add wagon', 20),
-    ('add locomotive', 20),
-    ('pop wagon', 30),
-    ('pop locomotive', 30),
-    ('download wagon', 20);
+    ('Agregar carro', 20),
+    ('Agregar locomotora', 20),
+    ('Quitar carro', 30),
+    ('Quitar locomotora', 30),
+    ('Descargar carro', 20);
 
 INSERT INTO permission (permission_name) 
 VALUES

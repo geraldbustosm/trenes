@@ -5,7 +5,7 @@ using System.Data.SQLite;
 
 namespace Model
 {
-    class TravelSection
+    public class TravelSection
     {
         private int id { get; }
         private string arrival_time { get; set; }

@@ -18,6 +18,13 @@ namespace Model
             this.capacity = capacity;
             this.deleted = false;
         }
+
+        public Station(object obj)
+        {
+            //this.station_id = obj.station_id;
+            //this.name = obj.name;
+            //this.capacity = obj.capacity;
+        }
         public void Save()
         {
             if (!this.deleted)
@@ -112,6 +119,27 @@ namespace Model
             return list;
         }
 
+        public static int GetIdByName(string name)
+        {
+            int id = 0;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM station WHERE name = @name";
+                    command.Parameters.AddWithValue("@name", name);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            id = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return id;
+        }
+
         public static List<Station> GetNearbyStations(int station_id)
         {
             List<Station> nearby_stations = new List<Station>();
@@ -119,8 +147,8 @@ namespace Model
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
                 {
-                    command.Parameters.AddWithValue("@id", station_id);
-                    command.CommandText = "SELECT * FROM border_station WHERE station_one_id = @id OR station_two_id = @id";
+                    command.Parameters.AddWithValue("@station_id", station_id);
+                    command.CommandText = "SELECT * FROM border_station WHERE station_one_id = @station_id OR station_two_id = @station_id";
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
