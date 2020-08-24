@@ -62,8 +62,8 @@ namespace Controller
             Station result = this.list_border_station.Find(delegate (Station item) {
                 return item.station_id == id;
             });
-            if (result != null) { MessageBox.Show("Error, estación ingresada"); }
-            else { this.list_border_station.Add(station); }
+            if (result != null) return;
+            this.list_border_station.Add(station);
         }
 
         // Static Metod
