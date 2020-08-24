@@ -89,6 +89,54 @@ namespace Controller
             comboBox.DisplayMember = "name";
             comboBox.ValueMember = "station_id";
         }
+
+        public static void FeedDataGridList(DataGridView dt)
+        {
+            List<Station> list = Station.All();
+            var source = new BindingSource(list, null);
+            dt.DataSource = source;
+        }
+
+        public static void AddDeleteLinkColumn(DataGridView dt)
+        {
+            DataGridViewLinkColumn link = new DataGridViewLinkColumn();
+            link.UseColumnTextForLinkValue = true;
+            link.Name = "Eliminar";
+            link.Text = "Eliminar";
+            dt.Columns.Add(link);
+        }
+
+        public static void AddEditLinkColumn(DataGridView dt)
+        {
+            DataGridViewLinkColumn link = new DataGridViewLinkColumn();
+            link.UseColumnTextForLinkValue = true;
+            link.Name = "Editar";
+            link.Text = "Editar";
+            dt.Columns.Add(link);
+        }
+        public static void AddDetailsLinkColumn(DataGridView dt)
+        {
+            DataGridViewLinkColumn link = new DataGridViewLinkColumn();
+            link.UseColumnTextForLinkValue = true;
+            link.Name = "Detalle";
+            link.Text = "Ver más";
+            dt.Columns.Add(link);
+        }
+
+        public static void RemoveStationFromDGV(DataGridView dt, int id, int row)
+        {
+            try
+            {
+                Station station = Station.Find(id);
+                station.Delete();
+                dt.Rows.RemoveAt(row);
+            }
+            catch(Exception ex){
+                MessageBox.Show("No se puede eliminar estación, existe maquinaria");
+            }
+            
+        }
+
     }
 }
 

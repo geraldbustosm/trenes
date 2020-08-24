@@ -27,6 +27,27 @@ namespace Database
             return connection;
         }
 
+        public static SQLiteConnection GetConnectionWithCascadeMode()
+        {
+            SQLiteConnection connection = new SQLiteConnection("Data Source=" + db_file);
+
+            try
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(connection))
+                {
+                    command.CommandText = "PRAGMA foreign_keys = ON";
+                    command.ExecuteNonQuery();
+                }
+                Console.WriteLine("database started with cascade mode");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return connection;
+        }
+
         // Metodo para restablecer la base de datos
         public static void ResetDatabase()
         {
