@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Model;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using Model;
 
 namespace Controller
 {
@@ -9,7 +9,7 @@ namespace Controller
     {
         // this will be save on database 
         List<List<Wagon>> all_wagons_by_section;
-        List<List<Locomotive>> all_locomotiyves_by_section;
+        List<List<Locomotive>> all_locomotives_by_section;
         List<List<SectionAction>> all_actions_by_section;
         List<TravelSection> all_sections;
 
@@ -20,11 +20,10 @@ namespace Controller
         public TravelController()
         {
             all_wagons_by_section = new List<List<Wagon>>();
-            all_locomotiyves_by_section = new List<List<Locomotive>>();
+            all_locomotives_by_section = new List<List<Locomotive>>();
             all_actions_by_section = new List<List<SectionAction>>();
             all_sections = new List<TravelSection>();
             section_index = this.GetLastTravelSection();
-
         }
 
         public void FeedInitStationComboBox(ComboBox combo_box)
@@ -54,13 +53,13 @@ namespace Controller
                     combo_box.DataSource = Locomotive.GetLocomotivesByStation(station_id);
                     break;
                 case "Quitar carro":
-                    combo_box.DataSource = this.wagons;
+                    combo_box.DataSource = this.all_wagons_by_section[section_index];
                     break;
                 case "Quitar locomotora":
-                    combo_box.DataSource = this.locomotives;
+                    combo_box.DataSource = this.all_locomotives_by_section[section_index];
                     break;
                 case "Descargar carro":
-                    combo_box.DataSource = this.wagons;
+                    combo_box.DataSource = this.all_wagons_by_section[section_index];
                     break;
                 default:
                     break;
@@ -71,13 +70,15 @@ namespace Controller
         {
             // this method will be return a last id of travel table
             // we need that id for store a sections with this until save in database the travel
-            return Travel.GetLastTravel().travel_id;
+            // return Travel.GetLastTravel().travel_id;
         }
 
         public int GetLastTravelSection()
         {
             // lo necesito para almacenar las acciones de las secciones antes de ser ingresadas a la base de datos
-            return TravelSection.GetLastTravelSection().travel_section_id;
+            TravelSection last_travel_section = TravelSection.GetLastTravelSection();
+            int id = (last_travel_section != null) ? last_travel_section.travel_id : 1;
+            return id;
         }
 
         public bool AddNewActionToSection(string action_description, string patent, string type)
@@ -102,14 +103,19 @@ namespace Controller
             }
         }
 
-        public bool AddNewSectionToTravel(string arrival_time, int travel_id, int origin_station_id, int destination_station_id)
+        public void FeedActionsDataGrid(DataGrid dt)
+        {
+            dt.DataSource = new BindingSource(this.actions_list, null);
+        }
+
+        public bool AddNewSectionToTravel(string arrival_time, int origin_station_id, int destination_station_id)
         {
             // priority means the order of sections in travel
 
             // store
 
             // cont for store actions
-            this.section_cont++;
+            this.section_index++;
             return true;
         }
     }

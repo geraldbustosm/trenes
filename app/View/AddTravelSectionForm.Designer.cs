@@ -249,7 +249,6 @@
             this.init_station_combo_box.Name = "init_station_combo_box";
             this.init_station_combo_box.Size = new System.Drawing.Size(185, 21);
             this.init_station_combo_box.TabIndex = 29;
-            this.init_station_combo_box.SelectedIndexChanged += new System.EventHandler(this.init_station_combo_box_SelectedIndexChanged);
             this.init_station_combo_box.SelectionChangeCommitted += new System.EventHandler(this.init_station_combo_box_SelectionChangeCommitted);
             // 
             // arrival_hour
@@ -311,7 +310,6 @@
             this.actions_combo_box.Name = "actions_combo_box";
             this.actions_combo_box.Size = new System.Drawing.Size(185, 21);
             this.actions_combo_box.TabIndex = 34;
-            this.actions_combo_box.SelectedIndexChanged += new System.EventHandler(this.actions_combo_box_SelectedIndexChanged);
             this.actions_combo_box.SelectionChangeCommitted += new System.EventHandler(this.actions_combo_box_SelectionChangeCommitted);
             // 
             // add_action_btn

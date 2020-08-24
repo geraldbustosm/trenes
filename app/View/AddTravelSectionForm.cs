@@ -29,16 +29,6 @@ namespace View
             ActionController.FeedActionsComboBox(this.actions_combo_box);
         }
 
-        private void init_station_combo_box_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            
-        }
-
-        private void actions_combo_box_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-
-        }
-
         private bool AllComboBoxSelected()
         {
             this.GetFormValues();
@@ -80,6 +70,13 @@ namespace View
                 travel_controller.AddNewActionToSection(this.action_description, machines_combo_box.SelectedValue.ToString(), "locomotive");
             else
                 travel_controller.AddNewActionToSection(this.action_description, machines_combo_box.SelectedValue.ToString(), "wagon");
+
+            this.RefreshActions();
+        }
+
+        public void RefreshActions()
+        {
+            travel_controller.FeedActionsDataGrid(this.actions_datagrid);
         }
 
         private void next_section_btn_Click(object sender, EventArgs e)
@@ -95,8 +92,7 @@ namespace View
 
             // this metohd will be save in travel_section table on database
             bool success = travel_controller.AddNewSectionToTravel(
-                this.arrival, 
-                travel_controller.GetNewTravelId(), 
+                this.arrival,  
                 this.init_station_id,
                 this.destination_station_id
             );
