@@ -120,6 +120,12 @@
     <Compile Include="AddTravelSectionForm.Designer.cs">
       <DependentUpon>AddTravelSectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUserForm.Designer.cs">
+      <DependentUpon>EditUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListStationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
