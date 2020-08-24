@@ -13,7 +13,7 @@ namespace Helper
             return automata.IsMatch(email);
         }
         
-        public static string hash(string password)
+        public static string GenerateHash(string password)
         {
             byte[] salt;
             new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
