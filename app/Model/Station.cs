@@ -46,7 +46,7 @@ namespace Model
         }
         public static Station Find(int id)
         {
-            Station station = new Station(null, 0);
+            Station station = null;
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
@@ -57,15 +57,19 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            station.name = reader.GetString(1);
-                            station.capacity = reader.GetInt32(2);
+                            string name = reader.GetString(1);
+                            int capacity = reader.GetInt32(2);
+
+
+                            station = new Station(name, capacity);
                             station.station_id = id;
                         }
                     }
                 }
             }
-            if (station.name != null) { return station; } else { return null; }
+            return station ?? null;
         }
+
         public Boolean Delete()
         {
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
@@ -107,6 +111,32 @@ namespace Model
             }
             return list;
         }
+
+        public static List<Station> GetNearbyStations(int station_id)
+        {
+            List<Station> nearby_stations = new List<Station>();
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.Parameters.AddWithValue("@id", station_id);
+                    command.CommandText = "SELECT * FROM border_station WHERE station_one_id = @id OR station_two_id = @id";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int station_one_id = reader.GetInt32(1);
+                            int station_two_id = reader.GetInt32(2);
+
+                            int nearby_station = (station_one_id == station_id) ? station_two_id : station_one_id;
+                            nearby_stations.Add(Station.Find(nearby_station));   
+                        }
+                    }
+                }
+            }
+            return nearby_stations ?? null;
+        }
+
         // Private methods
         private Boolean CheckIfExists()
         {
