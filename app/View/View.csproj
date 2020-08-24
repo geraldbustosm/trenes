@@ -266,6 +266,10 @@
       <Project>{99aa831d-3a0b-43c2-a87d-388b7edf5dbc}</Project>
       <Name>Helper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{0a83d068-af79-4e56-a0fb-8c84acfe8656}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />

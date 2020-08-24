@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -11,6 +12,7 @@ namespace View
         private Boolean authenticate = false;
         private int loginFormWidth = 550;
         private Size normalLayoutSize;
+        public User auth;
         
         public LayoutForm()
         {

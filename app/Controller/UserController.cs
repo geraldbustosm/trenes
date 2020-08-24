@@ -13,14 +13,17 @@ namespace Controller
             DataSet dataset = User.All();
             dgv.DataSource = dataset.Tables[0];
         }
-        public static bool Authenticate(string email, string password)
+        public static User Authenticate(string email, string password)
         {
             if (Validation.IsEmail(email))
             {
                 User user = User.Find(email);
-                if (user != null) return Validation.VerifyPassword(user.password, password);
+                if (user != null && Validation.VerifyPassword(user.password, password))
+                {
+                    return user;
+                }
             }
-            return false;
+            return null;
         }
 
         public static bool CreateUser(string username, string email, string password, int permission_id)
