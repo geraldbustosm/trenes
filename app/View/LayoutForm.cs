@@ -9,7 +9,6 @@ namespace View
     {
         private Form activeLayoutForm = null;
         private Form activeSideForm = null;
-        private Boolean authenticate = false;
         private int loginFormWidth = 550;
         private Size normalLayoutSize;
         public User auth;
@@ -60,7 +59,7 @@ namespace View
         {
             if (activeLayoutForm != null) activeLayoutForm.Close();
             activeLayoutForm = newForm;
-            if (!authenticate) resizeWindowToInitialSize();
+            if (auth == null) resizeWindowToInitialSize();
             customizeLayoutForm();
         }
 
@@ -76,7 +75,6 @@ namespace View
         // Método que redimensiona layoutForm a su tamaño normal despúes del login
         public void resizeWindowsToNormalSize()
         {
-            authenticate = true;
             panelSide.Visible = true;
             this.MaximizeBox = true;
             this.FormBorderStyle = FormBorderStyle.Sizable;

@@ -29,9 +29,9 @@ namespace View
 
             if (auth != null)
             {
+                _layout_form.auth = auth;
                 _layout_form.resizeWindowsToNormalSize();
                 _layout_form.showWelcomeScreen();
-                _layout_form.auth = auth;
             } else
             {
                 this.errorLabel.Text = "Correo y/o contraseña incorrecto";
