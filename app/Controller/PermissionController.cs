@@ -11,7 +11,7 @@ namespace Controller
 {
     public class PermissionController
     {
-        public static void FillComboBox(ComboBox c)
+        public static void FeedComboBox(ComboBox c)
         {
             DataSet dataset = Permission.All();
             c.DataSource = dataset.Tables[0];
