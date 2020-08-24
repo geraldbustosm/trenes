@@ -66,8 +66,8 @@ namespace Model
                 db.ExecuteNonQuery();
                 connection.Close();
                 this.deleted = true;
-                return true;
             }
+            return true;
         }
 
         public static User Find(string email)
