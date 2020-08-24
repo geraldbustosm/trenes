@@ -13,11 +13,12 @@ namespace Controller
         {
             this.list_border_station = new List<Station>();
         }
-        public void Clear()
+
+        public void ClearList()
         {
             this.list_border_station.Clear();
         }
-        // Publics Metods
+
         public void Insert(string name, string capacity)
         {
             int cap = Convert.ToInt32(capacity);
@@ -38,35 +39,33 @@ namespace Controller
                 Console.WriteLine(ex);
             }
         }
+
         public void DeleteBorderStation(string res)
         {
             int id = Convert.ToInt32(res);
-            Station result = this.list_border_station.Find(delegate (Station s) {
-                return s.station_id == id;
+            Station result = this.list_border_station.Find(delegate (Station item) {
+                return item.station_id == id;
             });
             this.list_border_station.Remove(result);
         }
-        public void FeedDataGridView(DataGridView dataGridView)
+
+        public void FeedDataBorderStation(DataGridView data)
         {
             var source = new BindingSource(this.list_border_station, null);
-            dataGridView.DataSource = source;
+            data.DataSource = source;
         }
-        public void AddListBorderStation(ComboBox comboBox)
+
+        public void AddToBorderStationList(ComboBox combo_box)
         {
-            int id = Convert.ToInt32(comboBox.SelectedValue);
+            int id = Convert.ToInt32(combo_box.SelectedValue);
             Station station = Station.Find(id);
-            Station result = this.list_border_station.Find(delegate (Station s) {
-                return s.station_id == id;
+            Station result = this.list_border_station.Find(delegate (Station item) {
+                return item.station_id == id;
             });
-            if (result != null)
-            {
-                MessageBox.Show("Error, estación ingresada");
-            }
-            else
-            {
-                this.list_border_station.Add(station);
-            }
+            if (result != null) { MessageBox.Show("Error, estación ingresada"); }
+            else { this.list_border_station.Add(station); }
         }
+
         // Static Metod
         public static bool IsNumberCapacity(string capacity)
         {
@@ -89,14 +88,16 @@ namespace Controller
             }
             return false;
         }
-        public static void FeedComboBox(ComboBox comboBox)
+
+        public static void FeedComboBox(ComboBox combo_box)
         {
             List<Station> list = Station.All();
 
-            comboBox.DataSource = list;
-            comboBox.DisplayMember = "name";
-            comboBox.ValueMember = "station_id";
+            combo_box.DataSource = list;
+            combo_box.DisplayMember = "name";
+            combo_box.ValueMember = "station_id";
         }
+
     }
 }
 

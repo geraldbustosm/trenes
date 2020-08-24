@@ -46,7 +46,7 @@ namespace Model
         }
         public static Station Find(int id)
         {
-            Station station = new Station(null, 0);
+            Station station = null;
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
@@ -57,14 +57,16 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            station.name = reader.GetString(1);
-                            station.capacity = reader.GetInt32(2);
-                            station.station_id = id;
+                            string name = reader.GetString(1);
+                            int capacity = reader.GetInt32(2);
+                            int station_id = id;
+                            station = new Station(name,capacity);
+                            station.station_id = station_id;
                         }
                     }
                 }
             }
-            if (station.name != null) { return station; } else { return null; }
+            return station ?? null;
         }
         public Boolean Delete()
         {
