@@ -102,6 +102,33 @@ namespace Model
             if (wagon.shipload_type != null) { return wagon; } else { return null; }
         }
 
+        public static Wagon FindByPatent(string patent)
+        {
+            Wagon wagon = new Wagon(null, 0, 0, 0);
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM wagon WHERE wagon_id = @patent";
+                    command.Parameters.AddWithValue("@patent", patent);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            wagon.shipload_type = reader.GetString(1);
+                            wagon.shipload_weight = reader.GetInt32(2);
+                            wagon.wagon_weight = reader.GetInt32(3);
+                            wagon.in_transit = reader.GetInt32(4);
+                            wagon.train_id = reader.GetInt32(5);
+                            wagon.station_id = reader.GetInt32(6);
+                            wagon.wagon_id = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return wagon;
+        }
+
         public static List<Wagon> GetWagonsByStation(int station_id)
         {
             List<Wagon> wagons = new List<Wagon>();

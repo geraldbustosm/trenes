@@ -97,6 +97,33 @@ namespace Model
             if (locomotive.model != null) { return locomotive; } else { return null; }
         }
 
+        public static Locomotive FindByPatent(string patent)
+        {
+            Locomotive locomotive = new Locomotive(null, 0, 0);
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM locomotive WHERE patent = @patent";
+                    command.Parameters.AddWithValue("@patent", patent);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            locomotive.model = reader.GetString(1);
+                            locomotive.patent = reader.GetString(2);
+                            locomotive.tons_drag = reader.GetInt32(3);
+                            locomotive.in_transit = reader.GetInt32(4);
+                            locomotive.train_id = reader.GetInt32(5);
+                            locomotive.station_id = reader.GetInt32(6);
+                            locomotive.locomotive_id = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return locomotive;
+        }
+
         public static List<Locomotive> GetLocomotivesByStation(int station_id)
         {
             List<Locomotive> locomotives = new List<Locomotive>();

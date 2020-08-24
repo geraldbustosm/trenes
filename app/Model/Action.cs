@@ -44,6 +44,31 @@ namespace Model
             return action ?? null;
         }
 
+
+        public static Action FindByDescription(string description)
+        {
+            Action action = null;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM action WHERE description = @description";
+                    command.Parameters.AddWithValue("@description", description);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            int minutes = reader.GetInt32(2);
+                            action = new Action(description, minutes);
+                            action.action_id = id;
+                        }
+                    }
+                }
+            }
+            return action ?? null;
+        }
+
         public static List<Action> FindAll()
         {
             List<Action> all_actions = new List<Action>();

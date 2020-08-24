@@ -71,6 +71,17 @@ namespace View
                 this.information_label.Text = "Debes completar todos los campos anteriores!";
         }
 
+
+        private void add_action_btn_Click(object sender, EventArgs e)
+        {
+            // store actions for travel_section
+            bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
+            if (action_to_locomotive)
+                travel_controller.AddNewActionToSection(this.action_description, machines_combo_box.SelectedValue.ToString(), "locomotive");
+            else
+                travel_controller.AddNewActionToSection(this.action_description, machines_combo_box.SelectedValue.ToString(), "wagon");
+        }
+
         private void next_section_btn_Click(object sender, EventArgs e)
         {
             this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
@@ -95,5 +106,6 @@ namespace View
             //else
                 // show error information
         }
+
     }
 }

@@ -7,16 +7,24 @@ namespace Controller
 {
     public class TravelController
     {
-        List<Wagon> wagons;
-        List<Locomotive> locomotives;
-        List<TravelSection> travel_sections_list;
-        List<SectionAction> section_action_list;
+        // this will be save on database 
+        List<List<Wagon>> all_wagons_by_section;
+        List<List<Locomotive>> all_locomotiyves_by_section;
+        List<List<SectionAction>> all_actions_by_section;
+        List<TravelSection> all_sections;
+
+        // auxiliar variables
+        List<SectionAction> actions_list;
+        int section_index;
 
         public TravelController()
         {
-            wagons = new List<Wagon>();
-            locomotives = new List<Locomotive>();
-            travel_sections_list = new List<TravelSection>();
+            all_wagons_by_section = new List<List<Wagon>>();
+            all_locomotiyves_by_section = new List<List<Locomotive>>();
+            all_actions_by_section = new List<List<SectionAction>>();
+            all_sections = new List<TravelSection>();
+            section_index = this.GetLastTravelSection();
+
         }
 
         public void FeedInitStationComboBox(ComboBox combo_box)
@@ -59,17 +67,55 @@ namespace Controller
             }
         }
 
-        public int GetNewTravelId()
+        public int GetLastTravel()
         {
             // this method will be return a last id of travel table
             // we need that id for store a sections with this until save in database the travel
-            return 0;
+            return Travel.GetLastTravel().travel_id;
+        }
+
+        public int GetLastTravelSection()
+        {
+            // lo necesito para almacenar las acciones de las secciones antes de ser ingresadas a la base de datos
+            return TravelSection.GetLastTravelSection().travel_section_id;
+        }
+
+        public bool AddNewActionToSection(string action_description, string patent, string type)
+        {
+            int locomotive_id = 0, wagon_id = 0;
+            if (type == "locomotive")
+                locomotive_id = Locomotive.FindByPatent(patent).locomotive_id;
+            else
+                wagon_id = Wagon.FindByPatent(patent).wagon_id;
+
+            try
+            {
+                int action_id = Model.Action.FindByDescription(action_description).action_id;
+                SectionAction action = new SectionAction(action_id, section_index, locomotive_id, wagon_id);
+                actions_list.Add(action);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
         public bool AddNewSectionToTravel(string arrival_time, int travel_id, int origin_station_id, int destination_station_id)
         {
+
+
             // priority means the order of sections in travel
+
+            // store
+
+
+            // cont for store actions
+            this.section_cont++;
             return true;
         }
+
+        
     }
 }
