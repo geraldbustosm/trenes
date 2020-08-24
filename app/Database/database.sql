@@ -55,8 +55,8 @@ CREATE TABLE section_action (
     section_action_id INTEGER PRIMARY KEY AUTOINCREMENT,
     action_id INTEGER NOT NULL, -- 1: Agregar wagon, 2: Agregar locomotive ... -
     travel_section_id INTEGER NOT NULL,
-    locomotive_id INTEGER DEFAULT NULL,
-    wagon_id INTEGER DEFAULT NULL,
+    locomotive_id INTEGER DEFAULT 0,
+    wagon_id INTEGER DEFAULT 0,
     FOREIGN KEY (action_id) REFERENCES action (action_id),
     FOREIGN KEY (travel_section_id) REFERENCES travel_section (travel_section_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (locomotive_id) REFERENCES locomotive (locomotive_id) ON DELETE CASCADE ON UPDATE CASCADE,

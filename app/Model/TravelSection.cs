@@ -7,17 +7,16 @@ namespace Model
 {
     public class TravelSection
     {
-        private int id { get; }
-        private string arrival_time { get; set; }
-        private int travel_id { get; }
-        private int priority { get; set; }
-        private int origin_station_id { get; }
-        private int destination_station_id { get; }
+        public int travel_section_id { get; private set; }
+        public string arrival_time { get; set; }
+        public int travel_id { get; }
+        public int priority { get; set; }
+        public int origin_station_id { get; }
+        public int destination_station_id { get; }
         private Boolean deleted;
 
-        public TravelSection (int id, string arrival_time, int travel_id, int priority, int action, int origin_station_id, int destination_station_id)
+        public TravelSection(string arrival_time, int travel_id, int priority, int action, int origin_station_id, int destination_station_id)
         {
-            this.id = id;
             this.arrival_time = arrival_time;
             this.travel_id = travel_id;
             this.priority = priority;
@@ -31,18 +30,24 @@ namespace Model
             {
                 SQLiteConnection connection = DatabaseUtility.GetConnection();
                 SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfExist(this.id);
+                Boolean exist = this.CheckIfExist(this.travel_section_id);
+
+                db.Parameters.AddWithValue("@arrival_time", this.arrival_time);
+                db.Parameters.AddWithValue("@travel_id", this.travel_id);
+                db.Parameters.AddWithValue("@priority", this.priority);
+                db.Parameters.AddWithValue("@origin_station_id", this.origin_station_id);
+                db.Parameters.AddWithValue("@destination_station_id", this.destination_station_id);
 
                 if (!exist)
                 {
-                    string query = "INSERT INTO travel_section(id, arrival_time, travel_id, priority, action, origin_station_id, destination_station_id) values (" + this.id + "," + this.arrival_time + "," + this.travel_id + "," + this.priority + "," + this.origin_station_id + "," + this.destination_station_id + ")";
-                    db.CommandText = query;
-                    db.ExecuteNonQuery();
+                    db.CommandText = "INSERT INTO travel_section( arrival_time, travel_id, priority, action, origin_station_id, destination_station_id) values (@arrival_time, @travel_id, @priority, @origin_station_id, @destination_station_id )";
+
+                    this.travel_section_id = Convert.ToInt32(db.ExecuteScalar());
                 }
                 else
                 {
-                    string query = "UPDATE travel_section SET id = " + this.id + ", arrival_time = " + this.arrival_time + ", travel_id =" + this.travel_id + ",priority =" + this.priority + ",origin_station_id =" + this.origin_station_id + ",destination_station_id =" + this.destination_station_id + ") WHERE ID=" + this.id;
-                    db.CommandText = query;
+                    db.CommandText = "UPDATE travel_section SET ( arrival_time = @arrival_time, travel_id = @travel_id, priority = @priority, origin_station_id = @origin_station_id, destination_station_id = @destination_station_id ) WHERE travel_section_id = @travel_section_id";
+                    db.Parameters.AddWithValue("@travel_section_id", this.travel_section_id);
                     db.ExecuteNonQuery();
                 }
                 connection.Close();
@@ -53,20 +58,22 @@ namespace Model
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM travel_section WHERE ID = " + this.id;
-            db.CommandText = query;
+            db.CommandText = "DELETE FROM travel_section WHERE travel_section_id = @travel_section_id";
+            db.Parameters.AddWithValue("@travel_section_id", this.travel_section_id);
             db.ExecuteNonQuery();
             this.deleted = true;
             return true;
         }
 
         // Static Methods
-        public static TravelSection Find(int id)
+        public static TravelSection Find(int travel_section_id)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM travel_section WHERE ID = " + id;
-            db.CommandText = query;
+
+            db.CommandText = "SELECT * FROM travel_section WHERE travel_section_id = @travel_section_id";
+            db.Parameters.AddWithValue("@travel_section_id", travel_section_id);
+
             SQLiteDataReader reader = db.ExecuteReader();
 
             while (reader.Read())
@@ -78,18 +85,24 @@ namespace Model
                 int origin_station_id = reader.GetInt32(5);
                 int destination_station_id = reader.GetInt32(6);
 
-                return new TravelSection(id, arrival_time, travel_id, priority, action, origin_station_id, destination_station_id);
+                TravelSection travelSection = new TravelSection(arrival_time, travel_id, priority, action, origin_station_id, destination_station_id);
+                travelSection.travel_section_id = travel_section_id;
+                return travelSection;
             }
+
+            reader.Close();
             connection.Close();
             return null;
         }
 
-        private Boolean CheckIfExist(int id)
+        private Boolean CheckIfExist(int travel_section_id)
         {
             SQLiteConnection connection = DatabaseUtility.GetConnection();
             SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM travel_section WHERE ID=" + id;
-            db.CommandText = query;
+
+            db.CommandText = "SELECT COUNT(*) FROM travel_section WHERE travel_section_id = @travel_section_id";
+            db.Parameters.AddWithValue("@travel_section_id", travel_section_id);
+
             SQLiteDataReader reader = db.ExecuteReader();
 
             int count = 0;
@@ -97,8 +110,10 @@ namespace Model
             {
                 count = reader.GetInt32(0);
             }
+
+            reader.Close();
             connection.Close();
-            if (count > 0) { return true; } else { return false; }
+            return count > 0;
         }
     }
 }

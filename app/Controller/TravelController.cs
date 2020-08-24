@@ -10,6 +10,7 @@ namespace Controller
         List<Wagon> wagons;
         List<Locomotive> locomotives;
         List<TravelSection> travel_sections_list;
+        List<SectionAction> section_action_list;
 
         public TravelController()
         {
@@ -56,6 +57,19 @@ namespace Controller
                 default:
                     break;
             }
+        }
+
+        public int GetNewTravelId()
+        {
+            // this method will be return a last id of travel table
+            // we need that id for store a sections with this until save in database the travel
+            return 0;
+        }
+
+        public bool AddNewSectionToTravel(string arrival_time, int travel_id, int origin_station_id, int destination_station_id)
+        {
+            // priority means the order of sections in travel
+            return true;
         }
     }
 }
