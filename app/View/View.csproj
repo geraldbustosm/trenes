@@ -203,6 +203,9 @@
     <EmbeddedResource Include="AddTravelSectionForm.resx">
       <DependentUpon>AddTravelSectionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditUserForm.resx">
+      <DependentUpon>EditUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListStationsForm.resx">
       <DependentUpon>ListStationsForm.cs</DependentUpon>
     </EmbeddedResource>

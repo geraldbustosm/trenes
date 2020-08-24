@@ -45,7 +45,7 @@ namespace Model
                     }
                     else if(this.user_id > 0)
                     {
-                        db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password, permission_id = @permission_id) WHERE user_id = @user_id";
+                        db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password, permission_id = @permission_id WHERE user_id = @user_id";
                         db.Parameters.AddWithValue("@user_id", this.user_id);
                         db.ExecuteNonQuery();
                         saved = true;

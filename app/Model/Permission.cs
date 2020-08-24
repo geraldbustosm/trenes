@@ -7,16 +7,14 @@ namespace Model
 {
     public class Permission
     {
-        private int permission_id { get; }
-        private string permission_name { get; set; }
-        private int user_id { get; }
+        public int permission_id { get; private set; }
+        public string permission_name { get; set; }
         private Boolean deleted;
 
-        public Permission(int permission_id, string permission_name, int user_id)
+        public Permission(int permission_id, string permission_name)
         {
             this.permission_id = permission_id;
             this.permission_name = permission_name;
-            this.user_id = user_id;
         }
 
         public void Save()
@@ -29,13 +27,13 @@ namespace Model
 
                 if (!exist)
                 {
-                    string query = "INSERT INTO permission(permission_id, permission_name, user_id) values (" + this.permission_id + "," + this.permission_name + "," + this.user_id + ")";
+                    string query = "INSERT INTO permission(permission_id, permission_name) values (" + this.permission_id + "," + this.permission_name + ")";
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
                 else
                 {
-                    string query = "UPDATE permission SET permission_id = " + this.permission_id + ", permission_name=" + this.permission_name + ", user_id=" + this.user_id + ") WHERE permission_id=" + this.permission_id;
+                    string query = "UPDATE permission SET permission_id = " + this.permission_id + ", permission_name=" + this.permission_name + ") WHERE permission_id=" + this.permission_id;
                     db.CommandText = query;
                     db.ExecuteNonQuery();
                 }
@@ -67,9 +65,8 @@ namespace Model
             while (reader.Read())
             {
                 string permission_name = reader.GetString(1);
-                int user_id = reader.GetInt32(2);
 
-                return new Permission(id, permission_name, user_id);
+                return new Permission(id, permission_name);
             }
             connection.Close();
             return null;
