@@ -36,7 +36,7 @@ namespace Model
                         }
                         else
                         {
-                            command.CommandText = "UPDATE station SET(name = @name, capacity = @capacity) WHERE station_id= @station_id";
+                            command.CommandText = "UPDATE station SET name = @name, capacity = @capacity  WHERE station_id=  @station_id";
                             command.Parameters.AddWithValue("@station_id", this.station_id);
                             command.ExecuteNonQuery();
                         }
@@ -186,6 +186,29 @@ namespace Model
                 }
             }
             return count;
+        }
+
+        public static List<Station> GetNoNearbyStations(int station_id)
+        {
+            List<Station> nearby_stations = new List<Station>();
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM station WHERE station_id NOT IN(SELECT station_one_id FROM border_station WHERE station_one_id = @station_id OR station_two_id = @station_id) AND station_id NOT IN(SELECT station_two_id FROM border_station WHERE station_one_id = @station_id OR station_two_id = @station_id); ";
+                    command.Parameters.AddWithValue("@station_id", station_id);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id_station = reader.GetInt32(0);
+
+                            nearby_stations.Add(Station.Find(id_station));
+                        }
+                    }
+                }
+            }
+            return nearby_stations ?? null;
         }
 
         // Private methods
