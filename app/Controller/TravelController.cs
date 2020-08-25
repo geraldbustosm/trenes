@@ -1,7 +1,9 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using Interface;
 
 namespace Controller
 {
@@ -15,6 +17,8 @@ namespace Controller
 
         // auxiliar variables
         List<SectionAction> actions_list;
+        List<Locomotive> locomotive_list;
+        List<Wagon> wagon_list;
         int section_index;
 
         public TravelController()
@@ -24,6 +28,8 @@ namespace Controller
             all_actions_by_section = new List<List<SectionAction>>();
             all_sections = new List<TravelSection>();
             actions_list = new List<SectionAction>();
+            locomotive_list = new List<Locomotive>();
+            wagon_list = new List<Wagon>();
             section_index = this.GetLastTravelSection();
         }
 
@@ -41,25 +47,25 @@ namespace Controller
             destination_station_combobox.ValueMember = "station_id";
         }
 
-        public void FeedMachinesComboBox(string action, int station_id, ComboBox combo_box)
+        public void FeedMachinesComboBox(int action, int station_id, ComboBox combo_box)
         {
             combo_box.ValueMember = "patent";
             combo_box.DisplayMember = "patent";
             switch (action)
             {
-                case "Agregar carro":
+                case 0: // "Agregar carro":
                     combo_box.DataSource = Wagon.GetWagonsByStation(station_id);
                     break;
-                case "Agregar locomotora":
+                case 1: //"Agregar locomotora":
                     combo_box.DataSource = Locomotive.GetLocomotivesByStation(station_id);
                     break;
-                case "Quitar carro":
+                case 2: // "Quitar carro":
                     combo_box.DataSource = this.all_wagons_by_section[section_index];
                     break;
-                case "Quitar locomotora":
+                case 3: // "Quitar locomotora":
                     combo_box.DataSource = this.all_locomotives_by_section[section_index];
                     break;
-                case "Descargar carro":
+                case 4: // "Descargar carro":
                     combo_box.DataSource = this.all_wagons_by_section[section_index];
                     break;
                 default:
@@ -69,9 +75,9 @@ namespace Controller
 
         //public int GetLastTravel()
         //{
-            // this method will be return a last id of travel table
-            // we need that id for store a sections with this until save in database the travel
-            // return Travel.GetLastTravel().travel_id;
+        // this method will be return a last id of travel table
+        // we need that id for store a sections with this until save in database the travel
+        // return Travel.GetLastTravel().travel_id;
         //}
 
         public int GetLastTravelSection()
@@ -82,7 +88,7 @@ namespace Controller
             return id;
         }
 
-        public bool AddNewActionToSection(string action_description, string patent, string type)
+        public bool AddNewActionToSection(int action_id, string patent, string type)
         {
             int locomotive_id = 0, wagon_id = 0;
             if (type == "locomotive")
@@ -92,7 +98,10 @@ namespace Controller
 
             try
             {
-                int action_id = Model.Action.FindByDescription(action_description).action_id;
+                if (type == "locomotive")
+                    this.AddLocomotiveToSection(locomotive_id);
+                else
+                    this.AddWagonToSection(wagon_id);
                 SectionAction action = new SectionAction(action_id, section_index, locomotive_id, wagon_id);
                 actions_list.Add(action);
                 return true;
@@ -104,9 +113,27 @@ namespace Controller
             }
         }
 
+        public void AddLocomotiveToSection(int locomotive_id)
+        {
+            Locomotive locomotive = Locomotive.FindById(locomotive_id);
+            locomotive_list.Add(locomotive);
+        }
+
+        public void AddWagonToSection(int wagon_id)
+        {
+            Wagon wagon = Wagon.Find(wagon_id);
+            wagon_list.Add(wagon);
+        }
+
         public void FeedActionsDataGrid(DataGridView dt)
         {
             dt.DataSource = new BindingSource(this.actions_list, null);
+        }
+
+        public void FeedTrainStateDataGrid(DataGridView dt)
+        {
+            var list = wagon_list.Cast<MachineInterface>().Concat(locomotive_list.Cast<MachineInterface>());
+            dt.DataSource = new BindingSource(list, null);
         }
 
         public bool AddNewSectionToTravel(string arrival_time, int origin_station_id, int destination_station_id)
