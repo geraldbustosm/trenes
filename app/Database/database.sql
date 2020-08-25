@@ -42,7 +42,7 @@ CREATE TABLE wagon (
 
 CREATE TABLE travel (
 	travel_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    state TEXT DEFAULT "Preparado"  -- "Preparado" - "En Transito" - "Completado" - "Cancelado" --
+    state TEXT DEFAULT "Programado"  -- "Programado" - "En Transito" - "Completado" --
 );
 
 CREATE TABLE action (

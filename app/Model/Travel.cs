@@ -6,90 +6,152 @@ namespace Model
 {
     public class Travel
     {
-        private int travel_id { get; }
-        private int total_time { get; set; }
-        private string state { get; set; }
-        private Boolean deleted;
+        public int travel_id { get; private set; }
+        public string state { get; set; }
+        public Boolean deleted;
 
-        public Travel(int travel_id, int total_time, string state)
+        public Travel()
         {
-            this.travel_id = travel_id;
-            this.total_time = total_time;
-            this.state = state;
+            this.state = "Preparado";
             this.deleted = false;
+        }
+
+        public static Travel GetLastTravel()
+        {
+            Travel travel = null;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM travel ORDER BY travel_id DESC LIMIT 1";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string state = reader.GetString(1);
+   
+                            travel = new Travel();
+                            travel.state = state;
+                            travel.travel_id = id;
+                        }
+                    }
+                }
+            }
+            return travel;
         }
 
         public void Save()
         {
             if (!this.deleted)
             {
-                SQLiteConnection connection = DatabaseUtility.GetConnection();
-                SQLiteCommand db = new SQLiteCommand(connection);
-                Boolean exist = this.CheckIfTravelExists(this.travel_id);
-
-                if (!exist)
+                using (SQLiteConnection conn = DatabaseUtility.GetConnection())
                 {
-                    string query = "INSERT INTO travel(travel_id, total_time, state) values (" + this.travel_id + "," + this.total_time + "," + this.state + ")";
-                    db.CommandText = query;
-                    db.ExecuteNonQuery();
+                    using (SQLiteCommand command = new SQLiteCommand(conn))
+                    {
+                        command.Parameters.AddWithValue("@state", this.state);
+                        if (!this.CheckIfExists())
+                        {
+                            command.CommandText = "INSERT INTO travel(state) VALUES (@state)";
+                            this.travel_id = Convert.ToInt32(command.ExecuteScalar());
+                        }
+                        else
+                        {
+                            command.CommandText = "UPDATE travel SET(state= @this.state) WHERE travel_id= @travel_id";
+                            command.Parameters.AddWithValue("@travel_id", this.travel_id);
+                            command.ExecuteNonQuery();
+                        }
+                    }
                 }
-                else
-                {
-                    string query = "UPDATE travel SET travel_id = " + this.travel_id + ", total_time = " + this.total_time + ", state = " + this.state + ") WHERE travel_id=" + this.travel_id;
-                    db.CommandText = query;
-                    db.ExecuteNonQuery();
-                }
-                connection.Close();
             }
         }
+
+        private Boolean CheckIfExists()
+        {
+            int count = 0;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT COUNT(*) FROM travel WHERE travel_id =  @travel_id";
+                    command.Parameters.AddWithValue("@travel_id", this.travel_id);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            count = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return count > 0;
+        }
+
+        /*
         public Boolean Delete()
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM travel WHERE travel_id = " + this.travel_id;
-            db.CommandText = query;
-            db.ExecuteNonQuery();
-            connection.Close();
-            this.deleted = true;
-            return true;
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+            {
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "DELETE FROM travel WHERE travel_id = @travel_id";
+                db.Parameters.AddWithValue("@travel_id", this.travel_id);
+                db.ExecuteNonQuery();
+                connection.Close();
+                this.deleted = true;
+                return true;
+            }
         }
 
         // Static methods
         public static Travel Find(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT * FROM travel WHERE travel_id = " + id;
-            db.CommandText = query;
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            while (reader.Read())
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
-                int total_time = reader.GetInt32(1);
-                string state = reader.GetString(2);
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT * FROM travel WHERE travel_id = @travel_id";
+                db.Parameters.AddWithValue("@travel_id", id);
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int total_time = reader.GetInt32(1);
+                        string state = reader.GetString(2);
 
-                return new Travel(id, total_time, state);
+                        Travel t = new Travel(total_time, state);
+                        t.travel_id = id;
+                        return t;
+                    }
+                    reader.Close();
+                }
+                connection.Close();
+                return null;
             }
-            connection.Close();
-            return null;
         }
 
         // Private methods
-        private Boolean CheckIfTravelExists(int id)
+        private Boolean CheckIfExists(int id)
         {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "SELECT COUNT(*) FROM travel WHERE travel_id=" + id;
-            db.CommandText = query;
-            SQLiteDataReader reader = db.ExecuteReader();
-
-            int count = 0;
-            while (reader.Read())
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
             {
-                count = reader.GetInt32(0);
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT COUNT(*) FROM travel WHERE travel_id =  @travel_id";
+                db.Parameters.AddWithValue("@travel_id", id);
+                int count = 0;
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                }
+                connection.Close()
+                return count > 0;
             }
-            connection.Close();
-            if (count > 0) { return true; } else { return false; }
         }
+        */
     }
 }
