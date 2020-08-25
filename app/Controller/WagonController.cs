@@ -30,12 +30,12 @@ namespace Controller
                 return false;
             }
         }
-        public void AddListWagon(string shipload_weight, string wagon_weight, string shipload_type, ComboBox comboBox)
+        public void AddListWagon(string patent, string shipload_weight, string wagon_weight, string shipload_type, ComboBox comboBox)
         {
             int shioload_w = Convert.ToInt32(shipload_weight);
             int wagon_w = Convert.ToInt32(wagon_weight);
             int station_id = Convert.ToInt32(comboBox.SelectedValue);
-            Wagon wagon = new Wagon(shipload_type, shioload_w, wagon_w, station_id);
+            Wagon wagon = new Wagon(patent,shipload_type, shioload_w, wagon_w, station_id);
             this.list_wagon.Add(wagon);
         }
         public void FeedDataGrid(DataGridView dataGridView)

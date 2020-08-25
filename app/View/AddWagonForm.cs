@@ -8,6 +8,7 @@ namespace View
         private string shipload_type;
         private string shipload_weight;
         private string wagon_weight;
+        private string patent;
         private WagonController wagonController;
         public AddWagonForm()
         {
@@ -23,6 +24,7 @@ namespace View
 
         private void btnAdd_Click(object sender, System.EventArgs e)
         {
+            this.patent = this.input_patent.Text;
             this.shipload_weight = this.inputShipload_w.Text;
             this.shipload_type = this.input_Shipload_type.Text;
             this.wagon_weight = this.inputWagon_w.Text;
@@ -32,7 +34,7 @@ namespace View
                 {
                     if (WagonController.IsNumber(this.wagon_weight))
                     {
-                        this.wagonController.AddListWagon(this.shipload_weight, this.wagon_weight, this.shipload_type, comboBox);
+                        this.wagonController.AddListWagon(this.patent, this.shipload_weight, this.wagon_weight, this.shipload_type, comboBox);
                         this.wagonController.FeedDataGrid(dataGridView);
                         Clear();
                     }
