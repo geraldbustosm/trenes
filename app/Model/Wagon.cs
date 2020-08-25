@@ -2,11 +2,11 @@ using Database;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Runtime.CompilerServices;
+using Interface;
 
 namespace Model
 {
-    public class Wagon
+    public class Wagon : MachineInterface
     {
         public int wagon_id { get; private set; }
         public string patent { get; set; }
@@ -26,7 +26,6 @@ namespace Model
             this.in_transit = 0;
             this.train_id = 0;
             this.station_id = station_id;
-
             this.deleted = false;
         }
         public void Save()
@@ -109,19 +108,20 @@ namespace Model
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
                 {
-                    command.CommandText = "SELECT * FROM wagon WHERE wagon_id = @patent";
+                    command.CommandText = "SELECT * FROM wagon WHERE patent = @patent";
                     command.Parameters.AddWithValue("@patent", patent);
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            wagon.shipload_type = reader.GetString(1);
-                            wagon.shipload_weight = reader.GetInt32(2);
-                            wagon.wagon_weight = reader.GetInt32(3);
-                            wagon.in_transit = reader.GetInt32(4);
-                            wagon.train_id = reader.GetInt32(5);
-                            wagon.station_id = reader.GetInt32(6);
                             wagon.wagon_id = reader.GetInt32(0);
+                            wagon.patent = reader.GetString(1);
+                            wagon.shipload_type = reader.GetString(2);
+                            wagon.shipload_weight = reader.GetInt32(3);
+                            wagon.wagon_weight = reader.GetInt32(4);
+                            wagon.in_transit = reader.GetInt32(5);
+                            wagon.train_id = reader.GetInt32(6);
+                            wagon.station_id = reader.GetInt32(7);
                         }
                     }
                 }

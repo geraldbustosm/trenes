@@ -15,11 +15,11 @@ namespace View
         private string init_hrs;
         private string arrival_hrs;
 
+        private string origin_default;
+
         public AddTravelSectionForm()
         {
             InitializeComponent();
-            init_station_combo_box.Text = "Origen";
-            destination_station_combo_box.Text = "Destino";
             this.information_label.Text = "";
         }
 
@@ -40,7 +40,6 @@ namespace View
 
         private void GetFormValues()
         {
-            
             //this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
             //this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
             //this.action_id = Convert.ToInt32(actions_combo_box.SelectedValue);
@@ -74,6 +73,12 @@ namespace View
                 travel_controller.AddNewActionToSection(this.action_description, machines_combo_box.SelectedValue.ToString(), "wagon");
 
             this.RefreshActions();
+            //this.RefreshTrainState();
+        }
+
+        public void RefreshTrainState()
+        {
+            travel_controller.FeedTrainStateDataGrid(this.train_state_datagrid);
         }
 
         public void RefreshActions()

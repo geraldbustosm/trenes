@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Helper\Helper.csproj" />
+    <ProjectReference Include="..\Interface\Interface.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 

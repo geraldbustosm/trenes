@@ -1,7 +1,9 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using Interface;
 
 namespace Controller
 {
@@ -15,6 +17,8 @@ namespace Controller
 
         // auxiliar variables
         List<SectionAction> actions_list;
+        List<Locomotive> locomotive_list;
+        List<Wagon> wagon_list;
         int section_index;
 
         public TravelController()
@@ -24,6 +28,8 @@ namespace Controller
             all_actions_by_section = new List<List<SectionAction>>();
             all_sections = new List<TravelSection>();
             actions_list = new List<SectionAction>();
+            locomotive_list = new List<Locomotive>();
+            wagon_list = new List<Wagon>();
             section_index = this.GetLastTravelSection();
         }
 
@@ -92,6 +98,11 @@ namespace Controller
 
             try
             {
+                if (type == "locomotive")
+                    this.AddLocomotiveToSection(locomotive_id);
+                else
+                    this.AddWagonToSection(wagon_id);
+
                 int action_id = Model.Action.FindByDescription(action_description).action_id;
                 SectionAction action = new SectionAction(action_id, section_index, locomotive_id, wagon_id);
                 actions_list.Add(action);
@@ -104,9 +115,27 @@ namespace Controller
             }
         }
 
+        public void AddLocomotiveToSection(int locomotive_id)
+        {
+            Locomotive locomotive = Locomotive.Find(locomotive_id);
+            locomotive_list.Add(locomotive);
+        }
+
+        public void AddWagonToSection(int wagon_id)
+        {
+            Wagon wagon = Wagon.Find(wagon_id);
+            wagon_list.Add(wagon);
+        }
+
         public void FeedActionsDataGrid(DataGridView dt)
         {
             dt.DataSource = new BindingSource(this.actions_list, null);
+        }
+
+        public void FeedTrainStateDataGrid(DataGridView dt)
+        {
+            var list = wagon_list.Cast<MachineInterface>().Concat(locomotive_list.Cast<MachineInterface>());
+            dt.DataSource = new BindingSource(list, null);
         }
 
         public bool AddNewSectionToTravel(string arrival_time, int origin_station_id, int destination_station_id)

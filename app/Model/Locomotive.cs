@@ -1,11 +1,12 @@
 ﻿using Database;
+using Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 
 namespace Model
 {
-    public class Locomotive
+    public class Locomotive : MachineInterface
     {
         public int locomotive_id { get; private set; }
         public string patent { get; set; }
