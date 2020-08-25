@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Controller;
 
@@ -59,15 +60,16 @@ namespace View
             link.Text = "Eliminar";
 
             data_border_station.Columns.Add(link);
+            data_border_station.Columns[0].HeaderText = "Codigo";
+            data_border_station.Columns[1].HeaderText = "Nombre";
+            data_border_station.Columns[2].HeaderText = "Capacidad";
         }
 
         private void AddStationForm_Load(object sender, EventArgs e)
         {
+            this.label_error.ForeColor = Color.Transparent;
             this.show_same.ReadOnly = true;
             this.stationController.FeedDataBorderStation(data_border_station);
-            data_border_station.Columns[0].HeaderText = "Codigo";
-            data_border_station.Columns[1].HeaderText = "Nombre";
-            data_border_station.Columns[2].HeaderText = "Capacidad";
             AddLinkColumnDelete();
         }
 
@@ -79,25 +81,43 @@ namespace View
             {
                 if (StationController.IsNumberCapacity(this.capacity))
                 {
-                    this.input_name.ReadOnly = true;
-                    this.input_capacity.ReadOnly = true;
-                    this.show_same.Text = this.name;
-                    StationController.FeedComboBox(combo_box_station);
+                    if (!this.stationController.RepeatedPatent(this.name))
+                    {
+                        this.label_error.ForeColor = Color.Transparent;
+                        this.input_name.ReadOnly = true;
+                        this.input_capacity.ReadOnly = true;
+                        this.show_same.Text = this.name;
+                        StationController.FeedComboBox(combo_box_station);
+                    }
+                    else
+                    {
+                        Error("Nombre ya Ingresado");
+                    }
+                }
+                else
+                {
+                    Error("Capacidad Campo Numérico");
                 }
             }
             else
             {
-                MessageBox.Show("Error, Campo Vacío");
+                Error("Error, Campo Vacío");
             }
         }
         private void data_border_station_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == this.data_border_station.Columns["Delete"].Index)
             {
-                string res = ((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString();
-                this.stationController.DeleteBorderStation(res);
+                int id = Convert.ToInt32(((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString());
+                this.stationController.DeleteBorderStation(id);
                 this.stationController.FeedDataBorderStation(data_border_station);
             }
+        }
+
+        private void Error(string error)
+        {
+            this.label_error.ForeColor = Color.Red;
+            this.label_error.Text = error;
         }
 
     }

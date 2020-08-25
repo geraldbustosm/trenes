@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using Controller;
 
@@ -7,44 +7,58 @@ namespace View
 {
     public partial class AddLocomotiveForm : Form
     {
-        private string model;
+        private string patent;
         private string drag_capacity;
-        private LocomotiveController locomotiveController;
+        private LocomotiveController locomotive_controller;
         public AddLocomotiveForm()
         {
-            this.locomotiveController = new LocomotiveController();
+            this.locomotive_controller = new LocomotiveController();
             InitializeComponent();
         }
-        private void btn_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            this.model = this.inputModel.Text;
-            this.drag_capacity = this.inputDrag_capacity.Text;
-            if (this.model != null && this.drag_capacity != null)
+            this.patent = this.input_patent.Text;
+            this.drag_capacity = this.input_drag_capacity.Text;
+            if (this.patent != "" && this.drag_capacity != "")
             {
                 if (LocomotiveController.IsNumberCapacity(this.drag_capacity))
                 {
-                    locomotiveController.AddLocomotive(comboBox, this.model, this.drag_capacity);
-                    locomotiveController.FeedDataGrid(dataGridView);
-                    Clear();
+                    if (!this.locomotive_controller.RepeatedPatent(this.patent))
+                    {
+                        this.label_error.ForeColor = Color.Transparent;
+                        locomotive_controller.AddToLocomotiveList(station_combo_box, this.patent, this.drag_capacity);
+                        locomotive_controller.FeedLocomotiveDataGrid(locomotive_datagrid);
+                        ClearAllTextBox();
+                    }
+                    else
+                    {
+                        Error("Patente ya Ingresada");
+                    }
+                }
+                else
+                {
+                    Error("Capacidad Campo Numérico");
                 }
             }
             else
             {
-                MessageBox.Show("Error, Campo Vacío");
+                Error("Error, Campo Vacío");
             }
         }
-        private void Clear()
+        private void ClearAllTextBox()
         {
-            this.inputModel.Text = "";
-            this.inputDrag_capacity.Text = "";
+            this.input_patent.Text = "";
+            this.input_drag_capacity.Text = "";
         }
 
         private void AddLocomotiveForm_Load(object sender, EventArgs e)
         {
-            LocomotiveController.FeedComboBox(comboBox);
-            AddLinkColumn();
+            this.label_error.ForeColor = Color.Transparent;
+            LocomotiveController.FeedComboBox(station_combo_box);
+            this.locomotive_controller.FeedLocomotiveDataGrid(locomotive_datagrid);
+            AddLinkColumnAndName();
         }
-        private void AddLinkColumn()
+        private void AddLinkColumnAndName()
         {
             DataGridViewLinkColumn link = new DataGridViewLinkColumn();
 
@@ -52,30 +66,43 @@ namespace View
             link.Name = "Delete";
             link.Text = "Eliminar";
 
-            dataGridView.Columns.Add(link);
+            locomotive_datagrid.Columns.Add(link);
+            locomotive_datagrid.Columns[0].HeaderText = "Código";
+            locomotive_datagrid.Columns[1].HeaderText = "Patente";
+            locomotive_datagrid.Columns[2].HeaderText = "Capacidad";
+            locomotive_datagrid.Columns[3].HeaderText = "Activo";
+            locomotive_datagrid.Columns[4].HeaderText = "Código Tren";
+            locomotive_datagrid.Columns[5].HeaderText = "Código Estación";
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.locomotiveController.Clear();
-            this.locomotiveController.FeedDataGrid(dataGridView);
-            Clear();
+            this.locomotive_controller.ClearLocomotiveList();
+            this.locomotive_controller.FeedLocomotiveDataGrid(locomotive_datagrid);
+            ClearAllTextBox();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (this.locomotiveController.Insert())
+            if (this.locomotive_controller.Insert())
             {
-                this.locomotiveController.Clear();
-                this.locomotiveController.FeedDataGrid(dataGridView);
+                this.locomotive_controller.ClearLocomotiveList();
+                this.locomotive_controller.FeedLocomotiveDataGrid(locomotive_datagrid);
             }
         }
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void locomotive_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dataGridView.Columns["Delete"].Index)
+            if (e.ColumnIndex == this.locomotive_datagrid.Columns["Delete"].Index)
             {
-                string res = ((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString();
-                this.locomotiveController.DeleteLocomotive(res);
-                this.locomotiveController.FeedDataGrid(dataGridView);
+                int id = Convert.ToInt32(((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString());
+                this.locomotive_controller.DeleteToLocomotiveList(id);
+                this.locomotive_controller.FeedLocomotiveDataGrid(locomotive_datagrid);
             }
         }
+
+        private void Error(string error)
+        {
+            this.label_error.ForeColor = Color.Red;
+            this.label_error.Text = error;
+        }
+
     }
 }

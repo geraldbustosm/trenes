@@ -76,36 +76,6 @@ namespace Model
         }
 
         // Static methods
-        public static Wagon Find(int id)
-        {
-            Wagon wagon = null;
-            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
-            {
-                using (SQLiteCommand command = new SQLiteCommand(conn))
-                {
-                    command.CommandText = "SELECT * FROM wagon WHERE wagon_id = @wagon_id";
-                    command.Parameters.AddWithValue("@wagon_id", id);
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string patent = reader.GetString(1);
-                            string shipload_type = reader.GetString(2);
-                            int shipload_weight = reader.GetInt32(3);
-                            int wagon_weight = reader.GetInt32(4);
-                            int in_transit = reader.GetInt32(5);
-                            int train_id = reader.GetInt32(6);
-                            int station_id = reader.GetInt32(7);
-                            wagon = new Wagon(patent,shipload_type,shipload_weight,wagon_weight,station_id);
-                            wagon.train_id = train_id;
-                            wagon.in_transit = in_transit;
-                            wagon.wagon_id = id;
-                        }
-                    }
-                }
-            }
-            return wagon;
-        }
 
         public static Wagon FindByPatent(string patent)
         {

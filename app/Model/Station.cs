@@ -67,7 +67,7 @@ namespace Model
                     }
                 }
             }
-            return station ?? null;
+            return station;
         }
 
         public Boolean Delete()
@@ -155,7 +155,7 @@ namespace Model
                     }
                 }
             }
-            return nearby_stations ?? null;
+            return nearby_stations;
         }
 
         // Private methods

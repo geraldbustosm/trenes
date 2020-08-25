@@ -121,7 +121,7 @@ namespace Controller
 
         public void AddWagonToSection(int wagon_id)
         {
-            Wagon wagon = Wagon.Find(wagon_id);
+            Wagon wagon = Wagon.FindById(wagon_id);
             wagon_list.Add(wagon);
         }
 

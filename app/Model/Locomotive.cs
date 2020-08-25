@@ -101,7 +101,7 @@ namespace Model
 
         public static Locomotive FindByPatent(string patent)
         {
-            Locomotive locomotive = new Locomotive(null, 0, 0);
+            Locomotive locomotive = null;
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
@@ -112,12 +112,15 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            locomotive.patent = reader.GetString(1);
-                            locomotive.tons_drag = reader.GetInt32(2);
-                            locomotive.in_transit = reader.GetInt32(3);
-                            locomotive.train_id = reader.GetInt32(4);
-                            locomotive.station_id = reader.GetInt32(5);
-                            locomotive.locomotive_id = reader.GetInt32(0);
+                            int id = reader.GetInt32(0);
+                            int tons_drag = reader.GetInt32(2);
+                            int in_transit = reader.GetInt32(3);
+                            int train_id = reader.GetInt32(4);
+                            int station_id = reader.GetInt32(5);
+                            locomotive = new Locomotive(patent,tons_drag,station_id);
+                            locomotive.in_transit = in_transit;
+                            locomotive.train_id = train_id;
+                            locomotive.locomotive_id = id;
                         }
                     }
                 }

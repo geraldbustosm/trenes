@@ -46,6 +46,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.show_same = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label_error = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.data_border_station)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,7 +173,7 @@
             this.btnAddBS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddBS.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnAddBS.ForeColor = System.Drawing.Color.White;
-            this.btnAddBS.Location = new System.Drawing.Point(243, 180);
+            this.btnAddBS.Location = new System.Drawing.Point(43, 183);
             this.btnAddBS.Name = "btnAddBS";
             this.btnAddBS.Size = new System.Drawing.Size(123, 41);
             this.btnAddBS.TabIndex = 18;
@@ -287,12 +288,27 @@
             this.label7.TabIndex = 25;
             this.label7.Text = "Listado Estaciones Cercanas";
             // 
+            // label_error
+            // 
+            this.label_error.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_error.AutoSize = true;
+            this.label_error.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label_error.ForeColor = System.Drawing.Color.Red;
+            this.label_error.Location = new System.Drawing.Point(172, 194);
+            this.label_error.Name = "label_error";
+            this.label_error.Size = new System.Drawing.Size(42, 18);
+            this.label_error.TabIndex = 26;
+            this.label_error.Text = "Error";
+            // 
             // AddStationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(805, 586);
+            this.Controls.Add(this.label_error);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.show_same);
             this.Controls.Add(this.label6);
@@ -337,5 +353,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox show_same;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label_error;
     }
 }
