@@ -37,19 +37,25 @@ namespace View
 
         private void add_action_btn_Click(object sender, EventArgs e)
         {
-            // store actions for travel_section
-            int action_id = Int32.Parse(this.actions_combo_box.SelectedValue.ToString());
-            bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
+            try
+            {
+                int action_id = Int32.Parse(this.actions_combo_box.SelectedValue.ToString());
+                bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
 
-            if (action_to_locomotive)
-                travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "locomotive");
-            else
-                travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "wagon");
+                if (action_to_locomotive)
+                    travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "locomotive");
+                else
+                    travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "wagon");
 
-            this.RefreshActions();
-            this.init_station_combo_box.Enabled = false;
-            this.destination_station_combo_box.Enabled = false;
-            this.RefreshTrainState();
+                this.RefreshActions();
+                this.init_station_combo_box.Enabled = false;
+                this.destination_station_combo_box.Enabled = false;
+                this.RefreshTrainState();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void RefreshTrainState()
@@ -60,7 +66,6 @@ namespace View
         public void RefreshActions()
         {
             travel_controller.FeedActionsDataGrid(this.actions_datagrid);
-            //travel_controller.FeedBackWithReadNames(actions_datagrid);
         }
 
         private void next_section_btn_Click(object sender, EventArgs e)
@@ -74,27 +79,28 @@ namespace View
 
             // validate all things
 
-            // this metohd will be save in travel_section table on database
-            bool success = travel_controller.AddNewSectionToTravel(
-                this.arrival,  
-                this.init_station_id,
-                this.destination_station_id
-            );
-
-            if (success)
+            try
             {
-                travel_controller.FeedActionsDataGrid(this.actions_datagrid);
-                this.init_station_combo_box.Text = destination_station_combo_box.Text;
-                this.destination_station_combo_box.Enabled = true;
-                int id = Int32.Parse(destination_station_combo_box.SelectedValue.ToString());
-                travel_controller.FeedDestinationStationComboBox(id, this.destination_station_combo_box);
-                travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, id, machines_combo_box);
+                bool success = travel_controller.AddNewSectionToTravel(
+                    this.arrival,
+                    this.init_station_id,
+                    this.destination_station_id
+                );
+
+                if (success)
+                {
+                    travel_controller.FeedActionsDataGrid(this.actions_datagrid);
+                    this.init_station_combo_box.Text = destination_station_combo_box.Text;
+                    this.destination_station_combo_box.Enabled = true;
+                    int id = Int32.Parse(destination_station_combo_box.SelectedValue.ToString());
+                    travel_controller.FeedDestinationStationComboBox(id, this.destination_station_combo_box);
+                    travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, id, machines_combo_box);
+                }
             }
-            //else
-            // show error information
-
-
-            // actualizar combobox de destino con el nuevo INICIO
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void actions_combo_box_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,7 +110,7 @@ namespace View
 
         private void save_trip_btn_Click(object sender, EventArgs e)
         {
-
+            travel_controller.SaveTravel();
         }
     }
 }

@@ -7,17 +7,36 @@ namespace Model
     public class Travel
     {
         public int travel_id { get; private set; }
-        public int total_time { get; set; }
-        public string state { get; set; }
         public Boolean deleted;
 
-        public Travel(int total_time, string state)
+        public Travel()
         {
-            this.total_time = total_time;
-            this.state = state;
             this.deleted = false;
         }
 
+        public static Travel GetLastTravel()
+        {
+            Travel travel = null;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM travel ORDER BY travel_id DESC LIMIT 1";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+   
+                            travel = new Travel();
+                            travel.travel_id = id;
+                        }
+                    }
+                }
+            }
+            return travel;
+        }
+        
         public void Save()
         {
             if (!this.deleted)
@@ -26,11 +45,6 @@ namespace Model
                 {
                     connection.Open();
                     SQLiteCommand db = new SQLiteCommand(connection);
-                    Boolean exist = this.CheckIfExists(this.travel_id);
-
-                    db.Parameters.AddWithValue("@total_time", this.total_time);
-                    db.Parameters.AddWithValue("@state", this.state);
-
                     if (!exist)
                     {
                         db.CommandText = "INSERT INTO travel(total_time, state) values (@total_time,@state)";
@@ -46,6 +60,8 @@ namespace Model
                 }
             }
         }
+
+        /*
         public Boolean Delete()
         {
             using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
@@ -110,5 +126,6 @@ namespace Model
                 return count > 0;
             }
         }
+        */
     }
 }
