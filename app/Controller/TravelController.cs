@@ -228,7 +228,7 @@ namespace Controller
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("Código");
-            dt.Columns.Add("Tiempo Llegada");
+            dt.Columns.Add("Hora Llegada");
             dt.Columns.Add("Código Viaje");
             dt.Columns.Add("Prioridad");
             dt.Columns.Add("Estación Origen");
@@ -239,7 +239,7 @@ namespace Controller
                 Station origin = Station.Find(item.origin_station_id);
                 Station destination = Station.Find(item.destination_station_id);
 
-                Object[]  aux = {item.travel_id,item.arrival_time,item.priority,origin.name,destination.name};
+                Object[]  aux = {item.travel_section_id,item.arrival_time,item.travel_id,item.priority,origin.name,destination.name};
 
                 dt.Rows.Add(aux);
             }

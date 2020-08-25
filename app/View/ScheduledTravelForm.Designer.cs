@@ -31,12 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.codigo_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.origen_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.destino_viaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hora_salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hora_llegada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -65,13 +59,6 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codigo_viaje,
-            this.fecha_viaje,
-            this.origen_viaje,
-            this.destino_viaje,
-            this.hora_salida,
-            this.hora_llegada});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -81,65 +68,25 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(95, 146);
+            this.dataGridView1.Location = new System.Drawing.Point(107, 182);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(887, 500);
+            this.dataGridView1.Size = new System.Drawing.Size(998, 488);
             this.dataGridView1.TabIndex = 18;
-            // 
-            // codigo_viaje
-            // 
-            this.codigo_viaje.HeaderText = "Código";
-            this.codigo_viaje.MinimumWidth = 6;
-            this.codigo_viaje.Name = "codigo_viaje";
-            this.codigo_viaje.ReadOnly = true;
-            // 
-            // fecha_viaje
-            // 
-            this.fecha_viaje.HeaderText = "Fecha";
-            this.fecha_viaje.MinimumWidth = 6;
-            this.fecha_viaje.Name = "fecha_viaje";
-            this.fecha_viaje.ReadOnly = true;
-            // 
-            // origen_viaje
-            // 
-            this.origen_viaje.HeaderText = "Origen";
-            this.origen_viaje.MinimumWidth = 6;
-            this.origen_viaje.Name = "origen_viaje";
-            this.origen_viaje.ReadOnly = true;
-            // 
-            // destino_viaje
-            // 
-            this.destino_viaje.HeaderText = "Destino";
-            this.destino_viaje.MinimumWidth = 6;
-            this.destino_viaje.Name = "destino_viaje";
-            this.destino_viaje.ReadOnly = true;
-            // 
-            // hora_salida
-            // 
-            this.hora_salida.HeaderText = "Hora de salida";
-            this.hora_salida.MinimumWidth = 6;
-            this.hora_salida.Name = "hora_salida";
-            this.hora_salida.ReadOnly = true;
-            // 
-            // hora_llegada
-            // 
-            this.hora_llegada.HeaderText = "Hora de llegada";
-            this.hora_llegada.MinimumWidth = 6;
-            this.hora_llegada.Name = "hora_llegada";
-            this.hora_llegada.ReadOnly = true;
             // 
             // comboBox1
             // 
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(740, 71);
+            this.comboBox1.Location = new System.Drawing.Point(832, 89);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(246, 24);
+            this.comboBox1.Size = new System.Drawing.Size(276, 28);
             this.comboBox1.TabIndex = 19;
             // 
             // label1
@@ -149,24 +96,24 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label1.Location = new System.Drawing.Point(95, 71);
+            this.label1.Location = new System.Drawing.Point(107, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 24);
+            this.label1.Size = new System.Drawing.Size(178, 26);
             this.label1.TabIndex = 20;
             this.label1.Text = "Seleccione fecha";
             // 
             // ScheduledTravelForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1073, 721);
+            this.ClientSize = new System.Drawing.Size(1207, 901);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ScheduledTravelForm";
             this.Text = "HomeForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -179,11 +126,5 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigo_viaje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_viaje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn origen_viaje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn destino_viaje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hora_salida;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hora_llegada;
     }
 }
