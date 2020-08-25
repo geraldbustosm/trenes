@@ -114,7 +114,7 @@ namespace View
         private void btn_ver_estaciones_Click(object sender, EventArgs e)
         {
             highLightButton(btn_ver_estaciones);
-            _layoutForm.changeLayout(new ListStationsForm());
+            _layoutForm.changeLayout(new ListStationsForm(_layoutForm));
         }
 
         private void btn_ver_usuarios_Click(object sender, EventArgs e)

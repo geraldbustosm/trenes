@@ -126,6 +126,12 @@
     <Compile Include="EditUserForm.Designer.cs">
       <DependentUpon>EditUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetailsStationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailsStationForm.Designer.cs">
+      <DependentUpon>DetailsStationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListStationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddTravelSectionForm.resx">
       <DependentUpon>AddTravelSectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailsStationForm.resx">
+      <DependentUpon>DetailsStationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditUserForm.resx">
       <DependentUpon>EditUserForm.cs</DependentUpon>
