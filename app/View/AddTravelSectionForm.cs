@@ -26,6 +26,8 @@ namespace View
         private void AddTravelSectionForm_Load(object sender, System.EventArgs e)
         {
             travel_controller.FeedInitStationComboBox(this.init_station_combo_box);
+            int id_default_station = Int32.Parse(init_station_combo_box.SelectedValue.ToString());
+            travel_controller.FeedDestinationStationComboBox(id_default_station, this.destination_station_combo_box);
             ActionController.FeedActionsComboBox(this.actions_combo_box);
         }
 
