@@ -12,7 +12,7 @@ namespace Model
 
         public Travel()
         {
-            this.state = "Preparate";
+            this.state = "Preparado";
             this.deleted = false;
         }
 

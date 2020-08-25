@@ -200,8 +200,13 @@ namespace Controller
 
         }
 
-        public void SaveTravel()
+        public void SaveTravel(string arrival_time, int origin_station_id, int destination_station_id)
         {
+            this.AddNewSectionToTravel(arrival_time, origin_station_id, destination_station_id);
+
+            if (wagon_list.Count > 0 || locomotive_list.Count > 0)
+                MessageBox.Show("Todas las maquinas seran almacenadas en la estacion de llegada!");
+            
             Travel travel = new Travel();
             travel.Save();
             foreach (TravelSection travel_section in this.all_sections)
