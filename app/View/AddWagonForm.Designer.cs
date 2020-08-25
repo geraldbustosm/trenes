@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.input_wagon_w = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,10 +54,10 @@
             this.input_wagon_w.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_wagon_w.Location = new System.Drawing.Point(553, 80);
-            this.input_wagon_w.Margin = new System.Windows.Forms.Padding(2);
+            this.input_wagon_w.Location = new System.Drawing.Point(737, 98);
+            this.input_wagon_w.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.input_wagon_w.Name = "input_wagon_w";
-            this.input_wagon_w.Size = new System.Drawing.Size(186, 20);
+            this.input_wagon_w.Size = new System.Drawing.Size(247, 22);
             this.input_wagon_w.TabIndex = 1;
             // 
             // label1
@@ -66,10 +67,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label1.Location = new System.Drawing.Point(69, 80);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(92, 98);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 18);
+            this.label1.Size = new System.Drawing.Size(132, 24);
             this.label1.TabIndex = 2;
             this.label1.Text = "Peso del carro";
             // 
@@ -80,10 +80,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label2.Location = new System.Drawing.Point(69, 110);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(92, 135);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(149, 18);
+            this.label2.Size = new System.Drawing.Size(189, 24);
             this.label2.TabIndex = 3;
             this.label2.Text = "Peso del cargamento";
             // 
@@ -94,10 +93,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label3.Location = new System.Drawing.Point(69, 141);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(92, 174);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 18);
+            this.label3.Size = new System.Drawing.Size(180, 24);
             this.label3.TabIndex = 4;
             this.label3.Text = "Tipo de cargamento";
             // 
@@ -106,10 +104,10 @@
             this.input_shipload_w.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_shipload_w.Location = new System.Drawing.Point(553, 110);
-            this.input_shipload_w.Margin = new System.Windows.Forms.Padding(2);
+            this.input_shipload_w.Location = new System.Drawing.Point(737, 135);
+            this.input_shipload_w.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.input_shipload_w.Name = "input_shipload_w";
-            this.input_shipload_w.Size = new System.Drawing.Size(186, 20);
+            this.input_shipload_w.Size = new System.Drawing.Size(247, 22);
             this.input_shipload_w.TabIndex = 5;
             // 
             // input_shipload_type
@@ -117,10 +115,10 @@
             this.input_shipload_type.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_shipload_type.Location = new System.Drawing.Point(553, 143);
-            this.input_shipload_type.Margin = new System.Windows.Forms.Padding(2);
+            this.input_shipload_type.Location = new System.Drawing.Point(737, 176);
+            this.input_shipload_type.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.input_shipload_type.Name = "input_shipload_type";
-            this.input_shipload_type.Size = new System.Drawing.Size(186, 20);
+            this.input_shipload_type.Size = new System.Drawing.Size(247, 22);
             this.input_shipload_type.TabIndex = 6;
             // 
             // btnAdd
@@ -129,10 +127,10 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(74, 202);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdd.Location = new System.Drawing.Point(99, 249);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(123, 41);
+            this.btnAdd.Size = new System.Drawing.Size(164, 50);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -145,10 +143,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label4.Location = new System.Drawing.Point(69, 172);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(92, 212);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 18);
+            this.label4.Size = new System.Drawing.Size(82, 24);
             this.label4.TabIndex = 8;
             this.label4.Text = "Estación";
             // 
@@ -158,10 +155,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.station_combo_box.FormattingEnabled = true;
-            this.station_combo_box.Location = new System.Drawing.Point(553, 173);
-            this.station_combo_box.Margin = new System.Windows.Forms.Padding(2);
+            this.station_combo_box.Location = new System.Drawing.Point(737, 213);
+            this.station_combo_box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.station_combo_box.Name = "station_combo_box";
-            this.station_combo_box.Size = new System.Drawing.Size(186, 21);
+            this.station_combo_box.Size = new System.Drawing.Size(247, 24);
             this.station_combo_box.TabIndex = 9;
             // 
             // btnSave
@@ -171,10 +168,10 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(451, 499);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSave.Location = new System.Drawing.Point(601, 614);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(123, 41);
+            this.btnSave.Size = new System.Drawing.Size(164, 50);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Guardar";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -187,10 +184,10 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(617, 499);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancel.Location = new System.Drawing.Point(823, 614);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(123, 41);
+            this.btnCancel.Size = new System.Drawing.Size(164, 50);
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -219,7 +216,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.station_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.station_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -228,15 +225,23 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.station_datagrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.station_datagrid.EnableHeadersVisualStyles = false;
-            this.station_datagrid.Location = new System.Drawing.Point(74, 258);
-            this.station_datagrid.Margin = new System.Windows.Forms.Padding(2);
+            this.station_datagrid.Location = new System.Drawing.Point(99, 318);
+            this.station_datagrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.station_datagrid.Name = "station_datagrid";
             this.station_datagrid.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.station_datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.station_datagrid.RowHeadersVisible = false;
             this.station_datagrid.RowHeadersWidth = 51;
             this.station_datagrid.RowTemplate.Height = 24;
             this.station_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.station_datagrid.Size = new System.Drawing.Size(665, 224);
+            this.station_datagrid.Size = new System.Drawing.Size(887, 276);
             this.station_datagrid.TabIndex = 15;
             this.station_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
@@ -247,10 +252,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label5.Location = new System.Drawing.Point(69, 53);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(92, 65);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 18);
+            this.label5.Size = new System.Drawing.Size(73, 24);
             this.label5.TabIndex = 17;
             this.label5.Text = "Patente";
             // 
@@ -259,10 +263,10 @@
             this.input_patent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_patent.Location = new System.Drawing.Point(553, 53);
-            this.input_patent.Margin = new System.Windows.Forms.Padding(2);
+            this.input_patent.Location = new System.Drawing.Point(737, 65);
+            this.input_patent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.input_patent.Name = "input_patent";
-            this.input_patent.Size = new System.Drawing.Size(186, 20);
+            this.input_patent.Size = new System.Drawing.Size(247, 22);
             this.input_patent.TabIndex = 16;
             // 
             // label_error
@@ -273,44 +277,18 @@
             this.label_error.AutoSize = true;
             this.label_error.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label_error.ForeColor = System.Drawing.Color.Red;
-            this.label_error.Location = new System.Drawing.Point(201, 213);
-            this.label_error.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_error.Location = new System.Drawing.Point(268, 262);
             this.label_error.Name = "label_error";
-            this.label_error.Size = new System.Drawing.Size(42, 18);
+            this.label_error.Size = new System.Drawing.Size(52, 24);
             this.label_error.TabIndex = 18;
             this.label_error.Text = "Error";
             // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label5.Location = new System.Drawing.Point(69, 53);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 18);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Patente";
-            // 
-            // input_patent
-            // 
-            this.input_patent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_patent.Location = new System.Drawing.Point(553, 53);
-            this.input_patent.Margin = new System.Windows.Forms.Padding(2);
-            this.input_patent.Name = "input_patent";
-            this.input_patent.Size = new System.Drawing.Size(186, 20);
-            this.input_patent.TabIndex = 16;
-            // 
             // AddWagonForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(805, 586);
+            this.ClientSize = new System.Drawing.Size(1073, 721);
             this.Controls.Add(this.label_error);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.input_patent);
@@ -328,6 +306,7 @@
             this.Controls.Add(this.input_wagon_w);
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AddWagonForm";
             this.Text = "AddWagonForm";
             this.Load += new System.EventHandler(this.AddWagonForm_Load);

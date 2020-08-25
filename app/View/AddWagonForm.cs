@@ -40,10 +40,18 @@ namespace View
                     {
                         if (!this.wagon_controller.RepeatedPatent(this.patent))
                         {
-                            this.label_error.ForeColor = Color.Transparent;
-                            this.wagon_controller.AddListWagon(this.patent, this.shipload_weight, this.wagon_weight, this.shipload_type, station_combo_box);
-                            this.wagon_controller.FeedDataGrid(station_datagrid);
-                            ClearAllBoxText();
+                            int station_id = Convert.ToInt32(station_combo_box.SelectedValue);
+                            if (this.wagon_controller.IsThereSpace(station_id))
+                            {
+                                this.label_error.ForeColor = Color.Transparent;
+                                this.wagon_controller.AddListWagon(this.patent, this.shipload_weight, this.wagon_weight, this.shipload_type, station_id);
+                                this.wagon_controller.FeedDataGrid(station_datagrid);
+                                ClearAllBoxText();
+                            }
+                            else
+                            {
+                                Error("Estación sin Capacidad");
+                            }
                         }
                         else
                         {

@@ -37,9 +37,8 @@ namespace Controller
             data.DataSource = source;
         }
 
-        public void AddToLocomotiveList(ComboBox combo_box, string patent, string drag_capacity)
+        public void AddToLocomotiveList(int station_id, string patent, string drag_capacity)
         {
-            int station_id = Convert.ToInt32(combo_box.SelectedValue);
             int tons_drag = Convert.ToInt32(drag_capacity);
             Locomotive locomotive = new Locomotive(patent, tons_drag, station_id);
             this.list_locomotive.Add(locomotive);
@@ -102,5 +101,19 @@ namespace Controller
             comboBox.ValueMember = "station_id";
         }
 
+        public bool IsThereSpace(int station_id)
+        {
+            Station station = Station.Find(station_id);
+            int count = Station.GetCountMachineInStation(station_id);
+            foreach (Locomotive locomotive in this.list_locomotive)
+            {
+                if (locomotive.station_id == station_id)count += 1;
+            }
+            {
+
+            }
+            if (station.capacity > count)return true;
+            return false;
+        }
     }
 }

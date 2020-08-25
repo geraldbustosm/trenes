@@ -153,6 +153,13 @@ namespace Controller
             }
 
         }
+        public static void EditStation(int id, string name, int capacity)
+        {
+            Station station = Station.Find(id);
+            station.name = name;
+            station.capacity = capacity;
+            station.Save();
+        }
     }
 }
 

@@ -25,10 +25,18 @@ namespace View
                 {
                     if (!this.locomotive_controller.RepeatedPatent(this.patent))
                     {
-                        this.label_error.ForeColor = Color.Transparent;
-                        locomotive_controller.AddToLocomotiveList(station_combo_box, this.patent, this.drag_capacity);
-                        locomotive_controller.FeedLocomotiveDataGrid(locomotive_datagrid);
-                        ClearAllTextBox();
+                        int station_id = Convert.ToInt32(station_combo_box.SelectedValue);
+                        if (this.locomotive_controller.IsThereSpace(station_id))
+                        {
+                            this.label_error.ForeColor = Color.Transparent;
+                            locomotive_controller.AddToLocomotiveList(station_id, this.patent, this.drag_capacity);
+                            locomotive_controller.FeedLocomotiveDataGrid(locomotive_datagrid);
+                            ClearAllTextBox();
+                        }
+                        else
+                        {
+                            Error("Estación sin Capacidad");
+                        }
                     }
                     else
                     {

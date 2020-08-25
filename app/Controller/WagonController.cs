@@ -50,11 +50,10 @@ namespace Controller
             }
         }
 
-        public void AddListWagon(string patent, string shipload_weight, string wagon_weight, string shipload_type, ComboBox comboBox)
+        public void AddListWagon(string patent, string shipload_weight, string wagon_weight, string shipload_type, int station_id)
         {
             int shioload_w = Convert.ToInt32(shipload_weight);
             int wagon_w = Convert.ToInt32(wagon_weight);
-            int station_id = Convert.ToInt32(comboBox.SelectedValue);
             Wagon wagon = new Wagon(patent,shipload_type, shioload_w, wagon_w, station_id);
             this.list_wagon.Add(wagon);
         }
@@ -106,6 +105,18 @@ namespace Controller
                 MessageBox.Show("Error, ingrese un valor numerico");
                 Console.WriteLine(ex);
             }
+            return false;
+        }
+
+        public bool IsThereSpace(int station_id)
+        {
+            Station station = Station.Find(station_id);
+            int count = Station.GetCountMachineInStation(station_id);
+            foreach (Wagon wagon in this.list_wagon)
+            {
+                if (wagon.station_id == station_id) count += 1;
+            }
+            if (station.capacity > count) return true;
             return false;
         }
     }
