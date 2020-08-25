@@ -87,18 +87,19 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            wagon.shipload_type = reader.GetString(1);
-                            wagon.shipload_weight = reader.GetInt32(2);
-                            wagon.wagon_weight = reader.GetInt32(3);
-                            wagon.in_transit = reader.GetInt32(4);
-                            wagon.train_id = reader.GetInt32(5);
-                            wagon.station_id = reader.GetInt32(6);
+                            wagon.patent = reader.GetString(1);
+                            wagon.shipload_type = reader.GetString(2);
+                            wagon.shipload_weight = reader.GetInt32(3);
+                            wagon.wagon_weight = reader.GetInt32(4);
+                            wagon.in_transit = reader.GetInt32(5);
+                            wagon.train_id = reader.GetInt32(6);
+                            wagon.station_id = reader.GetInt32(7);
                             wagon.wagon_id = id;
                         }
                     }
                 }
             }
-            if (wagon.shipload_type != null) { return wagon; } else { return null; }
+            return wagon;
         }
 
         public static Wagon FindByPatent(string patent)

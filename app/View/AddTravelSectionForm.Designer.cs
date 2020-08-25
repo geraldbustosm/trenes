@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cancel_btn = new System.Windows.Forms.Button();
@@ -88,7 +88,7 @@
             this.cancel_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.cancel_btn.ForeColor = System.Drawing.Color.White;
-            this.cancel_btn.Location = new System.Drawing.Point(69, 777);
+            this.cancel_btn.Location = new System.Drawing.Point(89, 628);
             this.cancel_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(184, 62);
@@ -103,13 +103,14 @@
             this.save_trip_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_trip_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.save_trip_btn.ForeColor = System.Drawing.Color.White;
-            this.save_trip_btn.Location = new System.Drawing.Point(976, 777);
+            this.save_trip_btn.Location = new System.Drawing.Point(896, 610);
             this.save_trip_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.save_trip_btn.Name = "save_trip_btn";
             this.save_trip_btn.Size = new System.Drawing.Size(184, 62);
             this.save_trip_btn.TabIndex = 11;
             this.save_trip_btn.Text = "Guardar viaje";
             this.save_trip_btn.UseVisualStyleBackColor = false;
+            this.save_trip_btn.Click += new System.EventHandler(this.save_trip_btn_Click);
             // 
             // machines_combo_box
             // 
@@ -150,23 +151,23 @@
             this.actions_datagrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.actions_datagrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.actions_datagrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.actions_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.actions_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.actions_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.actions_datagrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.actions_datagrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.actions_datagrid.EnableHeadersVisualStyles = false;
             this.actions_datagrid.Location = new System.Drawing.Point(70, 460);
             this.actions_datagrid.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -176,7 +177,7 @@
             this.actions_datagrid.RowHeadersWidth = 51;
             this.actions_datagrid.RowTemplate.Height = 24;
             this.actions_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.actions_datagrid.Size = new System.Drawing.Size(532, 308);
+            this.actions_datagrid.Size = new System.Drawing.Size(532, 136);
             this.actions_datagrid.TabIndex = 17;
             // 
             // destination_station_combo_box
@@ -346,7 +347,7 @@
             this.next_section_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.next_section_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.next_section_btn.ForeColor = System.Drawing.Color.White;
-            this.next_section_btn.Location = new System.Drawing.Point(783, 777);
+            this.next_section_btn.Location = new System.Drawing.Point(638, 610);
             this.next_section_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.next_section_btn.Name = "next_section_btn";
             this.next_section_btn.Size = new System.Drawing.Size(184, 62);
@@ -361,7 +362,7 @@
             this.information_label.BackColor = System.Drawing.Color.Transparent;
             this.information_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.information_label.ForeColor = System.Drawing.Color.Red;
-            this.information_label.Location = new System.Drawing.Point(262, 794);
+            this.information_label.Location = new System.Drawing.Point(350, 628);
             this.information_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.information_label.Name = "information_label";
             this.information_label.Size = new System.Drawing.Size(178, 26);
@@ -377,7 +378,7 @@
             this.train_state_datagrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.train_state_datagrid.Name = "train_state_datagrid";
             this.train_state_datagrid.RowHeadersWidth = 62;
-            this.train_state_datagrid.Size = new System.Drawing.Size(537, 445);
+            this.train_state_datagrid.Size = new System.Drawing.Size(537, 222);
             this.train_state_datagrid.TabIndex = 38;
             // 
             // label9

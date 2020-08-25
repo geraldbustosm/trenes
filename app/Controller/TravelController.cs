@@ -88,7 +88,7 @@ namespace Controller
             return id;
         }
 
-        public bool AddNewActionToSection(string action_description, string patent, string type)
+        public bool AddNewActionToSection(int action_id, string patent, string type)
         {
             int locomotive_id = 0, wagon_id = 0;
             if (type == "locomotive")
@@ -102,8 +102,6 @@ namespace Controller
                     this.AddLocomotiveToSection(locomotive_id);
                 else
                     this.AddWagonToSection(wagon_id);
-
-                int action_id = Model.Action.FindByDescription(action_description).action_id;
                 SectionAction action = new SectionAction(action_id, section_index, locomotive_id, wagon_id);
                 actions_list.Add(action);
                 return true;

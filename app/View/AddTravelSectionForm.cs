@@ -56,16 +56,18 @@ namespace View
         private void add_action_btn_Click(object sender, EventArgs e)
         {
             // store actions for travel_section
-            this.action_description = this.actions_combo_box.Text;
+            int action_id = Int32.Parse(this.actions_combo_box.SelectedValue.ToString());
             bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
 
             if (action_to_locomotive)
-                travel_controller.AddNewActionToSection(this.action_description, machines_combo_box.SelectedValue.ToString(), "locomotive");
+                travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "locomotive");
             else
-                travel_controller.AddNewActionToSection(this.action_description, machines_combo_box.SelectedValue.ToString(), "wagon");
+                travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "wagon");
 
             this.RefreshActions();
-            //this.RefreshTrainState();
+            this.init_station_combo_box.Enabled = false;
+            this.destination_station_combo_box.Enabled = false;
+            this.RefreshTrainState();
         }
 
         public void RefreshTrainState()
@@ -97,14 +99,23 @@ namespace View
             );
 
             //if(success)
-                // setup form for next section
+            // setup form for next section
             //else
-                // show error information
+            // show error information
+
+            this.init_station_combo_box.Text = destination_station_combo_box.Text;
+            this.destination_station_combo_box.Enabled = true;
+            // actualizar combobox de destino con el nuevo INICIO
         }
 
         private void actions_combo_box_SelectedIndexChanged(object sender, EventArgs e)
         {
             travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, Int32.Parse(this.init_station_combo_box.SelectedValue.ToString()), machines_combo_box);
+        }
+
+        private void save_trip_btn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

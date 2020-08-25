@@ -94,7 +94,7 @@ namespace Model
                     }
                 }
             }
-            if (locomotive.model != null) { return locomotive; } else { return null; }
+            return locomotive;
         }
 
         public static Locomotive FindByPatent(string patent)
