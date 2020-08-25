@@ -18,8 +18,9 @@ namespace Model
         public int station_id { get; set; }
         public Boolean deleted;
 
-        public Wagon(string shipload_type, int shipload_weight, int wagon_weight, int station_id)
+        public Wagon(string patent, string shipload_type, int shipload_weight, int wagon_weight, int station_id)
         {
+            this.patent = patent;
             this.shipload_type = shipload_type;
             this.shipload_weight = shipload_weight;
             this.wagon_weight = wagon_weight;
@@ -36,6 +37,7 @@ namespace Model
                 {
                     using (SQLiteCommand command = new SQLiteCommand(conn))
                     {
+                        command.Parameters.AddWithValue("@patent", this.patent);
                         command.Parameters.AddWithValue("@shipload_type", this.shipload_type);
                         command.Parameters.AddWithValue("@shipload_weight", this.shipload_weight);
                         command.Parameters.AddWithValue("@wagon_weight", this.wagon_weight);
@@ -44,12 +46,12 @@ namespace Model
 
                         if (!this.CheckIfExists())
                         {
-                            command.CommandText = "INSERT INTO wagon(shipload_type, shipload_weight, wagon_weight, in_transit, station_id) VALUES (@shipload_type, @shipload_weight, @wagon_weight, @in_transit, @station_id)";
+                            command.CommandText = "INSERT INTO wagon(patent,shipload_type, shipload_weight, wagon_weight, in_transit, station_id) VALUES (@patent, @shipload_type, @shipload_weight, @wagon_weight, @in_transit, @station_id)";
                             this.wagon_id = Convert.ToInt32(command.ExecuteScalar());
                         }
                         else
                         {
-                            command.CommandText = "UPDATE wagon SET(shipload_type = @shipload_type, shipload_weight =  @shipload_weight, wagon_weight = @wagon_weight, in_transit = @in_transit, train_id = @train_id, station_id = @station_id ) WHERE wagon_id = @wagon_id";
+                            command.CommandText = "UPDATE wagon SET(patent= @patent,shipload_type = @shipload_type, shipload_weight =  @shipload_weight, wagon_weight = @wagon_weight, in_transit = @in_transit, train_id = @train_id, station_id = @station_id ) WHERE wagon_id = @wagon_id";
                             command.Parameters.AddWithValue("@train_id", this.train_id);
                             command.Parameters.AddWithValue("@wagon_id", this.wagon_id);
                             command.ExecuteNonQuery();
@@ -76,7 +78,7 @@ namespace Model
         // Static methods
         public static Wagon Find(int id)
         {
-            Wagon wagon = new Wagon(null, 0, 0, 0);
+            Wagon wagon = null;
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
@@ -87,13 +89,16 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            wagon.patent = reader.GetString(1);
-                            wagon.shipload_type = reader.GetString(2);
-                            wagon.shipload_weight = reader.GetInt32(3);
-                            wagon.wagon_weight = reader.GetInt32(4);
-                            wagon.in_transit = reader.GetInt32(5);
-                            wagon.train_id = reader.GetInt32(6);
-                            wagon.station_id = reader.GetInt32(7);
+                            string patent = reader.GetString(1);
+                            string shipload_type = reader.GetString(2);
+                            int shipload_weight = reader.GetInt32(3);
+                            int wagon_weight = reader.GetInt32(4);
+                            int in_transit = reader.GetInt32(5);
+                            int train_id = reader.GetInt32(6);
+                            int station_id = reader.GetInt32(7);
+                            wagon = new Wagon(patent,shipload_type,shipload_weight,wagon_weight,station_id);
+                            wagon.train_id = train_id;
+                            wagon.in_transit = in_transit;
                             wagon.wagon_id = id;
                         }
                     }
@@ -104,7 +109,7 @@ namespace Model
 
         public static Wagon FindByPatent(string patent)
         {
-            Wagon wagon = new Wagon(null, 0, 0, 0);
+            Wagon wagon = null;
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
@@ -115,14 +120,48 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            wagon.wagon_id = reader.GetInt32(0);
-                            wagon.patent = reader.GetString(1);
-                            wagon.shipload_type = reader.GetString(2);
-                            wagon.shipload_weight = reader.GetInt32(3);
-                            wagon.wagon_weight = reader.GetInt32(4);
-                            wagon.in_transit = reader.GetInt32(5);
-                            wagon.train_id = reader.GetInt32(6);
-                            wagon.station_id = reader.GetInt32(7);
+                            int wagon_id = reader.GetInt32(0);
+                            string shipload_type = reader.GetString(2);
+                            int shipload_weight = reader.GetInt32(3);
+                            int wagon_weight = reader.GetInt32(4);
+                            int in_transit = reader.GetInt32(5);
+                            int train_id = reader.GetInt32(6);
+                            int station_id = reader.GetInt32(7);
+                            wagon = new Wagon(patent, shipload_type, shipload_weight, wagon_weight, station_id);
+                            wagon.train_id = train_id;
+                            wagon.in_transit = in_transit;
+                            wagon.wagon_id = wagon_id;
+                        }
+                    }
+                }
+            }
+            return wagon ?? null;
+        }
+
+        public static Wagon FindById(int id)
+        {
+            Wagon wagon = null;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM wagon WHERE wagon_id = @wagon_id";
+                    command.Parameters.AddWithValue("@wagon_id", id);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string patent = reader.GetString(1);
+                            string shipload_type = reader.GetString(2);
+                            int shipload_weight = reader.GetInt32(3);
+                            int wagon_weight = reader.GetInt32(4);
+                            int in_transit = reader.GetInt32(5);
+                            int train_id = reader.GetInt32(6);
+                            int station_id = reader.GetInt32(7);
+                            wagon = new Wagon(patent, shipload_type, shipload_weight, wagon_weight, station_id);
+                            wagon.train_id = train_id;
+                            wagon.in_transit = in_transit;
+                            wagon.wagon_id = id;
                         }
                     }
                 }
@@ -143,7 +182,7 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            Wagon wagon = new Wagon("", 0, 0, 0);
+                            Wagon wagon = new Wagon("","", 0, 0, 0);
                             wagon.wagon_id = reader.GetInt32(0);
                             wagon.patent = reader.GetString(1);
                             wagon.shipload_type = reader.GetString(2);

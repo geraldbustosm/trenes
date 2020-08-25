@@ -75,9 +75,9 @@ namespace Controller
 
         //public int GetLastTravel()
         //{
-            // this method will be return a last id of travel table
-            // we need that id for store a sections with this until save in database the travel
-            // return Travel.GetLastTravel().travel_id;
+        // this method will be return a last id of travel table
+        // we need that id for store a sections with this until save in database the travel
+        // return Travel.GetLastTravel().travel_id;
         //}
 
         public int GetLastTravelSection()
@@ -96,6 +96,13 @@ namespace Controller
             else
                 wagon_id = Wagon.FindByPatent(patent).wagon_id;
 
+            int action_id = Model.Action.FindByDescription(action_description).action_id;
+
+            SectionAction result = this.actions_list.Find(delegate (SectionAction item) {
+                return item.action_id == action_id;
+            });
+
+            if (result != null) return false;
             try
             {
                 if (type == "locomotive")
@@ -115,7 +122,7 @@ namespace Controller
 
         public void AddLocomotiveToSection(int locomotive_id)
         {
-            Locomotive locomotive = Locomotive.Find(locomotive_id);
+            Locomotive locomotive = Locomotive.FindById(locomotive_id);
             locomotive_list.Add(locomotive);
         }
 
@@ -145,6 +152,53 @@ namespace Controller
             // cont for store actions
             this.section_index++;
             return true;
+        }
+
+        public void DeleteActionInDataGrid(int action_id)
+        {
+            SectionAction result = this.actions_list.Find(delegate (SectionAction item) {
+                return item.action_id == action_id;
+            });
+            this.actions_list.Remove(result);
+        }
+
+        public void FeedBackWithReadNames(DataGridView data)
+        {
+            data.Columns[0].HeaderText = "Codigo";
+            data.Columns[0].HeaderText = "Acción";
+            data.Columns[0].HeaderText = "Codigo";
+            data.Columns[0].HeaderText = "Locomotora";
+            data.Columns[0].HeaderText = "Bagón";
+            for (int row = 0; row < data.Rows.Count - 1; row++)
+            {
+                for (int col = 0;col < data.Columns.Count; col++)
+                {
+                    int id = Convert.ToInt32(data.Rows[row].Cells[col].Value);
+                    switch (col)
+                    {
+                        case 0: // Section_action_id
+                            
+                            break;
+                        case 1: // Action_id
+                            Model.Action action = Model.Action.FindById(id);
+                            data.Rows[row].Cells[col].Value = action.description;
+                            break;
+                        case 2: // Travel_section_id
+                            
+                            break;
+                        case 3: // Locomotove_id
+                            Locomotive locomotive = Locomotive.FindById(id);
+                            data.Rows[row].Cells[col].Value = locomotive.patent;
+                            break;
+                        case 4: // Wagon_id
+                            Wagon wagon = Wagon.FindById(id);
+                            data.Rows[row].Cells[col].Value = wagon.patent;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
     }
 }

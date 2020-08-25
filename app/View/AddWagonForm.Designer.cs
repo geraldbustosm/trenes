@@ -42,6 +42,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.input_patent = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,8 +52,8 @@
             this.inputWagon_w.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputWagon_w.Location = new System.Drawing.Point(555, 58);
-            this.inputWagon_w.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.inputWagon_w.Location = new System.Drawing.Point(553, 80);
+            this.inputWagon_w.Margin = new System.Windows.Forms.Padding(2);
             this.inputWagon_w.Name = "inputWagon_w";
             this.inputWagon_w.Size = new System.Drawing.Size(186, 20);
             this.inputWagon_w.TabIndex = 1;
@@ -63,7 +65,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label1.Location = new System.Drawing.Point(71, 58);
+            this.label1.Location = new System.Drawing.Point(69, 80);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 18);
@@ -77,7 +79,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label2.Location = new System.Drawing.Point(71, 88);
+            this.label2.Location = new System.Drawing.Point(69, 110);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(149, 18);
@@ -91,7 +93,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label3.Location = new System.Drawing.Point(71, 119);
+            this.label3.Location = new System.Drawing.Point(69, 141);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(140, 18);
@@ -103,8 +105,8 @@
             this.inputShipload_w.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputShipload_w.Location = new System.Drawing.Point(555, 88);
-            this.inputShipload_w.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.inputShipload_w.Location = new System.Drawing.Point(553, 110);
+            this.inputShipload_w.Margin = new System.Windows.Forms.Padding(2);
             this.inputShipload_w.Name = "inputShipload_w";
             this.inputShipload_w.Size = new System.Drawing.Size(186, 20);
             this.inputShipload_w.TabIndex = 5;
@@ -114,8 +116,8 @@
             this.input_Shipload_type.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_Shipload_type.Location = new System.Drawing.Point(555, 121);
-            this.input_Shipload_type.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.input_Shipload_type.Location = new System.Drawing.Point(553, 143);
+            this.input_Shipload_type.Margin = new System.Windows.Forms.Padding(2);
             this.input_Shipload_type.Name = "input_Shipload_type";
             this.input_Shipload_type.Size = new System.Drawing.Size(186, 20);
             this.input_Shipload_type.TabIndex = 6;
@@ -127,7 +129,7 @@
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Location = new System.Drawing.Point(74, 202);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(123, 41);
             this.btnAdd.TabIndex = 7;
@@ -142,7 +144,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label4.Location = new System.Drawing.Point(71, 150);
+            this.label4.Location = new System.Drawing.Point(69, 172);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 18);
@@ -155,8 +157,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(555, 151);
-            this.comboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox.Location = new System.Drawing.Point(553, 173);
+            this.comboBox.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox.Name = "comboBox";
             this.comboBox.Size = new System.Drawing.Size(186, 21);
             this.comboBox.TabIndex = 9;
@@ -169,7 +171,7 @@
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Location = new System.Drawing.Point(451, 499);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(123, 41);
             this.btnSave.TabIndex = 13;
@@ -185,7 +187,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(617, 499);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(123, 41);
             this.btnCancel.TabIndex = 14;
@@ -226,7 +228,7 @@
             this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.EnableHeadersVisualStyles = false;
             this.dataGridView.Location = new System.Drawing.Point(74, 258);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersVisible = false;
@@ -237,12 +239,39 @@
             this.dataGridView.TabIndex = 15;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label5.Location = new System.Drawing.Point(69, 53);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 18);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Patente";
+            // 
+            // input_patent
+            // 
+            this.input_patent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.input_patent.Location = new System.Drawing.Point(553, 53);
+            this.input_patent.Margin = new System.Windows.Forms.Padding(2);
+            this.input_patent.Name = "input_patent";
+            this.input_patent.Size = new System.Drawing.Size(186, 20);
+            this.input_patent.TabIndex = 16;
+            // 
             // AddWagonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(805, 586);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.input_patent);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -280,5 +309,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox input_patent;
     }
 }

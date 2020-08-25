@@ -179,6 +179,7 @@
             this.actions_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.actions_datagrid.Size = new System.Drawing.Size(532, 136);
             this.actions_datagrid.TabIndex = 17;
+            this.actions_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.actions_datagrid_CellContentClick);
             // 
             // destination_station_combo_box
             // 

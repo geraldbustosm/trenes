@@ -17,11 +17,11 @@ namespace Controller
             var source = new BindingSource(this.list_locomotive, null);
             dataGridView.DataSource = source;
         }
-        public void AddLocomotive(ComboBox comboBox, string model, string drag_capacity)
+        public void AddLocomotive(ComboBox comboBox, string patetnt, string drag_capacity)
         {
             int station_id = Convert.ToInt32(comboBox.SelectedValue);
             int tons_drag = Convert.ToInt32(drag_capacity);
-            Locomotive locomotive = new Locomotive(model, tons_drag, station_id);
+            Locomotive locomotive = new Locomotive(patetnt, tons_drag, station_id);
             this.list_locomotive.Add(locomotive);
         }
         public void Clear()
