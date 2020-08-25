@@ -92,7 +92,7 @@
             this.cancel_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.cancel_btn.ForeColor = System.Drawing.Color.White;
             this.cancel_btn.Location = new System.Drawing.Point(57, 614);
-            this.cancel_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancel_btn.Margin = new System.Windows.Forms.Padding(4);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(164, 50);
             this.cancel_btn.TabIndex = 10;
@@ -107,7 +107,7 @@
             this.save_trip_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.save_trip_btn.ForeColor = System.Drawing.Color.White;
             this.save_trip_btn.Location = new System.Drawing.Point(823, 614);
-            this.save_trip_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.save_trip_btn.Margin = new System.Windows.Forms.Padding(4);
             this.save_trip_btn.Name = "save_trip_btn";
             this.save_trip_btn.Size = new System.Drawing.Size(164, 50);
             this.save_trip_btn.TabIndex = 11;
@@ -323,7 +323,7 @@
             this.add_action_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.add_action_btn.ForeColor = System.Drawing.Color.White;
             this.add_action_btn.Location = new System.Drawing.Point(59, 324);
-            this.add_action_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add_action_btn.Margin = new System.Windows.Forms.Padding(4);
             this.add_action_btn.Name = "add_action_btn";
             this.add_action_btn.Size = new System.Drawing.Size(164, 50);
             this.add_action_btn.TabIndex = 35;
@@ -339,7 +339,7 @@
             this.next_section_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.next_section_btn.ForeColor = System.Drawing.Color.White;
             this.next_section_btn.Location = new System.Drawing.Point(601, 614);
-            this.next_section_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.next_section_btn.Margin = new System.Windows.Forms.Padding(4);
             this.next_section_btn.Name = "next_section_btn";
             this.next_section_btn.Size = new System.Drawing.Size(164, 50);
             this.next_section_btn.TabIndex = 36;
@@ -391,8 +391,8 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.train_state_datagrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.train_state_datagrid.EnableHeadersVisualStyles = false;
-            this.train_state_datagrid.Location = new System.Drawing.Point(555, 266);
-            this.train_state_datagrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.train_state_datagrid.Location = new System.Drawing.Point(555, 280);
+            this.train_state_datagrid.Margin = new System.Windows.Forms.Padding(4);
             this.train_state_datagrid.Name = "train_state_datagrid";
             this.train_state_datagrid.ReadOnly = true;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -406,7 +406,7 @@
             this.train_state_datagrid.RowHeadersVisible = false;
             this.train_state_datagrid.RowHeadersWidth = 62;
             this.train_state_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.train_state_datagrid.Size = new System.Drawing.Size(477, 313);
+            this.train_state_datagrid.Size = new System.Drawing.Size(477, 299);
             this.train_state_datagrid.TabIndex = 38;
             // 
             // label9
@@ -453,7 +453,7 @@
             this.Controls.Add(this.label2);
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddTravelSectionForm";
             this.Text = "AddStationForm";
             this.Load += new System.EventHandler(this.AddTravelSectionForm_Load);
