@@ -7,10 +7,12 @@ namespace Model
     public class Travel
     {
         public int travel_id { get; private set; }
+        public string state { get; set; }
         public Boolean deleted;
 
         public Travel()
         {
+            this.state = "Preparate";
             this.deleted = false;
         }
 
@@ -27,8 +29,10 @@ namespace Model
                         while (reader.Read())
                         {
                             int id = reader.GetInt32(0);
+                            string state = reader.GetString(1);
    
                             travel = new Travel();
+                            travel.state = state;
                             travel.travel_id = id;
                         }
                     }
@@ -36,29 +40,51 @@ namespace Model
             }
             return travel;
         }
-        
+
         public void Save()
         {
             if (!this.deleted)
             {
-                using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+                using (SQLiteConnection conn = DatabaseUtility.GetConnection())
                 {
-                    connection.Open();
-                    SQLiteCommand db = new SQLiteCommand(connection);
-                    if (!exist)
+                    using (SQLiteCommand command = new SQLiteCommand(conn))
                     {
-                        db.CommandText = "INSERT INTO travel(total_time, state) values (@total_time,@state)";
-                        this.travel_id = Convert.ToInt32(db.ExecuteScalar());
+                        command.Parameters.AddWithValue("@state", this.state);
+                        if (!this.CheckIfExists())
+                        {
+                            command.CommandText = "INSERT INTO travel(state) VALUES (@state)";
+                            this.travel_id = Convert.ToInt32(command.ExecuteScalar());
+                        }
+                        else
+                        {
+                            command.CommandText = "UPDATE travel SET(state= @this.state) WHERE travel_id= @travel_id";
+                            command.Parameters.AddWithValue("@travel_id", this.travel_id);
+                            command.ExecuteNonQuery();
+                        }
                     }
-                    else
-                    {
-                        db.CommandText = "UPDATE travel SET(total_time = @total_time, state = @this.state) WHERE travel_id = @travel_id";
-                        db.Parameters.AddWithValue("@travel_id", this.travel_id);
-                        db.ExecuteNonQuery();
-                    }
-                    connection.Close();
                 }
             }
+        }
+
+        private Boolean CheckIfExists()
+        {
+            int count = 0;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT COUNT(*) FROM travel WHERE travel_id =  @travel_id";
+                    command.Parameters.AddWithValue("@travel_id", this.travel_id);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            count = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return count > 0;
         }
 
         /*

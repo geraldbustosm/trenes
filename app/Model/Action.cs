@@ -41,7 +41,7 @@ namespace Model
                     }
                 }
             }
-            return action ?? null;
+            return action;
         }
 
         public static Action FindByDescription(string description)
@@ -65,7 +65,7 @@ namespace Model
                     }
                 }
             }
-            return action ?? null;
+            return action;
         }
 
         public static Action FindById(int id)
@@ -89,7 +89,7 @@ namespace Model
                     }
                 }
             }
-            return action ?? null;
+            return action;
         }
 
         public static List<Action> FindAll()
