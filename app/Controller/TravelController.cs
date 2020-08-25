@@ -47,25 +47,25 @@ namespace Controller
             destination_station_combobox.ValueMember = "station_id";
         }
 
-        public void FeedMachinesComboBox(string action, int station_id, ComboBox combo_box)
+        public void FeedMachinesComboBox(int action, int station_id, ComboBox combo_box)
         {
             combo_box.ValueMember = "patent";
             combo_box.DisplayMember = "patent";
             switch (action)
             {
-                case "Agregar carro":
+                case 0: // "Agregar carro":
                     combo_box.DataSource = Wagon.GetWagonsByStation(station_id);
                     break;
-                case "Agregar locomotora":
+                case 1: //"Agregar locomotora":
                     combo_box.DataSource = Locomotive.GetLocomotivesByStation(station_id);
                     break;
-                case "Quitar carro":
+                case 2: // "Quitar carro":
                     combo_box.DataSource = this.all_wagons_by_section[section_index];
                     break;
-                case "Quitar locomotora":
+                case 3: // "Quitar locomotora":
                     combo_box.DataSource = this.all_locomotives_by_section[section_index];
                     break;
-                case "Descargar carro":
+                case 4: // "Descargar carro":
                     combo_box.DataSource = this.all_wagons_by_section[section_index];
                     break;
                 default:

@@ -29,6 +29,7 @@ namespace View
             int id_default_station = Int32.Parse(init_station_combo_box.SelectedValue.ToString());
             travel_controller.FeedDestinationStationComboBox(id_default_station, this.destination_station_combo_box);
             ActionController.FeedActionsComboBox(this.actions_combo_box);
+            travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, id_default_station, machines_combo_box);
         }
 
         private bool AllComboBoxSelected()
@@ -51,17 +52,6 @@ namespace View
         {
             travel_controller.FeedDestinationStationComboBox(Convert.ToInt32(init_station_combo_box.SelectedValue), this.destination_station_combo_box);
         }
-        
-        private void actions_combo_box_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
-            string action_description = this.actions_combo_box.Text;
-            if (init_station_id != 0 && action_description != "")
-                travel_controller.FeedMachinesComboBox(action_description, this.init_station_id, this.machines_combo_box);
-            else
-                this.information_label.Text = "Debes completar todos los campos anteriores!";
-        }
-
 
         private void add_action_btn_Click(object sender, EventArgs e)
         {
@@ -112,5 +102,9 @@ namespace View
                 // show error information
         }
 
+        private void actions_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, Int32.Parse(this.init_station_combo_box.SelectedValue.ToString()), machines_combo_box);
+        }
     }
 }
