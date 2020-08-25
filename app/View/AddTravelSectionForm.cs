@@ -6,6 +6,7 @@ namespace View
 {
     public partial class AddTravelSectionForm : Form
     {
+        LayoutForm _layout_form;
         private TravelController travel_controller = new TravelController();
         private int init_station_id = 0;
         private int destination_station_id = 0;
@@ -15,65 +16,53 @@ namespace View
         private string init_hrs;
         private string arrival_hrs;
 
-        public AddTravelSectionForm()
+        public AddTravelSectionForm(LayoutForm layout_form)
         {
             InitializeComponent();
-            init_station_combo_box.Text = "Origen";
-            destination_station_combo_box.Text = "Destino";
             this.information_label.Text = "";
+            _layout_form = layout_form;
         }
 
         private void AddTravelSectionForm_Load(object sender, System.EventArgs e)
         {
             travel_controller.FeedInitStationComboBox(this.init_station_combo_box);
+            int id_default_station = Int32.Parse(init_station_combo_box.SelectedValue.ToString());
+            travel_controller.FeedDestinationStationComboBox(id_default_station, this.destination_station_combo_box);
             ActionController.FeedActionsComboBox(this.actions_combo_box);
-        }
-
-        private bool AllComboBoxSelected()
-        {
-            this.GetFormValues();
-            if (this.init_station_id != 0 || this.destination_station_id != 0 || this.action_description != "")
-                return false;
-
-            return true;
-        }
-
-        private void GetFormValues()
-        {
-            
-            //this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
-            //this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
-            //this.action_id = Convert.ToInt32(actions_combo_box.SelectedValue);
+            travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, id_default_station, machines_combo_box);
         }
 
         private void init_station_combo_box_SelectionChangeCommitted(object sender, EventArgs e)
         {
             travel_controller.FeedDestinationStationComboBox(Convert.ToInt32(init_station_combo_box.SelectedValue), this.destination_station_combo_box);
         }
-        
-        private void actions_combo_box_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
-            string action_description = this.actions_combo_box.Text;
-            if (init_station_id != 0 && action_description != "")
-                travel_controller.FeedMachinesComboBox(action_description, this.init_station_id, this.machines_combo_box);
-            else
-                this.information_label.Text = "Debes completar todos los campos anteriores!";
-        }
-
 
         private void add_action_btn_Click(object sender, EventArgs e)
         {
-            // store actions for travel_section
-            this.action_description = this.actions_combo_box.Text;
-            bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
+            try
+            {
+                int action_id = Int32.Parse(this.actions_combo_box.SelectedValue.ToString());
+                bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
 
-            if (action_to_locomotive)
-                travel_controller.AddNewActionToSection(this.action_description, machines_combo_box.SelectedValue.ToString(), "locomotive");
-            else
-                travel_controller.AddNewActionToSection(this.action_description, machines_combo_box.SelectedValue.ToString(), "wagon");
+                if (action_to_locomotive)
+                    travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "locomotive");
+                else
+                    travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "wagon");
 
-            this.RefreshActions();
+                this.RefreshActions();
+                this.init_station_combo_box.Enabled = false;
+                this.destination_station_combo_box.Enabled = false;
+                this.RefreshTrainState();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void RefreshTrainState()
+        {
+            travel_controller.FeedTrainStateDataGrid(this.train_state_datagrid);
         }
 
         public void RefreshActions()
@@ -92,18 +81,42 @@ namespace View
 
             // validate all things
 
-            // this metohd will be save in travel_section table on database
-            bool success = travel_controller.AddNewSectionToTravel(
-                this.arrival,  
-                this.init_station_id,
-                this.destination_station_id
-            );
+            try
+            {
+                bool success = travel_controller.AddNewSectionToTravel(
+                    this.arrival,
+                    this.init_station_id,
+                    this.destination_station_id
+                );
 
-            //if(success)
-                // setup form for next section
-            //else
-                // show error information
+                if (success)
+                {
+                    travel_controller.FeedActionsDataGrid(this.actions_datagrid);
+                    this.init_station_combo_box.Text = destination_station_combo_box.Text;
+                    this.destination_station_combo_box.Enabled = true;
+                    int id = Int32.Parse(destination_station_combo_box.SelectedValue.ToString());
+                    travel_controller.FeedDestinationStationComboBox(id, this.destination_station_combo_box);
+                    travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, id, machines_combo_box);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
+        private void actions_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, Int32.Parse(this.init_station_combo_box.SelectedValue.ToString()), machines_combo_box);
+        }
+
+        private void save_trip_btn_Click(object sender, EventArgs e)
+        {
+            this.arrival = this.arrival_date.Value.ToString("dd/MM/yyyy");
+            this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
+            this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
+            travel_controller.SaveTravel(this.arrival, this.init_station_id, this.destination_station_id);
+            _layout_form.changeLayout(new AddTravelSectionForm(_layout_form));
+        }
     }
 }

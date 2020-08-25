@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 using Controller;
 
 namespace View
@@ -8,64 +10,92 @@ namespace View
         private string shipload_type;
         private string shipload_weight;
         private string wagon_weight;
-        private WagonController wagonController;
+        private string patent;
+        private WagonController wagon_controller;
         public AddWagonForm()
         {
-            this.wagonController = new WagonController();
+            this.wagon_controller = new WagonController();
             InitializeComponent();
         }
 
         private void AddWagonForm_Load(object sender, System.EventArgs e)
         {
-            WagonController.FeedComboBox(comboBox);
-            AddLinkColumn();
+            this.label_error.ForeColor = Color.Transparent;
+            WagonController.FeedComboBox(station_combo_box);
+            this.wagon_controller.FeedDataGrid(station_datagrid);
+            AddLinkColumnAndName();
         }
 
         private void btnAdd_Click(object sender, System.EventArgs e)
         {
-            this.shipload_weight = this.inputShipload_w.Text;
-            this.shipload_type = this.input_Shipload_type.Text;
-            this.wagon_weight = this.inputWagon_w.Text;
-            if (this.shipload_weight != null && this.shipload_type != null && this.wagon_weight != null)
+            this.patent = this.input_patent.Text;
+            this.shipload_weight = this.input_shipload_w.Text;
+            this.shipload_type = this.input_shipload_type.Text;
+            this.wagon_weight = this.input_wagon_w.Text;
+            if (this.shipload_weight != "" && this.shipload_type != "" && this.wagon_weight != "")
             {
                 if (WagonController.IsNumber(this.shipload_weight))
                 {
                     if (WagonController.IsNumber(this.wagon_weight))
                     {
-                        this.wagonController.AddListWagon(this.shipload_weight, this.wagon_weight, this.shipload_type, comboBox);
-                        this.wagonController.FeedDataGrid(dataGridView);
-                        Clear();
+                        if (!this.wagon_controller.RepeatedPatent(this.patent))
+                        {
+                            int station_id = Convert.ToInt32(station_combo_box.SelectedValue);
+                            if (this.wagon_controller.IsThereSpace(station_id))
+                            {
+                                this.label_error.ForeColor = Color.Transparent;
+                                this.wagon_controller.AddListWagon(this.patent, this.shipload_weight, this.wagon_weight, this.shipload_type, station_id);
+                                this.wagon_controller.FeedDataGrid(station_datagrid);
+                                ClearAllBoxText();
+                            }
+                            else
+                            {
+                                Error("Estación sin Capacidad");
+                            }
+                        }
+                        else
+                        {
+                            Error("Patente Ingresada.");
+                        }
                     }
+                    else
+                    {
+                        Error("Campo Peso Tipo Numérico.");
+                    }
+                }
+                else
+                {
+                    Error("Campo Peso Numerico.");
                 }
             }
             else
             {
-                MessageBox.Show("Error, Campo Vacío");
+                Error("Error, Campo Vacío.");
             }
         }
-        private void Clear()
+        private void ClearAllBoxText()
         {
-            this.inputShipload_w.Text = "";
-            this.inputWagon_w.Text = "";
-            this.input_Shipload_type.Text = "";
+            this.input_shipload_w.Text = "";
+            this.input_wagon_w.Text = "";
+            this.input_shipload_type.Text = "";
         }
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
-            this.wagonController.Clear();
-            this.wagonController.FeedDataGrid(dataGridView);
-            Clear();
+            this.wagon_controller.ClearListWagon();
+            this.wagon_controller.FeedDataGrid(station_datagrid);
+            ClearAllBoxText();
         }
 
         private void btnSave_Click(object sender, System.EventArgs e)
         {
-            if (this.wagonController.Insert())
+            if (this.wagon_controller.Insert())
             {
-                this.wagonController.Clear();
-                this.wagonController.FeedDataGrid(dataGridView);
+                this.wagon_controller.ClearListWagon();
+                this.wagon_controller.FeedDataGrid(station_datagrid);
             }
         }
-        private void AddLinkColumn()
+        private void AddLinkColumnAndName()
         {
             DataGridViewLinkColumn link = new DataGridViewLinkColumn();
 
@@ -73,17 +103,32 @@ namespace View
             link.Name = "Delete";
             link.Text = "Eliminar";
 
-            dataGridView.Columns.Add(link);
+            station_datagrid.Columns.Add(link);
+            station_datagrid.Columns[0].HeaderText = "Código";
+            station_datagrid.Columns[1].HeaderText = "Patente";
+            station_datagrid.Columns[2].HeaderText = "Tipo Carga";
+            station_datagrid.Columns[3].HeaderText = "Peso Carga";
+            station_datagrid.Columns[4].HeaderText = "Peso Carro";
+            station_datagrid.Columns[5].HeaderText = "Activo";
+            station_datagrid.Columns[6].HeaderText = "Codigo Tren";
+            station_datagrid.Columns[7].HeaderText = "Codigo Stación";
         }
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dataGridView.Columns["Delete"].Index)
+            if (e.ColumnIndex == this.station_datagrid.Columns["Delete"].Index)
             {
-                string res = ((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString();
-                this.wagonController.DeleteWagon(res);
-                this.wagonController.FeedDataGrid(dataGridView);
+                int id = Convert.ToInt32(((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString());
+                this.wagon_controller.DeleteToWagonList(id);
+                this.wagon_controller.FeedDataGrid(station_datagrid);
             }
         }
+
+        private void Error(string error)
+        {
+            this.label_error.ForeColor = Color.Red;
+            this.label_error.Text = error;
+        }
+
     }
 }

@@ -67,7 +67,7 @@ namespace Model
                     }
                 }
             }
-            return station ?? null;
+            return station;
         }
 
         public Boolean Delete()
@@ -155,7 +155,37 @@ namespace Model
                     }
                 }
             }
-            return nearby_stations ?? null;
+            return nearby_stations;
+        }
+
+        public static int GetCountMachineInStation(int station_id)
+        {
+            int count = 0;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.Parameters.AddWithValue("@station_id", station_id);
+                    command.CommandText = "SELECT count(*) FROM locomotive WHERE station_id= @station_id";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            count += reader.GetInt32(0);
+                        }
+                    }
+                    command.Parameters.AddWithValue("@station_id", station_id);
+                    command.CommandText = "SELECT count(*) FROM wagon WHERE station_id= @station_id";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            count += reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return count;
         }
 
         public static List<Station> GetNoNearbyStations(int station_id)

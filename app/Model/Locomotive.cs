@@ -1,4 +1,5 @@
 ﻿using Database;
+using Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -9,7 +10,6 @@ namespace Model
     {
         public int locomotive_id { get; private set; }
         public string patent { get; set; }
-        public string model { get; set; }
         public int tons_drag { get; set; }
         public int in_transit { get; set; }
         public int train_id { get; set; }
@@ -17,9 +17,9 @@ namespace Model
         public Boolean deleted;
 
 
-        public Locomotive(string model, int tons_drag, int station_id)
+        public Locomotive(string patent, int tons_drag, int station_id)
         {
-            this.model = model;
+            this.patent = patent;
             this.tons_drag = tons_drag;
             this.in_transit = 0;
             this.train_id = 0;
@@ -33,19 +33,19 @@ namespace Model
                 {
                     using (SQLiteCommand command = new SQLiteCommand(conn))
                     {
-                        command.Parameters.AddWithValue("@model", this.model);
+                        command.Parameters.AddWithValue("@patent", this.patent);
                         command.Parameters.AddWithValue("@tons_drag", this.tons_drag);
                         command.Parameters.AddWithValue("@in_transit", this.in_transit);
                         command.Parameters.AddWithValue("@station_id", this.station_id);
 
                         if (!this.CheckIfExists())
                         {
-                            command.CommandText = "INSERT INTO locomotive (model,tons_drag,in_transit,station_id) VALUES (@model, @tons_drag, @in_transit, @station_id)";
+                            command.CommandText = "INSERT INTO locomotive (patent,tons_drag,in_transit,station_id) VALUES (@patent, @tons_drag, @in_transit, @station_id)";
                             this.locomotive_id = Convert.ToInt32(command.ExecuteScalar());
                         }
                         else
                         {
-                            command.CommandText = "UPDATE locomotive SET ( model =  @model, tons_drag = @tons_drag, in_transit = @in_transit, train_id = @train_id, station_id = @station_id) WHERE locomotive_id = @locomotive_id";
+                            command.CommandText = "UPDATE locomotive SET ( patent =  @patent, tons_drag = @tons_drag, in_transit = @in_transit, train_id = @train_id, station_id = @station_id) WHERE locomotive_id = @locomotive_id";
                             command.Parameters.AddWithValue("@train_id", this.train_id);
                             command.Parameters.AddWithValue("@locomotive_id", this.locomotive_id);
                             command.ExecuteNonQuery();
@@ -70,9 +70,9 @@ namespace Model
         }
 
         // Static methods
-        public static Locomotive Find(int id)
+        public static Locomotive FindById(int id)
         {
-            Locomotive locomotive = new Locomotive(null, 0, 0);
+            Locomotive locomotive = null;
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
@@ -83,22 +83,25 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            locomotive.patent = reader.GetString(1);
-                            locomotive.tons_drag = reader.GetInt32(2);
-                            locomotive.in_transit = reader.GetInt32(3);
-                            locomotive.train_id = reader.GetInt32(4);
-                            locomotive.station_id = reader.GetInt32(5);
+                            string patent = reader.GetString(1);
+                            int tons_drag = reader.GetInt32(2);
+                            int in_transit = reader.GetInt32(3);
+                            int train_id = reader.GetInt32(4);
+                            int station_id = reader.GetInt32(5);
+                            locomotive = new Locomotive(patent, tons_drag, station_id);
+                            locomotive.train_id = train_id;
+                            locomotive.in_transit = in_transit;
                             locomotive.locomotive_id = id;
                         }
                     }
                 }
             }
-            if (locomotive.model != null) { return locomotive; } else { return null; }
+            return locomotive;
         }
 
         public static Locomotive FindByPatent(string patent)
         {
-            Locomotive locomotive = new Locomotive(null, 0, 0);
+            Locomotive locomotive = null;
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
@@ -109,12 +112,15 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            locomotive.patent = reader.GetString(1);
-                            locomotive.tons_drag = reader.GetInt32(2);
-                            locomotive.in_transit = reader.GetInt32(3);
-                            locomotive.train_id = reader.GetInt32(4);
-                            locomotive.station_id = reader.GetInt32(5);
-                            locomotive.locomotive_id = reader.GetInt32(0);
+                            int id = reader.GetInt32(0);
+                            int tons_drag = reader.GetInt32(2);
+                            int in_transit = reader.GetInt32(3);
+                            int train_id = reader.GetInt32(4);
+                            int station_id = reader.GetInt32(5);
+                            locomotive = new Locomotive(patent,tons_drag,station_id);
+                            locomotive.in_transit = in_transit;
+                            locomotive.train_id = train_id;
+                            locomotive.locomotive_id = id;
                         }
                     }
                 }

@@ -14,6 +14,20 @@ namespace Controller
             this.list_border_station = new List<Station>();
         }
 
+        public bool RepeatedPatent(String name)
+        {
+            try
+            {
+                if (Station.GetIdByName(name) != 0) return true;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+
         public void ClearList()
         {
             this.list_border_station.Clear();
@@ -40,11 +54,10 @@ namespace Controller
             }
         }
 
-        public void DeleteBorderStation(string res)
+        public void DeleteBorderStation(int station_id)
         {
-            int id = Convert.ToInt32(res);
             Station result = this.list_border_station.Find(delegate (Station item) {
-                return item.station_id == id;
+                return item.station_id == station_id;
             });
             this.list_border_station.Remove(result);
         }
@@ -76,14 +89,9 @@ namespace Controller
                 {
                     return true;
                 }
-                else
-                {
-                    MessageBox.Show("Error, ingrese un valor positivo");
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error, ingrese un valor numerico campo capacidad");
                 Console.WriteLine(ex);
             }
             return false;

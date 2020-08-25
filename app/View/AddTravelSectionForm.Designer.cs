@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cancel_btn = new System.Windows.Forms.Button();
@@ -52,19 +52,20 @@
             this.add_action_btn = new System.Windows.Forms.Button();
             this.next_section_btn = new System.Windows.Forms.Button();
             this.information_label = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.train_state_datagrid = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.actions_datagrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.train_state_datagrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label2.Location = new System.Drawing.Point(44, 37);
+            this.label2.Location = new System.Drawing.Point(66, 57);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 18);
+            this.label2.Size = new System.Drawing.Size(198, 26);
             this.label2.TabIndex = 1;
             this.label2.Text = "Estación de partida";
             // 
@@ -73,9 +74,10 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label3.Location = new System.Drawing.Point(413, 36);
+            this.label3.Location = new System.Drawing.Point(620, 55);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 18);
+            this.label3.Size = new System.Drawing.Size(202, 26);
             this.label3.TabIndex = 2;
             this.label3.Text = "Estación de llegada";
             // 
@@ -86,9 +88,10 @@
             this.cancel_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.cancel_btn.ForeColor = System.Drawing.Color.White;
-            this.cancel_btn.Location = new System.Drawing.Point(46, 505);
+            this.cancel_btn.Location = new System.Drawing.Point(89, 628);
+            this.cancel_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cancel_btn.Name = "cancel_btn";
-            this.cancel_btn.Size = new System.Drawing.Size(123, 40);
+            this.cancel_btn.Size = new System.Drawing.Size(184, 62);
             this.cancel_btn.TabIndex = 10;
             this.cancel_btn.Text = "Cancelar";
             this.cancel_btn.UseVisualStyleBackColor = false;
@@ -100,23 +103,26 @@
             this.save_trip_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_trip_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.save_trip_btn.ForeColor = System.Drawing.Color.White;
-            this.save_trip_btn.Location = new System.Drawing.Point(651, 505);
+            this.save_trip_btn.Location = new System.Drawing.Point(896, 610);
+            this.save_trip_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.save_trip_btn.Name = "save_trip_btn";
-            this.save_trip_btn.Size = new System.Drawing.Size(123, 40);
+            this.save_trip_btn.Size = new System.Drawing.Size(184, 62);
             this.save_trip_btn.TabIndex = 11;
             this.save_trip_btn.Text = "Guardar viaje";
             this.save_trip_btn.UseVisualStyleBackColor = false;
+            this.save_trip_btn.Click += new System.EventHandler(this.save_trip_btn_Click);
             // 
             // machines_combo_box
             // 
             this.machines_combo_box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.machines_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.machines_combo_box.FormattingEnabled = true;
-            this.machines_combo_box.Location = new System.Drawing.Point(208, 217);
-            this.machines_combo_box.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.machines_combo_box.Location = new System.Drawing.Point(312, 334);
+            this.machines_combo_box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.machines_combo_box.Name = "machines_combo_box";
-            this.machines_combo_box.Size = new System.Drawing.Size(185, 21);
+            this.machines_combo_box.Size = new System.Drawing.Size(276, 28);
             this.machines_combo_box.TabIndex = 15;
             // 
             // label1
@@ -126,9 +132,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label1.Location = new System.Drawing.Point(43, 216);
+            this.label1.Location = new System.Drawing.Point(64, 332);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 18);
+            this.label1.Size = new System.Drawing.Size(209, 26);
             this.label1.TabIndex = 16;
             this.label1.Text = "Seleccione máquina";
             // 
@@ -144,43 +151,44 @@
             this.actions_datagrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.actions_datagrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.actions_datagrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.actions_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.actions_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.actions_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.actions_datagrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.actions_datagrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.actions_datagrid.EnableHeadersVisualStyles = false;
-            this.actions_datagrid.Location = new System.Drawing.Point(47, 299);
-            this.actions_datagrid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.actions_datagrid.Location = new System.Drawing.Point(70, 460);
+            this.actions_datagrid.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.actions_datagrid.Name = "actions_datagrid";
             this.actions_datagrid.ReadOnly = true;
             this.actions_datagrid.RowHeadersVisible = false;
             this.actions_datagrid.RowHeadersWidth = 51;
             this.actions_datagrid.RowTemplate.Height = 24;
             this.actions_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.actions_datagrid.Size = new System.Drawing.Size(355, 200);
+            this.actions_datagrid.Size = new System.Drawing.Size(532, 136);
             this.actions_datagrid.TabIndex = 17;
             // 
             // destination_station_combo_box
             // 
             this.destination_station_combo_box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.destination_station_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.destination_station_combo_box.FormattingEnabled = true;
-            this.destination_station_combo_box.Location = new System.Drawing.Point(589, 37);
-            this.destination_station_combo_box.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.destination_station_combo_box.Location = new System.Drawing.Point(884, 57);
+            this.destination_station_combo_box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.destination_station_combo_box.Name = "destination_station_combo_box";
-            this.destination_station_combo_box.Size = new System.Drawing.Size(185, 21);
+            this.destination_station_combo_box.Size = new System.Drawing.Size(276, 28);
             this.destination_station_combo_box.TabIndex = 20;
             // 
             // label5
@@ -190,9 +198,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label5.Location = new System.Drawing.Point(44, 80);
+            this.label5.Location = new System.Drawing.Point(66, 123);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 18);
+            this.label5.Size = new System.Drawing.Size(144, 26);
             this.label5.TabIndex = 23;
             this.label5.Text = "Fecha partida";
             // 
@@ -200,10 +209,10 @@
             // 
             this.init_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.init_date.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.init_date.Location = new System.Drawing.Point(208, 81);
-            this.init_date.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.init_date.Location = new System.Drawing.Point(312, 125);
+            this.init_date.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.init_date.Name = "init_date";
-            this.init_date.Size = new System.Drawing.Size(185, 24);
+            this.init_date.Size = new System.Drawing.Size(276, 32);
             this.init_date.TabIndex = 24;
             // 
             // init_hour
@@ -211,11 +220,11 @@
             this.init_hour.CustomFormat = "hh:mm";
             this.init_hour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.init_hour.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.init_hour.Location = new System.Drawing.Point(208, 127);
-            this.init_hour.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.init_hour.Location = new System.Drawing.Point(312, 195);
+            this.init_hour.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.init_hour.Name = "init_hour";
             this.init_hour.ShowUpDown = true;
-            this.init_hour.Size = new System.Drawing.Size(185, 24);
+            this.init_hour.Size = new System.Drawing.Size(276, 32);
             this.init_hour.TabIndex = 25;
             // 
             // label4
@@ -223,9 +232,10 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label4.Location = new System.Drawing.Point(413, 125);
+            this.label4.Location = new System.Drawing.Point(620, 192);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 18);
+            this.label4.Size = new System.Drawing.Size(165, 26);
             this.label4.TabIndex = 26;
             this.label4.Text = "Hora de llegada";
             // 
@@ -233,19 +243,21 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label6.Location = new System.Drawing.Point(44, 126);
+            this.label6.Location = new System.Drawing.Point(66, 194);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 18);
+            this.label6.Size = new System.Drawing.Size(161, 26);
             this.label6.TabIndex = 27;
             this.label6.Text = "Hora de partida";
             // 
             // init_station_combo_box
             // 
+            this.init_station_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.init_station_combo_box.FormattingEnabled = true;
-            this.init_station_combo_box.Location = new System.Drawing.Point(208, 38);
-            this.init_station_combo_box.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.init_station_combo_box.Location = new System.Drawing.Point(312, 58);
+            this.init_station_combo_box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.init_station_combo_box.Name = "init_station_combo_box";
-            this.init_station_combo_box.Size = new System.Drawing.Size(185, 21);
+            this.init_station_combo_box.Size = new System.Drawing.Size(276, 28);
             this.init_station_combo_box.TabIndex = 29;
             this.init_station_combo_box.SelectionChangeCommitted += new System.EventHandler(this.init_station_combo_box_SelectionChangeCommitted);
             // 
@@ -255,11 +267,11 @@
             this.arrival_hour.CustomFormat = "hh:mm";
             this.arrival_hour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.arrival_hour.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.arrival_hour.Location = new System.Drawing.Point(589, 125);
-            this.arrival_hour.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.arrival_hour.Location = new System.Drawing.Point(884, 192);
+            this.arrival_hour.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.arrival_hour.Name = "arrival_hour";
             this.arrival_hour.ShowUpDown = true;
-            this.arrival_hour.Size = new System.Drawing.Size(185, 24);
+            this.arrival_hour.Size = new System.Drawing.Size(276, 32);
             this.arrival_hour.TabIndex = 30;
             // 
             // label7
@@ -267,9 +279,10 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label7.Location = new System.Drawing.Point(413, 79);
+            this.label7.Location = new System.Drawing.Point(620, 122);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 18);
+            this.label7.Size = new System.Drawing.Size(148, 26);
             this.label7.TabIndex = 31;
             this.label7.Text = "Fecha llegada";
             // 
@@ -278,10 +291,10 @@
             this.arrival_date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.arrival_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.arrival_date.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.arrival_date.Location = new System.Drawing.Point(589, 79);
-            this.arrival_date.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.arrival_date.Location = new System.Drawing.Point(884, 122);
+            this.arrival_date.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.arrival_date.Name = "arrival_date";
-            this.arrival_date.Size = new System.Drawing.Size(185, 24);
+            this.arrival_date.Size = new System.Drawing.Size(276, 32);
             this.arrival_date.TabIndex = 32;
             // 
             // label8
@@ -291,9 +304,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label8.Location = new System.Drawing.Point(43, 178);
+            this.label8.Location = new System.Drawing.Point(64, 274);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(129, 18);
+            this.label8.Size = new System.Drawing.Size(188, 26);
             this.label8.TabIndex = 33;
             this.label8.Text = "Seleccione acción";
             // 
@@ -302,13 +316,14 @@
             this.actions_combo_box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.actions_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.actions_combo_box.FormattingEnabled = true;
-            this.actions_combo_box.Location = new System.Drawing.Point(208, 178);
-            this.actions_combo_box.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.actions_combo_box.Location = new System.Drawing.Point(312, 274);
+            this.actions_combo_box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.actions_combo_box.Name = "actions_combo_box";
-            this.actions_combo_box.Size = new System.Drawing.Size(185, 21);
+            this.actions_combo_box.Size = new System.Drawing.Size(276, 28);
             this.actions_combo_box.TabIndex = 34;
-            this.actions_combo_box.SelectionChangeCommitted += new System.EventHandler(this.actions_combo_box_SelectionChangeCommitted);
+            this.actions_combo_box.SelectedIndexChanged += new System.EventHandler(this.actions_combo_box_SelectedIndexChanged);
             // 
             // add_action_btn
             // 
@@ -316,9 +331,10 @@
             this.add_action_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_action_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.add_action_btn.ForeColor = System.Drawing.Color.White;
-            this.add_action_btn.Location = new System.Drawing.Point(245, 247);
+            this.add_action_btn.Location = new System.Drawing.Point(368, 380);
+            this.add_action_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.add_action_btn.Name = "add_action_btn";
-            this.add_action_btn.Size = new System.Drawing.Size(123, 40);
+            this.add_action_btn.Size = new System.Drawing.Size(184, 62);
             this.add_action_btn.TabIndex = 35;
             this.add_action_btn.Text = "Agregar acción";
             this.add_action_btn.UseVisualStyleBackColor = false;
@@ -331,9 +347,10 @@
             this.next_section_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.next_section_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.next_section_btn.ForeColor = System.Drawing.Color.White;
-            this.next_section_btn.Location = new System.Drawing.Point(522, 505);
+            this.next_section_btn.Location = new System.Drawing.Point(638, 610);
+            this.next_section_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.next_section_btn.Name = "next_section_btn";
-            this.next_section_btn.Size = new System.Drawing.Size(123, 40);
+            this.next_section_btn.Size = new System.Drawing.Size(184, 62);
             this.next_section_btn.TabIndex = 36;
             this.next_section_btn.Text = "Siguiente tramo";
             this.next_section_btn.UseVisualStyleBackColor = false;
@@ -345,40 +362,44 @@
             this.information_label.BackColor = System.Drawing.Color.Transparent;
             this.information_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.information_label.ForeColor = System.Drawing.Color.Red;
-            this.information_label.Location = new System.Drawing.Point(175, 516);
+            this.information_label.Location = new System.Drawing.Point(350, 628);
+            this.information_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.information_label.Name = "information_label";
-            this.information_label.Size = new System.Drawing.Size(120, 18);
+            this.information_label.Size = new System.Drawing.Size(178, 26);
             this.information_label.TabIndex = 37;
             this.information_label.Text = "information_label";
             // 
-            // dataGridView1
+            // train_state_datagrid
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(416, 210);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(358, 289);
-            this.dataGridView1.TabIndex = 38;
+            this.train_state_datagrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.train_state_datagrid.BackgroundColor = System.Drawing.Color.White;
+            this.train_state_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.train_state_datagrid.Location = new System.Drawing.Point(624, 323);
+            this.train_state_datagrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.train_state_datagrid.Name = "train_state_datagrid";
+            this.train_state_datagrid.RowHeadersWidth = 62;
+            this.train_state_datagrid.Size = new System.Drawing.Size(537, 222);
+            this.train_state_datagrid.TabIndex = 38;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label9.Location = new System.Drawing.Point(545, 181);
+            this.label9.Location = new System.Drawing.Point(818, 278);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(107, 18);
+            this.label9.Size = new System.Drawing.Size(158, 26);
             this.label9.TabIndex = 39;
             this.label9.Text = "Estado del tren";
             // 
             // AddTravelSectionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(805, 586);
+            this.ClientSize = new System.Drawing.Size(1208, 902);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.train_state_datagrid);
             this.Controls.Add(this.information_label);
             this.Controls.Add(this.next_section_btn);
             this.Controls.Add(this.add_action_btn);
@@ -403,11 +424,12 @@
             this.Controls.Add(this.label2);
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AddTravelSectionForm";
             this.Text = "AddStationForm";
             this.Load += new System.EventHandler(this.AddTravelSectionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.actions_datagrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.train_state_datagrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,7 +458,7 @@
         private System.Windows.Forms.Button add_action_btn;
         private System.Windows.Forms.Button next_section_btn;
         private System.Windows.Forms.Label information_label;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView train_state_datagrid;
         private System.Windows.Forms.Label label9;
     }
 }
