@@ -15,8 +15,6 @@ namespace View
         private string init_hrs;
         private string arrival_hrs;
 
-        private string origin_default;
-
         public AddTravelSectionForm()
         {
             InitializeComponent();
@@ -32,37 +30,10 @@ namespace View
             travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, id_default_station, machines_combo_box);
         }
 
-        private bool AllComboBoxSelected()
-        {
-            this.GetFormValues();
-            if (this.init_station_id != 0 || this.destination_station_id != 0 || this.action_description != "")
-                return false;
-
-            return true;
-        }
-
-        private void GetFormValues()
-        {
-            //this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
-            //this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
-            //this.action_id = Convert.ToInt32(actions_combo_box.SelectedValue);
-        }
-
         private void init_station_combo_box_SelectionChangeCommitted(object sender, EventArgs e)
         {
             travel_controller.FeedDestinationStationComboBox(Convert.ToInt32(init_station_combo_box.SelectedValue), this.destination_station_combo_box);
         }
-        
-        private void actions_combo_box_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
-            string action_description = TravelController.GetActionDescription(this.actions_combo_box.SelectedIndex);
-            if (init_station_id != 0 && action_description != "")
-                travel_controller.FeedMachinesComboBox(action_description, this.init_station_id, this.machines_combo_box);
-            else
-                this.information_label.Text = "Debes completar todos los campos anteriores!";
-        }
-
 
         private void add_action_btn_Click(object sender, EventArgs e)
         {
@@ -90,17 +61,6 @@ namespace View
         {
             travel_controller.FeedActionsDataGrid(this.actions_datagrid);
             //travel_controller.FeedBackWithReadNames(actions_datagrid);
-        }
-
-        private void AddLinkColumn()
-        {
-            DataGridViewLinkColumn link = new DataGridViewLinkColumn();
-
-            link.UseColumnTextForLinkValue = true;
-            link.Name = "Delete";
-            link.Text = "Eliminar";
-
-            actions_datagrid.Columns.Add(link);
         }
 
         private void next_section_btn_Click(object sender, EventArgs e)
