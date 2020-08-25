@@ -32,7 +32,7 @@ namespace View
             }
             else if (e.ColumnIndex == 1)
             {
-                Console.WriteLine(e.ColumnIndex);
+                this._layoutForm.changeLayout(new EditSationForm(this._layoutForm, id));
             }
         }
 
