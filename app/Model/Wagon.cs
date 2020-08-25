@@ -42,16 +42,17 @@ namespace Model
                         command.Parameters.AddWithValue("@shipload_weight", this.shipload_weight);
                         command.Parameters.AddWithValue("@wagon_weight", this.wagon_weight);
                         command.Parameters.AddWithValue("@in_transit", this.in_transit);
+                        command.Parameters.AddWithValue("@train_id", this.train_id);
                         command.Parameters.AddWithValue("@station_id", this.station_id);
 
                         if (!this.CheckIfExists())
                         {
-                            command.CommandText = "INSERT INTO wagon(patent,shipload_type, shipload_weight, wagon_weight, in_transit, station_id) VALUES (@patent, @shipload_type, @shipload_weight, @wagon_weight, @in_transit, @station_id)";
+                            command.CommandText = "INSERT INTO wagon(patent,shipload_type, shipload_weight, wagon_weight, in_transit, train_id, station_id) VALUES (@patent, @shipload_type, @shipload_weight, @wagon_weight, @in_transit, @train_id, @station_id)";
                             this.wagon_id = Convert.ToInt32(command.ExecuteScalar());
                         }
                         else
                         {
-                            command.CommandText = "UPDATE wagon SET(patent= @patent,shipload_type = @shipload_type, shipload_weight =  @shipload_weight, wagon_weight = @wagon_weight, in_transit = @in_transit, train_id = @train_id, station_id = @station_id ) WHERE wagon_id = @wagon_id";
+                            command.CommandText = "UPDATE wagon SET(patent= @patent,shipload_type = @shipload_type, shipload_weight =  @shipload_weight, wagon_weight = @wagon_weight, train_id = @train_id, in_transit = @in_transit, train_id = @train_id, station_id = @station_id ) WHERE wagon_id = @wagon_id";
                             command.Parameters.AddWithValue("@train_id", this.train_id);
                             command.Parameters.AddWithValue("@wagon_id", this.wagon_id);
                             command.ExecuteNonQuery();
