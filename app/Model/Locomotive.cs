@@ -83,12 +83,11 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            locomotive.model = reader.GetString(1);
-                            locomotive.patent = reader.GetString(2);
-                            locomotive.tons_drag = reader.GetInt32(3);
-                            locomotive.in_transit = reader.GetInt32(4);
-                            locomotive.train_id = reader.GetInt32(5);
-                            locomotive.station_id = reader.GetInt32(6);
+                            locomotive.patent = reader.GetString(1);
+                            locomotive.tons_drag = reader.GetInt32(2);
+                            locomotive.in_transit = reader.GetInt32(3);
+                            locomotive.train_id = reader.GetInt32(4);
+                            locomotive.station_id = reader.GetInt32(5);
                             locomotive.locomotive_id = id;
                         }
                     }
@@ -110,12 +109,11 @@ namespace Model
                     {
                         while (reader.Read())
                         {
-                            locomotive.model = reader.GetString(1);
-                            locomotive.patent = reader.GetString(2);
-                            locomotive.tons_drag = reader.GetInt32(3);
-                            locomotive.in_transit = reader.GetInt32(4);
-                            locomotive.train_id = reader.GetInt32(5);
-                            locomotive.station_id = reader.GetInt32(6);
+                            locomotive.patent = reader.GetString(1);
+                            locomotive.tons_drag = reader.GetInt32(2);
+                            locomotive.in_transit = reader.GetInt32(3);
+                            locomotive.train_id = reader.GetInt32(4);
+                            locomotive.station_id = reader.GetInt32(5);
                             locomotive.locomotive_id = reader.GetInt32(0);
                         }
                     }

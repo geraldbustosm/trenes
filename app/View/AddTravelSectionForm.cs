@@ -65,6 +65,7 @@ namespace View
         private void add_action_btn_Click(object sender, EventArgs e)
         {
             // store actions for travel_section
+            this.action_description = this.actions_combo_box.Text;
             bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
             if (action_to_locomotive)
                 travel_controller.AddNewActionToSection(this.action_description, machines_combo_box.SelectedValue.ToString(), "locomotive");

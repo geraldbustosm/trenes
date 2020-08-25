@@ -23,6 +23,7 @@ namespace Controller
             all_locomotives_by_section = new List<List<Locomotive>>();
             all_actions_by_section = new List<List<SectionAction>>();
             all_sections = new List<TravelSection>();
+            actions_list = new List<SectionAction>();
             section_index = this.GetLastTravelSection();
         }
 
@@ -66,12 +67,12 @@ namespace Controller
             }
         }
 
-        public int GetLastTravel()
-        {
+        //public int GetLastTravel()
+        //{
             // this method will be return a last id of travel table
             // we need that id for store a sections with this until save in database the travel
             // return Travel.GetLastTravel().travel_id;
-        }
+        //}
 
         public int GetLastTravelSection()
         {
@@ -103,7 +104,7 @@ namespace Controller
             }
         }
 
-        public void FeedActionsDataGrid(DataGrid dt)
+        public void FeedActionsDataGrid(DataGridView dt)
         {
             dt.DataSource = new BindingSource(this.actions_list, null);
         }
