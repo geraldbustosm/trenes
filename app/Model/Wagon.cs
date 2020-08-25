@@ -2,7 +2,7 @@ using Database;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using Interface;
+using System.Runtime.CompilerServices;
 
 namespace Model
 {

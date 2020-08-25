@@ -92,6 +92,30 @@ namespace Model
             return action;
         }
 
+        public static Action FindById(int id)
+        {
+            Action action = null;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM action WHERE action_id = @action_id";
+                    command.Parameters.AddWithValue("@action_id", id);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string description = reader.GetString(1);
+                            int minutes = reader.GetInt32(2);
+                            action = new Action(description, minutes);
+                            action.action_id = id;
+                        }
+                    }
+                }
+            }
+            return action ?? null;
+        }
+
         public static List<Action> FindAll()
         {
             List<Action> all_actions = new List<Action>();

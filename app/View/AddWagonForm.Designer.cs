@@ -30,33 +30,34 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.inputWagon_w = new System.Windows.Forms.TextBox();
+            this.input_wagon_w = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.inputShipload_w = new System.Windows.Forms.TextBox();
-            this.input_Shipload_type = new System.Windows.Forms.TextBox();
+            this.input_shipload_w = new System.Windows.Forms.TextBox();
+            this.input_shipload_type = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox = new System.Windows.Forms.ComboBox();
+            this.station_combo_box = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.station_datagrid = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.input_patent = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.label_error = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.station_datagrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // inputWagon_w
+            // input_wagon_w
             // 
-            this.inputWagon_w.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.input_wagon_w.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputWagon_w.Location = new System.Drawing.Point(553, 80);
-            this.inputWagon_w.Margin = new System.Windows.Forms.Padding(2);
-            this.inputWagon_w.Name = "inputWagon_w";
-            this.inputWagon_w.Size = new System.Drawing.Size(186, 20);
-            this.inputWagon_w.TabIndex = 1;
+            this.input_wagon_w.Location = new System.Drawing.Point(553, 80);
+            this.input_wagon_w.Margin = new System.Windows.Forms.Padding(2);
+            this.input_wagon_w.Name = "input_wagon_w";
+            this.input_wagon_w.Size = new System.Drawing.Size(186, 20);
+            this.input_wagon_w.TabIndex = 1;
             // 
             // label1
             // 
@@ -100,27 +101,27 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Tipo de cargamento";
             // 
-            // inputShipload_w
+            // input_shipload_w
             // 
-            this.inputShipload_w.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.input_shipload_w.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputShipload_w.Location = new System.Drawing.Point(553, 110);
-            this.inputShipload_w.Margin = new System.Windows.Forms.Padding(2);
-            this.inputShipload_w.Name = "inputShipload_w";
-            this.inputShipload_w.Size = new System.Drawing.Size(186, 20);
-            this.inputShipload_w.TabIndex = 5;
+            this.input_shipload_w.Location = new System.Drawing.Point(553, 110);
+            this.input_shipload_w.Margin = new System.Windows.Forms.Padding(2);
+            this.input_shipload_w.Name = "input_shipload_w";
+            this.input_shipload_w.Size = new System.Drawing.Size(186, 20);
+            this.input_shipload_w.TabIndex = 5;
             // 
-            // input_Shipload_type
+            // input_shipload_type
             // 
-            this.input_Shipload_type.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.input_shipload_type.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_Shipload_type.Location = new System.Drawing.Point(553, 143);
-            this.input_Shipload_type.Margin = new System.Windows.Forms.Padding(2);
-            this.input_Shipload_type.Name = "input_Shipload_type";
-            this.input_Shipload_type.Size = new System.Drawing.Size(186, 20);
-            this.input_Shipload_type.TabIndex = 6;
+            this.input_shipload_type.Location = new System.Drawing.Point(553, 143);
+            this.input_shipload_type.Margin = new System.Windows.Forms.Padding(2);
+            this.input_shipload_type.Name = "input_shipload_type";
+            this.input_shipload_type.Size = new System.Drawing.Size(186, 20);
+            this.input_shipload_type.TabIndex = 6;
             // 
             // btnAdd
             // 
@@ -151,17 +152,17 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Estación";
             // 
-            // comboBox
+            // station_combo_box
             // 
-            this.comboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.station_combo_box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(553, 173);
-            this.comboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(186, 21);
-            this.comboBox.TabIndex = 9;
+            this.station_combo_box.FormattingEnabled = true;
+            this.station_combo_box.Location = new System.Drawing.Point(553, 173);
+            this.station_combo_box.Margin = new System.Windows.Forms.Padding(2);
+            this.station_combo_box.Name = "station_combo_box";
+            this.station_combo_box.Size = new System.Drawing.Size(186, 21);
+            this.station_combo_box.TabIndex = 9;
             // 
             // btnSave
             // 
@@ -195,20 +196,20 @@
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // dataGridView
+            // station_datagrid
             // 
-            this.dataGridView.AllowUserToAddRows = false;
-            this.dataGridView.AllowUserToDeleteRows = false;
-            this.dataGridView.AllowUserToResizeColumns = false;
-            this.dataGridView.AllowUserToResizeRows = false;
-            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.station_datagrid.AllowUserToAddRows = false;
+            this.station_datagrid.AllowUserToDeleteRows = false;
+            this.station_datagrid.AllowUserToResizeColumns = false;
+            this.station_datagrid.AllowUserToResizeRows = false;
+            this.station_datagrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.station_datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.station_datagrid.BackgroundColor = System.Drawing.Color.White;
+            this.station_datagrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.station_datagrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.station_datagrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
@@ -216,8 +217,8 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.station_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.station_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -225,19 +226,59 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(245)))), ((int)(((byte)(254)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView.EnableHeadersVisualStyles = false;
-            this.dataGridView.Location = new System.Drawing.Point(74, 258);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.ReadOnly = true;
-            this.dataGridView.RowHeadersVisible = false;
-            this.dataGridView.RowHeadersWidth = 51;
-            this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(665, 224);
-            this.dataGridView.TabIndex = 15;
-            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
+            this.station_datagrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.station_datagrid.EnableHeadersVisualStyles = false;
+            this.station_datagrid.Location = new System.Drawing.Point(74, 258);
+            this.station_datagrid.Margin = new System.Windows.Forms.Padding(2);
+            this.station_datagrid.Name = "station_datagrid";
+            this.station_datagrid.ReadOnly = true;
+            this.station_datagrid.RowHeadersVisible = false;
+            this.station_datagrid.RowHeadersWidth = 51;
+            this.station_datagrid.RowTemplate.Height = 24;
+            this.station_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.station_datagrid.Size = new System.Drawing.Size(665, 224);
+            this.station_datagrid.TabIndex = 15;
+            this.station_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label5.Location = new System.Drawing.Point(69, 53);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 18);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Patente";
+            // 
+            // input_patent
+            // 
+            this.input_patent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.input_patent.Location = new System.Drawing.Point(553, 53);
+            this.input_patent.Margin = new System.Windows.Forms.Padding(2);
+            this.input_patent.Name = "input_patent";
+            this.input_patent.Size = new System.Drawing.Size(186, 20);
+            this.input_patent.TabIndex = 16;
+            // 
+            // label_error
+            // 
+            this.label_error.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_error.AutoSize = true;
+            this.label_error.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label_error.ForeColor = System.Drawing.Color.Red;
+            this.label_error.Location = new System.Drawing.Point(201, 213);
+            this.label_error.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_error.Name = "label_error";
+            this.label_error.Size = new System.Drawing.Size(42, 18);
+            this.label_error.TabIndex = 18;
+            this.label_error.Text = "Error";
             // 
             // label5
             // 
@@ -270,26 +311,27 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(805, 586);
+            this.Controls.Add(this.label_error);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.input_patent);
-            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.station_datagrid);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.comboBox);
+            this.Controls.Add(this.station_combo_box);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.input_Shipload_type);
-            this.Controls.Add(this.inputShipload_w);
+            this.Controls.Add(this.input_shipload_type);
+            this.Controls.Add(this.input_shipload_w);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.inputWagon_w);
+            this.Controls.Add(this.input_wagon_w);
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddWagonForm";
             this.Text = "AddWagonForm";
             this.Load += new System.EventHandler(this.AddWagonForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.station_datagrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,19 +339,20 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox inputWagon_w;
+        private System.Windows.Forms.TextBox input_wagon_w;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox inputShipload_w;
-        private System.Windows.Forms.TextBox input_Shipload_type;
+        private System.Windows.Forms.TextBox input_shipload_w;
+        private System.Windows.Forms.TextBox input_shipload_type;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox;
+        private System.Windows.Forms.ComboBox station_combo_box;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridView station_datagrid;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox input_patent;
+        private System.Windows.Forms.Label label_error;
     }
 }

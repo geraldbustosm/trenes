@@ -12,22 +12,44 @@ namespace Controller
         {
             this.list_locomotive = new List<Locomotive>();
         }
-        public void FeedDataGrid(DataGridView dataGridView)
+
+        public bool RepeatedPatent(String patent)
+        {
+            try
+            {
+                if (Locomotive.FindByPatent(patent) != null) return true;
+                foreach (Locomotive locomotive in this.list_locomotive)
+                {
+                    if (locomotive.patent == patent) return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+
+        public void FeedLocomotiveDataGrid(DataGridView data)
         {
             var source = new BindingSource(this.list_locomotive, null);
-            dataGridView.DataSource = source;
+            data.DataSource = source;
         }
-        public void AddLocomotive(ComboBox comboBox, string patetnt, string drag_capacity)
+
+        public void AddToLocomotiveList(ComboBox combo_box, string patent, string drag_capacity)
         {
-            int station_id = Convert.ToInt32(comboBox.SelectedValue);
+            int station_id = Convert.ToInt32(combo_box.SelectedValue);
             int tons_drag = Convert.ToInt32(drag_capacity);
-            Locomotive locomotive = new Locomotive(patetnt, tons_drag, station_id);
+            Locomotive locomotive = new Locomotive(patent, tons_drag, station_id);
             this.list_locomotive.Add(locomotive);
         }
-        public void Clear()
+
+        public void ClearLocomotiveList()
         {
             this.list_locomotive.Clear();
         }
+
         public bool Insert()
         {
             try
@@ -46,14 +68,15 @@ namespace Controller
                 return false;
             }
         }
-        public void DeleteLocomotive(string res)
+
+        public void DeleteToLocomotiveList(int locomotive_id)
         {
-            int id = Convert.ToInt32(res);
             Locomotive result = this.list_locomotive.Find(delegate (Locomotive l) {
-                return l.locomotive_id == id;
+                return l.locomotive_id == locomotive_id;
             });
             this.list_locomotive.Remove(result);
         }
+
         public static bool IsNumberCapacity(string drag_capacity)
         {
             try
@@ -63,14 +86,9 @@ namespace Controller
                 {
                     return true;
                 }
-                else
-                {
-                    MessageBox.Show("Error, ingrese una capacidad positiva");
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error, ingrese un valor numerico campo capacidad");
                 Console.WriteLine(ex);
             }
             return false;
