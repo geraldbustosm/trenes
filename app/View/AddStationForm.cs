@@ -14,46 +14,43 @@ namespace View
             this.stationController = new StationController();
             InitializeComponent();
         }
-        private void Clear()
+
+        private void ClearTextBox()
         {
-            this.inputName.Text = "";
-            this.inputCapacity.Text = "";
-            this.stationController.FeedDataGridView(dataGridView);
+            this.input_name.Text = "";
+            this.input_capacity.Text = "";
+            this.show_same.Text = "";
+            this.stationController.FeedDataBorderStation(data_border_station);
         }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Clear();
-            this.stationController.Clear();
-            this.stationController.FeedDataGridView(dataGridView);
+            this.input_name.ReadOnly = false;
+            this.input_capacity.ReadOnly = false;
+            this.combo_box_station.DataSource = null;
+            this.combo_box_station.Items.Clear();
+            this.stationController.ClearList();
+            ClearTextBox();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            this.stationController.AddListBorderStation(comboBox);
-            this.stationController.FeedDataGridView(dataGridView);
+            this.stationController.AddToBorderStationList(combo_box_station);
+            this.stationController.FeedDataBorderStation(data_border_station);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            this.name = this.inputName.Text;
-            this.capacity = this.inputCapacity.Text;
-            if (this.name != null && this.capacity != null)
-            {
-                if (StationController.IsNumber(this.capacity))
-                {
-                    stationController.Insert(this.name, this.capacity);
-                    this.stationController.Clear();
-                    Clear();
-                    StationController.FeedComboBox(comboBox);
-
-                }
-            }
-            else
-            {
-                MessageBox.Show("Error, Campo Vacío");
-            }
+            stationController.Insert(this.name, this.capacity);
+            this.input_name.ReadOnly = false;
+            this.input_capacity.ReadOnly = false;
+            this.combo_box_station.DataSource = null;
+            this.combo_box_station.Items.Clear();
+            this.stationController.ClearList();
+            ClearTextBox();
         }
-        private void AddLinkColumn()
+
+        private void AddLinkColumnDelete()
         {
             DataGridViewLinkColumn link = new DataGridViewLinkColumn();
 
@@ -61,24 +58,47 @@ namespace View
             link.Name = "Delete";
             link.Text = "Eliminar";
 
-            dataGridView.Columns.Add(link);
-        }
-
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == this.dataGridView.Columns["Delete"].Index)
-            {
-                string res = ((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString();
-                this.stationController.DeleteBorderStation(res);
-                this.stationController.FeedDataGridView(dataGridView);
-            }
+            data_border_station.Columns.Add(link);
         }
 
         private void AddStationForm_Load(object sender, EventArgs e)
         {
-            StationController.FeedComboBox(comboBox);
-            this.stationController.FeedDataGridView(dataGridView);
-            AddLinkColumn();
+            this.show_same.ReadOnly = true;
+            this.stationController.FeedDataBorderStation(data_border_station);
+            data_border_station.Columns[0].HeaderText = "Codigo";
+            data_border_station.Columns[1].HeaderText = "Nombre";
+            data_border_station.Columns[2].HeaderText = "Capacidad";
+            AddLinkColumnDelete();
         }
+
+        private void btnAddBS_Click(object sender, EventArgs e)
+        {
+            this.name = this.input_name.Text;
+            this.capacity = this.input_capacity.Text;
+            if (this.name != null && this.capacity != null)
+            {
+                if (StationController.IsNumberCapacity(this.capacity))
+                {
+                    this.input_name.ReadOnly = true;
+                    this.input_capacity.ReadOnly = true;
+                    this.show_same.Text = this.name;
+                    StationController.FeedComboBox(combo_box_station);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error, Campo Vacío");
+            }
+        }
+        private void data_border_station_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == this.data_border_station.Columns["Delete"].Index)
+            {
+                string res = ((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString();
+                this.stationController.DeleteBorderStation(res);
+                this.stationController.FeedDataBorderStation(data_border_station);
+            }
+        }
+
     }
 }

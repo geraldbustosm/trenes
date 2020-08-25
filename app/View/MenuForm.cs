@@ -14,8 +14,9 @@ namespace View
         private Color highLightButtonColor;
         public MenuForm(LayoutForm layoutForm)
         {
-            _layoutForm = layoutForm;
             InitializeComponent();
+            _layoutForm = layoutForm;
+            RemoveButtonOnDependingOnRol();
             hideAllSubMenu();
             toggleSubMenu(panelSubMenu1);
             navButtonColor = Color.FromArgb(50, 70, 211);
@@ -119,7 +120,7 @@ namespace View
         private void btn_ver_usuarios_Click(object sender, EventArgs e)
         {
             highLightButton(btn_ver_usuarios);
-            _layoutForm.changeLayout(new ListUsersForm());
+            _layoutForm.changeLayout(new ListUsersForm(this._layoutForm));
         }
         private void highLightButton(Button button)
         {
@@ -133,6 +134,14 @@ namespace View
             activeButton.BackColor = highLightButtonColor;
             activeButton.FlatAppearance.BorderColor = highLightButtonColor;
 
+        }
+        private void RemoveButtonOnDependingOnRol()
+        {
+            if(this._layoutForm.auth.permission_id != 1)
+            {
+                btn_admin_usuarios.Visible = false;
+                panelSubMenu3.Visible = false;
+            }
         }
     }
 }

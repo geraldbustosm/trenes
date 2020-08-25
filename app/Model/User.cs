@@ -1,5 +1,6 @@
 ﻿using Database;
 using System;
+using System.Data;
 using System.Data.SQLite;
 namespace Model
 {
@@ -44,7 +45,7 @@ namespace Model
                     }
                     else if(this.user_id > 0)
                     {
-                        db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password, permission_id = @permission_id) WHERE user_id = @user_id";
+                        db.CommandText = "UPDATE user SET name = @name, email = @email, password = @password, permission_id = @permission_id WHERE user_id = @user_id";
                         db.Parameters.AddWithValue("@user_id", this.user_id);
                         db.ExecuteNonQuery();
                         saved = true;
@@ -65,8 +66,8 @@ namespace Model
                 db.ExecuteNonQuery();
                 connection.Close();
                 this.deleted = true;
-                return true;
             }
+            return true;
         }
 
         public static User Find(string email)
@@ -96,6 +97,49 @@ namespace Model
                 connection.Close();
             }
             return user;
+        }
+
+        public static User Find(int user_id)
+        {
+            User user = null;
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+            {
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT * FROM user WHERE user_id = @user_id";
+                db.Parameters.AddWithValue("@user_id", user_id);
+                using (SQLiteDataReader reader = db.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string name = reader.GetString(1);
+                        string email = reader.GetString(2);
+                        string password = reader.GetString(3);
+                        int permission_id = reader.GetInt32(4);
+
+                        user = new User(name, email, password, permission_id);
+                        user.user_id = user_id;
+
+                    }
+                    reader.Close();
+                }
+                connection.Close();
+            }
+            return user;
+        }
+
+        public static DataSet All()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+            {
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT u.user_id as 'Codigo', u.name as 'Nombre', u.email as 'Correo electrónico', p.permission_name as 'Rol' FROM user u INNER JOIN permission p on u.permission_id = p.permission_id";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(db);
+                DataSet dataset = new DataSet();
+                adapter.Fill(dataset);
+                return dataset;
+            }
         }
 
         private Boolean CheckIfExists()

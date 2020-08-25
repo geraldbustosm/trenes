@@ -120,6 +120,12 @@
     <Compile Include="AddTravelSectionForm.Designer.cs">
       <DependentUpon>AddTravelSectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUserForm.Designer.cs">
+      <DependentUpon>EditUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListStationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     <EmbeddedResource Include="AddTravelSectionForm.resx">
       <DependentUpon>AddTravelSectionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditUserForm.resx">
+      <DependentUpon>EditUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListStationsForm.resx">
       <DependentUpon>ListStationsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -265,6 +274,10 @@
     <ProjectReference Include="..\Helper\Helper.csproj">
       <Project>{99aa831d-3a0b-43c2-a87d-388b7edf5dbc}</Project>
       <Name>Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{0a83d068-af79-4e56-a0fb-8c84acfe8656}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

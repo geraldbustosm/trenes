@@ -18,13 +18,6 @@ namespace Model
             this.capacity = capacity;
             this.deleted = false;
         }
-
-        public Station(object obj)
-        {
-            //this.station_id = obj.station_id;
-            //this.name = obj.name;
-            //this.capacity = obj.capacity;
-        }
         public void Save()
         {
             if (!this.deleted)
@@ -79,12 +72,12 @@ namespace Model
 
         public Boolean Delete()
         {
-            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            using (SQLiteConnection conn = DatabaseUtility.GetConnectionWithCascadeMode())
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
                 {
                     command.CommandText = "DELETE FROM station WHERE station_id = @station_id";
-                    command.Parameters.AddWithValue("@station_id", station_id);
+                    command.Parameters.AddWithValue("@station_id", this.station_id);
                     command.ExecuteNonQuery();
                 }
             }

@@ -3,23 +3,26 @@ using System.Drawing;
 using System.Windows.Forms;
 using Controller;
 using Helper;
+using Model;
 
 namespace View
 {
-    public partial class RegisterForm : Form
+    public partial class EditUserForm : Form
     {
         private LayoutForm _layoutForm;
         private bool is_password_validated;
         private Color successfullColor, wrongColor;
-        public RegisterForm(LayoutForm layoutForm)
+        private int id;
+        public EditUserForm(LayoutForm layoutForm, int id)
         {
             InitializeComponent();
+            _layoutForm = layoutForm;
             is_password_validated = false;
             this.information_label.Text = "";
             this.successfullColor = Color.FromArgb(21, 87, 36);
             this.wrongColor = information_label.ForeColor;
-            _layoutForm = layoutForm;
-            PermissionController.FeedComboBox(combobox_rol);
+            this.id = id;
+            FeedFormWithUserValues();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -33,13 +36,13 @@ namespace View
             {
                 if (Validation.IsEmail(email))
                 {
-                    if (UserController.CreateUser(username, email, password, permission_id))
+                    if (UserController.EditUser(this.id, username, email, password, permission_id))
                     {
                         this.input_email.Text = "";
                         this.input_username.Text = "";
                         this.input_password.Text = "";
                         this.input_validate_password.Text = "";
-                        this.information_label.Text = "Usuario creado con éxito";
+                        this.information_label.Text = "Usuario editado con éxito";
                         this.information_label.ForeColor = successfullColor;
                     }
                     else
@@ -56,7 +59,7 @@ namespace View
                 {
                     if (information_label.ForeColor == successfullColor)
                     {
-                    information_label.ForeColor = wrongColor;
+                        information_label.ForeColor = wrongColor;
                     }
                     this.information_label.Text = "Ingrese un correo electrónico valido";
                 }
@@ -82,6 +85,14 @@ namespace View
                 this.information_label.Text = "Las contraseñas no coinciden";
                 this.is_password_validated = false;
             }
+        }
+        private void FeedFormWithUserValues()
+        {
+            User user = User.Find(id);
+            Permission permission = Permission.Find(user.permission_id);
+            input_username.Text = user.name;
+            input_email.Text = user.email;
+            PermissionController.FeedComboBoxForEdit(combobox_rol, permission.permission_name);
         }
     }
 }
