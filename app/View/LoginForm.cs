@@ -19,7 +19,8 @@ namespace View
 
         // Metodo que se encarga del proceso de login y enviar al formulario de bienvenida
         private void btnLogin_Click(object sender, EventArgs e)
-        {
+        {   
+            _layout_form.auth = User.Find("admin@admin.cl");
             _layout_form.resizeWindowsToNormalSize();
             _layout_form.showWelcomeScreen();
             return;
