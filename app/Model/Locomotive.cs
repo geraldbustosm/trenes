@@ -6,7 +6,7 @@ using System.Data.SQLite;
 
 namespace Model
 {
-    public class Locomotive : MachineInterface
+    public class Locomotive
     {
         public int locomotive_id { get; private set; }
         public string patent { get; set; }

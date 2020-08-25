@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Interface;
+using System.Runtime.CompilerServices;
 
 namespace Controller
 {
@@ -73,12 +74,11 @@ namespace Controller
             }
         }
 
-        //public int GetLastTravel()
-        //{
-        // this method will be return a last id of travel table
-        // we need that id for store a sections with this until save in database the travel
-        // return Travel.GetLastTravel().travel_id;
-        //}
+        public int GetTravelIndex()
+        {
+            Travel travel = Travel.GetLastTravel();
+            return (travel != null) ? travel.travel_id + 1 : 1;
+        }
 
         public int GetLastTravelSection()
         {
@@ -102,6 +102,7 @@ namespace Controller
                     this.AddLocomotiveToSection(locomotive_id);
                 else
                     this.AddWagonToSection(wagon_id);
+
                 SectionAction action = new SectionAction(action_id, section_index, locomotive_id, wagon_id);
                 actions_list.Add(action);
                 return true;
@@ -132,16 +133,33 @@ namespace Controller
 
         public void FeedTrainStateDataGrid(DataGridView dt)
         {
-            var list = wagon_list.Cast<MachineInterface>().Concat(locomotive_list.Cast<MachineInterface>());
-            dt.DataSource = new BindingSource(list, null);
+            List<MachineInterface> machines = this.CombineLists();
+            dt.DataSource = new BindingSource(machines, null);
+        }
+
+        public List<MachineInterface> CombineLists()
+        {
+            List<MachineInterface> list = new List<MachineInterface>();
+            foreach (Wagon wagon in wagon_list)
+            {
+                list.Add(new MachineInterface(wagon.wagon_id, wagon.patent, "Carro"));
+            }
+            foreach (Locomotive locomotive in locomotive_list)
+            {
+                list.Add(new MachineInterface(locomotive.locomotive_id, locomotive.patent, "Locomotive"));
+            }
+            return list;
         }
 
         public bool AddNewSectionToTravel(string arrival_time, int origin_station_id, int destination_station_id)
         {
             // priority means the order of sections in travel
-
+            all_actions_by_section.Add(actions_list);
+            all_locomotives_by_section.Add(locomotive_list);
+            all_wagons_by_section.Add(wagon_list);
+            actions_list.Clear();
             // store
-
+            TravelSection travel_section = new TravelSection(arrival_time, )
             // cont for store actions
             this.section_index++;
             return true;

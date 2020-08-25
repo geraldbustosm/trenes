@@ -6,7 +6,7 @@ using Interface;
 
 namespace Model
 {
-    public class Wagon : MachineInterface
+    public class Wagon
     {
         public int wagon_id { get; private set; }
         public string patent { get; set; }

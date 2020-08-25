@@ -81,13 +81,19 @@ namespace View
                 this.destination_station_id
             );
 
-            //if(success)
-            // setup form for next section
+            if (success)
+            {
+                travel_controller.FeedActionsDataGrid(this.actions_datagrid);
+                this.init_station_combo_box.Text = destination_station_combo_box.Text;
+                this.destination_station_combo_box.Enabled = true;
+                int id = Int32.Parse(destination_station_combo_box.SelectedValue.ToString());
+                travel_controller.FeedDestinationStationComboBox(id, this.destination_station_combo_box);
+                travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, id, machines_combo_box);
+            }
             //else
             // show error information
 
-            this.init_station_combo_box.Text = destination_station_combo_box.Text;
-            this.destination_station_combo_box.Enabled = true;
+
             // actualizar combobox de destino con el nuevo INICIO
         }
 
