@@ -15,7 +15,7 @@ namespace Model
         public int destination_station_id { get; }
         private Boolean deleted;
 
-        public TravelSection(string arrival_time, int travel_id, int priority, int action, int origin_station_id, int destination_station_id)
+        public TravelSection(string arrival_time, int travel_id, int priority, int origin_station_id, int destination_station_id)
         {
             this.arrival_time = arrival_time;
             this.travel_id = travel_id;
@@ -84,14 +84,14 @@ namespace Model
                         while (reader.Read())
                         {
                             string arrival_time = reader.GetString(1);
-                            int travel_id = reader.GetInt32(2);
-                            int priority = reader.GetInt32(3);
-                            int action = reader.GetInt32(4);
-                            int origin_station_id = reader.GetInt32(5);
-                            int destination_station_id = reader.GetInt32(6);
+                            int priority = reader.GetInt32(2);
+                            int travel_id = reader.GetInt32(3);
+                            int origin_station_id = reader.GetInt32(4);
+                            int destination_station_id = reader.GetInt32(5);
 
-                            travelSection = new TravelSection(arrival_time, travel_id, priority, action, origin_station_id, destination_station_id);
+                            travelSection = new TravelSection(arrival_time, travel_id, priority, origin_station_id, destination_station_id);
                             travelSection.travel_section_id = reader.GetInt32(0);
+
                         }
                     }
 

@@ -8,7 +8,6 @@ namespace Controller
     public class WagonController
     {
         private List<Wagon> list_wagon;
-
         public WagonController()
         {
             this.list_wagon = new List<Wagon>();
@@ -97,13 +96,17 @@ namespace Controller
                 {
                     return true;
                 }
+                else
+                {
+                    MessageBox.Show("Error, ingrese un valor positivo");
+                }
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Error, ingrese un valor numerico");
                 Console.WriteLine(ex);
             }
             return false;
         }
-
     }
 }

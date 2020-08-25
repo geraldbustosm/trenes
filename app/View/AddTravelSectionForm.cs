@@ -6,6 +6,7 @@ namespace View
 {
     public partial class AddTravelSectionForm : Form
     {
+        LayoutForm _layout_form;
         private TravelController travel_controller = new TravelController();
         private int init_station_id = 0;
         private int destination_station_id = 0;
@@ -15,10 +16,11 @@ namespace View
         private string init_hrs;
         private string arrival_hrs;
 
-        public AddTravelSectionForm()
+        public AddTravelSectionForm(LayoutForm layout_form)
         {
             InitializeComponent();
             this.information_label.Text = "";
+            _layout_form = layout_form;
         }
 
         private void AddTravelSectionForm_Load(object sender, System.EventArgs e)
@@ -37,19 +39,25 @@ namespace View
 
         private void add_action_btn_Click(object sender, EventArgs e)
         {
-            // store actions for travel_section
-            int action_id = Int32.Parse(this.actions_combo_box.SelectedValue.ToString());
-            bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
+            try
+            {
+                int action_id = Int32.Parse(this.actions_combo_box.SelectedValue.ToString());
+                bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
 
-            if (action_to_locomotive)
-                travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "locomotive");
-            else
-                travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "wagon");
+                if (action_to_locomotive)
+                    travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "locomotive");
+                else
+                    travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "wagon");
 
-            this.RefreshActions();
-            this.init_station_combo_box.Enabled = false;
-            this.destination_station_combo_box.Enabled = false;
-            this.RefreshTrainState();
+                this.RefreshActions();
+                this.init_station_combo_box.Enabled = false;
+                this.destination_station_combo_box.Enabled = false;
+                this.RefreshTrainState();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void RefreshTrainState()
@@ -60,7 +68,6 @@ namespace View
         public void RefreshActions()
         {
             travel_controller.FeedActionsDataGrid(this.actions_datagrid);
-            //travel_controller.FeedBackWithReadNames(actions_datagrid);
         }
 
         private void next_section_btn_Click(object sender, EventArgs e)
@@ -74,21 +81,28 @@ namespace View
 
             // validate all things
 
-            // this metohd will be save in travel_section table on database
-            bool success = travel_controller.AddNewSectionToTravel(
-                this.arrival,  
-                this.init_station_id,
-                this.destination_station_id
-            );
+            try
+            {
+                bool success = travel_controller.AddNewSectionToTravel(
+                    this.arrival,
+                    this.init_station_id,
+                    this.destination_station_id
+                );
 
-            //if(success)
-            // setup form for next section
-            //else
-            // show error information
-
-            this.init_station_combo_box.Text = destination_station_combo_box.Text;
-            this.destination_station_combo_box.Enabled = true;
-            // actualizar combobox de destino con el nuevo INICIO
+                if (success)
+                {
+                    travel_controller.FeedActionsDataGrid(this.actions_datagrid);
+                    this.init_station_combo_box.Text = destination_station_combo_box.Text;
+                    this.destination_station_combo_box.Enabled = true;
+                    int id = Int32.Parse(destination_station_combo_box.SelectedValue.ToString());
+                    travel_controller.FeedDestinationStationComboBox(id, this.destination_station_combo_box);
+                    travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, id, machines_combo_box);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void actions_combo_box_SelectedIndexChanged(object sender, EventArgs e)
@@ -98,7 +112,11 @@ namespace View
 
         private void save_trip_btn_Click(object sender, EventArgs e)
         {
-
+            this.arrival = this.arrival_date.Value.ToString("dd/MM/yyyy");
+            this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
+            this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
+            travel_controller.SaveTravel(this.arrival, this.init_station_id, this.destination_station_id);
+            _layout_form.changeLayout(new AddTravelSectionForm(_layout_form));
         }
     }
 }

@@ -280,6 +280,31 @@
             this.label_error.TabIndex = 18;
             this.label_error.Text = "Error";
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label5.Location = new System.Drawing.Point(69, 53);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 18);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Patente";
+            // 
+            // input_patent
+            // 
+            this.input_patent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.input_patent.Location = new System.Drawing.Point(553, 53);
+            this.input_patent.Margin = new System.Windows.Forms.Padding(2);
+            this.input_patent.Name = "input_patent";
+            this.input_patent.Size = new System.Drawing.Size(186, 20);
+            this.input_patent.TabIndex = 16;
+            // 
             // AddWagonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

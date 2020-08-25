@@ -1,7 +1,6 @@
-﻿using Database;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
+using Database;
 
 namespace Model
 {
@@ -41,7 +40,7 @@ namespace Model
                     }
                 }
             }
-            return action ?? null;
+            return action;
         }
 
         public static Action FindByDescription(string description)
@@ -65,7 +64,7 @@ namespace Model
                     }
                 }
             }
-            return action ?? null;
+            return action;
         }
 
         public static Action FindById(int id)
@@ -89,7 +88,7 @@ namespace Model
                     }
                 }
             }
-            return action ?? null;
+            return action;
         }
 
         public static List<Action> FindAll()
