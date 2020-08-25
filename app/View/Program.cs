@@ -12,6 +12,7 @@ namespace View
         [STAThread]
         static void Main()
         {
+            DatabaseUtility.ResetDatabase();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LayoutForm());

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using Controller;
 using Model;
@@ -21,6 +20,10 @@ namespace View
         // Metodo que se encarga del proceso de login y enviar al formulario de bienvenida
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            _layout_form.resizeWindowsToNormalSize();
+            _layout_form.showWelcomeScreen();
+            return;
+
 
             this.email = this.inputEmail.Text;
             this.password = this.inputPassword.Text;
