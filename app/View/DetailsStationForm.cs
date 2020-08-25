@@ -16,6 +16,10 @@ namespace View
             _layoutForm = layoutForm;
             this.id = id;
             FeedLabelStacion();
+            FeedDataGridView();
+            dataGridView1.Columns[0].HeaderText = "Código";
+            dataGridView1.Columns[1].HeaderText = "Nombre";
+            dataGridView1.Columns[2].HeaderText = "Capacidad";
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -27,6 +31,12 @@ namespace View
         {
             Station station = Station.Find(id);
             label_estacion.Text = station.name;
+        }
+        private void FeedDataGridView()
+        {
+            List<Station> list = Station.GetNearbyStations(id);
+            var source = new BindingSource(list, null);
+            dataGridView1.DataSource = source;
         }
     }
 }
