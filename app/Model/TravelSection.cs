@@ -1,5 +1,6 @@
 ﻿using Database;
 using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 
@@ -98,6 +99,37 @@ namespace Model
                 }
             }
             return travelSection ?? null;
+        }
+
+        public static List<TravelSection> All()
+        {
+            List<TravelSection> list = new List<TravelSection>();
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM travel_section";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string arrival_time = reader.GetString(1);
+                            int priority = reader.GetInt32(2);
+                            int travel_id = reader.GetInt32(3);
+                            int origin_station_id = reader.GetInt32(4);
+                            int destination_station_id = reader.GetInt32(5);
+
+                            TravelSection travelSection = new TravelSection(arrival_time, travel_id, priority, origin_station_id, destination_station_id);
+                            travelSection.travel_section_id = reader.GetInt32(0);
+
+                            list.Add(travelSection);
+
+                        }
+                    }
+
+                }
+            }
+            return list;
         }
         private Boolean CheckIfExists()
         {

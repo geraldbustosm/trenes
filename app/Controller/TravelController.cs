@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Interface;
+using System.Data;
 
 namespace Controller
 {
@@ -221,6 +222,29 @@ namespace Controller
                     section_action.Save();
                 }
             }
+        }
+
+        public static void FeedDataGridTravelDetails(DataGridView data)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Código");
+            dt.Columns.Add("Tiempo Llegada");
+            dt.Columns.Add("Código Viaje");
+            dt.Columns.Add("Prioridad");
+            dt.Columns.Add("Estación Origen");
+            dt.Columns.Add("Estación Destino");
+
+            foreach (TravelSection item in TravelSection.All())
+            {
+                Station origin = Station.Find(item.origin_station_id);
+                Station destination = Station.Find(item.destination_station_id);
+
+                Object[]  aux = {item.travel_id,item.arrival_time,item.priority,origin.name,destination.name};
+
+                dt.Rows.Add(aux);
+            }
+
+            data.DataSource = dt;
         }
     }
 }

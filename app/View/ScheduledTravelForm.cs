@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Controller;
 
 namespace View
 {
@@ -15,6 +9,9 @@ namespace View
         public ScheduledTravelForm()
         {
             InitializeComponent();
+            DateTime local_date = DateTime.Now;
+            //this.label_fecha.Text = local_date.ToString();
+            TravelController.FeedDataGridTravelDetails(dataGridView1);
         }
     }
 }
