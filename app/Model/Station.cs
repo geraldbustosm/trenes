@@ -59,15 +59,17 @@ namespace Model
                         {
                             string name = reader.GetString(1);
                             int capacity = reader.GetInt32(2);
-                            int station_id = id;
-                            station = new Station(name,capacity);
-                            station.station_id = station_id;
+
+
+                            station = new Station(name, capacity);
+                            station.station_id = id;
                         }
                     }
                 }
             }
             return station ?? null;
         }
+
         public Boolean Delete()
         {
             using (SQLiteConnection conn = DatabaseUtility.GetConnectionWithCascadeMode())
@@ -109,6 +111,53 @@ namespace Model
             }
             return list;
         }
+
+        public static int GetIdByName(string name)
+        {
+            int id = 0;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM station WHERE name = @name";
+                    command.Parameters.AddWithValue("@name", name);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            id = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return id;
+        }
+
+        public static List<Station> GetNearbyStations(int station_id)
+        {
+            List<Station> nearby_stations = new List<Station>();
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.Parameters.AddWithValue("@station_id", station_id);
+                    command.CommandText = "SELECT * FROM border_station WHERE station_one_id = @station_id OR station_two_id = @station_id";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int station_one_id = reader.GetInt32(1);
+                            int station_two_id = reader.GetInt32(2);
+
+                            int nearby_station = (station_one_id == station_id) ? station_two_id : station_one_id;
+                            nearby_stations.Add(Station.Find(nearby_station));   
+                        }
+                    }
+                }
+            }
+            return nearby_stations ?? null;
+        }
+
         // Private methods
         private Boolean CheckIfExists()
         {
