@@ -11,9 +11,9 @@ namespace Event
             SetInterval(() => CompletedSectionAction.AddWagon(), TimeSpan.FromSeconds(10));
             SetInterval(() => CompletedSectionAction.RemoveLocomotive(), TimeSpan.FromSeconds(10));
             SetInterval(() => CompletedSectionAction.RemoveWagon(), TimeSpan.FromSeconds(10));
-            SetInterval(() => CompletedTravelSection.ProgramToInTransit(), TimeSpan.FromSeconds(10));
-            SetInterval(() => CompletedTravelSection.LocomotiveTravelCompleted(), TimeSpan.FromSeconds(10));
-            SetInterval(() => CompletedTravelSection.TimeNow(), TimeSpan.FromSeconds(10));
+            SetInterval(() => CompletedTravel.ProgramToInTransit(), TimeSpan.FromSeconds(10));
+            SetInterval(() => CompletedTravel.InTransitToCompleted(), TimeSpan.FromSeconds(10));
+            SetInterval(() => CompletedTravel.TimeNow(), TimeSpan.FromSeconds(10));
         }
         public static async Task SetInterval(Action action, TimeSpan timeout)
         {
