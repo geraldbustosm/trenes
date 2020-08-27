@@ -42,8 +42,8 @@ namespace Event
                     {
                         command.CommandText = "UPDATE locomotive SET in_transit = 1, station_id = null WHERE locomotive_id = @id";
                         command.Parameters.AddWithValue("@id", id);
-                        command.ExecuteNonQuery();
-                        Console.WriteLine("Update add locomotive {0:N}",id);
+                        if (command.ExecuteNonQuery() > 0) ;
+                            Console.WriteLine("Update add locomotive {0:N}",id);
                     }
                 }
             }
@@ -79,8 +79,8 @@ namespace Event
                     {
                         command.CommandText = "UPDATE wagon SET in_transit = 1, station_id = null  WHERE wagon_id=  @id";
                         command.Parameters.AddWithValue("@id", id);
-                        command.ExecuteNonQuery();
-                        Console.WriteLine("Update add wagon {0:N}", id);
+                        if (command.ExecuteNonQuery() > 0) ;
+                            Console.WriteLine("Update add wagon {0:N}", id);
                     }
                 }
             }
@@ -121,8 +121,8 @@ namespace Event
                         command.CommandText = "UPDATE locomotive SET in_transit = 0, station_id = @station_id  WHERE locomotive_id=  @id";
                         command.Parameters.AddWithValue("@id", item.id);
                         command.Parameters.AddWithValue("@station_id", item.station_id);
-                        command.ExecuteNonQuery();
-                        Console.WriteLine("Update remove locomotive {0:N}", item.id);
+                        if(command.ExecuteNonQuery() > 0);
+                            Console.WriteLine("Update remove locomotive {0:N}", item.id);
                     }
                 }
             }
@@ -163,8 +163,8 @@ namespace Event
                         command.CommandText = "UPDATE wagon SET in_transit = 0, station_id = @station_id  WHERE wagon_id=  @id";
                         command.Parameters.AddWithValue("@id", item.id);
                         command.Parameters.AddWithValue("@station_id", item.station_id);
-                        command.ExecuteNonQuery();
-                        Console.WriteLine("Update remove wagon {0:N}", item.id);
+                        if (command.ExecuteNonQuery() > 0) ;
+                            Console.WriteLine("Update remove wagon {0:N}", item.id);
                     }
                 }
             }

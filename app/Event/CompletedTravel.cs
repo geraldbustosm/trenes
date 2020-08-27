@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
 using Database;
 
@@ -18,9 +17,9 @@ namespace Event
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
                 {
-                    command.CommandText = "UPDATE travel SET state = 'En-Transito' WHERE init_time <= datetime('now','localtime') AND arrival_time > datetime('now','localtime') AND state LIKE('Programado')";
-                    command.ExecuteNonQuery();
-                    Console.WriteLine("Programdo -> En tansito");
+                    command.CommandText = "UPDATE travel SET state = 'En Transito' WHERE init_time <= datetime('now','localtime') AND arrival_time > datetime('now','localtime') AND state LIKE('Programado')";
+                    if(command.ExecuteNonQuery() > 0)
+                        Console.WriteLine("Un viaje programado a comenzado su recorrido!");
                 }
             }
         }
@@ -31,9 +30,9 @@ namespace Event
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
                 {
-                    command.CommandText = "UPDATE travel SET state = 'Completado' WHERE arrival_time <= datetime('now','localtime') AND state LIKE('En-Transito')";
-                    command.ExecuteNonQuery();
-                    Console.WriteLine("En Transito -> Completado");
+                    command.CommandText = "UPDATE travel SET state = 'Completado' WHERE arrival_time <= datetime('now','localtime') AND state LIKE('En Transito')";
+                    if(command.ExecuteNonQuery() > 0)
+                        Console.WriteLine("Un viaje a terminado su recorrido!");
                 }
             }
         }
