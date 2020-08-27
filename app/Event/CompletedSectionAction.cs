@@ -40,7 +40,7 @@ namespace Event
                     if (list.Count == 0) return;
                     foreach (int id in list)
                     {
-                        command.CommandText = "UPDATE locomotive SET in_transit = 1, station_id = null  WHERE locomotive_id=  @id";
+                        command.CommandText = "UPDATE locomotive SET in_transit = 1, station_id = null WHERE locomotive_id = @id";
                         command.Parameters.AddWithValue("@id", id);
                         command.ExecuteNonQuery();
                         Console.WriteLine("Update add locomotive {0:N}",id);
@@ -98,7 +98,7 @@ namespace Event
                         "WHERE l.in_transit = 1 AND " +
                         "l.locomotive_id = sa.locomotive_id AND " +
                         "sa.action_id = a.action_id AND " +
-                        "a.description LIKE('Agregar Locomotora')  AND " +
+                        "a.description LIKE('Quitar locomotora') AND " +
                         "sa.travel_section_id = ts.travel_section_id AND " +
                         "ts.arrival_time <= datetime('now','localtime')";
                     using (SQLiteDataReader reader = command.ExecuteReader())
