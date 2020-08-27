@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Interface;
 using System.Data;
-using System.Linq;
 
 namespace Controller
 {
@@ -15,6 +14,9 @@ namespace Controller
         List<TravelSection> all_sections;
 
         // auxiliar variables
+        List<Station> stations;
+        List<List<Wagon>> wagons_by_station;
+        List<List<Locomotive>> locomotives_by_station;
         List<SectionAction> actions_list;
         List<Locomotive> locomotive_list;
         List<Wagon> wagon_list;
@@ -34,11 +36,14 @@ namespace Controller
             travel_index = this.GetTravelIndex();
             section_index = this.GetLastTravelSection();
             properity = 1;
+            stations = Station.All();
+            wagons_by_station = WagonController.GetAllWagonsByStation(this.stations);
+            locomotives_by_station = LocomotiveController.GetAllLocomotivesByStation(this.stations);
         }
 
         public void FeedInitStationComboBox(ComboBox combo_box)
         {
-            combo_box.DataSource = Station.All();
+            combo_box.DataSource = stations;
             combo_box.DisplayMember = "name";
             combo_box.ValueMember = "station_id";
         }
@@ -57,10 +62,10 @@ namespace Controller
             switch (action)
             {
                 case 0: // "Agregar carro":
-                    combo_box.DataSource = Wagon.GetWagonsByStation(station_id);
+                    combo_box.DataSource = this.GetWagonsByStation(station_id);
                     break;
                 case 1: //"Agregar locomotora":
-                    combo_box.DataSource = Locomotive.GetLocomotivesByStation(station_id);
+                    combo_box.DataSource = this.GetLocomotivesByStation(station_id);
                     break;
                 case 2: // "Quitar carro":
                     combo_box.DataSource = wagon_list;
@@ -76,6 +81,27 @@ namespace Controller
             }
         }
 
+        public List<Wagon> GetWagonsByStation(int station_id)
+        {
+            int index = FindIndexOfStation(station_id);
+            return wagons_by_station[index];
+        }
+
+        public List<Locomotive> GetLocomotivesByStation(int station_id)
+        {
+            int index = FindIndexOfStation(station_id);
+            return locomotives_by_station[index];
+        }
+
+        public int FindIndexOfStation(int station_id)
+        {
+            return stations.FindIndex(
+                delegate (Station station)
+                {
+                    return station.station_id.Equals(station_id);
+                });
+        }
+
         public int GetTravelIndex()
         {
             Travel last_travel = Travel.GetLastTravel();
@@ -88,7 +114,7 @@ namespace Controller
             return (last_travel_section != null) ? last_travel_section.travel_id + 1 : 1; 
         }
 
-        public bool AddNewActionToSection(int action_id, string patent, string type)
+        public bool AddNewActionToSection(int action_id, int station_id, string patent, string type)
         {
             int locomotive_id = 0, wagon_id = 0;
             if (type == "locomotive")
@@ -98,7 +124,7 @@ namespace Controller
 
             try
             {
-                this.ApplyAction(action_id, locomotive_id, wagon_id);
+                this.ApplyAction(action_id, locomotive_id, wagon_id, station_id);
                 SectionAction action = new SectionAction(action_id, section_index, locomotive_id, wagon_id);
                 actions_list.Add(action);
                 return true;
@@ -110,59 +136,101 @@ namespace Controller
             }
         }
 
-        public void ApplyAction(int action_id, int locomotive_id, int wagon_id)
+        public void ApplyAction(int action_id, int locomotive_id, int wagon_id, int station_id)
         {
             switch(action_id)
             {
                 case 1:
-                    this.AddWagonToSection(wagon_id);
+                    this.AddWagonToTrain(wagon_id, station_id);
                     break;
                 case 2:
-                    this.AddLocomotiveToSection(locomotive_id);
+                    this.AddLocomotiveToTrain(locomotive_id, station_id);
                     break;
                 case 3:
-                    this.RemoveWagon(wagon_id);
+                    this.RemoveWagonFromTrain(wagon_id, station_id);
                     break;
                 case 4:
-                    this.RemoveLocomotive(locomotive_id);
+                    this.RemoveLocomotiveFromTrain(locomotive_id, station_id);
                     break;
                 case 5:
-                    //this.DownloadWagon(wagon_id);
+                    MessageBox.Show("Funcionalidad deshabilitada!");
                     break;
                 default:
                     break;
             }
         }
 
-        public void RemoveWagon(int wagon_id)
+        public void RemoveWagonFromTrain(int wagon_id, int station_id)
         {
             this.wagon_list.Remove(wagon_list.Find(delegate (Wagon wagon) {
                 return wagon.wagon_id == wagon_id;
             }));
+
+            int index = FindIndexOfStation(station_id);
+            Wagon w = Wagon.Find(wagon_id);
+            wagons_by_station[index].Add(w);
         }
 
-        public void RemoveLocomotive(int locomotive_id)
+        public void RemoveLocomotiveFromTrain(int locomotive_id, int station_id)
         {
             this.locomotive_list.Remove(locomotive_list.Find(delegate (Locomotive locomotive) {
                 return locomotive.locomotive_id == locomotive_id;
             }));
+
+            int index = FindIndexOfStation(station_id);
+            Locomotive l = Locomotive.FindById(locomotive_id);
+            locomotives_by_station[index].Add(l);
         }
 
-        public void AddLocomotiveToSection(int locomotive_id)
+        public void AddLocomotiveToTrain(int locomotive_id, int station_id)
         {
             Locomotive locomotive = Locomotive.FindById(locomotive_id);
             locomotive_list.Add(locomotive);
+
+            int index = FindIndexOfStation(station_id);
+            this.locomotives_by_station[index].Remove(locomotives_by_station[index].Find(delegate (Locomotive l) {
+                return l.locomotive_id == locomotive_id;
+            }));
         }
 
-        public void AddWagonToSection(int wagon_id)
+        public void AddWagonToTrain(int wagon_id, int station_id)
         {
             Wagon wagon = Wagon.Find(wagon_id);
             wagon_list.Add(wagon);
+
+            int index = FindIndexOfStation(station_id);
+            this.wagons_by_station[index].Remove(wagons_by_station[index].Find(delegate (Wagon w) {
+                return w.wagon_id == wagon_id;
+            }));
         }
 
         public void FeedActionsDataGrid(DataGridView dt)
         {
-            dt.DataSource = new BindingSource(this.actions_list, null);
+            DataTable data = new DataTable();
+            data.Columns.Add("Tramo");
+            data.Columns.Add("Acción");
+            data.Columns.Add("Tiempo");
+            data.Columns.Add("Patente");
+            data.Columns.Add("Tipo");
+
+            foreach (SectionAction action in actions_list)
+            {
+                Model.Action _action = Model.Action.FindById(action.action_id);
+                _action.description = (_action.description.Contains("Agregar")) ? "Agregar" : "Quitar";
+                Locomotive locomotive = Locomotive.FindById(action.locomotive_id);
+                if (locomotive == null)
+                {
+                    Wagon wagon = Wagon.FindById(action.wagon_id);
+                    Object[] row = {this.properity, _action.description, _action.minutes, wagon.patent, "Carro"};
+                    data.Rows.Add(row);
+                }
+                else
+                {
+                    Object[] row = {this.properity,_action.description, _action.minutes, locomotive.patent, "Locomotora"};
+                    data.Rows.Add(row);
+                }
+            }
+            dt.DataSource = data;
         }
 
         public void FeedTrainStateDataGrid(DataGridView dt)
@@ -180,7 +248,7 @@ namespace Controller
             }
             foreach (Locomotive locomotive in locomotive_list)
             {
-                list.Add(new MachineInterface(locomotive.locomotive_id, locomotive.patent, "Locomotive"));
+                list.Add(new MachineInterface(locomotive.locomotive_id, locomotive.patent, "Locomotora"));
             }
             return list;
         }
@@ -251,6 +319,14 @@ namespace Controller
             }
 
             data.DataSource = dt;
+        }
+        public static void AddDeleteLinkColumn(DataGridView dt)
+        {
+            DataGridViewLinkColumn link = new DataGridViewLinkColumn();
+            link.UseColumnTextForLinkValue = true;
+            link.Name = "Eliminar";
+            link.Text = "Eliminar";
+            dt.Columns.Add(link);
         }
 
         public static void FeedDataGridScheduledTravels(DataGridView dgv)
