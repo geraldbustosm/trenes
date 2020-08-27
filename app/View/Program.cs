@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Database;
+using Event;
 
 namespace View
 {
@@ -13,6 +14,7 @@ namespace View
         static void Main()
         {
             DatabaseUtility.ResetDatabase();
+            Event.EventHandler.RunEventHandler();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LayoutForm());
