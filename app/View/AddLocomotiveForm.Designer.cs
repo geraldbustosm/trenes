@@ -116,7 +116,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(596, 574);
+            this.btnSave.Location = new System.Drawing.Point(605, 635);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(164, 50);
@@ -132,7 +132,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(817, 574);
+            this.btnCancel.Location = new System.Drawing.Point(823, 635);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(164, 50);
@@ -160,6 +160,7 @@
             this.station_combo_box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.station_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.station_combo_box.FormattingEnabled = true;
             this.station_combo_box.Location = new System.Drawing.Point(740, 164);
             this.station_combo_box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -173,6 +174,9 @@
             this.locomotive_datagrid.AllowUserToDeleteRows = false;
             this.locomotive_datagrid.AllowUserToResizeColumns = false;
             this.locomotive_datagrid.AllowUserToResizeRows = false;
+            this.locomotive_datagrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.locomotive_datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.locomotive_datagrid.BackgroundColor = System.Drawing.Color.White;
             this.locomotive_datagrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -196,7 +200,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.locomotive_datagrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.locomotive_datagrid.EnableHeadersVisualStyles = false;
-            this.locomotive_datagrid.Location = new System.Drawing.Point(99, 306);
+            this.locomotive_datagrid.Location = new System.Drawing.Point(99, 327);
             this.locomotive_datagrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.locomotive_datagrid.Name = "locomotive_datagrid";
             this.locomotive_datagrid.ReadOnly = true;
@@ -204,7 +208,7 @@
             this.locomotive_datagrid.RowHeadersWidth = 51;
             this.locomotive_datagrid.RowTemplate.Height = 24;
             this.locomotive_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.locomotive_datagrid.Size = new System.Drawing.Size(887, 191);
+            this.locomotive_datagrid.Size = new System.Drawing.Size(887, 286);
             this.locomotive_datagrid.TabIndex = 16;
             this.locomotive_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.locomotive_datagrid_CellContentClick);
             // 
@@ -242,7 +246,7 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddLocomotiveForm";
             this.Text = "AddLocomotiveForm";
             this.Load += new System.EventHandler(this.AddLocomotiveForm_Load);
