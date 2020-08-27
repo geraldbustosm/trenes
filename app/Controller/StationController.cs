@@ -42,7 +42,7 @@ namespace Controller
                 origin_station.Save();
                 foreach (Station border_station in this.list_border_station)
                 {
-                    BorderStation item= new BorderStation(origin_station.station_id, border_station.station_id);
+                    BorderStation item = new BorderStation(origin_station.station_id, border_station.station_id);
                     item.Save();
                 }
                 MessageBox.Show("Correcto");
