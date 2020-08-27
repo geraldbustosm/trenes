@@ -46,6 +46,7 @@ namespace View
             this.input_name.ReadOnly = false;
             this.input_capacity.ReadOnly = false;
             this.combo_box_station.DataSource = null;
+            this.combo_box_station.Enabled = false;
             this.combo_box_station.Items.Clear();
             this.stationController.ClearList();
             ClearTextBox();
@@ -69,6 +70,7 @@ namespace View
         {
             this.label_error.ForeColor = Color.Transparent;
             this.show_same.ReadOnly = true;
+            this.combo_box_station.Enabled = false;
             this.stationController.FeedDataBorderStation(data_border_station);
             AddLinkColumnDelete();
         }
@@ -87,6 +89,7 @@ namespace View
                         this.input_name.ReadOnly = true;
                         this.input_capacity.ReadOnly = true;
                         this.show_same.Text = this.name;
+                        this.combo_box_station.Enabled = true;
                         StationController.FeedComboBox(combo_box_station);
                     }
                     else

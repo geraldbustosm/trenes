@@ -119,5 +119,16 @@ namespace Controller
             if (station.capacity > count) return true;
             return false;
         }
+
+        public static List<List<Wagon>> GetAllWagonsByStation(List<Station> stations)
+        {
+            List<List<Wagon>> wagons_by_stations = new List<List<Wagon>>();
+            foreach (Station station in stations)
+            {
+                List<Wagon> wagons = Wagon.GetWagonsByStation(station.station_id);
+                wagons_by_stations.Add(wagons);
+            }
+            return wagons_by_stations;
+        }
     }
 }

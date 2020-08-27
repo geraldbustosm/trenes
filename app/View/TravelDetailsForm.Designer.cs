@@ -49,14 +49,15 @@
             this.travel_datagrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.travel_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.travel_datagrid.EnableHeadersVisualStyles = false;
-            this.travel_datagrid.Location = new System.Drawing.Point(12, 30);
+            this.travel_datagrid.Location = new System.Drawing.Point(95, 71);
+            this.travel_datagrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.travel_datagrid.Name = "travel_datagrid";
             this.travel_datagrid.ReadOnly = true;
             this.travel_datagrid.RowHeadersVisible = false;
             this.travel_datagrid.RowHeadersWidth = 51;
             this.travel_datagrid.RowTemplate.Height = 24;
             this.travel_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.travel_datagrid.Size = new System.Drawing.Size(781, 544);
+            this.travel_datagrid.Size = new System.Drawing.Size(887, 585);
             this.travel_datagrid.TabIndex = 18;
             // 
             // label_fecha
@@ -64,23 +65,23 @@
             this.label_fecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_fecha.AutoSize = true;
             this.label_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label_fecha.Location = new System.Drawing.Point(712, 9);
-            this.label_fecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_fecha.Location = new System.Drawing.Point(880, 29);
             this.label_fecha.Name = "label_fecha";
-            this.label_fecha.Size = new System.Drawing.Size(82, 18);
+            this.label_fecha.Size = new System.Drawing.Size(102, 24);
             this.label_fecha.TabIndex = 22;
             this.label_fecha.Text = "00-00-0000";
             // 
             // TravelDetailsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(805, 586);
+            this.ClientSize = new System.Drawing.Size(1073, 721);
             this.Controls.Add(this.label_fecha);
             this.Controls.Add(this.travel_datagrid);
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TravelDetailsForm";
             this.Text = "HomeForm";
             ((System.ComponentModel.ISupportInitialize)(this.travel_datagrid)).EndInit();

@@ -18,6 +18,14 @@ namespace Model
             this.capacity = capacity;
             this.deleted = false;
         }
+
+        public Station(int id, string name, int capacity)
+        {
+            this.station_id = id;
+            this.name = name;
+            this.capacity = capacity;
+            this.deleted = false;
+        }
         public void Save()
         {
             if (!this.deleted)
@@ -32,7 +40,7 @@ namespace Model
                         if (!this.CheckIfExists())
                         {
                             command.CommandText = "INSERT INTO station(name, capacity) values (@name, @capacity)";
-                            this.station_id = Convert.ToInt32(command.ExecuteScalar());
+                            command.ExecuteNonQuery();
                         }
                         else
                         {
@@ -43,6 +51,29 @@ namespace Model
                     }
                 }
             }
+        }
+        public static Station GetLastStation()
+        {
+            Station station = null;
+            using (SQLiteConnection conn = DatabaseUtility.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM station ORDER BY station_id DESC LIMIT 1";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string name = reader.GetString(1);
+                            int capacity = reader.GetInt32(2);
+
+                            station = new Station(id, name, capacity);
+                        }
+                    }
+                }
+            }
+            return station;
         }
         public static Station Find(int id)
         {

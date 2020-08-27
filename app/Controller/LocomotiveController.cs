@@ -115,5 +115,16 @@ namespace Controller
             if (station.capacity > count)return true;
             return false;
         }
+
+        public static List<List<Locomotive>> GetAllLocomotivesByStation(List<Station> stations)
+        {
+            List<List<Locomotive>> locomotives_by_stations = new List<List<Locomotive>>();
+            foreach (Station station in stations)
+            {
+                List<Locomotive> locomotives = Locomotive.GetLocomotivesByStation(station.station_id);
+                locomotives_by_stations.Add(locomotives);
+            }
+            return locomotives_by_stations;
+        }
     }
 }

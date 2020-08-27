@@ -40,9 +40,10 @@ namespace Controller
             try
             {
                 origin_station.Save();
+                origin_station = Station.GetLastStation();
                 foreach (Station border_station in this.list_border_station)
                 {
-                    BorderStation item= new BorderStation(origin_station.station_id, border_station.station_id);
+                    BorderStation item = new BorderStation(origin_station.station_id, border_station.station_id);
                     item.Save();
                 }
                 MessageBox.Show("Correcto");

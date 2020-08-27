@@ -9,6 +9,7 @@ namespace View
         public ScheduledTravelForm()
         {
             InitializeComponent();
+            TravelController.FeedDataGridScheduledTravels(dataGridView1);
         }
     }
 }
