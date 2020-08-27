@@ -21,6 +21,9 @@ namespace View
             InitializeComponent();
             this.information_label.Text = "";
             _layout_form = layout_form;
+            this.RefreshActions();
+            TravelController.AddDeleteLinkColumn(actions_datagrid);
+            this.RefreshTrainState();
         }
 
         private void AddTravelSectionForm_Load(object sender, System.EventArgs e)
@@ -63,6 +66,9 @@ namespace View
         public void RefreshTrainState()
         {
             travel_controller.FeedTrainStateDataGrid(this.train_state_datagrid);
+            train_state_datagrid.Columns[0].HeaderText = "Código";
+            train_state_datagrid.Columns[1].HeaderText = "Patente";
+            train_state_datagrid.Columns[2].HeaderText = "Tipo";
         }
 
         public void RefreshActions()
@@ -117,6 +123,26 @@ namespace View
             this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
             travel_controller.SaveTravel(this.arrival, this.init_station_id, this.destination_station_id);
             _layout_form.changeLayout(new AddTravelSectionForm(_layout_form));
+        }
+
+        private void cancel_btn_Click(object sender, EventArgs e)
+        {
+            this._layout_form.changeLayout(new AddTravelSectionForm(_layout_form));
+        }
+
+        private void actions_datagrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                ShowConfirmationMessage(e);
+            }
+        }
+        private void ShowConfirmationMessage(DataGridViewCellEventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro que desea eliminar la acción?", "Ventana de confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                //to do
+            }
         }
     }
 }

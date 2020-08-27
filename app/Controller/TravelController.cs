@@ -160,7 +160,31 @@ namespace Controller
 
         public void FeedActionsDataGrid(DataGridView dt)
         {
-            dt.DataSource = new BindingSource(this.actions_list, null);
+            DataTable data = new DataTable();
+            data.Columns.Add("Tramo");
+            data.Columns.Add("Acción");
+            data.Columns.Add("Tiempo de la acción");
+            data.Columns.Add("Patente");
+            data.Columns.Add("Tipo");
+
+            foreach (SectionAction action in actions_list)
+            {
+                Model.Action _action = Model.Action.FindById(action.action_id);
+                _action.description = (_action.description.Contains("Agregar")) ? "Agregar" : "Quitar";
+                Locomotive locomotive = Locomotive.FindById(action.locomotive_id);
+                if (locomotive == null)
+                {
+                    Wagon wagon = Wagon.FindById(action.wagon_id);
+                    Object[] row = {this.properity, _action.description, _action.minutes, wagon.patent, "Carro"};
+                    data.Rows.Add(row);
+                }
+                else
+                {
+                    Object[] row = {this.properity,_action.description, _action.minutes, locomotive.patent, "Locomotora"};
+                    data.Rows.Add(row);
+                }
+            }
+            dt.DataSource = data;
         }
 
         public void FeedTrainStateDataGrid(DataGridView dt)
@@ -245,6 +269,14 @@ namespace Controller
             }
 
             data.DataSource = dt;
+        }
+        public static void AddDeleteLinkColumn(DataGridView dt)
+        {
+            DataGridViewLinkColumn link = new DataGridViewLinkColumn();
+            link.UseColumnTextForLinkValue = true;
+            link.Name = "Eliminar";
+            link.Text = "Eliminar";
+            dt.Columns.Add(link);
         }
     }
 }
