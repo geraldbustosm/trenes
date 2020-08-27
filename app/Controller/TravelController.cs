@@ -258,18 +258,30 @@ namespace Controller
             DataTable dt, dn = new DataTable();
             dn.Columns.Add("Código");
             dn.Columns.Add("Estado");
-            /*dt.Columns.Add("Tiempo salida");
-            dt.Columns.Add("Tiempo llegada");*/
+            dn.Columns.Add("Tiempo salida");
+            dn.Columns.Add("Tiempo llegada");
             dn.Columns.Add("Estación origen");
             dn.Columns.Add("Estación llegada");
             dt = Travel.GetScheduledTravels().Tables[0];
 
-            for (int i=0; i < dt.Rows.Count-1; i=i+2)
+            int len = dt.Rows.Count;
+            for (int i=0; i < len; i++)
             {
-                Object[] dr = { dt.Rows[i][0], dt.Rows[i][1], dt.Rows[i][4], dt.Rows[i+1][5] };
-                // si estuviese tiempo salida y llegada
-                // Object[] dr = { dt.Rows[i][0], dt.Rows[i][1], dt.Rows[i][2], dt.Rows[i+1][3], dt.Rows[i][4], dt.Rows[i+1][5] };
-                dn.Rows.Add(dr);
+                if (i + 1 < len && dt.Rows[i][0].ToString() == dt.Rows[i+1][0].ToString()) // funciona para duplicado adelante
+                {
+                    Object[] dr = { dt.Rows[i][0], dt.Rows[i][1], dt.Rows[i][2], dt.Rows[i + 1][3], dt.Rows[i][5], dt.Rows[i + 1][6] };
+                    dn.Rows.Add(dr);
+                }
+                else if(i == 0 && i+1 == len) // cuando existe una sola tupla
+                {
+                    Object[] dr = { dt.Rows[i][0], dt.Rows[i][1], dt.Rows[i][2], dt.Rows[i][3], dt.Rows[i][5], dt.Rows[i][6] };
+                    dn.Rows.Add(dr);
+                }
+                else if(i - 1 > 0 && dt.Rows[i][0].ToString() != dt.Rows[i - 1][0].ToString()) // funciona para duplicado atras
+                {
+                    Object[] dr = { dt.Rows[i][0], dt.Rows[i][1], dt.Rows[i][2], dt.Rows[i][3], dt.Rows[i][5], dt.Rows[i][6] };
+                    dn.Rows.Add(dr);
+                }
             }
 
             dgv.DataSource = dn;
