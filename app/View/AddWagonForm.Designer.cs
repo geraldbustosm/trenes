@@ -127,7 +127,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(99, 249);
+            this.btnAdd.Location = new System.Drawing.Point(98, 262);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(164, 50);
@@ -154,6 +154,7 @@
             this.station_combo_box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.station_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.station_combo_box.FormattingEnabled = true;
             this.station_combo_box.Location = new System.Drawing.Point(737, 213);
             this.station_combo_box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -168,7 +169,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(601, 614);
+            this.btnSave.Location = new System.Drawing.Point(601, 635);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(164, 50);
@@ -184,7 +185,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(823, 614);
+            this.btnCancel.Location = new System.Drawing.Point(823, 635);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(164, 50);
@@ -225,7 +226,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.station_datagrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.station_datagrid.EnableHeadersVisualStyles = false;
-            this.station_datagrid.Location = new System.Drawing.Point(99, 318);
+            this.station_datagrid.Location = new System.Drawing.Point(97, 336);
             this.station_datagrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.station_datagrid.Name = "station_datagrid";
             this.station_datagrid.ReadOnly = true;
@@ -277,7 +278,7 @@
             this.label_error.AutoSize = true;
             this.label_error.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label_error.ForeColor = System.Drawing.Color.Red;
-            this.label_error.Location = new System.Drawing.Point(268, 262);
+            this.label_error.Location = new System.Drawing.Point(279, 288);
             this.label_error.Name = "label_error";
             this.label_error.Size = new System.Drawing.Size(52, 24);
             this.label_error.TabIndex = 18;
@@ -306,7 +307,7 @@
             this.Controls.Add(this.input_wagon_w);
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddWagonForm";
             this.Text = "AddWagonForm";
             this.Load += new System.EventHandler(this.AddWagonForm_Load);

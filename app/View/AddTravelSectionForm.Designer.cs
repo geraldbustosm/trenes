@@ -57,6 +57,11 @@
             this.information_label = new System.Windows.Forms.Label();
             this.train_state_datagrid = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.actions_datagrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.train_state_datagrid)).BeginInit();
             this.SuspendLayout();
@@ -91,7 +96,7 @@
             this.cancel_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.cancel_btn.ForeColor = System.Drawing.Color.White;
-            this.cancel_btn.Location = new System.Drawing.Point(57, 614);
+            this.cancel_btn.Location = new System.Drawing.Point(57, 635);
             this.cancel_btn.Margin = new System.Windows.Forms.Padding(4);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(164, 50);
@@ -107,7 +112,7 @@
             this.save_trip_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_trip_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.save_trip_btn.ForeColor = System.Drawing.Color.White;
-            this.save_trip_btn.Location = new System.Drawing.Point(823, 614);
+            this.save_trip_btn.Location = new System.Drawing.Point(868, 635);
             this.save_trip_btn.Margin = new System.Windows.Forms.Padding(4);
             this.save_trip_btn.Name = "save_trip_btn";
             this.save_trip_btn.Size = new System.Drawing.Size(164, 50);
@@ -167,7 +172,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.actions_datagrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.actions_datagrid.EnableHeadersVisualStyles = false;
-            this.actions_datagrid.Location = new System.Drawing.Point(63, 415);
+            this.actions_datagrid.Location = new System.Drawing.Point(63, 389);
             this.actions_datagrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.actions_datagrid.Name = "actions_datagrid";
             this.actions_datagrid.ReadOnly = true;
@@ -175,7 +180,7 @@
             this.actions_datagrid.RowHeadersWidth = 51;
             this.actions_datagrid.RowTemplate.Height = 24;
             this.actions_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.actions_datagrid.Size = new System.Drawing.Size(460, 164);
+            this.actions_datagrid.Size = new System.Drawing.Size(460, 209);
             this.actions_datagrid.TabIndex = 17;
             this.actions_datagrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.actions_datagrid_CellClick);
             // 
@@ -324,7 +329,7 @@
             this.add_action_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_action_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.add_action_btn.ForeColor = System.Drawing.Color.White;
-            this.add_action_btn.Location = new System.Drawing.Point(59, 324);
+            this.add_action_btn.Location = new System.Drawing.Point(61, 312);
             this.add_action_btn.Margin = new System.Windows.Forms.Padding(4);
             this.add_action_btn.Name = "add_action_btn";
             this.add_action_btn.Size = new System.Drawing.Size(164, 50);
@@ -340,7 +345,7 @@
             this.next_section_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.next_section_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.next_section_btn.ForeColor = System.Drawing.Color.White;
-            this.next_section_btn.Location = new System.Drawing.Point(601, 614);
+            this.next_section_btn.Location = new System.Drawing.Point(651, 635);
             this.next_section_btn.Margin = new System.Windows.Forms.Padding(4);
             this.next_section_btn.Name = "next_section_btn";
             this.next_section_btn.Size = new System.Drawing.Size(164, 50);
@@ -356,7 +361,7 @@
             this.information_label.BackColor = System.Drawing.Color.Transparent;
             this.information_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.information_label.ForeColor = System.Drawing.Color.Red;
-            this.information_label.Location = new System.Drawing.Point(282, 628);
+            this.information_label.Location = new System.Drawing.Point(273, 649);
             this.information_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.information_label.Name = "information_label";
             this.information_label.Size = new System.Drawing.Size(152, 24);
@@ -393,7 +398,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.train_state_datagrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.train_state_datagrid.EnableHeadersVisualStyles = false;
-            this.train_state_datagrid.Location = new System.Drawing.Point(555, 280);
+            this.train_state_datagrid.Location = new System.Drawing.Point(555, 389);
             this.train_state_datagrid.Margin = new System.Windows.Forms.Padding(4);
             this.train_state_datagrid.Name = "train_state_datagrid";
             this.train_state_datagrid.ReadOnly = true;
@@ -408,7 +413,7 @@
             this.train_state_datagrid.RowHeadersVisible = false;
             this.train_state_datagrid.RowHeadersWidth = 62;
             this.train_state_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.train_state_datagrid.Size = new System.Drawing.Size(477, 299);
+            this.train_state_datagrid.Size = new System.Drawing.Size(477, 209);
             this.train_state_datagrid.TabIndex = 38;
             // 
             // label9
@@ -416,12 +421,71 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label9.Location = new System.Drawing.Point(551, 219);
+            this.label9.Location = new System.Drawing.Point(677, 338);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(226, 24);
             this.label9.TabIndex = 39;
             this.label9.Text = "Estado del tren en el viaje";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label10.Location = new System.Drawing.Point(551, 217);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(204, 24);
+            this.label10.TabIndex = 40;
+            this.label10.Text = "Locomotora de arrastre";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(786, 217);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(246, 24);
+            this.comboBox1.TabIndex = 41;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label11.Location = new System.Drawing.Point(551, 265);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(194, 24);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "Capacidad de arrastre";
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label12.Location = new System.Drawing.Point(782, 265);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(50, 24);
+            this.label12.TabIndex = 43;
+            this.label12.Text = "4000";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label13.Location = new System.Drawing.Point(942, 265);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(90, 24);
+            this.label13.TabIndex = 44;
+            this.label13.Text = "Tonelada";
             // 
             // AddTravelSectionForm
             // 
@@ -429,6 +493,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1074, 722);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.train_state_datagrid);
             this.Controls.Add(this.information_label);
@@ -491,5 +560,10 @@
         private System.Windows.Forms.Label information_label;
         private System.Windows.Forms.DataGridView train_state_datagrid;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }
