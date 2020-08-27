@@ -10,10 +10,5 @@ namespace View
         {
             InitializeComponent();
         }
-
-        private void TravelDetailsForm_Load(object sender, EventArgs e)
-        {
-            
-        }
     }
 }
