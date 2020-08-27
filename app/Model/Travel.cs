@@ -1,5 +1,6 @@
 ﻿using Database;
 using System;
+using System.Data;
 using System.Data.SQLite;
 
 namespace Model
@@ -85,6 +86,20 @@ namespace Model
                 }
             }
             return count > 0;
+        }
+        public static DataSet GetScheduledTravels()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
+            {
+                connection.Open();
+                SQLiteCommand db = new SQLiteCommand(connection);
+                db.CommandText = "SELECT DISTINCT t.travel_id, t.state, ts.arrival_time, ts.priority, ts.origin_station_id, ts.destination_station_id FROM travel t, travel_section ts INNER JOIN travel_section ON t.travel_id = ts.travel_id WHERE state like 'Preparado' AND (ts.priority = 1 OR ts.priority = (SELECT MAX(priority) FROM travel_section WHERE travel_id = t.travel_id))";
+                db.Parameters.AddWithValue("@state", "Preparado");
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(db);
+                DataSet dataset = new DataSet();
+                adapter.Fill(dataset);
+                return dataset;
+            }
         }
 
         /*
