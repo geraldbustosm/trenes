@@ -9,11 +9,24 @@ namespace Model
     {
         public int travel_id { get; private set; }
         public string state { get; set; }
+        public DateTime init_time { get; set; }
+        public DateTime arrival_time { get; set; }
         public Boolean deleted;
 
-        public Travel()
+        public Travel(DateTime init_time, DateTime arrival_time, string state)
         {
-            this.state = "Preparado";
+            this.state = state;
+            this.init_time = init_time;
+            this.arrival_time = arrival_time;
+            this.deleted = false;
+        }
+
+        public Travel(int id, DateTime init_time, DateTime arrival_time, string state)
+        {
+            this.state = state;
+            this.init_time = init_time;
+            this.arrival_time = arrival_time;
+            this.travel_id = id;
             this.deleted = false;
         }
 
@@ -30,11 +43,11 @@ namespace Model
                         while (reader.Read())
                         {
                             int id = reader.GetInt32(0);
-                            string state = reader.GetString(1);
-   
-                            travel = new Travel();
-                            travel.state = state;
-                            travel.travel_id = id;
+                            DateTime init_time = reader.GetDateTime(1);
+                            DateTime arrival_time = reader.GetDateTime(2);
+                            string state = reader.GetString(3);
+
+                            travel = new Travel(id, init_time, arrival_time, state);
                         }
                     }
                 }
@@ -51,14 +64,16 @@ namespace Model
                     using (SQLiteCommand command = new SQLiteCommand(conn))
                     {
                         command.Parameters.AddWithValue("@state", this.state);
+                        command.Parameters.AddWithValue("@init_time", this.init_time);
+                        command.Parameters.AddWithValue("@arrival_time", this.arrival_time);
                         if (!this.CheckIfExists())
                         {
-                            command.CommandText = "INSERT INTO travel(state) VALUES (@state)";
+                            command.CommandText = "INSERT INTO travel(init_time, arrival_time, state) VALUES (@init_time, @arrival_time, @state)";
                             this.travel_id = Convert.ToInt32(command.ExecuteScalar());
                         }
                         else
                         {
-                            command.CommandText = "UPDATE travel SET(state= @this.state) WHERE travel_id= @travel_id";
+                            command.CommandText = "UPDATE travel SET(init_time = @init_time, arrival_time = @arrival_time, state = @state) WHERE travel_id= @travel_id";
                             command.Parameters.AddWithValue("@travel_id", this.travel_id);
                             command.ExecuteNonQuery();
                         }
@@ -103,21 +118,6 @@ namespace Model
         }
 
         /*
-        public Boolean Delete()
-        {
-            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
-            {
-                connection.Open();
-                SQLiteCommand db = new SQLiteCommand(connection);
-                db.CommandText = "DELETE FROM travel WHERE travel_id = @travel_id";
-                db.Parameters.AddWithValue("@travel_id", this.travel_id);
-                db.ExecuteNonQuery();
-                connection.Close();
-                this.deleted = true;
-                return true;
-            }
-        }
-
         // Static methods
         public static Travel Find(int id)
         {
@@ -142,29 +142,6 @@ namespace Model
                 }
                 connection.Close();
                 return null;
-            }
-        }
-
-        // Private methods
-        private Boolean CheckIfExists(int id)
-        {
-            using (SQLiteConnection connection = new SQLiteConnection(DatabaseUtility.Path))
-            {
-                connection.Open();
-                SQLiteCommand db = new SQLiteCommand(connection);
-                db.CommandText = "SELECT COUNT(*) FROM travel WHERE travel_id =  @travel_id";
-                db.Parameters.AddWithValue("@travel_id", id);
-                int count = 0;
-                using (SQLiteDataReader reader = db.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        count = reader.GetInt32(0);
-                    }
-                    reader.Close();
-                }
-                connection.Close()
-                return count > 0;
             }
         }
         */

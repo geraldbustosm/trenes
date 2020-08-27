@@ -1,10 +1,10 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using Interface;
 using System.Data;
+using System.Linq;
 
 namespace Controller
 {
@@ -21,6 +21,8 @@ namespace Controller
         int travel_index;
         int section_index;
         int properity;
+        DateTime init_time;
+        DateTime arrival_time;
 
         public TravelController()
         {
@@ -183,13 +185,16 @@ namespace Controller
             return list;
         }
 
-        public bool AddNewSectionToTravel(string arrival_time, int origin_station_id, int destination_station_id)
+        public bool AddNewSectionToTravel(DateTime init_time, DateTime arrival_time, int origin_station_id, int destination_station_id)
         {
             try
             {
-                all_actions_by_section.Add(actions_list);
+                if (properity == 1) this.init_time = init_time;
+
+                List<SectionAction> list = new List<SectionAction>(actions_list);
+                all_actions_by_section.Add(list);
                 actions_list.Clear();
-                TravelSection travel_section = new TravelSection(arrival_time, this.travel_index, properity++, origin_station_id, destination_station_id);
+                TravelSection travel_section = new TravelSection(init_time, arrival_time, this.travel_index, properity++, origin_station_id, destination_station_id);
                 all_sections.Add(travel_section);
                 this.section_index++;
                 return true;
@@ -202,14 +207,15 @@ namespace Controller
 
         }
 
-        public void SaveTravel(string arrival_time, int origin_station_id, int destination_station_id)
+        public void SaveTravel(DateTime init_time, DateTime arrival_time, int origin_station_id, int destination_station_id)
         {
-            this.AddNewSectionToTravel(arrival_time, origin_station_id, destination_station_id);
+            this.arrival_time = arrival_time;
+            this.AddNewSectionToTravel(init_time, arrival_time, origin_station_id, destination_station_id);
 
             if (wagon_list.Count > 0 || locomotive_list.Count > 0)
                 MessageBox.Show("Todas las maquinas seran almacenadas en la estacion de llegada!");
             
-            Travel travel = new Travel();
+            Travel travel = new Travel(this.init_time, this.arrival_time, "Programado");
             travel.Save();
             foreach (TravelSection travel_section in this.all_sections)
             {
