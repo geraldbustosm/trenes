@@ -11,10 +11,8 @@ namespace View
         private int init_station_id = 0;
         private int destination_station_id = 0;
         private string action_description = "";
-        private string init;
-        private string arrival;
-        private string init_hrs;
-        private string arrival_hrs;
+        private DateTime init_time;
+        private DateTime arrival_time;
 
         public AddTravelSectionForm(LayoutForm layout_form)
         {
@@ -72,19 +70,15 @@ namespace View
 
         private void next_section_btn_Click(object sender, EventArgs e)
         {
+            this.SetupTime();
             this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
             this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
-            this.init = this.init_date.Value.ToString("dd/MM/yyyy");
-            this.arrival = this.arrival_date.Value.ToString("dd/MM/yyyy");
-            this.init_hrs = this.init_hour.Value.ToString("hh:mm");
-            this.arrival_hrs = this.arrival_hour.Value.ToString("hh:mm");
-
-            // validate all things
 
             try
             {
                 bool success = travel_controller.AddNewSectionToTravel(
-                    this.arrival,
+                    this.init_time,
+                    this.arrival_time,
                     this.init_station_id,
                     this.destination_station_id
                 );
@@ -112,11 +106,31 @@ namespace View
 
         private void save_trip_btn_Click(object sender, EventArgs e)
         {
-            this.arrival = this.arrival_date.Value.ToString("dd/MM/yyyy");
+            this.SetupTime();
             this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
             this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
-            travel_controller.SaveTravel(this.arrival, this.init_station_id, this.destination_station_id);
+            travel_controller.SaveTravel(this.init_time, this.arrival_time, this.init_station_id, this.destination_station_id);
             _layout_form.changeLayout(new AddTravelSectionForm(_layout_form));
+        }
+
+        private void SetupTime()
+        {
+            this.init_time = new DateTime(
+                this.init_date.Value.Year,
+                this.init_date.Value.Month,
+                this.init_date.Value.Day,
+                this.init_hour.Value.Hour,
+                this.init_hour.Value.Minute,
+                0
+            );
+            this.arrival_time = new DateTime(
+                this.arrival_date.Value.Year,
+                this.arrival_date.Value.Month,
+                this.arrival_date.Value.Day,
+                this.arrival_hour.Value.Hour,
+                this.arrival_hour.Value.Minute,
+                0
+            );
         }
     }
 }

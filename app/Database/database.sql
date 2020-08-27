@@ -1,5 +1,9 @@
 CREATE TABLE train (
-	train_id INTEGER PRIMARY KEY AUTOINCREMENT
+	train_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    travel_id INTEGER NOT NULL,
+    drag_locomotive INTEGER NOT NULL,
+    FOREIGN KEY(drag_locomotive) REFERENCES locomotive (locomotive_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY(travel_id) REFERENCES travel (travel_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE station (
@@ -42,18 +46,20 @@ CREATE TABLE wagon (
 
 CREATE TABLE travel (
 	travel_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    state TEXT DEFAULT "Programado"  -- "Programado" - "En Transito" - "Completado" --
+    init_time DATE NOT NULL,
+    arrival_time DATE NOT NULL,
+    state TEXT DEFAULT "Programado" -- "Programado" - "En Transito" - "Completado" --
 );
 
 CREATE TABLE action (
     action_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    description TEXT NOT NULL, -- agregar carro , quitar carro, etc --
+    description TEXT NOT NULL,
     minutes INTEGER NOT NULL
 );
 
 CREATE TABLE section_action (
     section_action_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    action_id INTEGER NOT NULL, -- 1: Agregar wagon, 2: Agregar locomotive ... -
+    action_id INTEGER NOT NULL,
     travel_section_id INTEGER NOT NULL,
     locomotive_id INTEGER DEFAULT 0,
     wagon_id INTEGER DEFAULT 0,
@@ -65,7 +71,8 @@ CREATE TABLE section_action (
 
 CREATE TABLE travel_section (
     travel_section_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    arrival_time TEXT NOT NULL,
+    init_time DATE NOT NULL,
+    arrival_time DATE NOT NULL,
     priority INTEGER NOT NULL,
     travel_id INTEGER NOT NULL,
     origin_station_id INTEGER NOT NULL,
@@ -89,18 +96,13 @@ CREATE TABLE permission (
     permission_name TEXT NOT NULL
 );
 
-INSERT INTO train (train_id) 
-VALUES 
-    (1),
-    (2);
-
 INSERT INTO station (name, capacity) 
 VALUES
-    ('La Serena', 9),
-    ('Coquimbo', 3),
-    ('Ovalle', 4),
-    ('Valle Elqui', 2),
-    ('Vicuña', 5);
+    ('La Serena', 10),
+    ('Coquimbo', 10),
+    ('Ovalle', 10),
+    ('Valle Elqui', 10),
+    ('Vicuña', 10);
 
 INSERT INTO border_station (station_one_id, station_two_id) 
 VALUES 
@@ -128,7 +130,6 @@ VALUES
     ('Castillo', 100, 0, 5),
     ('Luco', 1, 1, 5);
 
-
 INSERT INTO wagon (patent, wagon_weight, in_transit, station_id) 
 VALUES 
     ('Platano', 100, 0, 1),
@@ -145,7 +146,6 @@ VALUES
     ('Melon', 100, 0, 4),
     ('Sandia', 300, 0, 3);
 
-
 INSERT INTO action (description, minutes) 
 VALUES
     ('Agregar carro', 20),
@@ -160,4 +160,6 @@ VALUES
     ('Operador'),
     ('Invitado');
 
-INSERT INTO user (name, email, password, permission_id) VALUES ('admin', 'admin@admin.cl', '1234', 1);
+INSERT INTO user (name, email, password, permission_id) 
+VALUES 
+    ('admin', 'admin@admin.cl', '1234', 1);
