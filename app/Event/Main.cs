@@ -6,15 +6,13 @@ namespace Event
     public class Main
     {
 
-        public static void DoWork()
+        public static async Task SetInterval(Action action, TimeSpan timeout)
         {
-            Task.Run(async () => {
-            for(; ; )
-                {
-                    await Task.Delay(10000);
-                    Console.WriteLine("Hi after 10 seconds");
-                }
-            });
+            await Task.Delay(timeout).ConfigureAwait(false);
+
+            action();
+
+            SetInterval(action, timeout);
         }
     }
 }
