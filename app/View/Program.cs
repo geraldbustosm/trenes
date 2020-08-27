@@ -14,7 +14,7 @@ namespace View
         static void Main()
         {
             DatabaseUtility.ResetDatabase();
-            ConstantUpdate.Validate();
+            Event.EventHandler.RunEventHandler();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LayoutForm());

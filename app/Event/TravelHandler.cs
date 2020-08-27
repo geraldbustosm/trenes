@@ -4,14 +4,14 @@ using Database;
 
 namespace Event
 {
-    class CompletedTravel
+    class TravelHandler
     {
         struct Item
         {
             public int id;
             public int station_id;
         };
-        public static void ProgramToInTransit()
+        public static void TravelStarted()
         {
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
@@ -24,7 +24,7 @@ namespace Event
             }
         }
 
-        public static void InTransitToCompleted()
+        public static void TravelCompleted()
         {
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {

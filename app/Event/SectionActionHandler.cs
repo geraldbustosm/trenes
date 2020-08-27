@@ -5,14 +5,14 @@ using Database;
 
 namespace Event
 {
-    class CompletedSectionAction
+    class SectionActionHandler
     {
         struct Item
         {
             public int id;
             public int station_id;
         };
-        public static void AddLocomotive()
+        public static void LocomotiveAddedToTrain()
         {
             List<int> list = new List<int>();
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
@@ -49,7 +49,7 @@ namespace Event
             }
         }
 
-        public static void AddWagon()
+        public static void WagonAddedToTrain()
         {
             List<int> list = new List<int>();
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
@@ -86,7 +86,7 @@ namespace Event
             }
         }
 
-        public static void RemoveLocomotive()
+        public static void LocomotiveRemovedFromTrain()
         {
             List<Item> list = new List<Item>();
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
@@ -128,7 +128,7 @@ namespace Event
             }
         }
 
-        public static void RemoveWagon()
+        public static void WagonRemovedFromTrain()
         {
             List<Item> list = new List<Item>();
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
