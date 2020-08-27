@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.combobox_station = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnEditar
@@ -150,12 +151,26 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(383, 154);
+            this.checkBox1.Location = new System.Drawing.Point(400, 153);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(18, 17);
             this.checkBox1.TabIndex = 23;
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(211)))));
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.btnBack.ForeColor = System.Drawing.Color.White;
+            this.btnBack.Location = new System.Drawing.Point(95, 635);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(164, 50);
+            this.btnBack.TabIndex = 24;
+            this.btnBack.Text = "Atrás";
+            this.btnBack.UseVisualStyleBackColor = false;
             // 
             // EditSationForm
             // 
@@ -164,6 +179,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1073, 721);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.combobox_station);
             this.Controls.Add(this.label1);
@@ -193,5 +209,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox combobox_station;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btnBack;
     }
 }
