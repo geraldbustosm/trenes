@@ -19,6 +19,9 @@ namespace View
             InitializeComponent();
             this.information_label.Text = "";
             _layout_form = layout_form;
+            this.RefreshActions();
+            TravelController.AddDeleteLinkColumn(actions_datagrid);
+            this.RefreshTrainState();
         }
 
         private void AddTravelSectionForm_Load(object sender, System.EventArgs e)
@@ -41,16 +44,18 @@ namespace View
             {
                 int action_id = Int32.Parse(this.actions_combo_box.SelectedValue.ToString());
                 bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
+                int station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
 
                 if (action_to_locomotive)
-                    travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "locomotive");
+                    travel_controller.AddNewActionToSection(action_id, station_id, machines_combo_box.SelectedValue.ToString(), "locomotive");
                 else
-                    travel_controller.AddNewActionToSection(action_id, machines_combo_box.SelectedValue.ToString(), "wagon");
-
+                    travel_controller.AddNewActionToSection(action_id, station_id, machines_combo_box.SelectedValue.ToString(), "wagon");
+                
+                this.BlockForm();
                 this.RefreshActions();
-                this.init_station_combo_box.Enabled = false;
-                this.destination_station_combo_box.Enabled = false;
                 this.RefreshTrainState();
+                machines_combo_box.DataSource = null;
+                travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, station_id, machines_combo_box);
             }
             catch (Exception ex)
             {
@@ -61,6 +66,9 @@ namespace View
         public void RefreshTrainState()
         {
             travel_controller.FeedTrainStateDataGrid(this.train_state_datagrid);
+            train_state_datagrid.Columns[0].HeaderText = "Código";
+            train_state_datagrid.Columns[1].HeaderText = "Patente";
+            train_state_datagrid.Columns[2].HeaderText = "Tipo";
         }
 
         public void RefreshActions()
@@ -83,15 +91,8 @@ namespace View
                     this.destination_station_id
                 );
 
-                if (success)
-                {
-                    travel_controller.FeedActionsDataGrid(this.actions_datagrid);
-                    this.init_station_combo_box.Text = destination_station_combo_box.Text;
-                    this.destination_station_combo_box.Enabled = true;
-                    int id = Int32.Parse(destination_station_combo_box.SelectedValue.ToString());
-                    travel_controller.FeedDestinationStationComboBox(id, this.destination_station_combo_box);
-                    travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, id, machines_combo_box);
-                }
+                if (success) 
+                    SetupNextSection();
             }
             catch (Exception ex)
             {
@@ -131,6 +132,57 @@ namespace View
                 this.arrival_hour.Value.Minute,
                 0
             );
+        }
+
+        private void SetupNextSection()
+        {
+            try
+            {
+                this.init_station_combo_box.Text = destination_station_combo_box.Text;
+                this.destination_station_combo_box.Enabled = true;
+                this.init_date.Value = this.arrival_date.Value;
+                this.arrival_date.Enabled = true;
+                this.init_hour.Value = this.arrival_hour.Value;
+                this.arrival_hour.Enabled = true;
+                travel_controller.FeedActionsDataGrid(this.actions_datagrid);
+                int id = Int32.Parse(this.destination_station_combo_box.SelectedValue.ToString());
+                travel_controller.FeedDestinationStationComboBox(id, this.destination_station_combo_box);
+                travel_controller.FeedMachinesComboBox(this.actions_combo_box.SelectedIndex, id, this.machines_combo_box);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BlockForm()
+        {
+            this.init_station_combo_box.Enabled = false;
+            this.destination_station_combo_box.Enabled = false;
+            this.init_date.Enabled = false;
+            this.init_hour.Enabled = false;
+            this.arrival_date.Enabled = false;
+            this.arrival_hour.Enabled = false;
+        }
+
+        private void cancel_btn_Click(object sender, EventArgs e)
+        {
+            this._layout_form.changeLayout(new AddTravelSectionForm(_layout_form));
+        }
+
+        private void actions_datagrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                ShowConfirmationMessage(e);
+            }
+        }
+        private void ShowConfirmationMessage(DataGridViewCellEventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro que desea eliminar la acción?", "Ventana de confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                //to do
+            }
         }
     }
 }
