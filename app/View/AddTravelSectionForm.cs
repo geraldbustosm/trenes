@@ -51,7 +51,8 @@ namespace View
                 this.BlockForm();
                 this.RefreshActions();
                 this.RefreshTrainState();
-                travel_controller.FeedMachinesComboBox(action_id, station_id, machines_combo_box);
+                machines_combo_box.DataSource = null;
+                travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, station_id, machines_combo_box);
             }
             catch (Exception ex)
             {
