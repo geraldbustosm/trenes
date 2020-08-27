@@ -8,10 +8,15 @@ namespace Model
     public class Train
     {
         public int train_id { get; private set; }
+        public int travel_id { get; set; }
+        public int drag_locomotive { get; set; }
+
         private Boolean deleted;
 
-        public Train()
+        public Train(int travel_id, int drag_locomotive)
         {
+            this.drag_locomotive = drag_locomotive;
+            this.travel_id = travel_id;
             this.deleted = false;
         }
 
@@ -23,15 +28,17 @@ namespace Model
                 {
                     using (SQLiteCommand command = new SQLiteCommand(conn))
                     {
+                        command.Parameters.AddWithValue("@travel_id", this.travel_id);
+                        command.Parameters.AddWithValue("@drag_locomotive", this.drag_locomotive);
 
                         if (!this.CheckIfExists())
                         {
-                            command.CommandText = "INSERT INTO train()";
-                            this.train_id = Convert.ToInt32(command.ExecuteScalar());
+                            command.CommandText = "INSERT INTO train(travel_id, drag_locomotive) VALUES (@travel_id, @drag_locomotive)";
+                            command.ExecuteNonQuery();
                         }
                         else
                         {
-                            command.CommandText = "UPDATE train SET() WHERE train_id= @train_id";
+                            command.CommandText = "UPDATE train SET(travel_id = @travel_id, drag_locomotive = @drag_locomotive) WHERE train_id= @train_id";
                             command.Parameters.AddWithValue("@train_id", this.train_id);
                             command.ExecuteNonQuery();
                         }
@@ -39,19 +46,6 @@ namespace Model
                 }
             }
         }
-        /*
-        public Boolean Delete()
-        {
-            SQLiteConnection connection = DatabaseUtility.GetConnection();
-            SQLiteCommand db = new SQLiteCommand(connection);
-            string query = "DELETE FROM train WHERE train_id = " + this.train_id;
-            db.CommandText = query;
-            db.ExecuteNonQuery();
-            connection.Close();
-            this.deleted = true;
-            return true;
-        }
-        */
         private Boolean CheckIfExists()
         {
             int count = 0;
@@ -72,6 +66,5 @@ namespace Model
             }
             return count > 0;
         }
-
     }
 }
