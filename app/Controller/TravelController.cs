@@ -210,7 +210,7 @@ namespace Controller
             DataTable data = new DataTable();
             data.Columns.Add("Tramo");
             data.Columns.Add("Acción");
-            data.Columns.Add("Tiempo de la acción");
+            data.Columns.Add("Tiempo");
             data.Columns.Add("Patente");
             data.Columns.Add("Tipo");
 
@@ -249,7 +249,7 @@ namespace Controller
             }
             foreach (Locomotive locomotive in locomotive_list)
             {
-                list.Add(new MachineInterface(locomotive.locomotive_id, locomotive.patent, "Locomotive"));
+                list.Add(new MachineInterface(locomotive.locomotive_id, locomotive.patent, "Locomotora"));
             }
             return list;
         }
