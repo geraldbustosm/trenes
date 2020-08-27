@@ -172,16 +172,11 @@ namespace View
 
         private void actions_datagrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0 && MessageBox.Show("¿Está seguro que desea eliminar la acción?", "Ventana de confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                ShowConfirmationMessage(e);
-            }
-        }
-        private void ShowConfirmationMessage(DataGridViewCellEventArgs e)
-        {
-            if (MessageBox.Show("¿Está seguro que desea eliminar la acción?", "Ventana de confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                //to do
+                // send data to controller
+                object a = this.actions_datagrid.Rows[e.RowIndex];
+                travel_controller.CancelAction();
             }
         }
     }

@@ -80,7 +80,6 @@ namespace Controller
                     break;
             }
         }
-
         public List<Wagon> GetWagonsByStation(int station_id)
         {
             int index = FindIndexOfStation(station_id);
@@ -324,9 +323,15 @@ namespace Controller
         {
             DataGridViewLinkColumn link = new DataGridViewLinkColumn();
             link.UseColumnTextForLinkValue = true;
-            link.Name = "Eliminar";
-            link.Text = "Eliminar";
+            link.Name = "Cancelar";
+            link.Text = "Cancelar";
             dt.Columns.Add(link);
+        }
+
+        public void CancelAction()
+        {
+            // use data for cancel action
+            // usar las funciones ya creadas arriba, removefromtrain o addtotrain
         }
 
         public static void FeedDataGridScheduledTravels(DataGridView dgv)
