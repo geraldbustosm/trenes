@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Interface;
 using System.Data;
+using System.Linq;
 
 namespace Controller
 {
@@ -190,7 +191,8 @@ namespace Controller
             {
                 if (properity == 1) this.init_time = init_time;
 
-                all_actions_by_section.Add(actions_list);
+                List<SectionAction> list = new List<SectionAction>(actions_list);
+                all_actions_by_section.Add(list);
                 actions_list.Clear();
                 TravelSection travel_section = new TravelSection(init_time, arrival_time, this.travel_index, properity++, origin_station_id, destination_station_id);
                 all_sections.Add(travel_section);
