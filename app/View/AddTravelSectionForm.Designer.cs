@@ -98,6 +98,7 @@
             this.cancel_btn.TabIndex = 10;
             this.cancel_btn.Text = "Cancelar";
             this.cancel_btn.UseVisualStyleBackColor = false;
+            this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
             // 
             // save_trip_btn
             // 
@@ -176,6 +177,7 @@
             this.actions_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.actions_datagrid.Size = new System.Drawing.Size(460, 164);
             this.actions_datagrid.TabIndex = 17;
+            this.actions_datagrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.actions_datagrid_CellClick);
             // 
             // destination_station_combo_box
             // 
