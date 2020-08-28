@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Interface;
 using System.Data;
+using System.Runtime.CompilerServices;
 
 namespace Controller
 {
@@ -278,6 +279,7 @@ namespace Controller
         public void SaveTravel(DateTime init_time, DateTime arrival_time, int origin_station_id, int destination_station_id)
         {
             this.arrival_time = arrival_time;
+            this.AddActionsToLastSection();
             this.AddNewSectionToTravel(init_time, arrival_time, origin_station_id, destination_station_id);
 
             if (wagon_list.Count > 0 || locomotive_list.Count > 0)
@@ -298,6 +300,21 @@ namespace Controller
             }
         }
 
+        public void AddActionsToLastSection()
+        {
+            foreach (Locomotive l in locomotive_list)
+            {
+                SectionAction action = new SectionAction(4, section_index-1, l.locomotive_id, 0);
+                actions_list.Add(action);
+            }
+            foreach (Wagon w in wagon_list)
+            {
+                SectionAction action = new SectionAction(3, section_index-1, 0, w.wagon_id);
+                actions_list.Add(action);
+            }
+            all_actions_by_section.Add(actions_list);
+        }
+
         public static void FeedDataGridTravelDetails(DataGridView data)
         {
             DataTable dt = new DataTable();
@@ -313,7 +330,7 @@ namespace Controller
                 Station origin = Station.Find(item.origin_station_id);
                 Station destination = Station.Find(item.destination_station_id);
 
-                Object[]  aux = {item.travel_section_id,item.arrival_time,item.travel_id,item.priority,origin.name,destination.name};
+                Object[] aux = {item.travel_section_id,item.arrival_time,item.travel_id,item.priority,origin.name,destination.name};
 
                 dt.Rows.Add(aux);
             }
