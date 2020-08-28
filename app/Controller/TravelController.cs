@@ -362,5 +362,20 @@ namespace Controller
 
             dgv.DataSource = dn;
         }
+        public void FeedLocomotiveComboBox(ComboBox cb)
+        {
+            cb.DataSource = locomotive_list;
+            cb.DisplayMember = "patent";
+            cb.ValueMember = "patent";
+        }
+        public void FeedCapacityLabel(Label capacity_label,string patente)
+        {
+            Locomotive locomotive = Locomotive.FindByPatent(patente);
+            if (locomotive != null)
+                capacity_label.Text = locomotive.tons_drag.ToString();
+            else
+                capacity_label.Text = "Seleccione locomotora de arrastre";
+
+        }
     }
 }

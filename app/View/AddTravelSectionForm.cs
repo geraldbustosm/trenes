@@ -13,6 +13,7 @@ namespace View
         private string action_description = "";
         private DateTime init_time;
         private DateTime arrival_time;
+        private int lastDragLocomotiveSelected;
 
         public AddTravelSectionForm(LayoutForm layout_form)
         {
@@ -31,6 +32,7 @@ namespace View
             travel_controller.FeedDestinationStationComboBox(id_default_station, this.destination_station_combo_box);
             ActionController.FeedActionsComboBox(this.actions_combo_box);
             travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, id_default_station, machines_combo_box);
+
         }
 
         private void init_station_combo_box_SelectionChangeCommitted(object sender, EventArgs e)
@@ -56,6 +58,8 @@ namespace View
                 this.RefreshTrainState();
                 machines_combo_box.DataSource = null;
                 travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, station_id, machines_combo_box);
+                locomotive_combo_box.DataSource = null;
+                travel_controller.FeedLocomotiveComboBox(this.locomotive_combo_box);
             }
             catch (Exception ex)
             {
@@ -183,6 +187,25 @@ namespace View
             {
                 //to do
             }
+        }
+
+        private void locomotive_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.locomotive_combo_box.SelectedValue != null)
+            {
+                this.lastDragLocomotiveSelected = this.locomotive_combo_box.SelectedIndex;
+                Console.WriteLine("aa");
+            }
+            else if (this.locomotive_combo_box.SelectedValue == null && this.lastDragLocomotiveSelected != null)
+            {
+                this.locomotive_combo_box.SelectedIndex = this.lastDragLocomotiveSelected;
+                Console.WriteLine("bb");
+            }
+            else
+            {
+                Console.WriteLine("cc");
+            }
+            //travel_controller.FeedCapacityLabel(this.capacity_label,this.locomotive_combo_box.SelectedValue.ToString());
         }
     }
 }
