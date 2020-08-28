@@ -71,7 +71,7 @@ namespace View
             DataGridViewLinkColumn link = new DataGridViewLinkColumn();
 
             link.UseColumnTextForLinkValue = true;
-            link.Name = "Delete";
+            link.Name = "Eliminar";
             link.Text = "Eliminar";
 
             locomotive_datagrid.Columns.Add(link);
@@ -79,8 +79,8 @@ namespace View
             locomotive_datagrid.Columns[1].HeaderText = "Patente";
             locomotive_datagrid.Columns[2].HeaderText = "Capacidad";
             locomotive_datagrid.Columns[3].HeaderText = "Activo";
-            locomotive_datagrid.Columns[4].HeaderText = "Código Tren";
-            locomotive_datagrid.Columns[5].HeaderText = "Código Estación";
+            locomotive_datagrid.Columns[4].HeaderText = "Código tren";
+            locomotive_datagrid.Columns[5].HeaderText = "Código estación";
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -98,7 +98,7 @@ namespace View
         }
         private void locomotive_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.locomotive_datagrid.Columns["Delete"].Index)
+            if (e.ColumnIndex == this.locomotive_datagrid.Columns["Eliminar"].Index)
             {
                 int id = Convert.ToInt32(((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString());
                 this.locomotive_controller.DeleteToLocomotiveList(id);

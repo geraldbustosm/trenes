@@ -302,11 +302,11 @@ namespace Controller
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("Código");
-            dt.Columns.Add("Hora Llegada");
-            dt.Columns.Add("Código Viaje");
+            dt.Columns.Add("Hora llegada");
+            dt.Columns.Add("Código viaje");
             dt.Columns.Add("Prioridad");
-            dt.Columns.Add("Estación Origen");
-            dt.Columns.Add("Estación Destino");
+            dt.Columns.Add("Estación origen");
+            dt.Columns.Add("Estación destino");
 
             foreach (TravelSection item in TravelSection.All())
             {
