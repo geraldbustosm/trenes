@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Controller;
+using Model;
 
 namespace View
 {
@@ -21,7 +22,6 @@ namespace View
             this.information_label.Text = "";
             _layout_form = layout_form;
             this.RefreshActions();
-            TravelController.AddDeleteLinkColumn(actions_datagrid);
             this.RefreshTrainState();
         }
 
@@ -60,6 +60,8 @@ namespace View
                     this.RefreshTrainState();
                     machines_combo_box.DataSource = null;
                     travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, station_id, machines_combo_box);
+                    locomotive_combobox.DataSource = null;
+                    travel_controller.FeedLocomotiveComboBox(locomotive_combobox);
                 }
                 catch (Exception ex)
                 {
@@ -68,7 +70,7 @@ namespace View
             }
             else
             {
-                Error("Campo Fecha mal ingresado");
+                Error("Asegurate de asignar las fechas correctas");
             }
         }
 
@@ -87,27 +89,41 @@ namespace View
 
         private void next_section_btn_Click(object sender, EventArgs e)
         {
-            SetTime();
-            this.SetupTime();
-            this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
-            this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
-
-            try
+            if (!CompareDateAndHour())
             {
-                bool success = travel_controller.AddNewSectionToTravel(
-                    this.init_time,
-                    this.arrival_time,
-                    this.init_station_id,
-                    this.destination_station_id
-                );
+                this.Error("Asegurate de asignar las fechas correctas");
+                return;
+            }
 
-                if (success)
-                    SetupNextSection();
-            }
-            catch (Exception ex)
+            if (this.locomotive_combobox.Enabled == false)
             {
-                MessageBox.Show(ex.Message);
+                SetTime();
+                this.SetupTime();
+                this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
+                this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
+
+                try
+                {
+                    bool success = travel_controller.AddNewSectionToTravel(
+                        this.init_time,
+                        this.arrival_time,
+                        this.init_station_id,
+                        this.destination_station_id
+                    );
+
+                    if (success)
+                        SetupNextSection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
+            else
+            {
+                this.Error("Recuerda seleccionar una locomotora de arrastre!");
+            }
+
         }
 
         private void actions_combo_box_SelectedIndexChanged(object sender, EventArgs e)
@@ -117,11 +133,18 @@ namespace View
 
         private void save_trip_btn_Click(object sender, EventArgs e)
         {
-            this.SetupTime();
-            this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
-            this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
-            travel_controller.SaveTravel(this.init_time, this.arrival_time, this.init_station_id, this.destination_station_id);
-            _layout_form.changeLayout(new AddTravelSectionForm(_layout_form));
+            if (this.CompareDateAndHour())
+            {
+                this.SetupTime();
+                this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
+                this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
+                travel_controller.SaveTravel(this.init_time, this.arrival_time, this.init_station_id, this.destination_station_id);
+                _layout_form.changeLayout(new AddTravelSectionForm(_layout_form));
+            }
+            else
+            {
+                this.Error("Asegurate de asignar las fechas correctas");
+            }
         }
 
         private void SetupTime()
@@ -174,10 +197,9 @@ namespace View
 
         private bool CompareDateAndHour()
         {
-            int result_date = DateTime.Compare(this.init_date.Value,this.arrival_date.Value);
-            TimeSpan result = this.init_hour.Value.Subtract(this.arrival_hour.Value);
-
-            if (result_date <= 1 && result.Hours <= 0 && result.Minutes < 0 && result.Seconds < 0) return true;
+            this.SetupTime();
+            int result_date = DateTime.Compare(this.init_time, this.arrival_time);
+            if (result_date < 0) return true;
             return false;
         }
 
@@ -196,27 +218,17 @@ namespace View
             this._layout_form.changeLayout(new AddTravelSectionForm(_layout_form));
         }
 
-        private void actions_datagrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-                ShowConfirmationMessage(e);
-            }
-        }
-
-        private void ShowConfirmationMessage(DataGridViewCellEventArgs e)
-        {
-            if (MessageBox.Show("¿Está seguro que desea eliminar la acción?", "Ventana de confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                //to do
-            }
-        }
-
         private void Error(string error)
         {
             this.information_label.ForeColor = Color.Red;
             this.information_label.Text = error;
         }
 
+        private void fix_locomotive_btn_Click(object sender, EventArgs e)
+        {
+            string patent = Convert.ToString(this.locomotive_combobox.SelectedValue);
+            this.travel_controller.FeedCapacityLabel(this.capacity_label, patent);
+            this.locomotive_combobox.Enabled = false;
+        }
     }
 }
