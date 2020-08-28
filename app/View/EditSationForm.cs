@@ -61,6 +61,11 @@ namespace View
             combobox_station.Enabled = this.checked_;
         }
 
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this._layoutForm.changeLayout(new ListStationsForm(this._layoutForm));
+        }
+
         private void FeedComboBoxStation()
         {
             Console.WriteLine(this.id);

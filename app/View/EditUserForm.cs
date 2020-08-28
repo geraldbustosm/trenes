@@ -86,6 +86,12 @@ namespace View
                 this.is_password_validated = false;
             }
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this._layoutForm.changeLayout(new ListUsersForm(this._layoutForm));
+        }
+
         private void FeedFormWithUserValues()
         {
             User user = User.Find(id);
