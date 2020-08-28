@@ -171,6 +171,7 @@
             this.btnBack.TabIndex = 24;
             this.btnBack.Text = "Atrás";
             this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // EditSationForm
             // 

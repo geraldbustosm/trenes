@@ -100,23 +100,23 @@ namespace View
             DataGridViewLinkColumn link = new DataGridViewLinkColumn();
 
             link.UseColumnTextForLinkValue = true;
-            link.Name = "Delete";
+            link.Name = "Eliminar";
             link.Text = "Eliminar";
 
             station_datagrid.Columns.Add(link);
             station_datagrid.Columns[0].HeaderText = "Código";
             station_datagrid.Columns[1].HeaderText = "Patente";
-            station_datagrid.Columns[2].HeaderText = "Tipo Carga";
-            station_datagrid.Columns[3].HeaderText = "Peso Carga";
-            station_datagrid.Columns[4].HeaderText = "Peso Carro";
+            station_datagrid.Columns[2].HeaderText = "Tipo carga";
+            station_datagrid.Columns[3].HeaderText = "Peso carga";
+            station_datagrid.Columns[4].HeaderText = "Peso carro";
             station_datagrid.Columns[5].HeaderText = "Activo";
-            station_datagrid.Columns[6].HeaderText = "Codigo Tren";
-            station_datagrid.Columns[7].HeaderText = "Codigo Stación";
+            station_datagrid.Columns[6].HeaderText = "Código tren";
+            station_datagrid.Columns[7].HeaderText = "Código estación";
         }
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.station_datagrid.Columns["Delete"].Index)
+            if (e.ColumnIndex == this.station_datagrid.Columns["Eliminar"].Index)
             {
                 int id = Convert.ToInt32(((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString());
                 this.wagon_controller.DeleteToWagonList(id);
