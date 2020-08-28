@@ -68,19 +68,23 @@ namespace View
             string password = this.input_password.Text;
             string validate_password = this.input_validate_password.Text;
 
-            if (password == validate_password)
+            if (password.Length > 0 && validate_password.Length > 0)
             {
-                this.information_label.Text = "";
-                this.is_password_validated = true;
-            }
-            else
-            {
-                if (this.information_label.ForeColor == successfullColor)
+
+                if (password == validate_password)
                 {
-                    this.information_label.ForeColor = wrongColor;
+                    this.information_label.Text = "";
+                    this.is_password_validated = true;
                 }
-                this.information_label.Text = "Las contraseñas no coinciden";
-                this.is_password_validated = false;
+                else
+                {
+                    if (this.information_label.ForeColor == successfullColor)
+                    {
+                        this.information_label.ForeColor = wrongColor;
+                    }
+                    this.information_label.Text = "Las contraseñas no coinciden";
+                    this.is_password_validated = false;
+                }
             }
         }
     }
