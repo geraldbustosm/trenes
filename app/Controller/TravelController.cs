@@ -362,5 +362,16 @@ namespace Controller
 
             dgv.DataSource = dn;
         }
+
+        public int AllTimeForAction()
+        {
+            int minute_counter = 0;
+            foreach (SectionAction item in this.actions_list)
+            {
+                Model.Action action = Model.Action.Find(item.action_id);
+                minute_counter += action.minutes; 
+            }
+            return minute_counter;
+        }
     }
 }
