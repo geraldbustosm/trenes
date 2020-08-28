@@ -59,7 +59,7 @@ namespace View
                     this.RefreshTrainState();
                     machines_combo_box.DataSource = null;
                     travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, station_id, machines_combo_box);
-                    if (locomotive_combobox.Enabled = true)
+                    if (locomotive_combobox.Enabled == true)
                         locomotive_combobox.DataSource = null;
                         travel_controller.FeedLocomotiveComboBox(locomotive_combobox);
                     this.capacity_label.Text = "";
@@ -202,7 +202,7 @@ namespace View
         {
             this.SetupTime();
             int result_date = DateTime.Compare(this.init_time, this.arrival_time);
-            if (result_date < 0) return true;
+            if (result_date < 0 && this.init_time > DateTime.Now) return true;
             return false;
         }
 
@@ -229,6 +229,12 @@ namespace View
 
         private void fix_locomotive_btn_Click(object sender, EventArgs e)
         {
+            if(this.locomotive_combobox.SelectedValue == null)
+            {
+                this.Error("Recuerda seleccionar una locomotora de arrastre!");
+                return;
+            }
+
             string patent = Convert.ToString(this.locomotive_combobox.SelectedValue);
             this.travel_controller.FeedCapacityLabel(this.capacity_label, patent);
             this.locomotive_combobox.Enabled = false;
