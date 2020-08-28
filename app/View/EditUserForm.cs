@@ -100,6 +100,8 @@ namespace View
             Permission permission = Permission.Find(user.permission_id);
             input_username.Text = user.name;
             input_email.Text = user.email;
+            input_password.Text = user.password;
+            input_validate_password.Text = user.password;
             PermissionController.FeedComboBoxForEdit(combobox_rol, permission.permission_name);
         }
     }
