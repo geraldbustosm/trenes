@@ -12,7 +12,6 @@ namespace View
         private TravelController travel_controller = new TravelController();
         private int init_station_id = 0;
         private int destination_station_id = 0;
-        private string action_description = "";
         private DateTime init_time;
         private DateTime arrival_time;
 
@@ -60,8 +59,10 @@ namespace View
                     this.RefreshTrainState();
                     machines_combo_box.DataSource = null;
                     travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, station_id, machines_combo_box);
-                    locomotive_combobox.DataSource = null;
-                    travel_controller.FeedLocomotiveComboBox(locomotive_combobox);
+                    if (locomotive_combobox.Enabled = true)
+                        locomotive_combobox.DataSource = null;
+                        travel_controller.FeedLocomotiveComboBox(locomotive_combobox);
+                    this.capacity_label.Text = "";
                 }
                 catch (Exception ex)
                 {
@@ -113,6 +114,8 @@ namespace View
 
                     if (success)
                         SetupNextSection();
+
+                    this.capacity_label.Text = "";
                 }
                 catch (Exception ex)
                 {
