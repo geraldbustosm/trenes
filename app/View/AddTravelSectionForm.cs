@@ -133,7 +133,7 @@ namespace View
 
         private void save_trip_btn_Click(object sender, EventArgs e)
         {
-            if (this.CompareDateAndHour())
+            if (this.CompareDateAndHour() && this.locomotive_combobox.Enabled == false)
             {
                 this.SetupTime();
                 this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
