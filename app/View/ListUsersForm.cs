@@ -17,20 +17,24 @@ namespace View
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Int32.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
+            if (e.RowIndex > -1)
+            {
+                int id = Int32.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
 
-            if(e.ColumnIndex == 0) // edit
-            {
-                this.layout_form.changeLayout(new EditUserForm(this.layout_form, id));
-            }else if(e.ColumnIndex == 1) // delete
-            {
-                if (this.layout_form.auth.user_id == id)
+                if (e.ColumnIndex == 0) // edit
                 {
-                    ShowWarningMessage();
+                    this.layout_form.changeLayout(new EditUserForm(this.layout_form, id));
                 }
-                else
+                else if (e.ColumnIndex == 1) // delete
                 {
-                    ShowConfirmationMessage(e);
+                    if (this.layout_form.auth.user_id == id)
+                    {
+                        ShowWarningMessage();
+                    }
+                    else
+                    {
+                        ShowConfirmationMessage(e);
+                    }
                 }
             }
         }
