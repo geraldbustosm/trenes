@@ -91,9 +91,9 @@ namespace Model
             return action;
         }
 
-        public static List<Action> FindAll()
+        public static Stack<Action> FindAll()
         {
-            List<Action> all_actions = new List<Action>();
+            Stack<Action> all_actions = new Stack<Action>();
             using (SQLiteConnection conn = DatabaseUtility.GetConnection())
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
@@ -109,12 +109,12 @@ namespace Model
 
                             Action action = new Action(description, minutes);
                             action.action_id = id;
-                            all_actions.Add(action);
+                            all_actions.Push(action);
                         }
                     }
                 }
             }
-            return all_actions ?? null;
+            return all_actions;
         }
     }
 }
