@@ -32,7 +32,7 @@ namespace View
             string password = this.input_password.Text;
             int permission_id = Int32.Parse(this.combobox_rol.SelectedValue.ToString());
 
-            if (this.is_password_validated)
+            if (password.Length > 0 && this.is_password_validated)
             {
                 if (Validation.IsEmail(email))
                 {
@@ -70,22 +70,20 @@ namespace View
         {
             string password = this.input_password.Text;
             string validate_password = this.input_validate_password.Text;
-            if (password.Length > 0 && validate_password.Length > 0)
+            
+            if (password == validate_password)
             {
-                if (password == validate_password)
+                this.information_label.Text = "";
+                this.is_password_validated = true;
+            }
+            else
+            {
+                if (this.information_label.ForeColor == successfullColor)
                 {
-                    this.information_label.Text = "";
-                    this.is_password_validated = true;
+                    this.information_label.ForeColor = wrongColor;
                 }
-                else
-                {
-                    if (this.information_label.ForeColor == successfullColor)
-                    {
-                        this.information_label.ForeColor = wrongColor;
-                    }
-                    this.information_label.Text = "Las contraseñas no coinciden";
-                    this.is_password_validated = false;
-                }
+                this.information_label.Text = "Las contraseñas no coinciden";
+                this.is_password_validated = false;
             }
         }
 
@@ -100,8 +98,6 @@ namespace View
             Permission permission = Permission.Find(user.permission_id);
             input_username.Text = user.name;
             input_email.Text = user.email;
-            input_password.Text = user.password;
-            input_validate_password.Text = user.password;
             PermissionController.FeedComboBoxForEdit(combobox_rol, permission.permission_name);
         }
     }
