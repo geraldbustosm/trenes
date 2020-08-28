@@ -13,7 +13,6 @@ namespace View
         private string action_description = "";
         private DateTime init_time;
         private DateTime arrival_time;
-        private int lastDragLocomotiveSelected;
 
         public AddTravelSectionForm(LayoutForm layout_form)
         {
@@ -81,25 +80,34 @@ namespace View
 
         private void next_section_btn_Click(object sender, EventArgs e)
         {
-            this.SetupTime();
-            this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
-            this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
-
-            try
+            if(this.locomotive_combo_box.Enabled == false)
             {
-                bool success = travel_controller.AddNewSectionToTravel(
-                    this.init_time,
-                    this.arrival_time,
-                    this.init_station_id,
-                    this.destination_station_id
-                );
+                this.SetupTime();
+                this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
+                this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
 
-                if (success) 
-                    SetupNextSection();
+                try
+                {
+                    bool success = travel_controller.AddNewSectionToTravel(
+                        this.init_time,
+                        this.arrival_time,
+                        this.init_station_id,
+                        this.destination_station_id
+                    );
+
+                    if (success)
+                        SetupNextSection();
+
+                    this.information_label.Text = "";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                this.information_label.Text = "Recuerda fijar una locomotra de arrastre!";
             }
         }
 
