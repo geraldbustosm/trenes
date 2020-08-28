@@ -220,6 +220,7 @@
             this.btnBack.TabIndex = 25;
             this.btnBack.Text = "Atrás";
             this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // EditUserForm
             // 

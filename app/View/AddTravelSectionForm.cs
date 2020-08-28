@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Controller;
 
@@ -40,26 +41,34 @@ namespace View
 
         private void add_action_btn_Click(object sender, EventArgs e)
         {
-            try
+            if (CompareDateAndHour())
             {
-                int action_id = Int32.Parse(this.actions_combo_box.SelectedValue.ToString());
-                bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
-                int station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
+                try
+                {
+                    this.information_label.ForeColor = Color.Transparent;
+                    int action_id = Int32.Parse(this.actions_combo_box.SelectedValue.ToString());
+                    bool action_to_locomotive = this.actions_combo_box.Text.Contains("locomotora");
+                    int station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
 
-                if (action_to_locomotive)
-                    travel_controller.AddNewActionToSection(action_id, station_id, machines_combo_box.SelectedValue.ToString(), "locomotive");
-                else
-                    travel_controller.AddNewActionToSection(action_id, station_id, machines_combo_box.SelectedValue.ToString(), "wagon");
-                
-                this.BlockForm();
-                this.RefreshActions();
-                this.RefreshTrainState();
-                machines_combo_box.DataSource = null;
-                travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, station_id, machines_combo_box);
+                    if (action_to_locomotive)
+                        travel_controller.AddNewActionToSection(action_id, station_id, machines_combo_box.SelectedValue.ToString(), "locomotive");
+                    else
+                        travel_controller.AddNewActionToSection(action_id, station_id, machines_combo_box.SelectedValue.ToString(), "wagon");
+
+                    this.BlockForm();
+                    this.RefreshActions();
+                    this.RefreshTrainState();
+                    machines_combo_box.DataSource = null;
+                    travel_controller.FeedMachinesComboBox(actions_combo_box.SelectedIndex, station_id, machines_combo_box);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                Error("Campo Fecha mal ingresado");
             }
         }
 
@@ -78,6 +87,7 @@ namespace View
 
         private void next_section_btn_Click(object sender, EventArgs e)
         {
+            SetTime();
             this.SetupTime();
             this.init_station_id = Convert.ToInt32(init_station_combo_box.SelectedValue);
             this.destination_station_id = Convert.ToInt32(destination_station_combo_box.SelectedValue);
@@ -91,7 +101,7 @@ namespace View
                     this.destination_station_id
                 );
 
-                if (success) 
+                if (success)
                     SetupNextSection();
             }
             catch (Exception ex)
@@ -155,6 +165,22 @@ namespace View
             }
         }
 
+        private void SetTime()
+        {
+            int total_time_action = this.travel_controller.AllTimeForAction();
+            TimeSpan min = TimeSpan.FromMinutes(total_time_action);
+            this.arrival_hour.Value = this.arrival_hour.Value.Add(min);
+        }
+
+        private bool CompareDateAndHour()
+        {
+            int result_date = DateTime.Compare(this.init_date.Value,this.arrival_date.Value);
+            TimeSpan result = this.init_hour.Value.Subtract(this.arrival_hour.Value);
+
+            if (result_date <= 1 && result.Hours <= 0 && result.Minutes < 0 && result.Seconds < 0) return true;
+            return false;
+        }
+
         private void BlockForm()
         {
             this.init_station_combo_box.Enabled = false;
@@ -177,6 +203,7 @@ namespace View
                 ShowConfirmationMessage(e);
             }
         }
+
         private void ShowConfirmationMessage(DataGridViewCellEventArgs e)
         {
             if (MessageBox.Show("¿Está seguro que desea eliminar la acción?", "Ventana de confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -184,5 +211,12 @@ namespace View
                 //to do
             }
         }
+
+        private void Error(string error)
+        {
+            this.information_label.ForeColor = Color.Red;
+            this.information_label.Text = error;
+        }
+
     }
 }

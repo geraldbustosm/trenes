@@ -57,11 +57,11 @@ namespace View
             DataGridViewLinkColumn link = new DataGridViewLinkColumn();
 
             link.UseColumnTextForLinkValue = true;
-            link.Name = "Delete";
+            link.Name = "Eliminar";
             link.Text = "Eliminar";
 
             data_border_station.Columns.Add(link);
-            data_border_station.Columns[0].HeaderText = "Codigo";
+            data_border_station.Columns[0].HeaderText = "Código";
             data_border_station.Columns[1].HeaderText = "Nombre";
             data_border_station.Columns[2].HeaderText = "Capacidad";
         }
@@ -109,7 +109,7 @@ namespace View
         }
         private void data_border_station_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.data_border_station.Columns["Delete"].Index)
+            if (e.ColumnIndex == this.data_border_station.Columns["Eliminar"].Index)
             {
                 int id = Convert.ToInt32(((DataGridView)(sender)).Rows[e.RowIndex].Cells[1].Value.ToString());
                 this.stationController.DeleteBorderStation(id);
