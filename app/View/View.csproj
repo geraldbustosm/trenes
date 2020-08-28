@@ -289,6 +289,10 @@
       <Project>{0e73de84-46e1-4ca7-bf30-e23cf7408332}</Project>
       <Name>Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Event\Event.csproj">
+      <Project>{bc979489-c742-4d57-ab68-7c4ffd2cceb6}</Project>
+      <Name>Event</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Helper\Helper.csproj">
       <Project>{99aa831d-3a0b-43c2-a87d-388b7edf5dbc}</Project>
       <Name>Helper</Name>
@@ -308,6 +312,9 @@
     <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets')" />
