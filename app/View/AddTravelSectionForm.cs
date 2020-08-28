@@ -21,7 +21,6 @@ namespace View
             this.information_label.Text = "";
             _layout_form = layout_form;
             this.RefreshActions();
-            TravelController.AddDeleteLinkColumn(actions_datagrid);
             this.RefreshTrainState();
         }
 
@@ -174,38 +173,11 @@ namespace View
             this._layout_form.changeLayout(new AddTravelSectionForm(_layout_form));
         }
 
-        private void actions_datagrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void fix_locomotive_btn_Click(object sender, EventArgs e)
         {
-            if (e.ColumnIndex == 0)
-            {
-                ShowConfirmationMessage(e);
-            }
-        }
-        private void ShowConfirmationMessage(DataGridViewCellEventArgs e)
-        {
-            if (MessageBox.Show("¿Está seguro que desea eliminar la acción?", "Ventana de confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                //to do
-            }
-        }
-
-        private void locomotive_combo_box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.locomotive_combo_box.SelectedValue != null)
-            {
-                this.lastDragLocomotiveSelected = this.locomotive_combo_box.SelectedIndex;
-                Console.WriteLine("aa");
-            }
-            else if (this.locomotive_combo_box.SelectedValue == null && this.lastDragLocomotiveSelected != null)
-            {
-                this.locomotive_combo_box.SelectedIndex = this.lastDragLocomotiveSelected;
-                Console.WriteLine("bb");
-            }
-            else
-            {
-                Console.WriteLine("cc");
-            }
-            //travel_controller.FeedCapacityLabel(this.capacity_label,this.locomotive_combo_box.SelectedValue.ToString());
+            string patent = Convert.ToString(this.locomotive_combo_box.SelectedValue);
+            this.travel_controller.FeedCapacityLabel(capacity_label, patent);
+            this.locomotive_combo_box.Enabled = false;
         }
     }
 }

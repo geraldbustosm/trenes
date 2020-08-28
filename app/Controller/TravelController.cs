@@ -320,14 +320,6 @@ namespace Controller
 
             data.DataSource = dt;
         }
-        public static void AddDeleteLinkColumn(DataGridView dt)
-        {
-            DataGridViewLinkColumn link = new DataGridViewLinkColumn();
-            link.UseColumnTextForLinkValue = true;
-            link.Name = "Eliminar";
-            link.Text = "Eliminar";
-            dt.Columns.Add(link);
-        }
 
         public static void FeedDataGridScheduledTravels(DataGridView dgv)
         {
