@@ -63,6 +63,7 @@ CREATE TABLE section_action (
     travel_section_id INTEGER NOT NULL,
     locomotive_id INTEGER DEFAULT 0,
     wagon_id INTEGER DEFAULT 0,
+    executed INTEGER DEFAULT 0,
     FOREIGN KEY (action_id) REFERENCES action (action_id),
     FOREIGN KEY (travel_section_id) REFERENCES travel_section (travel_section_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (locomotive_id) REFERENCES locomotive (locomotive_id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -128,7 +129,7 @@ VALUES
     ('Alfaro', 100, 0, 5),
     ('Leger', 100, 0, 5),
     ('Castillo', 100, 0, 5),
-    ('Luco', 1, 1, 5);
+    ('Luco', 1, 0, 5);
 
 INSERT INTO wagon (patent, wagon_weight, in_transit, station_id) 
 VALUES 
@@ -152,7 +153,8 @@ VALUES
     ('Agregar locomotora', 20),
     ('Quitar carro', 30),
     ('Quitar locomotora', 30),
-    ('Descargar carro', 20);
+    ('Almacenar carro', 20),
+    ('Almacenar locomotora', 20);
 
 INSERT INTO permission (permission_name) 
 VALUES

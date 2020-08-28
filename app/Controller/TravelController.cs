@@ -302,14 +302,14 @@ namespace Controller
 
         public void AddActionsToLastSection()
         {
-            foreach (Locomotive l in locomotive_list)
-            {
-                SectionAction action = new SectionAction(4, section_index-1, l.locomotive_id, 0);
-                actions_list.Add(action);
-            }
             foreach (Wagon w in wagon_list)
             {
-                SectionAction action = new SectionAction(3, section_index-1, 0, w.wagon_id);
+                SectionAction action = new SectionAction(5, section_index, 0, w.wagon_id);
+                actions_list.Add(action);
+            }
+            foreach (Locomotive l in locomotive_list)
+            {
+                SectionAction action = new SectionAction(6, section_index, l.locomotive_id, 0);
                 actions_list.Add(action);
             }
             all_actions_by_section.Add(actions_list);
