@@ -122,7 +122,11 @@ namespace Model
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
                 {
-                    command.CommandText = "SELECT * FROM travel_section";
+                    command.CommandText = "SELECT * " +
+                        "FROM travel_section, travel " +
+                        "WHERE travel_section.travel_id = travel.travel_id AND " +
+                        "travel.state = 'En Transito'";
+
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
